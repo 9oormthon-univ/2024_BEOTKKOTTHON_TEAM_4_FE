@@ -1,0 +1,14 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+  background: linear-gradient(128.77deg, #90C9F6 9.11%, #5DABFF 56.8%);
+}
+
+.title {
+  font-size: 48px;
+  color: #FFFFFF;
+}

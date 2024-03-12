@@ -1,0 +1,28 @@
+export interface colorType extends Record<string, string> {}
+
+export const Colors = {
+  Black: '#000000',
+  Gray900: '#191F28',
+  Gray800: '#333D4B',
+  Gray700: '#4E5968',
+  Gray600: '#6B7684',
+  Gray500: '#8B95A1',
+  Gray400: '#B0B8C1',
+  Gray300: '#D1D6DB',
+  Gray200: '#E5E8EB',
+  Gray100: '#F2F4F6',
+  Gray50: '#F9FAFB',
+  White: '#FFFFFF',
+  Ibory: 'rgba(189,210,225,0.38)',
+  Primary: '#4196FD',
+  PrimaryLight: '#0067FF1A',
+  PrimaryDark: '#3a83de',
+  Secondary: '#90C9F6',
+  SecondaryLight: '#90C9F61A',
+  Error: '#DA1E28',
+  ErrorLight: '#FF57611A',
+  Kakao: '#F1DA2A',
+  KakaoDark: '#ceba24',
+  Secondary02: '#F2B81E',
+  Yellow: '#FFBB05',
+};
