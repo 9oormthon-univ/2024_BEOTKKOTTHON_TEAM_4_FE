@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## 🐻‍❄️ 백곰 : 백신아, 곰아워 💉
 
-First, run the development server:
+![Frame 1](https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_4_FE/assets/88662427/78b1c081-17b9-4a59-b98f-2396c4a53eab)
+![Frame 10](https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_4_FE/assets/88662427/4db40f3a-85b0-4c78-a557-72df45224bf1)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<br/><br/>
+## 🌸   Developers  🌸 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<table style="border: 2px;" align=center>
+  <tr>
+    <td colspan="2" align=center> FRONT </td>
+  </tr><tr>
+    <td> <img style="width: 300px;" src="https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_4_FE/assets/88662427/a8b3a2b9-0761-4da8-8a79-679c12d34b67" /> </td>
+    <td> <img style="width: 300px;" src="https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_4_FE/assets/88662427/5fb512b5-820d-4845-b441-a810a25f35d4" /> </td>
+  </tr>
+    <td align=center> 국민대학교 김민정 </td>
+    <td align=center> 한림대학교 오소현 </td>
+  </tr>
+</table>
