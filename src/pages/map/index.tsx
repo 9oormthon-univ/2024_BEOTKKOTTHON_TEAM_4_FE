@@ -14,40 +14,23 @@ export default function Map() {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
 
   useEffect(() => {
-    const initMap = (latitude, longitude) => {
+    const loadMap = () => {
       const mapOptions = {
-        center: new naver.maps.LatLng(latitude, longitude),
+        center: new naver.maps.LatLng(37.3595704, 127.105399),
         zoom: 10,
       };
 
       const map = new naver.maps.Map('map', mapOptions);
 
-      // 사용자의 현재 위치에 마커를 생성하고 지도에 추가
+      // 주어진 위도와 경도를 사용하여 마커 추가
+      const hospitalLocation = new naver.maps.LatLng(37.231514, 127.211419);
       new naver.maps.Marker({
-        position: new naver.maps.LatLng(latitude, longitude),
+        position: hospitalLocation,
         map: map,
-        title: 'Your Location',
+        title: '다보스종합병원',
       });
 
-      setIsMapLoaded(true); // 지도가 로드되면 상태를 업데이트
-    };
-
-    const loadMap = () => {
-      // 사용자의 현재 위치를 가져오거나 기본 위치를 사용
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            initMap(position.coords.latitude, position.coords.longitude);
-          },
-          () => {
-            window.alert('현재 위치를 알 수 없어 기본 위치로 지정합니다.');
-            initMap(37.3595704, 127.105399); // 기본 위치로 지정
-          }
-        );
-      } else {
-        window.alert('현재 위치를 알 수 없어 기본 위치로 지정합니다.');
-        initMap(37.3595704, 127.105399); // 기본 위치로 지정
-      }
+      setIsMapLoaded(true);
     };
 
     // naver.maps 객체가 로드되면 지도를 초기화
@@ -56,7 +39,7 @@ export default function Map() {
     } else {
       const mapScript = document.createElement('script');
       mapScript.onload = () => loadMap();
-      mapScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=YOUR_CLIENT_ID`;
+      mapScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_MAP_KEY}`;
       document.head.appendChild(mapScript);
     }
   }, []);
