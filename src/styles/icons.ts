@@ -36,5 +36,13 @@ export const Icons = {
     eye: {src: "eye", type: "custom"},
     eyeSlash: {src: "eyeSlash", type: "custom"},
     
+    checkBox_selec_dis: {src: "checkBox_selec_dis", type: "custom"},
+    checkBox_selec_en: {src: "checkBox_selec_en", type: "custom"},
+    checkBox_unselec_dis: {src: "checkBox_unselec_dis", type: "custom"},
+    checkBox_unselec_en: {src: "checkBox_unselec_en", type: "custom"},
     
+    radio_selec_dis: {src: "radio_selec_dis", type: "custom"},
+    radio_selec_en: {src: "radio_selec_en", type: "custom"},
+    radio_unselec_dis: {src: "radio_unselec_dis", type: "custom"},
+    radio_unselec_en: {src: "radio_unselec_en", type: "custom"},
 };

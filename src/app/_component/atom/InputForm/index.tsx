@@ -104,7 +104,6 @@ const index = ({
         )}
         {children}
       </div>
-
       {description && (
         <div className="input-form__description">{description}</div>
       )}

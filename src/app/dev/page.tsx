@@ -170,18 +170,14 @@ export default function Home() {
           <div className="content-column">
             <h4>| 체크박스 size = m |</h4>
 
-            <CheckBox label="로그인 상태 유지" checked />
-            <CheckBox label="로그인 상태 유지" checked={false} />
-            <CheckBox label="로그인 상태 유지" disabled />
-            <h4>| 체크박스 size = s |</h4>
-
-            <CheckBox variant="small" label="로그인 상태 유지" checked />
+            <CheckBox label="selected, enabled" checked disabled={false} />
             <CheckBox
-              variant="small"
-              label="로그인 상태 유지"
+              label="unSelected, enabled"
               checked={false}
+              disabled={false}
             />
-            <CheckBox variant="small" label="로그인 상태 유지" disabled />
+            <CheckBox label="selected, disabled" disabled checked />
+            <CheckBox label="unSelected, disabled" disabled />
           </div>
         </div>
         <div className="section">
@@ -208,6 +204,26 @@ export default function Home() {
             <h4>라디오 size = small</h4>
             <RadioBox
               variant="small"
+              value="Checked"
+              options={[
+                {
+                  value: 'Checked',
+                  label: 'Checked',
+                },
+                {
+                  value: 'Unchecked',
+                  label: 'Unchecked',
+                },
+                {
+                  value: 'Disabled',
+                  label: 'Disabled',
+                  disabled: true,
+                },
+              ]}
+            />
+          </div>
+          <div className="content-column">
+            <RadioBox
               value="Checked"
               options={[
                 {
