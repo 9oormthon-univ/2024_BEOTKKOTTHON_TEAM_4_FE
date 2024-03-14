@@ -33,5 +33,8 @@ export const Icons = {
     
     kakao: {src: "kakao", type: "custom"},
     google: {src: "google", type: "custom"},
+    eye: {src: "eye", type: "custom"},
+    eyeSlash: {src: "eyeSlash", type: "custom"},
+    
     
 };

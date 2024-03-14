@@ -8,13 +8,16 @@ import kakao from '../../public/assets/ico/ico-kakao.svg';
 import google from '../../public/assets/ico/ic-google.svg';
 import Vacgom01 from '../../public/assets/image/img-Vacgom01.svg';
 import share from '../../public/assets/ico/ico-share.svg';
+import eye from '../../public/assets/ico/ico-eye.svg';
+import eyeSlash from '../../public/assets/ico/ico-eye-slash.svg';
 // prettier-ignore
 export const Images: ImagesType = {
   // icon
   kakao: kakao,
   google: google,
   share: share,
-  
+  eye:eye,
+  eyeSlash:eyeSlash,
   //image
   vacgom01: Vacgom01,
 };

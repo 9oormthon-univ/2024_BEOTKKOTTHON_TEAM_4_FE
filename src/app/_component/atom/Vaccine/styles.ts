@@ -39,12 +39,15 @@ export const VaccineCardWrapper = styled.div<CustomStyleType>`
       border-radius: 63.29px;
       ${fontGenerator('15.19px', '700', '18.13px')};
     }
-    & > .share_bitton {
+    & > .share_button {
+      cursor: pointer;
       background-color: #ffffff99;
-      //width: 48.79px;
-      //height: 48.79px;
-      padding: 8.86px 12.66px 8.86px 12.66px;
+      width: 37.34px;
+      height: 37.34px;
       border-radius: 63.29px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 

@@ -106,7 +106,8 @@ export default function Home() {
               variant={'OutlineWhite'}
               size={'small'}
               prevIcon={Icons.google}
-              iconSize={'20'}/>
+              iconSize={'20'}
+            />
           </div>
         </div>
       </div>
@@ -151,6 +152,16 @@ export default function Home() {
               variant="error"
               rightIcon={Icons.error}
               description="비밀번호가 유효하지 않습니다. 다시 확인해주세요."
+            />
+            <InputForm
+              placeholder="텍스트를 입력하세요."
+              variant="default"
+              rightIcon={Icons.eye}
+            />
+            <InputForm
+              placeholder="텍스트를 입력하세요."
+              variant="default"
+              rightIcon={Icons.eyeSlash}
             />
             <InputForm placeholder="텍스트를 입력하세요." disabled />
           </div>

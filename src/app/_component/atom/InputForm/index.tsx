@@ -47,7 +47,6 @@ const index = ({
   onChange = (event: React.ChangeEvent<HTMLInputElement>) => {},
   onBlur = (event: React.FocusEvent<HTMLInputElement>) => {},
   onClick = (event: React.MouseEvent<HTMLInputElement>) => {},
-
   leftIcon,
   rightIcon,
   onClickLeftIcon = (event: React.MouseEvent<HTMLSpanElement>) => {},
