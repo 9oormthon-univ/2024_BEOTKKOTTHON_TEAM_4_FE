@@ -4,12 +4,17 @@
  */
 const BASE_URL = process.env.BASE_URL;
 interface ImagesType extends Record<string, string> {}
-import kakao from '../../public/assets/image/ico-kakao.svg';
-import google from '../../public/assets/image/ic-google.svg';
+import kakao from '../../public/assets/ico/ico-kakao.svg';
+import google from '../../public/assets/ico/ic-google.svg';
+import Vacgom01 from '../../public/assets/image/img-Vacgom01.svg';
+import share from '../../public/assets/ico/ico-share.svg';
 // prettier-ignore
 export const Images: ImagesType = {
   // icon
-  Next: `${BASE_URL}/public/assets/images/next.svg`,
   kakao: kakao,
   google: google,
+  share: share,
+  
+  //image
+  vacgom01: Vacgom01,
 };
