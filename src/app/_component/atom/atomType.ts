@@ -149,3 +149,15 @@ export interface SectionHeaderProps {
   onSectionChange: (section: string) => void;
   customStyle?: SerializedStyles;
 }
+
+//atoms/Information 의 타입
+export interface InformationProps {
+  message: string;
+  containerProps?: React.CSSProperties;
+  iconProps?: {
+    color?: string;
+    marginRight?: string;
+    className?: string;
+  };
+  textProps?: React.CSSProperties;
+}
