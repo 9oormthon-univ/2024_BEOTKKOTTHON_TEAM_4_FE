@@ -20,10 +20,11 @@ const Section = styled.div`
   cursor: pointer;
   transition: all 0.3s;
 `;
+// 타입으로 작성 X-> 이 헤더 가져다 쓰는 상위 컴포넌트에서 세션 텍스트만 넣어주면 자동으로 됩니다!
+// 그 텍스트는 배열에 작성하면 됩니다
+// 예시  : const sectionTexts = ["필수예방접종", "국가예방접종", "기타예방접종"];
 
-const sections = ["필수예방접종", "국가예방접종", "기타예방접종"];
-
-const SectionHeader = ({ onSectionChange }) => {
+const SectionHeader = ({ sections, onSectionChange }) => {
   const [selectedSection, setSelectedSection] = useState(sections[0]);
 
   const handleSectionClick = (section) => {
@@ -33,13 +34,13 @@ const SectionHeader = ({ onSectionChange }) => {
 
   return (
     <SectionHeaderContainer>
-      {sections.map((section) => (
+      {sections.map((sectionText) => (
         <Section
-          key={section}
-          isSelected={section === selectedSection}
-          onClick={() => handleSectionClick(section)}
+          key={sectionText}
+          isSelected={sectionText === selectedSection}
+          onClick={() => handleSectionClick(sectionText)}
         >
-          {section}
+          {sectionText}
         </Section>
       ))}
     </SectionHeaderContainer>

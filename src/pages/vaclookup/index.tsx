@@ -8,7 +8,9 @@ const PageContainer = styled.div`
 `;
 
 export default function VacLookup() {
-  const [selectedSection, setSelectedSection] = useState("필수예방접종"); //기본 선택은 무조건 필수예방접종(화면설계서)
+  const [selectedSection, setSelectedSection] = useState("필수예방접종");
+
+  const sectionTexts = ["필수예방접종", "국가예방접종", "기타예방접종"];
 
   const handleSectionChange = (section) => {
     setSelectedSection(section);
@@ -17,9 +19,9 @@ export default function VacLookup() {
   return (
     <>
       <MainHeader title="백신정보" />
-      <SectionHeader onSectionChange={handleSectionChange} />
+      <SectionHeader sections={sectionTexts} onSectionChange={handleSectionChange} />
       <PageContainer>
-      <p>선택된 섹션: {selectedSection}우선 구분용입니다~</p>
+        <p>선택된 섹션: {selectedSection}우선 구분용입니다~</p>
       </PageContainer>
     </>
   );
