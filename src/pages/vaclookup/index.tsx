@@ -1,17 +1,25 @@
-
+import React, { useState } from 'react';
+import SectionHeader from '@/app/_component/atom/SectionHeader';
 import MainHeader from '@/app/_component/atom/MainHeader';
 import styled from '@emotion/styled';
 
 const PageContainer = styled.div`
-  padding-top: 54px; // 헤더의 높이와 같게 설정하여 페이지 컨텐츠가 헤더 아래 시작하도록 함
+  padding-top: 54px;
 `;
 
 export default function VacLookup() {
+  const [selectedSection, setSelectedSection] = useState("필수예방접종"); //기본 선택은 무조건 필수예방접종(화면설계서)
+
+  const handleSectionChange = (section) => {
+    setSelectedSection(section);
+  };
+
   return (
     <>
       <MainHeader title="백신정보" />
+      <SectionHeader onSectionChange={handleSectionChange} />
       <PageContainer>
-        {/* 페이지 내용 */}
+      <p>선택된 섹션: {selectedSection}우선 구분용입니다~</p>
       </PageContainer>
     </>
   );
