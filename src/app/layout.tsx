@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "./globalicon.css"
 import Head from "next/head";
+import 'react-tooltip/dist/react-tooltip.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
