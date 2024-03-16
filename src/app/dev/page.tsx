@@ -18,6 +18,7 @@ export default function Home() {
           {Object.entries(Colors).map(([colorKey, hex]) => (
             <h6 style={{ width: '9rem' }}>
               <div
+                key={colorKey}
                 style={{
                   width: '4rem',
                   height: '4rem',

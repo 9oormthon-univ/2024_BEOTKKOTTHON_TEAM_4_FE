@@ -1,4 +1,4 @@
-import { SerializedStyles } from '@emotion/react';
+import { SerializedStyles } from "@emotion/react";
 import React from "react";
 
 export interface CssArchiveType
@@ -136,3 +136,28 @@ export interface SerializedStyles {
   next?: SerializedStyles;
 }
 
+//atoms/MainHeader 의 타입
+//계속 고치자!!
+export interface MainHeaderType {
+  title: string;
+  customStyle?: SerializedStyles;
+}
+
+//atoms/SectionHeader 의 타입
+export interface SectionHeaderProps {
+  sections: string[];
+  onSectionChange: (section: string) => void;
+  customStyle?: SerializedStyles;
+}
+
+//atoms/Information 의 타입
+export interface InformationProps {
+  message: string;
+  containerProps?: React.CSSProperties;
+  iconProps?: {
+    color?: string;
+    marginRight?: string;
+    className?: string;
+  };
+  textProps?: React.CSSProperties;
+}
