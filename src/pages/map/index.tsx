@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import { hospitals } from '../../utils/hpv-api';
+import {hospitals} from '@/utils/hpv-api';
+import Tooltip from '@/app/_component/atom/Tooltip';
 
 const Main = styled.div`
   display: flex;
@@ -64,6 +65,7 @@ export default function Map() {
     <Main>
       <div id="map" style={{ width: '100%', height: '500px' }}>
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
+        <Tooltip /> 
       </div>
     </Main>
   );
