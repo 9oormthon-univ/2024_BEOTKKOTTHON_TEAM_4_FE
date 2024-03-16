@@ -69,10 +69,12 @@ const Index = ({
       <Icon
         icon={
           disabled
-            ? Icons.checkboxDisabled
+            ? checked
+              ? Icons.checkBox_selec_dis
+              : Icons.checkBox_unselec_dis
             : checked
-              ? Icons.checkbox
-              : Icons.checkboxBlank
+              ? Icons.checkBox_selec_en
+              : Icons.checkBox_unselec_en
         }
         size={size}
         color={indeterminate || checked ? Colors.Primary : '#8f959d'}

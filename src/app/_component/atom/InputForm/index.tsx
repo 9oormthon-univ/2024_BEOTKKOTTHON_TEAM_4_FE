@@ -47,7 +47,6 @@ const Index = ({
   onChange = (event: React.ChangeEvent<HTMLInputElement>) => {},
   onBlur = (event: React.FocusEvent<HTMLInputElement>) => {},
   onClick = (event: React.MouseEvent<HTMLInputElement>) => {},
-
   leftIcon,
   rightIcon,
   onClickLeftIcon = (event: React.MouseEvent<HTMLSpanElement>) => {},
@@ -105,7 +104,6 @@ const Index = ({
         )}
         {children}
       </div>
-
       {description && (
         <div className="input-form__description">{description}</div>
       )}

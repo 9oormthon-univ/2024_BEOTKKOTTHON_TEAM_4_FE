@@ -107,7 +107,8 @@ export default function Home() {
               variant={'OutlineWhite'}
               size={'small'}
               prevIcon={Icons.google}
-              iconSize={'20'}/>
+              iconSize={'20'}
+            />
           </div>
         </div>
       </div>
@@ -153,6 +154,16 @@ export default function Home() {
               rightIcon={Icons.error}
               description="비밀번호가 유효하지 않습니다. 다시 확인해주세요."
             />
+            <InputForm
+              placeholder="텍스트를 입력하세요."
+              variant="default"
+              rightIcon={Icons.eye}
+            />
+            <InputForm
+              placeholder="텍스트를 입력하세요."
+              variant="default"
+              rightIcon={Icons.eyeSlash}
+            />
             <InputForm placeholder="텍스트를 입력하세요." disabled />
           </div>
         </div>
@@ -160,18 +171,14 @@ export default function Home() {
           <div className="content-column">
             <h4>| 체크박스 size = m |</h4>
 
-            <CheckBox label="로그인 상태 유지" checked />
-            <CheckBox label="로그인 상태 유지" checked={false} />
-            <CheckBox label="로그인 상태 유지" disabled />
-            <h4>| 체크박스 size = s |</h4>
-
-            <CheckBox variant="small" label="로그인 상태 유지" checked />
+            <CheckBox label="selected, enabled" checked disabled={false} />
             <CheckBox
-              variant="small"
-              label="로그인 상태 유지"
+              label="unSelected, enabled"
               checked={false}
+              disabled={false}
             />
-            <CheckBox variant="small" label="로그인 상태 유지" disabled />
+            <CheckBox label="selected, disabled" disabled checked />
+            <CheckBox label="unSelected, disabled" disabled />
           </div>
         </div>
         <div className="section">
@@ -198,6 +205,26 @@ export default function Home() {
             <h4>라디오 size = small</h4>
             <RadioBox
               variant="small"
+              value="Checked"
+              options={[
+                {
+                  value: 'Checked',
+                  label: 'Checked',
+                },
+                {
+                  value: 'Unchecked',
+                  label: 'Unchecked',
+                },
+                {
+                  value: 'Disabled',
+                  label: 'Disabled',
+                  disabled: true,
+                },
+              ]}
+            />
+          </div>
+          <div className="content-column">
+            <RadioBox
               value="Checked"
               options={[
                 {
