@@ -1,16 +1,9 @@
-'use client';
-
 import * as React from 'react';
 import { SplashWrapper } from './style';
 import Image from 'next/image';
-import Button from '@/app/_component/atom/button/button';
 import { Colors, Icons, Images } from '@globalStyles';
 
-import InputForm from '@/app/_component/atom/InputForm';
-import CheckBox from '@/app/_component/atom/CheckBox';
-import RadioBox from '../_component/atom/RadioBox';
-
-export default function Home() {
+export default function Splash() {
   return (
     <SplashWrapper>
       <div className="main">
