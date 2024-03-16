@@ -6,6 +6,7 @@ const BASE_URL = process.env.BASE_URL;
 interface ImagesType extends Record<string, string> {}
 import kakao from '../../public/assets/ico/ico-kakao.svg';
 import google from '../../public/assets/ico/ic-google.svg';
+import vacgom from '../../public/assets/image/img-splash-vacgom.svg';
 import Vacgom01 from '../../public/assets/image/img-Vacgom01.svg';
 import share from '../../public/assets/ico/ico-share.svg';
 import eye from '../../public/assets/ico/ico-eye.svg';
@@ -37,4 +38,5 @@ export const Images: ImagesType = {
   radio_unselec_en :radio_unselec_en,
   //image
   vacgom01: Vacgom01,
+  vacgom : vacgom,
 };
