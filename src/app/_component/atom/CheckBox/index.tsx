@@ -46,7 +46,7 @@ export interface CheckBoxType {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const index = ({
+const Index = ({
   className = '',
   keyId = useId(),
   label = '',
@@ -89,4 +89,4 @@ const index = ({
   );
 };
 
-export default index;
+export default Index;

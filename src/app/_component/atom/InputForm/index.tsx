@@ -33,7 +33,7 @@ import Icon from '../Icon/Icon';
  * @return {JSX.Element}
  */
 
-const index = ({
+const Index = ({
   id = useId(),
   inputRef,
   readOnly = false,
@@ -113,4 +113,4 @@ const index = ({
   );
 };
 
-export default index;
+export default Index;
