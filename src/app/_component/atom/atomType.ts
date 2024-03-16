@@ -142,3 +142,10 @@ export interface MainHeaderType {
   title: string;
   customStyle?: SerializedStyles;
 }
+
+//atoms/SectionHeader 의 타입
+export interface SectionHeaderProps {
+  sections: string[];
+  onSectionChange: (section: string) => void;
+  customStyle?: SerializedStyles;
+}
