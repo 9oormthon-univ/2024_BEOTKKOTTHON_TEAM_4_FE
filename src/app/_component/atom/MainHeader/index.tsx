@@ -1,5 +1,3 @@
-// components/MainHeader.tsx
-
 import styled from '@emotion/styled';
 
 const HeaderContainer = styled.header`
