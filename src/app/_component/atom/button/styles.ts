@@ -82,6 +82,11 @@ export const ButtonSizes: CssArchiveType = {
     ${fontGenerator('1rem', '400')}
   `,
   xsmall: css``,
+  kakao: css`
+    ${fontGenerator('16px', '500', '16px', '-0.3px')}
+    padding: 13px 10px;
+    width: 100%;
+  `,
   inputButton: css``,
   half: css``,
 };
