@@ -1,4 +1,4 @@
-import { SerializedStyles } from '@emotion/react';
+import { SerializedStyles } from "@emotion/react";
 import React from "react";
 
 export interface CssArchiveType
@@ -136,3 +136,9 @@ export interface SerializedStyles {
   next?: SerializedStyles;
 }
 
+//atoms/MainHeader 의 타입
+//계속 고치자!!
+export interface MainHeaderType {
+  title: string;
+  customStyle?: SerializedStyles;
+}
