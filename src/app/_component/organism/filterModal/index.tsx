@@ -1,5 +1,7 @@
-import React from 'react';
+import React,  {useState} from 'react';
 import styled from '@emotion/styled';
+import { Images } from '@globalStyles';
+import Image from 'next/image';
 
 const Overlay = styled.div`
   position: fixed;
@@ -68,6 +70,9 @@ const ModalTitle = styled.h2`
 `;
 
 const ModalOption = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 14px;
   padding: 12px 0;
 `;
 
@@ -80,21 +85,57 @@ const OptionText = styled.span`
   text-align: left;
 `;
 
+const ModalFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+`;
+
+const FooterButton = styled.button`
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+`;
+
 interface ModalProps {
   isOpen: boolean;
   title: string;
   options: string[];
+  selectedOptions: string[];
   onClose: () => void;
   onOptionSelect: (option: string) => void;
+  onReset: () => void;
 }
 
 const FilterModal: React.FC<ModalProps> = ({
   isOpen,
   title,
   options,
+  selectedOptions,
   onClose,
   onOptionSelect,
+  onReset,
 }) => {
+  const [localSelectedOptions, setLocalSelectedOptions] = useState<string[]>(selectedOptions || []);
+
+  const handleOptionSelect = (option: string) => {
+    const isOptionSelected = localSelectedOptions.includes(option);
+    setLocalSelectedOptions(isOptionSelected ? [] : [option]);
+  };
+
+  const handleConfirm = () => {
+    onOptionSelect(localSelectedOptions);
+    onClose();
+  };
+
+  const handleReset = () => {
+    setLocalSelectedOptions([]);
+    onReset();
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -105,14 +146,25 @@ const FilterModal: React.FC<ModalProps> = ({
         <ModalContent>
           <ModalTitle>{title}</ModalTitle>
           {options.map((option) => (
-            <ModalOption key={option} onClick={() => onOptionSelect(option)}>
+            <ModalOption key={option} onClick={() => handleOptionSelect(option)}>
+              <Image
+                src={localSelectedOptions.includes(option) ? Images.checkBox_selec_en : Images.checkBox_unselec_dis} // 여기를 수정했습니다.
+                alt={option}
+                width={20}
+                height={20}
+              />
               <OptionText>{option}</OptionText>
             </ModalOption>
           ))}
         </ModalContent>
+        <ModalFooter>
+          <FooterButton onClick={handleReset}>초기화</FooterButton>
+          <FooterButton onClick={handleConfirm}>확인</FooterButton>
+        </ModalFooter>
       </ModalContainer>
     </>
   );
 };
+
 
 export default FilterModal;

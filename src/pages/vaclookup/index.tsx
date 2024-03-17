@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from 'react';
 import styled from '@emotion/styled';
-//메인헤더와 세션헤더,안내 문구 컴포넌트 고정된 값의 organism
 import VacLookupFixed from '@/app/_component/organism/vaclookupFixed';
 import { Images } from '@globalStyles';
 import Image from 'next/image';
@@ -22,108 +21,47 @@ const FiltersContainer = styled.div`
 
 export default function VacLookup() {
   const [selectedSection, setSelectedSection] = useState('필수예방접종');
-
-  const handleSectionChange = (section) => {
-    setSelectedSection(section);
-  };
-
   const [ageFilter, setAgeFilter] = useState('전체');
   const [sitFilter, setSitFilter] = useState('해당 없음');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAgeModalOpen, setIsAgeModalOpen] = useState(false);
   const [isSitModalOpen, setIsSitModalOpen] = useState(false);
+  const [selectedAgeOptions, setSelectedAgeOptions] = useState<string[]>([]);
+  const [selectedSitOptions, setSelectedSitOptions] = useState<string[]>([]);
 
-  const handleFilterClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleAgeSelect = (age) => {
-    setAgeFilter(age);
+  const handleAgeSelect = (selectedOptions: string[]) => {
+    // 선택된 옵션이 없으면 "전체"로 설정
+    const selectedText = selectedOptions.length > 0 ? selectedOptions.join(', ') : '전체';
+    setAgeFilter(selectedText);
     setIsAgeModalOpen(false);
   };
-
-  const handleSitSelect = (sit) => {
-    setSitFilter(sit);
+  
+  const handleSitSelect = (selectedOptions: string[]) => {
+    // 선택된 옵션이 없으면 "해당 없음"으로 설정
+    const selectedText = selectedOptions.length > 0 ? selectedOptions.join(', ') : '해당 없음';
+    setSitFilter(selectedText);
     setIsSitModalOpen(false);
   };
-
-  const handleClearFilter = () => {
-    setAgeFilter('전체');
-    setSitFilter('해당 없음');
-    setIsAgeModalOpen(false);
-    setIsSitModalOpen(false);
+  
+  const resetAgeOptions = () => {
+    setSelectedAgeOptions([]);
   };
 
-  const handleAgeFilterClick = () => {
-    setIsAgeModalOpen(true);
-    setIsSitModalOpen(false);
-  };
-
-  const handleSitFilterClick = () => {
-    setIsSitModalOpen(true);
-    setIsAgeModalOpen(false);
-  };
-
-  const handleClearAgeFilter = () => {
-    setAgeFilter('전체');
-    setIsAgeModalOpen(false);
-  };
-
-  const handleClearSitFilter = () => {
-    setSitFilter('해당 없음');
-    setIsSitModalOpen(false);
+  const resetSitOptions = () => {
+    setSelectedSitOptions([]);
   };
 
   return (
     <div>
-      <VacLookupFixed
-        selectedSection={selectedSection}
-        handleSectionChange={handleSectionChange}
-        messages={introMessages}
-      />
+      <VacLookupFixed selectedSection={selectedSection} handleSectionChange={setSelectedSection} messages={introMessages} />
       <PageContainer>
         <FiltersContainer>
-          <Image
-            src={
-              ageFilter === '전체' && sitFilter === '해당 없음'
-                ? Images.adjustment_unselec
-                : Images.adjustment_selec
-            }
-            alt="Filter Icon"
-            width={24}
-            height={24}
-          />
-          <Filter
-            label="연령"
-            selectedValue={ageFilter}
-            onSelect={handleAgeFilterClick}
-            onClear={handleClearAgeFilter}
-            isSelected={ageFilter !== '전체'}
-          />
-          <Filter
-            label="상황"
-            selectedValue={sitFilter}
-            onSelect={handleSitFilterClick}
-            onClear={handleClearSitFilter}
-            isSelected={sitFilter !== '해당 없음'}
-          />
+          <Image src={ageFilter === '전체' && sitFilter === '해당 없음' ? Images.adjustment_unselec : Images.adjustment_selec} alt="Filter Icon" width={24} height={24} />
+          <Filter label="연령" selectedValue={ageFilter} onSelect={() => setIsAgeModalOpen(true)} onClear={() => setAgeFilter('전체')} isSelected={ageFilter !== '전체'} />
+          <Filter label="상황" selectedValue={sitFilter} onSelect={() => setIsSitModalOpen(true)} onClear={() => setSitFilter('해당 없음')} isSelected={sitFilter !== '해당 없음'} />
         </FiltersContainer>
         <Fragment>
-        <FilterModal
-        isOpen={isAgeModalOpen}
-        title="연령"
-        options={ageRanges}
-        onClose={() => setIsAgeModalOpen(false)}
-        onOptionSelect={handleAgeSelect}
-      />
-
-      <FilterModal
-        isOpen={isSitModalOpen}
-        title="상황"
-        options={situationRanges}
-        onClose={() => setIsSitModalOpen(false)}
-        onOptionSelect={handleSitSelect}
-      />
+          <FilterModal isOpen={isAgeModalOpen} title="연령" options={ageRanges} selectedOptions={selectedAgeOptions} onClose={() => setIsAgeModalOpen(false)} onOptionSelect={handleAgeSelect} onReset={resetAgeOptions} />
+          <FilterModal isOpen={isSitModalOpen} title="상황" options={situationRanges} selectedOptions={selectedSitOptions} onClose={() => setIsSitModalOpen(false)} onOptionSelect={handleSitSelect} onReset={resetSitOptions} />
         </Fragment>
         <p>선택된 섹션: {selectedSection}우선 구분용입니다~</p>
       </PageContainer>
