@@ -7,23 +7,9 @@ import Image from 'next/image';
 import Filter from '@/app/_component/atom/Filter';
 import { introMessages, ageRanges, situationRanges } from '@/constants';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
+import FilterModal from '@/app/_component/organism/filterModal';
 
 const PageContainer = styled.div``;
-
-const Modal = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  color: black;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  width: auto;
-  max-width: 90%;
-`;
 
 const FiltersContainer = styled.div`
   display: flex;
@@ -123,36 +109,32 @@ export default function VacLookup() {
           />
         </FiltersContainer>
         <Fragment>
-          {isAgeModalOpen && (
-            <Modal>
-              {ageRanges.map((age) => (
-                <div
-                  key={age}
-                  onClick={() => handleAgeSelect(age)}
-                  style={{ padding: '10px', cursor: 'pointer' }}
-                >
-                  {age}
-                </div>
-              ))}
-            </Modal>
-          )}
-          {isSitModalOpen && (
-            <Modal>
-              {situationRanges.map((sit) => (
-                <div
-                  key={sit}
-                  onClick={() => handleSitSelect(sit)}
-                  style={{ padding: '10px', cursor: 'pointer' }}
-                >
-                  {sit}
-                </div>
-              ))}
-            </Modal>
-          )}
+          <FilterModal isOpen={isAgeModalOpen}>
+            {ageRanges.map((age) => (
+              <div
+                key={age}
+                onClick={() => handleAgeSelect(age)}
+                style={{ padding: '10px', cursor: 'pointer' }}
+              >
+                {age}
+              </div>
+            ))}
+          </FilterModal>
+          <FilterModal isOpen={isSitModalOpen}>
+            {situationRanges.map((sit) => (
+              <div
+                key={sit}
+                onClick={() => handleSitSelect(sit)}
+                style={{ padding: '10px', cursor: 'pointer' }}
+              >
+                {sit}
+              </div>
+            ))}
+          </FilterModal>
         </Fragment>
         <p>선택된 섹션: {selectedSection}우선 구분용입니다~</p>
       </PageContainer>
-        <NavigationFixed />
+      <NavigationFixed />
     </div>
   );
 }

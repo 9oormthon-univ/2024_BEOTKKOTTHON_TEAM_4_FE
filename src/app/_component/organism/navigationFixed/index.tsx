@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 // 다른 페이지 디자인이 안나와서 네비게이션이 전 페이지 다 되는지 안되는지 모르겠네요...
 // 그래서 우선 컴포넌트로 만들고 페이지에 불러와서 사용하도록 구현했습니다
 // 전체 디자인 다 나오고, 페이지 고정되는 부분들 (네비게이션이나 헤더 나) 있다면 최상위로 만들고 자동 적용되도록해둘게요
-// 우선 사용하는 페이지에서 <NavigationFixed /> 이렇게 불러만 주시면 됩니다 
+// 우선 사용하는 페이지에서 <NavigationFixed /> 이렇게 불러만 주시면 됩니다
 
 const navItems = [
   { icon: 'nav_home', label: '홈', route: '/home' },
@@ -31,7 +31,7 @@ const NavigationContainer = styled.div`
   right: 0;
   z-index: 1000;
   max-width: 500px;
-  margin: 0 auto; 
+  margin: 0 auto;
 `;
 
 const NavItem = styled.div<{ isActive: boolean }>`
@@ -67,7 +67,12 @@ export default function NavigationFixed() {
           isActive={router.pathname === item.route}
           onClick={() => handleNavigation(item.route)}
         >
-          <Image src={Images[item.icon]} alt={item.label} width={24} height={24} />
+          <Image
+            src={Images[item.icon]}
+            alt={item.label}
+            width={24}
+            height={24}
+          />
           <span>{item.label}</span>
         </NavItem>
       ))}
