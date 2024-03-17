@@ -2,6 +2,8 @@ import React, { useState, Fragment } from 'react';
 import styled from '@emotion/styled';
 //메인헤더와 세션헤더,안내 문구 컴포넌트 고정된 값의 temp
 import VacLookupFixed from '@/app/_component/temp/vaclookupFixed';
+import { Images } from '@globalStyles';
+import Image from 'next/image';
 
 const PageContainer = styled.div``;
 
@@ -25,7 +27,7 @@ const FilterText = styled.span`
 `;
 
 const SelectedFilterText = styled.span`
-    font-family: 'Pretendard', sans-serif;
+  font-family: 'Pretendard', sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: #4196fd;
@@ -127,16 +129,14 @@ export default function VacLookup() {
     setIsAgeModalOpen(false);
   };
 
-  // 연령 필터만 초기화하는 함수
   const handleClearAgeFilter = () => {
     setAgeFilter('전체');
-    setIsAgeModalOpen(false); // 연령 모달을 닫습니다.
+    setIsAgeModalOpen(false);
   };
 
-  // 상황 필터만 초기화하는 함수
   const handleClearSitFilter = () => {
     setSitFilter('해당 없음');
-    setIsSitModalOpen(false); // 상황 모달을 닫습니다.
+    setIsSitModalOpen(false);
   };
 
   return (
@@ -147,20 +147,26 @@ export default function VacLookup() {
         messages={messages}
       />
       <PageContainer>
-        <FilterButton onClick={handleAgeFilterClick}>
-          <FilterText>연령: </FilterText>
-          <SelectedFilterText>{ageFilter}</SelectedFilterText>
-          {ageFilter !== '전체' && (
-            <button onClick={handleClearAgeFilter}>취소</button> // 연령 필터의 취소 버튼
-          )}
-        </FilterButton>
-        <FilterButton onClick={handleSitFilterClick}>
-          <FilterText>상황: </FilterText>
-          <SelectedFilterText>{sitFilter}</SelectedFilterText>
-          {sitFilter !== '해당 없음' && (
-            <button onClick={handleClearSitFilter}>취소</button> // 상황 필터의 취소 버튼
-          )}
-        </FilterButton>
+      {ageFilter === '전체' && sitFilter === '해당 없음' ? (
+        <Image src={Images.adjustment_unselec} alt="Adjustment Unselected" />
+      ) : (
+        <Image src={Images.adjustment_selec} alt="Adjustment Selected" />
+      )}
+
+      <FilterButton onClick={handleAgeFilterClick}>
+        <FilterText>연령: </FilterText>
+        <SelectedFilterText>{ageFilter}</SelectedFilterText>
+        {ageFilter !== '전체' && (
+          <button onClick={handleClearAgeFilter}>취소</button>
+        )}
+      </FilterButton>
+      <FilterButton onClick={handleSitFilterClick}>
+        <FilterText>상황: </FilterText>
+        <SelectedFilterText>{sitFilter}</SelectedFilterText>
+        {sitFilter !== '해당 없음' && (
+          <button onClick={handleClearSitFilter}>취소</button>
+        )}
+      </FilterButton>
         <Fragment>
           {isAgeModalOpen && (
             <Modal>
