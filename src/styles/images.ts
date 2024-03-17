@@ -24,6 +24,11 @@ import adjustment_unselec from '../../public/assets/ico/ico-adjustment-unselecte
 import circle_x_fill from '../../public/assets/ico/ico-circle-x-filled.svg';
 import info_check from '../../public/assets/ico/ico-information-checked.svg';
 import notification from '../../public/assets/ico/ico-notification.svg';
+import nav_home from '../../public/assets/ico/ico-nav-home.svg';
+import nav_map from '../../public/assets/ico/ico-nav-map.svg';
+import nav_my from '../../public/assets/ico/ico-nav-my.svg';
+import nav_vachistory from '../../public/assets/ico/ico-nav-vachistory.svg';
+import nav_vaclookup from '../../public/assets/ico/ico-nav-vaclookup.svg';
 
 // prettier-ignore
 export const Images: ImagesType = {
@@ -46,6 +51,12 @@ export const Images: ImagesType = {
   circle_x_fill :circle_x_fill,
   info_check :info_check,
   notification :notification,
+  nav_home :nav_home,
+  nav_map :nav_map,
+  nav_my :nav_my,
+  nav_vachistory :nav_vachistory,
+  nav_vaclookup :nav_vaclookup,
+
   //image
   vacgom01: Vacgom01,
   vacgom : vacgom,
