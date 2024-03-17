@@ -4,34 +4,9 @@ import styled from '@emotion/styled';
 import VacLookupFixed from '@/app/_component/temp/vaclookupFixed';
 import { Images } from '@globalStyles';
 import Image from 'next/image';
+import Filter from '@/app/_component/atom/Filter';
 
 const PageContainer = styled.div``;
-
-const FilterButton = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  height: 33px;
-  padding: 8px 12px;
-  background: #f2f4f6;
-  border-radius: 100px;
-  border: none;
-  cursor: pointer;
-`;
-
-const FilterText = styled.span`
-  font-family: 'Pretendard', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #8b95a1;
-`;
-
-const SelectedFilterText = styled.span`
-  font-family: 'Pretendard', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: #4196fd;
-`;
 
 const Modal = styled.div`
   position: fixed;
@@ -111,7 +86,6 @@ export default function VacLookup() {
     setIsSitModalOpen(false);
   };
   
-
   const handleClearFilter = () => {
     setAgeFilter('전체');
     setSitFilter('해당 없음');
@@ -147,26 +121,21 @@ export default function VacLookup() {
         messages={messages}
       />
       <PageContainer>
-      {ageFilter === '전체' && sitFilter === '해당 없음' ? (
-        <Image src={Images.adjustment_unselec} alt="Adjustment Unselected" />
-      ) : (
-        <Image src={Images.adjustment_selec} alt="Adjustment Selected" />
-      )}
-
-      <FilterButton onClick={handleAgeFilterClick}>
-        <FilterText>연령: </FilterText>
-        <SelectedFilterText>{ageFilter}</SelectedFilterText>
-        {ageFilter !== '전체' && (
-          <button onClick={handleClearAgeFilter}>취소</button>
-        )}
-      </FilterButton>
-      <FilterButton onClick={handleSitFilterClick}>
-        <FilterText>상황: </FilterText>
-        <SelectedFilterText>{sitFilter}</SelectedFilterText>
-        {sitFilter !== '해당 없음' && (
-          <button onClick={handleClearSitFilter}>취소</button>
-        )}
-      </FilterButton>
+      <Image src={ageFilter === '전체' && sitFilter === '해당 없음' ? Images.adjustment_unselec : Images.adjustment_selec} alt="Filter Icon" />
+      <Filter
+        label="연령"
+        selectedValue={ageFilter}
+        onSelect={handleAgeFilterClick}
+        onClear={handleClearAgeFilter}
+        isSelected={ageFilter !== '전체'}
+      />
+      <Filter
+        label="상황"
+        selectedValue={sitFilter}
+        onSelect={handleSitFilterClick}
+        onClear={handleClearSitFilter}
+        isSelected={sitFilter !== '해당 없음'}
+      />
         <Fragment>
           {isAgeModalOpen && (
             <Modal>
