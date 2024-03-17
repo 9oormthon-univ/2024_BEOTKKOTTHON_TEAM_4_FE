@@ -7,7 +7,8 @@ export const LoginWrapper = styled.main`
   text-align: center;
 
   & > .main {
-    height: 60%;
+    padding-top: 2rem;
+    height: 37vh;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -24,9 +25,31 @@ export const LoginWrapper = styled.main`
     display: flex;
     & > .vacgom_icon {
       width: 100%;
-      bottom: 0;
-      left: 0;
-      position: absolute;
+      position: relative;
+      top: 10px;
+      z-index: 0;
+    }
+  }
+
+  & > .bottom {
+    & > button {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 10px;
+    }
+    & > .privacy {
+      ${fontGenerator('14px', '600', '16px', '-0.3px')}
+      color: ${Colors.Gray50};
+      cursor: pointer;
+    }
+    padding: 0 20px;
+  }
+
+  @media screen and (max-height: 718px) {
+    & > .main {
+      padding-top: 1rem;
+      height: 28vh;
+      transition: 0.2s;
     }
   }
 `;
