@@ -101,17 +101,20 @@ export default function VacLookup() {
 
   const handleAgeSelect = (age) => {
     setAgeFilter(age);
-    setIsModalOpen(false);
+    setIsAgeModalOpen(false);
   };
-
-  const handleSitSelect =(sit) => {
-      setSitFilter(sit);
-      setIsModalOpen(false);
-  }
+  
+  const handleSitSelect = (sit) => {
+    setSitFilter(sit);
+    setIsSitModalOpen(false);
+  };
+  
 
   const handleClearFilter = () => {
     setAgeFilter('전체');
     setSitFilter('해당 없음');
+    setIsAgeModalOpen(false);
+    setIsSitModalOpen(false);
   };
 
   const handleAgeFilterClick = () => {
@@ -122,6 +125,18 @@ export default function VacLookup() {
   const handleSitFilterClick = () => {
     setIsSitModalOpen(true);
     setIsAgeModalOpen(false);
+  };
+
+  // 연령 필터만 초기화하는 함수
+  const handleClearAgeFilter = () => {
+    setAgeFilter('전체');
+    setIsAgeModalOpen(false); // 연령 모달을 닫습니다.
+  };
+
+  // 상황 필터만 초기화하는 함수
+  const handleClearSitFilter = () => {
+    setSitFilter('해당 없음');
+    setIsSitModalOpen(false); // 상황 모달을 닫습니다.
   };
 
   return (
@@ -136,14 +151,14 @@ export default function VacLookup() {
           <FilterText>연령: </FilterText>
           <SelectedFilterText>{ageFilter}</SelectedFilterText>
           {ageFilter !== '전체' && (
-            <button onClick={handleClearFilter}>취소</button>
+            <button onClick={handleClearAgeFilter}>취소</button> // 연령 필터의 취소 버튼
           )}
         </FilterButton>
         <FilterButton onClick={handleSitFilterClick}>
           <FilterText>상황: </FilterText>
           <SelectedFilterText>{sitFilter}</SelectedFilterText>
           {sitFilter !== '해당 없음' && (
-            <button onClick={handleClearFilter}>취소</button>
+            <button onClick={handleClearSitFilter}>취소</button> // 상황 필터의 취소 버튼
           )}
         </FilterButton>
         <Fragment>
