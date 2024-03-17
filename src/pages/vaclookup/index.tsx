@@ -6,6 +6,7 @@ import { Images } from '@globalStyles';
 import Image from 'next/image';
 import Filter from '@/app/_component/atom/Filter';
 import { introMessages, ageRanges, situationRanges } from '@/constants';
+import NavigationFixed from '@/app/_component/organism/navigationFixed';
 
 const PageContainer = styled.div``;
 
@@ -151,6 +152,7 @@ export default function VacLookup() {
         </Fragment>
         <p>선택된 섹션: {selectedSection}우선 구분용입니다~</p>
       </PageContainer>
+      <NavigationFixed/>
     </div>
   );
 }
