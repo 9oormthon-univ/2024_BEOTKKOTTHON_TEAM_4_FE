@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import styled from '@emotion/styled';
-//메인헤더와 세션헤더,안내 문구 컴포넌트 고정된 값의 temp
-import VacLookupFixed from '@/app/_component/temp/vaclookupFixed';
+//메인헤더와 세션헤더,안내 문구 컴포넌트 고정된 값의 organism
+import VacLookupFixed from '@/app/_component/organism/vaclookupFixed';
 import { Images } from '@globalStyles';
 import Image from 'next/image';
 import Filter from '@/app/_component/atom/Filter';
