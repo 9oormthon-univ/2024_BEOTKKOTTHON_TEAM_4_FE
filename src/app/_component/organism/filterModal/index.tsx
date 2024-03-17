@@ -1,4 +1,4 @@
-import React,  {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { Images } from '@globalStyles';
 import Image from 'next/image';
@@ -119,7 +119,13 @@ const FilterModal: React.FC<ModalProps> = ({
   onOptionSelect,
   onReset,
 }) => {
-  const [localSelectedOptions, setLocalSelectedOptions] = useState<string[]>(selectedOptions || []);
+  const [localSelectedOptions, setLocalSelectedOptions] = useState<string[]>(
+    [],
+  );
+
+  useEffect(() => {
+    setLocalSelectedOptions(selectedOptions);
+  }, [selectedOptions]);
 
   const handleOptionSelect = (option: string) => {
     const isOptionSelected = localSelectedOptions.includes(option);
@@ -146,9 +152,16 @@ const FilterModal: React.FC<ModalProps> = ({
         <ModalContent>
           <ModalTitle>{title}</ModalTitle>
           {options.map((option) => (
-            <ModalOption key={option} onClick={() => handleOptionSelect(option)}>
+            <ModalOption
+              key={option}
+              onClick={() => handleOptionSelect(option)}
+            >
               <Image
-                src={localSelectedOptions.includes(option) ? Images.checkBox_selec_en : Images.checkBox_unselec_dis} // 여기를 수정했습니다.
+                src={
+                  localSelectedOptions.includes(option)
+                    ? Images.checkBox_selec_en
+                    : Images.checkBox_unselec_dis
+                }
                 alt={option}
                 width={20}
                 height={20}
@@ -165,6 +178,5 @@ const FilterModal: React.FC<ModalProps> = ({
     </>
   );
 };
-
 
 export default FilterModal;
