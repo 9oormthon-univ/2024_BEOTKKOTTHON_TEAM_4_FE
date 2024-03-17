@@ -5,6 +5,8 @@ import { Images } from '@globalStyles';
 import Image from 'next/image';
 
 const Filter: React.FC<FilterTypes> = ({ label, selectedValue, onSelect, onClear, isSelected }) => {
+  //이거는 필터에서 아예 선택되지 않은 상태의 기본 텍스트들에 대해서 색 지정되지 말라고 여기서 해줬습니다.
+  // 다른 컴포넌트에서 쓰실 때 그 컴포넌트에서 기본 값 텍스트들을 아래의 selectedValue에 넣어주시면 됩니다!
   const isDefaultSelected = selectedValue === '전체' || selectedValue === '해당 없음';
 
   return (
