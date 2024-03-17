@@ -15,7 +15,7 @@ const Filter: React.FC<FilterTypes> = ({ label, selectedValue, onSelect, onClear
         <button onClick={(e) => {
           e.stopPropagation();
           onClear(e);
-        }} style={{ border: 'none', background: 'transparent', padding: 0, cursor: 'pointer' }}>
+        }} style={{ border: 'none', background: 'transparent', padding: 0, cursor: 'pointer', marginTop: '3px' }}>  {/* marginTop 값을 3px로 설정 */}
           <Image
             src={Images.circle_x_fill}
             alt="필터 적용 취소"
