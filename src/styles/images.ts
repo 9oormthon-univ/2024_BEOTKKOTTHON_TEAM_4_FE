@@ -19,6 +19,11 @@ import radio_selec_dis from '../../public/assets/ico/ico-radio-selected-disabled
 import radio_selec_en from '../../public/assets/ico/ico-radio-selected-enabled.svg';
 import radio_unselec_dis from '../../public/assets/ico/ico-radio-unselected-disabled.svg';
 import radio_unselec_en from '../../public/assets/ico/ico-radio-unselected-enabled.svg';
+import adjustment_selec from '../../public/assets/ico/ico-adjustment-selected.svg';
+import adjustment_unselec from '../../public/assets/ico/ico-adjustment-unselected.svg';
+import circle_x_fill from '../../public/assets/ico/ico-circle-x-filled.svg';
+import info_check from '../../public/assets/ico/ico-information-checked.svg';
+import notification from '../../public/assets/ico/ico-notification.svg';
 
 // prettier-ignore
 export const Images: ImagesType = {
@@ -36,6 +41,11 @@ export const Images: ImagesType = {
   radio_selec_en :radio_selec_en,
   radio_unselec_dis : radio_unselec_dis,
   radio_unselec_en :radio_unselec_en,
+  adjustment_selec :adjustment_selec,
+  adjustment_unselec :adjustment_unselec,
+  circle_x_fill :circle_x_fill,
+  info_check :info_check,
+  notification :notification,
   //image
   vacgom01: Vacgom01,
   vacgom : vacgom,
