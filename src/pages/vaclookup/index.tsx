@@ -109,28 +109,21 @@ export default function VacLookup() {
           />
         </FiltersContainer>
         <Fragment>
-          <FilterModal isOpen={isAgeModalOpen}>
-            {ageRanges.map((age) => (
-              <div
-                key={age}
-                onClick={() => handleAgeSelect(age)}
-                style={{ padding: '10px', cursor: 'pointer' }}
-              >
-                {age}
-              </div>
-            ))}
-          </FilterModal>
-          <FilterModal isOpen={isSitModalOpen}>
-            {situationRanges.map((sit) => (
-              <div
-                key={sit}
-                onClick={() => handleSitSelect(sit)}
-                style={{ padding: '10px', cursor: 'pointer' }}
-              >
-                {sit}
-              </div>
-            ))}
-          </FilterModal>
+        <FilterModal
+        isOpen={isAgeModalOpen}
+        title="연령"
+        options={ageRanges}
+        onClose={() => setIsAgeModalOpen(false)}
+        onOptionSelect={handleAgeSelect}
+      />
+
+      <FilterModal
+        isOpen={isSitModalOpen}
+        title="상황"
+        options={situationRanges}
+        onClose={() => setIsSitModalOpen(false)}
+        onOptionSelect={handleSitSelect}
+      />
         </Fragment>
         <p>선택된 섹션: {selectedSection}우선 구분용입니다~</p>
       </PageContainer>
