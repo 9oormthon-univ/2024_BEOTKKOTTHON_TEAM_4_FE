@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styled from '@emotion/styled';
 import { Images } from '@globalStyles';
 import Image from 'next/image';
 import {
@@ -10,7 +9,6 @@ import {
   ModalTitle,
   ModalOption,
   OptionText,
-  ModalFooter,
   FooterButton,
 } from './styles';
 
@@ -57,7 +55,6 @@ const FilterModal: React.FC<ModalProps> = ({
   };
 
   if (!isOpen) return null;
-
   return (
     <>
       <Overlay onClick={onClose} />
@@ -66,16 +63,9 @@ const FilterModal: React.FC<ModalProps> = ({
         <ModalContent>
           <ModalTitle>{title}</ModalTitle>
           {options.map((option) => (
-            <ModalOption
-              key={option}
-              onClick={() => handleOptionSelect(option)}
-            >
+            <ModalOption key={option} onClick={() => handleOptionSelect(option)}>
               <Image
-                src={
-                  localSelectedOptions.includes(option)
-                    ? Images.checkBox_selec_en
-                    : Images.checkBox_unselec_dis
-                }
+                src={localSelectedOptions.includes(option) ? Images.checkBox_selec_en : Images.checkBox_unselec_dis}
                 alt={option}
                 width={20}
                 height={20}
@@ -84,10 +74,8 @@ const FilterModal: React.FC<ModalProps> = ({
             </ModalOption>
           ))}
         </ModalContent>
-        <ModalFooter>
-          <FooterButton onClick={handleReset}>초기화</FooterButton>
-          <FooterButton onClick={handleConfirm}>확인</FooterButton>
-        </ModalFooter>
+        <FooterButton onClick={handleReset}>초기화</FooterButton>
+        <FooterButton onClick={handleConfirm} confirm active={localSelectedOptions.length > 0}>확인</FooterButton>
       </ModalContainer>
     </>
   );

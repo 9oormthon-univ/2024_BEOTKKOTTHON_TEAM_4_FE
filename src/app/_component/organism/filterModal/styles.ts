@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-
+// 추후 타입으로 변경 예정입니다..
 export const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -16,7 +16,7 @@ export const ModalContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 373px;
-  max-height: 527px;
+  max-height: 511px;
   background: #ffffff;
   border-radius: 22px;
   padding: 14px 20px;
@@ -84,13 +84,28 @@ export const ModalFooter = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  width: 373px;
+  gap: 14px;
 `;
 
-export const FooterButton = styled.button`
-  padding: 10px 20px;
-  border-radius: 10px;
+export const FooterButton = styled.button<{
+  confirm?: boolean;
+  active?: boolean;
+}>`
+  padding: 20px 
+  border-radius: 12px;
   border: none;
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
+  width: 159.5px;
+  height: 56px;
+  margin-left:  5px;
+  background: ${({ confirm, active }) =>
+    confirm && active ? '#4196FD' : '#F2F4F6'};
+  color: ${({ confirm, active }) =>
+    confirm && active ? '#FFFFFF' : '#8B95A1'};
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 `;
