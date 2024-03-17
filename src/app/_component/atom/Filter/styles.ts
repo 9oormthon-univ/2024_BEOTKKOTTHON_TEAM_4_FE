@@ -27,5 +27,6 @@ export const FilterText = styled.span`
 export const SelectedFilterText = styled.span`
   ${textStyle};
   font-weight: 600;
-  color: #4196fd;
+  color: ${({ isDefaultSelected }) =>
+    isDefaultSelected ? '#4E5968' : '#4196fd'};
 `;

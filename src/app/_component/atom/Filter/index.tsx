@@ -5,10 +5,12 @@ import { Images } from '@globalStyles';
 import Image from 'next/image';
 
 const Filter: React.FC<FilterTypes> = ({ label, selectedValue, onSelect, onClear, isSelected }) => {
+  const isDefaultSelected = selectedValue === '전체' || selectedValue === '해당 없음';
+
   return (
     <FilterButton onClick={onSelect}>
       <FilterText>{label}:</FilterText>
-      <SelectedFilterText>{selectedValue}</SelectedFilterText>
+      <SelectedFilterText isDefaultSelected={isDefaultSelected}>{selectedValue}</SelectedFilterText>
       {isSelected && (
         <button onClick={(e) => {
           e.stopPropagation();
@@ -16,7 +18,7 @@ const Filter: React.FC<FilterTypes> = ({ label, selectedValue, onSelect, onClear
         }} style={{ border: 'none', background: 'transparent', padding: 0, cursor: 'pointer' }}>
           <Image
             src={Images.circle_x_fill}
-            alt="취소"
+            alt="필터 적용 취소"
             width={20}
             height={20}
           />
