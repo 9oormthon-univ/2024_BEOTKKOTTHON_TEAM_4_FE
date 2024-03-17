@@ -152,7 +152,7 @@ export default function VacLookup() {
         </Fragment>
         <p>선택된 섹션: {selectedSection}우선 구분용입니다~</p>
       </PageContainer>
-      <NavigationFixed/>
+        <NavigationFixed />
     </div>
   );
 }
