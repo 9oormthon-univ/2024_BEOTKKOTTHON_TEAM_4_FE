@@ -30,12 +30,7 @@ export default function VacLookup() {
 
   const handleAgeSelect = (selectedOptions: string[]) => {
     setSelectedAgeOptions(selectedOptions);
-    let text = selectedOptions[0] || '전체';
-    if (selectedOptions.length > 1) {
-      text = text.length > 8 ? `${text.slice(0, 6)}... 외 ${selectedOptions.length - 1}건` : `${text} 외 ${selectedOptions.length - 1}건`;
-    } else {
-      text = text.length > 8 ? `${text.slice(0, 6)}... 외 ${selectedOptions.length - 1}건` : text;
-    }
+    const text = selectedOptions.length > 1 ? `${selectedOptions[0]} 외 ${selectedOptions.length - 1}건` : selectedOptions[0] || '전체';
     setAgeFilter(text);
     setIsAgeModalOpen(false);
   };
@@ -43,14 +38,15 @@ export default function VacLookup() {
   const handleSitSelect = (selectedOptions: string[]) => {
     setSelectedSitOptions(selectedOptions);
     let text = selectedOptions[0] || '해당 없음';
+  
     if (selectedOptions.length > 1) {
       text = text.length > 8 ? `${text.slice(0, 6)}... 외 ${selectedOptions.length - 1}건` : `${text} 외 ${selectedOptions.length - 1}건`;
-    } else {
-      text = text.length > 8 ? `${text.slice(0, 6)}... 외 ${selectedOptions.length - 1}건` : text;
-    }
+    } 
+  
     setSitFilter(text);
     setIsSitModalOpen(false);
   };
+  
   
 
   const resetAgeOptions = () => {
