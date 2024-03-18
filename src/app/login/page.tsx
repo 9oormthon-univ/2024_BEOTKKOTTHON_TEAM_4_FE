@@ -5,8 +5,16 @@ import { LoginWrapper } from './style';
 import Image from 'next/image';
 import Button from '@/app/_component/atom/button/button';
 import { Colors, Icons, Images } from '@globalStyles';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default function Login() {
+export default function Login(): React.JSX.Element {
+  const [userData, setUserData] = useState(null);
+  // const router = useRouter();
+  const handleKakaoLogin = () => {
+    window.open('https://api-dev.vacgom.co.kr/api/v1/oauth/kakao');
+  };
+
   return (
     <LoginWrapper>
       <div className="main">
@@ -29,6 +37,7 @@ export default function Login() {
           size={'kakao'}
           prevIcon={Icons.kakao}
           iconSize={'20'}
+          onClick={handleKakaoLogin}
         />
         <a className="privacy">개인정보처리방침</a>
       </div>

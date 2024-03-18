@@ -6,7 +6,7 @@ import VaccineCard from '@/app/_component/atom/Vaccine/index';
 import { Images } from '@globalStyles';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 
-export default function CertificateList() {
+export default function CertificateList(): React.JSX.Element {
   const onClickHandler = () => {};
   return (
     <Container>
