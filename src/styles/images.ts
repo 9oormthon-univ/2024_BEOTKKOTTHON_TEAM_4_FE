@@ -24,11 +24,16 @@ import adjustment_unselec from '../../public/assets/ico/ico-adjustment-unselecte
 import circle_x_fill from '../../public/assets/ico/ico-circle-x-filled.svg';
 import info_check from '../../public/assets/ico/ico-information-checked.svg';
 import notification from '../../public/assets/ico/ico-notification.svg';
-import nav_home from '../../public/assets/ico/ico-nav-home.svg';
-import nav_map from '../../public/assets/ico/ico-nav-map.svg';
-import nav_my from '../../public/assets/ico/ico-nav-my.svg';
-import nav_vachistory from '../../public/assets/ico/ico-nav-vachistory.svg';
-import nav_vaclookup from '../../public/assets/ico/ico-nav-vaclookup.svg';
+import nav_home_selec from '../../public/assets/ico/ico-nav-home-selec.svg';
+import nav_home_unselec from '../../public/assets/ico/ico-nav-unselec.svg';
+import nav_map_selec from '../../public/assets/ico/ico-nav-map-selec.svg';
+import nav_map_unselec from '../../public/assets/ico/ico-nav-map-unselec.svg';
+import nav_my_selec from '../../public/assets/ico/ico-nav-my-selec.svg';
+import nav_my_unselec from '../../public/assets/ico/ico-nav-my-selec.svg';
+import nav_vachistory_selec from '../../public/assets/ico/ico-nav-vachistory-selec.svg';
+import nav_vachistory_unselec from '../../public/assets/ico/ico-nav-vachistory-unselec.svg';
+import nav_vaclookup_selec from '../../public/assets/ico/ico-nav-vaclookup-selec.svg';
+import nav_vaclookup_unselec from '../../public/assets/ico/ico-nav-vaclookup-unselec.svg';
 
 // prettier-ignore
 export const Images: ImagesType = {
@@ -36,28 +41,33 @@ export const Images: ImagesType = {
   kakao: kakao,
   google: google,
   share: share,
-  eye:eye,
-  eyeSlash:eyeSlash,
+  eye: eye,
+  eyeSlash: eyeSlash,
   checkBox_selec_dis: checkBox_selec_dis,
-  checkBox_selec_en :checkBox_selec_en,
-  checkBox_unselec_dis :checkBox_unselec_dis,
-  checkBox_unselec_en :checkBox_unselec_en,
-  radio_selec_dis :radio_selec_dis,
-  radio_selec_en :radio_selec_en,
-  radio_unselec_dis : radio_unselec_dis,
-  radio_unselec_en :radio_unselec_en,
-  adjustment_selec :adjustment_selec,
-  adjustment_unselec :adjustment_unselec,
-  circle_x_fill :circle_x_fill,
-  info_check :info_check,
-  notification :notification,
-  nav_home :nav_home,
-  nav_map :nav_map,
-  nav_my :nav_my,
-  nav_vachistory :nav_vachistory,
-  nav_vaclookup :nav_vaclookup,
-
+  checkBox_selec_en: checkBox_selec_en,
+  checkBox_unselec_dis: checkBox_unselec_dis,
+  checkBox_unselec_en: checkBox_unselec_en,
+  radio_selec_dis: radio_selec_dis,
+  radio_selec_en: radio_selec_en,
+  radio_unselec_dis: radio_unselec_dis,
+  radio_unselec_en: radio_unselec_en,
+  adjustment_selec: adjustment_selec,
+  adjustment_unselec: adjustment_unselec,
+  circle_x_fill: circle_x_fill,
+  info_check: info_check,
+  notification: notification,
+  nav_home_selec: nav_home_selec,
+  nav_home_unselec: nav_home_unselec,
+  nav_map_selec: nav_map_selec,
+  nav_map_unselec: nav_map_unselec,
+  nav_my_selec: nav_my_selec,
+  nav_my_unselec: nav_my_unselec,
+  nav_vachistory_selec: nav_vachistory_selec,
+  nav_vachistory_unselec: nav_vachistory_unselec,
+  nav_vaclookup_selec: nav_vaclookup_selec,
+  nav_vaclookup_unselec: nav_vaclookup_unselec,
+  
   //image
   vacgom01: Vacgom01,
-  vacgom : vacgom,
+  vacgom: vacgom,
 };
