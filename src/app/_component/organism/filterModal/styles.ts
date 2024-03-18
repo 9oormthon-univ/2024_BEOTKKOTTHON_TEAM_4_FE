@@ -16,7 +16,7 @@ export const ModalContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 373px;
-  max-height: 511px;
+  max-height: 533px;
   background: #ffffff;
   border-radius: 22px;
   padding: 14px 20px;
@@ -86,6 +86,13 @@ export const ModalFooter = styled.div`
   padding: 20px;
   width: 373px;
   gap: 14px;
+`;
+
+export const ButtonSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 20px;
 `;
 
 export const FooterButton = styled.button<{

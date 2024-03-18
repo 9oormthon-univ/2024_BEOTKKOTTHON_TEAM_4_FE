@@ -74,6 +74,13 @@ export const ButtonSizes: CssArchiveType = {
     height: 34px;
     ${fontGenerator('14px', '500', '1rem', '-0.3px')}
   `,
+  modal: css`
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 160px;
+    height: 56px;
+    ${fontGenerator('16px', '600', '1rem', '-0.3px')}
+  `,
   small: css`
     padding: 0 1rem;
     width: 100%;

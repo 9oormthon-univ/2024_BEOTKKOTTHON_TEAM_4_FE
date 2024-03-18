@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Images } from '@globalStyles';
 import Image from 'next/image';
+import Button from '../../atom/button/button';
 import {
   Overlay,
   ModalContainer,
@@ -9,7 +10,7 @@ import {
   ModalTitle,
   ModalOption,
   OptionText,
-  FooterButton,
+  ButtonSection
 } from './styles';
 
 interface ModalProps {
@@ -74,8 +75,13 @@ const FilterModal: React.FC<ModalProps> = ({
             </ModalOption>
           ))}
         </ModalContent>
-        <FooterButton onClick={handleReset}>초기화</FooterButton>
-        <FooterButton onClick={handleConfirm} confirm active={localSelectedOptions.length > 0}>확인</FooterButton>
+        <ButtonSection>
+        <Button label="초기화" variant={'Disabled'} size={'modal'} onClick={handleReset} />
+        {/* 사용자가 모달을 열어서 조건들을 선택하지 않았을 때 보여질 버튼 스타일 */}
+        <Button label="확인" variant={'Secondary'} size={'modal'}  onClick={handleConfirm} confirm active={localSelectedOptions.length > 0} />
+        {/* 사용자가 모달을 열어서 조건을 선택했을때 보여질 버튼 스타일 */}
+        <Button label="확인" variant={'Primary'} size={'modal'}  onClick={handleConfirm} confirm active={localSelectedOptions.length > 0} />
+        </ButtonSection>
       </ModalContainer>
     </>
   );
