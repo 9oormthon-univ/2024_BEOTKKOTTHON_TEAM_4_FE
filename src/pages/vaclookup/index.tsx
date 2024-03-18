@@ -1,55 +1,123 @@
-import React, { useState } from 'react';
-import SectionHeader from '@/app/_component/atom/SectionHeader';
-import MainHeader from '@/app/_component/atom/MainHeader';
-import Information from '@/app/_component/atom/Information';
+import React, { useState, Fragment } from 'react';
 import styled from '@emotion/styled';
+import VacLookupFixed from '@/app/_component/organism/vaclookupFixed';
+import { Images } from '@globalStyles';
+import Image from 'next/image';
+import Filter from '@/app/_component/atom/Filter';
+import { introMessages, ageRanges, situationRanges } from '@/constants';
+import NavigationFixed from '@/app/_component/organism/navigationFixed';
+import FilterModal from '@/app/_component/organism/filterModal';
 
-const PageContainer = styled.div`
+const PageContainer = styled.div``;
+
+const FiltersContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 14px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 export default function VacLookup() {
-  const [selectedSection, setSelectedSection] = useState("필수예방접종");
-  const sectionTexts = ["필수예방접종", "국가예방접종", "기타예방접종"];
+  const [selectedSection, setSelectedSection] = useState('필수예방접종');
+  const [ageFilter, setAgeFilter] = useState('전체');
+  const [sitFilter, setSitFilter] = useState('해당 없음');
+  const [isAgeModalOpen, setIsAgeModalOpen] = useState(false);
+  const [isSitModalOpen, setIsSitModalOpen] = useState(false);
+  const [selectedAgeOptions, setSelectedAgeOptions] = useState<string[]>([]);
+  const [selectedSitOptions, setSelectedSitOptions] = useState<string[]>([]);
 
-  const handleSectionChange = (section) => {
-    setSelectedSection(section);
+  const handleAgeSelect = (selectedOptions: string[]) => {
+    setSelectedAgeOptions(selectedOptions);
+    const text = selectedOptions.length > 1 ? `${selectedOptions[0]} 외 ${selectedOptions.length - 1}건` : selectedOptions[0] || '전체';
+    setAgeFilter(text);
+    setIsAgeModalOpen(false);
+  };
+  
+  const handleSitSelect = (selectedOptions: string[]) => {
+    setSelectedSitOptions(selectedOptions);
+    const text = selectedOptions.length > 1 ? `${selectedOptions[0]} 외 ${selectedOptions.length - 1}건` : selectedOptions[0] || '해당 없음';
+    setSitFilter(text);
+    setIsSitModalOpen(false);
+  };
+  
+
+  const resetAgeOptions = () => {
+    setSelectedAgeOptions([]);
   };
 
-  const messages = {
-    "필수예방접종": "감염병의 예방 및 관리에 관한 법률을 통해 국가가 권장하는 예방접종이예요.",
-    "국가예방접종": "필수예방접종에 대해 국가에서 지정한 백신으로, 보건소와 지정의료기관에서 예방접종 비용을 지원하는 백신이예요.",
-    "기타예방접종": "국가예방접종 대상 백신 외에 의료기관에서 유료로 접종받을 수 있는 예방 접종이예요."
+  const resetSitOptions = () => {
+    setSelectedSitOptions([]);
+  };
+
+  const clearAgeFilter = () => {
+    setAgeFilter('전체');
+    setSelectedAgeOptions([]);
+  };
+
+  const clearSitFilter = () => {
+    setSitFilter('해당 없음');
+    setSelectedSitOptions([]);
   };
 
   return (
-    <>
-      <MainHeader title="백신정보" />
-      <SectionHeader sections={sectionTexts} onSectionChange={handleSectionChange} />
+    <div>
+      <VacLookupFixed
+        selectedSection={selectedSection}
+        handleSectionChange={setSelectedSection}
+        messages={introMessages}
+      />
       <PageContainer>
-        <Information
-          message={messages[selectedSection]}
-          containerProps={{
-            background: '#F2F4F6',
-            padding: '15px 20px',
-            gap: '14px'
-          }}
-          iconProps={{
-            className: 'material-icons',
-            color: '#6B7684',
-            marginRight: '10px'
-          }}
-          textProps={{
-            fontFamily: 'Pretendard, sans-serif',
-            fontSize: '12px',
-            fontWeight: 500,
-            lineHeight: '20px',
-            letterSpacing: '-0.03em',
-            textAlign: 'left',
-            color: '#6B7684'
-          }}
-        />
+        <FiltersContainer>
+          <Image
+            src={
+              ageFilter === '전체' && sitFilter === '해당 없음'
+                ? Images.adjustment_unselec
+                : Images.adjustment_selec
+            }
+            alt="Filter Icon"
+            width={24}
+            height={24}
+          />
+          <Filter
+            label="연령"
+            selectedValue={ageFilter}
+            onSelect={() => setIsAgeModalOpen(true)}
+            onClear={clearAgeFilter}
+            isSelected={ageFilter !== '전체'}
+          />
+          <Filter
+            label="상황"
+            selectedValue={sitFilter}
+            onSelect={() => setIsSitModalOpen(true)}
+            onClear={clearSitFilter}
+            isSelected={sitFilter !== '해당 없음'}
+          />
+        </FiltersContainer>
+        <Fragment>
+          <FilterModal
+            isOpen={isAgeModalOpen}
+            title="연령"
+            options={ageRanges}
+            selectedOptions={selectedAgeOptions}
+            onClose={() => setIsAgeModalOpen(false)}
+            onOptionSelect={handleAgeSelect}
+            onReset={resetAgeOptions}
+          />
+          <FilterModal
+            isOpen={isSitModalOpen}
+            title="상황"
+            options={situationRanges}
+            selectedOptions={selectedSitOptions}
+            onClose={() => setIsSitModalOpen(false)}
+            onOptionSelect={handleSitSelect}
+            onReset={resetSitOptions}
+          />
+        </Fragment>
         <p>선택된 섹션: {selectedSection}우선 구분용입니다~</p>
       </PageContainer>
-    </>
+      <NavigationFixed />
+    </div>
   );
 }

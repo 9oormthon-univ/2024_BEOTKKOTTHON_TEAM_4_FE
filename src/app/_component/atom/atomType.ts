@@ -1,5 +1,5 @@
-import { SerializedStyles } from "@emotion/react";
-import React from "react";
+import { SerializedStyles } from '@emotion/react';
+import React from 'react';
 
 export interface CssArchiveType
   extends Record<string, string | SerializedStyles> {}
@@ -160,4 +160,13 @@ export interface InformationProps {
     className?: string;
   };
   textProps?: React.CSSProperties;
+}
+
+//atoms/Filter 의 타입
+export interface FilterTypes {
+  label: string;
+  selectedValue: string;
+  onSelect: React.MouseEventHandler<HTMLButtonElement>;
+  onClear: React.MouseEventHandler<HTMLButtonElement>;
+  isSelected: boolean;
 }
