@@ -35,7 +35,7 @@ import nav_vachistory_unselec from '../../public/assets/ico/ico-nav-vachistory-u
 import nav_vaclookup_selec from '../../public/assets/ico/ico-nav-vaclookup-selec.svg';
 import nav_vaclookup_unselec from '../../public/assets/ico/ico-nav-vaclookup-unselec.svg';
 import warning from '../../public/assets/ico/ico-warning.svg';
-
+import arrow_down from '../../public/assets/ico/ico-arrow-down.png';
 // prettier-ignore
 export const Images: ImagesType = {
   // icon
@@ -68,6 +68,8 @@ export const Images: ImagesType = {
   nav_vaclookup_selec: nav_vaclookup_selec,
   nav_vaclookup_unselec: nav_vaclookup_unselec,
   warning: warning,
+  arrow_down: arrow_down,
+
 
   //image
   vacgom01: Vacgom01,

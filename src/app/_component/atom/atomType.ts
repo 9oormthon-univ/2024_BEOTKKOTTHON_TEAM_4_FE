@@ -63,6 +63,7 @@ export interface InputFormType {
   onClickRightIcon?: (event: React.MouseEvent<HTMLSpanElement>) => void;
 
   description?: string;
+  descriptionTop?: string;
   customStyle?: SerializedStyles;
   className?: string;
   size?: string;
@@ -84,6 +85,7 @@ export interface InputFormType {
   onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
   maxLength?: number;
   autoComplete?: string;
+  iconSize?: string;
 }
 
 // atom/RadioBox 의 타입

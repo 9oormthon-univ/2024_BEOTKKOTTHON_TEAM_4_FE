@@ -28,9 +28,10 @@ export const Icons = {
     more_vert: {src: "more_vert", type: "material-symbols-outlined"},
     refresh: {src: "refresh", type: "material-symbols-outlined"},
     error: {src: "error", type: "material-symbols-outlined"},
-    
-    
-    
+
+    arrow_down: {src: "arrow_down", type: "custom"},
+
+
     kakao: {src: "kakao", type: "custom"},
     google: {src: "google", type: "custom"},
     eye: {src: "eye", type: "custom"},

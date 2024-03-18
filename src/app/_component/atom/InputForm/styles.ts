@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {Colors, fontGenerator} from '@globalStyles';
+import { Colors, fontGenerator } from '@globalStyles';
 import { InputFormType } from '../atomType';
 import { CssArchiveType } from '../atomType';
 import { css } from '@emotion/react';
@@ -69,7 +69,6 @@ export const InputFormStyles: CssArchiveType = {
   default: css`
     & > div.input__content {
       & > input.input__content--input {
-
         ${fontGenerator('1rem', '400', '1rem', '-0.3px')}
 
         border: solid 0.1rem ${Colors.Gray200};
@@ -99,7 +98,10 @@ export const InputFormStyles: CssArchiveType = {
     & div.input-form__description {
       font-size: 0.9rem;
       font-weight: 400;
-      line-height: 0.6rem;
+    }
+    & div.input-form__description-top {
+      ${fontGenerator('14px', '600', '16.71px')}
+      margin-bottom: 10px;
     }
   `,
   error: css`
@@ -167,6 +169,13 @@ export const InputFormStyles: CssArchiveType = {
 
     & div.input-form__description {
       color: ${Colors.Error};
+    }
+  `,
+  white: css`
+    & > div.input__content {
+      & > input.input__content--input {
+        background-color: ${Colors.White};
+      }
     }
   `,
 };

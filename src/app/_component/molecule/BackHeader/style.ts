@@ -6,7 +6,7 @@ export const HeaderContainer = styled.header`
   //justify-content: ;
   align-items: center;
   //height: 54px;
-  padding: 40px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
   box-sizing: border-box;
 `;
 

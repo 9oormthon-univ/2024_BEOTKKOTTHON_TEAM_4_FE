@@ -15,6 +15,7 @@ const MainHeader: React.FC<MainHeaderType> = ({ title, url }) => {
         onClick={() => {
           router.push(url);
         }}
+        size={'20px'}
       />
       <Title>{title}</Title>
     </HeaderContainer>
