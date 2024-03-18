@@ -7,9 +7,10 @@ import { Images } from '@globalStyles';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 
 export default function CertificateList() {
+  const onClickHandler = () => {};
   return (
     <Container>
-      <BackHeader title={'백신 인증서'} />
+      <BackHeader title={'백신 인증서'} onClick={onClickHandler} />
       <div className="container">
         <div className="item">백신인증서</div>
         <div className="item">백신인증서</div>

@@ -12,6 +12,7 @@ export const HeaderContainer = styled.header`
 
 export const Title = styled.h1`
   width: 100%;
+  margin-right: 24px;
   font-family: 'Pretendard', sans-serif;
   font-size: 20px;
   font-weight: 700;
