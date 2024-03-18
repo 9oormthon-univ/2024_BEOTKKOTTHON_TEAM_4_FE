@@ -10,7 +10,7 @@ import {
   ModalTitle,
   ModalOption,
   OptionText,
-  ButtonSection
+  ButtonSection,
 } from './styles';
 
 interface ModalProps {
@@ -64,9 +64,16 @@ const FilterModal: React.FC<ModalProps> = ({
         <ModalContent>
           <ModalTitle>{title}</ModalTitle>
           {options.map((option) => (
-            <ModalOption key={option} onClick={() => handleOptionSelect(option)}>
+            <ModalOption
+              key={option}
+              onClick={() => handleOptionSelect(option)}
+            >
               <Image
-                src={localSelectedOptions.includes(option) ? Images.checkBox_selec_en : Images.checkBox_unselec_dis}
+                src={
+                  localSelectedOptions.includes(option)
+                    ? Images.checkBox_selec_en
+                    : Images.checkBox_unselec_dis
+                }
                 alt={option}
                 width={20}
                 height={20}
@@ -76,11 +83,27 @@ const FilterModal: React.FC<ModalProps> = ({
           ))}
         </ModalContent>
         <ButtonSection>
-        <Button label="초기화" variant={'Disabled'} size={'modal'} onClick={handleReset} />
-        {/* 사용자가 모달을 열어서 조건들을 선택하지 않았을 때 보여질 버튼 스타일 */}
-        <Button label="확인" variant={'Secondary'} size={'modal'}  onClick={handleConfirm} confirm active={localSelectedOptions.length > 0} />
-        {/* 사용자가 모달을 열어서 조건을 선택했을때 보여질 버튼 스타일 */}
-        <Button label="확인" variant={'Primary'} size={'modal'}  onClick={handleConfirm} confirm active={localSelectedOptions.length > 0} />
+          <Button
+            label="초기화"
+            variant={'Disabled'}
+            size={'modal'}
+            onClick={handleReset}
+          />
+          {localSelectedOptions.length > 0 ? (
+            <Button
+              label="확인"
+              variant={'Primary'}
+              size={'modal'}
+              onClick={handleConfirm}
+            />
+          ) : (
+            <Button
+              label="확인"
+              variant={'Secondary'}
+              size={'modal'}
+              onClick={handleConfirm}
+            />
+          )}
         </ButtonSection>
       </ModalContainer>
     </>
