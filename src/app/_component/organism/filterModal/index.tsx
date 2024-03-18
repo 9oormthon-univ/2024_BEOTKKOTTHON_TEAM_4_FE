@@ -36,6 +36,13 @@ const FilterModal: React.FC<ModalProps> = ({
   const [localSelectedOptions, setLocalSelectedOptions] = useState<string[]>([]);
   const [showWarning, setShowWarning] = useState(false);
 
+  // 옵션 개수에 따른 안개 효과 표시 구현 내용입니다.옵션의 개수가 7개 이상일때만 안개 효과 있어요!
+  const [showFogEffect, setShowFogEffect] = useState(false);
+
+  useEffect(() => {
+    setShowFogEffect(options.length > 6);
+  }, [options.length]);
+
   useEffect(() => {
     setLocalSelectedOptions(selectedOptions);
   }, [selectedOptions]);
@@ -66,7 +73,7 @@ const FilterModal: React.FC<ModalProps> = ({
       <Overlay onClick={onClose} />
       <ModalContainer>
         <ModalHeader />
-        <ModalContent>
+        <ModalContent showFogEffect={showFogEffect}>
           <ModalTitle>{title}</ModalTitle>
           {options.map((option) => (
             <ModalOption key={option} onClick={() => handleOptionSelect(option)}>

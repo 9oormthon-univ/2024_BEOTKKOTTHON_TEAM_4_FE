@@ -40,15 +40,32 @@ export const ModalHeader = styled.div`
   }
 `;
 
-export const ModalContent = styled.div`
+export const ModalContent = styled.div<{ showFogEffect: boolean }>`
   max-height: 398px;
   overflow-y: auto;
   padding: 0 30px;
+  position: relative;
+
   &::-webkit-scrollbar {
     display: none;
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+  ${({ showFogEffect }) =>
+    showFogEffect &&
+    `
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
+      pointer-events: none;
+    }
+  `}
 `;
 
 export const ModalTitle = styled.h2`
