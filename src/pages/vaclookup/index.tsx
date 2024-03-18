@@ -29,18 +29,19 @@ export default function VacLookup() {
   const [selectedSitOptions, setSelectedSitOptions] = useState<string[]>([]);
 
   const handleAgeSelect = (selectedOptions: string[]) => {
-    const selectedText =
-      selectedOptions.length > 0 ? selectedOptions.join(', ') : '전체';
-    setAgeFilter(selectedText);
+    setSelectedAgeOptions(selectedOptions);
+    const text = selectedOptions.length > 1 ? `${selectedOptions[0]} 외 ${selectedOptions.length - 1}건` : selectedOptions[0] || '전체';
+    setAgeFilter(text);
     setIsAgeModalOpen(false);
   };
-
+  
   const handleSitSelect = (selectedOptions: string[]) => {
-    const selectedText =
-      selectedOptions.length > 0 ? selectedOptions.join(', ') : '해당 없음';
-    setSitFilter(selectedText);
+    setSelectedSitOptions(selectedOptions);
+    const text = selectedOptions.length > 1 ? `${selectedOptions[0]} 외 ${selectedOptions.length - 1}건` : selectedOptions[0] || '해당 없음';
+    setSitFilter(text);
     setIsSitModalOpen(false);
   };
+  
 
   const resetAgeOptions = () => {
     setSelectedAgeOptions([]);

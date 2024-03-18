@@ -41,9 +41,14 @@ const FilterModal: React.FC<ModalProps> = ({
   }, [selectedOptions]);
 
   const handleOptionSelect = (option: string) => {
-    const isOptionSelected = localSelectedOptions.includes(option);
-    setLocalSelectedOptions(isOptionSelected ? [] : [option]);
+    const index = localSelectedOptions.indexOf(option);
+    if (index > -1) {
+      setLocalSelectedOptions(localSelectedOptions.filter((o) => o !== option));
+    } else {
+      setLocalSelectedOptions([...localSelectedOptions, option]);
+    }
   };
+  
 
   const handleConfirm = () => {
     if (localSelectedOptions.length === 0) {
