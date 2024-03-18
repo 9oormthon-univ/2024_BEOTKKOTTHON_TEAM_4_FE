@@ -10,7 +10,7 @@ export default function CertificateList() {
   const onClickHandler = () => {};
   return (
     <Container>
-      <BackHeader title={'백신 인증서'} onClick={onClickHandler} />
+      <BackHeader title={'백신 인증서'} url={'/vachistory'} />
       <div className="container">
         <div className="item">백신인증서</div>
         <div className="item">백신인증서</div>
