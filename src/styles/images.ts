@@ -25,11 +25,11 @@ import circle_x_fill from '../../public/assets/ico/ico-circle-x-filled.svg';
 import info_check from '../../public/assets/ico/ico-information-checked.svg';
 import notification from '../../public/assets/ico/ico-notification.svg';
 import nav_home_selec from '../../public/assets/ico/ico-nav-home-selec.svg';
-import nav_home_unselec from '../../public/assets/ico/ico-nav-unselec.svg';
+import nav_home_unselec from '../../public/assets/ico/ico-nav-home-unselec.svg';
 import nav_map_selec from '../../public/assets/ico/ico-nav-map-selec.svg';
 import nav_map_unselec from '../../public/assets/ico/ico-nav-map-unselec.svg';
 import nav_my_selec from '../../public/assets/ico/ico-nav-my-selec.svg';
-import nav_my_unselec from '../../public/assets/ico/ico-nav-my-selec.svg';
+import nav_my_unselec from '../../public/assets/ico/ico-nav-my-unselec.svg';
 import nav_vachistory_selec from '../../public/assets/ico/ico-nav-vachistory-selec.svg';
 import nav_vachistory_unselec from '../../public/assets/ico/ico-nav-vachistory-unselec.svg';
 import nav_vaclookup_selec from '../../public/assets/ico/ico-nav-vaclookup-selec.svg';
@@ -66,7 +66,7 @@ export const Images: ImagesType = {
   nav_vachistory_unselec: nav_vachistory_unselec,
   nav_vaclookup_selec: nav_vaclookup_selec,
   nav_vaclookup_unselec: nav_vaclookup_unselec,
-  
+
   //image
   vacgom01: Vacgom01,
   vacgom: vacgom,

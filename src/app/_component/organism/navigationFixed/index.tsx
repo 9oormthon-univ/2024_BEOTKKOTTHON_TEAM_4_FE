@@ -10,11 +10,11 @@ import { useRouter } from 'next/router';
 // 우선 사용하는 페이지에서 <NavigationFixed /> 이렇게 불러만 주시면 됩니다
 
 const navItems = [
-  { icon: 'nav_home', label: '홈', route: '/home' },
-  { icon: 'nav_vachistory', label: '접종내역', route: '/vachistory' },
-  { icon: 'nav_map', label: '병원 조회', route: '/map' },
-  { icon: 'nav_vaclookup', label: '백신정보', route: '/vaclookup' },
-  { icon: 'nav_my', label: '마이', route: '/my' },
+  { iconSelected: 'nav_home_selec', iconUnselected: 'nav_home_unselec', label: '홈', route: '/home' },
+  { iconSelected: 'nav_vachistory_selec', iconUnselected: 'nav_vachistory_unselec', label: '접종내역', route: '/vachistory' },
+  { iconSelected: 'nav_map_selec', iconUnselected: 'nav_map_unselec', label: '병원 조회', route: '/map' },
+  { iconSelected: 'nav_vaclookup_selec', iconUnselected: 'nav_vaclookup_unselec', label: '백신정보', route: '/vaclookup' },
+  { iconSelected: 'nav_my_selec', iconUnselected: 'nav_my_unselec', label: '마이', route: '/my' },
 ];
 
 const NavigationContainer = styled.div`
@@ -61,21 +61,25 @@ export default function NavigationFixed() {
 
   return (
     <NavigationContainer>
-      {navItems.map((item) => (
-        <NavItem
-          key={item.label}
-          isActive={router.pathname === item.route}
-          onClick={() => handleNavigation(item.route)}
-        >
-          <Image
-            src={Images[item.icon]}
-            alt={item.label}
-            width={24}
-            height={24}
-          />
-          <span>{item.label}</span>
-        </NavItem>
-      ))}
+      {navItems.map((item) => {
+        const isActive = router.pathname === item.route;
+        const icon = isActive ? Images[item.iconSelected] : Images[item.iconUnselected];
+        return (
+          <NavItem
+            key={item.label}
+            isActive={isActive}
+            onClick={() => handleNavigation(item.route)}
+          >
+            <Image
+              src={icon}
+              alt={item.label}
+              width={24}
+              height={24}
+            />
+            <span>{item.label}</span>
+          </NavItem>
+        );
+      })}
     </NavigationContainer>
   );
 }
