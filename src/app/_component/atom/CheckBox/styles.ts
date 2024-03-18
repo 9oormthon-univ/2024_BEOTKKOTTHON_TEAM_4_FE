@@ -107,7 +107,7 @@ export const CheckBox = styled.label<CheckBoxStyleType>`
   ${(props) =>
     props.variant === 'circleBox' && props.checked
       ? css`
-          background-color: ${Colors.Primary01};
+          background-color: ${Colors.Primary};
 
           & > span.check__box--description {
             color: ${Colors.White};

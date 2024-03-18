@@ -9,6 +9,7 @@ import { IconType } from '../atomType';
 import { Colors, Images } from '@globalStyles';
 import { css } from '@emotion/react';
 import Image from 'next/image';
+import styled from '@emotion/styled';
 
 /**
  * @description 구글 머티리얼 아이콘을 기반 아이콘을 표현하는 atom 컴포넌트
@@ -29,7 +30,7 @@ function Icon({
   className = '',
   style = {},
   customStyle,
-  onClick = (e: MouseEvent<HTMLButtonElement>) => {},
+  onClick = (e: MouseEvent<HTMLSpanElement>) => {},
 }: React.PropsWithChildren<IconType>) {
   const materialIconStyle = css`
     width: ${size};
@@ -41,10 +42,14 @@ function Icon({
     user-select: none;
   `;
 
+  const StyledSpan = styled.span`
+    ${materialIconStyle};
+    ${customStyle};
+  `;
+
   return (
-    <span
+    <StyledSpan
       className={`common-icon ${icon?.type || 'material-icons'} ${className}`}
-      css={[materialIconStyle, customStyle]}
       style={{ ...style }}
       onClick={onClick}
     >
@@ -58,7 +63,7 @@ function Icon({
       ) : (
         icon?.src
       )}
-    </span>
+    </StyledSpan>
   );
 }
 
