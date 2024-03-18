@@ -40,10 +40,10 @@ export const ModalHeader = styled.div`
   }
 `;
 
-export const ModalContent = styled.div<{ showFogEffect: boolean }>`
+export const ModalContent = styled.div`
   max-height: 398px;
   overflow-y: auto;
-  padding: 0 30px;
+  padding: 0 20px;
   position: relative;
 
   &::-webkit-scrollbar {
@@ -51,21 +51,19 @@ export const ModalContent = styled.div<{ showFogEffect: boolean }>`
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
+`;
 
+export const FogEffect = styled.div<{ showFogEffect: boolean }>`
   ${({ showFogEffect }) =>
     showFogEffect &&
     `
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      position: sticky;
+      bottom: -1px;
       height: 100px;
       background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
       pointer-events: none;
-    }
-  `}
+      z-index: 10;
+    `}
 `;
 
 export const ModalTitle = styled.h2`

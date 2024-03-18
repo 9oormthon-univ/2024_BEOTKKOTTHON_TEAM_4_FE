@@ -3,16 +3,9 @@ import { Images } from '@globalStyles';
 import Image from 'next/image';
 import Button from '../../atom/button/button';
 import WarningToast from '../../atom/WarningToast';
-import {
-  Overlay,
-  ModalContainer,
-  ModalHeader,
-  ModalContent,
-  ModalTitle,
-  ModalOption,
-  OptionText,
-  ButtonSection,
-} from './styles';
+import { Overlay, ModalContainer, ModalHeader, ModalContent, ModalTitle, ModalOption, OptionText, ButtonSection, FogEffect } from './styles';
+
+// 나머지 코드는 동일하며, ModalContent 내부에 FogEffect 추가 부분만 보여줍니다.
 
 interface ModalProps {
   isOpen: boolean;
@@ -40,7 +33,7 @@ const FilterModal: React.FC<ModalProps> = ({
   const [showFogEffect, setShowFogEffect] = useState(false);
 
   useEffect(() => {
-    setShowFogEffect(options.length > 6);
+    setShowFogEffect(options.length > 7);
   }, [options.length]);
 
   useEffect(() => {
@@ -73,7 +66,7 @@ const FilterModal: React.FC<ModalProps> = ({
       <Overlay onClick={onClose} />
       <ModalContainer>
         <ModalHeader />
-        <ModalContent showFogEffect={showFogEffect}>
+        <ModalContent>
           <ModalTitle>{title}</ModalTitle>
           {options.map((option) => (
             <ModalOption key={option} onClick={() => handleOptionSelect(option)}>
@@ -81,6 +74,7 @@ const FilterModal: React.FC<ModalProps> = ({
               <OptionText>{option}</OptionText>
             </ModalOption>
           ))}
+          <FogEffect showFogEffect={showFogEffect} /> 
         </ModalContent>
         {showWarning && <WarningToast message="조건을 선택해주세요!" />}
         <ButtonSection>
