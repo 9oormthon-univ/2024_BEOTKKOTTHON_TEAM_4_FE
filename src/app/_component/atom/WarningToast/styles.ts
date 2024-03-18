@@ -12,7 +12,7 @@ export const ToastContainer = styled.div`
   align-items: center;
   position: fixed;
   left: 10px;
-  bottom: 10px;
+  margin-top: 10px;
   z-index: 1000;
 `;
 

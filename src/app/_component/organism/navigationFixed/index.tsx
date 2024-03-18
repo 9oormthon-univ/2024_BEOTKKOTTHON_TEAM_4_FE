@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 const navItems = [
   { iconSelected: 'nav_home_selec', iconUnselected: 'nav_home_unselec', label: '홈', route: '/home' },
   { iconSelected: 'nav_vachistory_selec', iconUnselected: 'nav_vachistory_unselec', label: '접종내역', route: '/vachistory' },
-  { iconSelected: 'nav_map_selec', iconUnselected: 'nav_map_unselec', label: '병원 조회', route: '/map' },
+  { iconSelected: 'nav_map_selec', iconUnselected: 'nav_map_unselec', label: '병원조회', route: '/map' },
   { iconSelected: 'nav_vaclookup_selec', iconUnselected: 'nav_vaclookup_unselec', label: '백신정보', route: '/vaclookup' },
   { iconSelected: 'nav_my_selec', iconUnselected: 'nav_my_unselec', label: '마이', route: '/my' },
 ];
@@ -22,7 +22,6 @@ const NavigationContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   height: 68px;
-  padding: 4px 10px;
   border-radius: 30px 30px 0 0;
   border-top: 1px solid #ddd;
   position: fixed;

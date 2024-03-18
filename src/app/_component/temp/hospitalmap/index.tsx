@@ -10,6 +10,7 @@ const Main = styled.div`
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  margin-top: -110px;
 `;
 
 // 화면 설계서 버전의 스타일입니다 (디자인 미적용)
@@ -92,7 +93,7 @@ export default function HospitalMap() {
 
   return (
     <Main>
-      <div id="map" style={{ width: "150%", height: "500px" }}>
+      <div id="map" style={{ width: "100%", height: "500px" }}>
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
         <Tooltip />
         <CurrentLocationButton onClick={handleCurrentLocationClick}>
