@@ -75,7 +75,7 @@ const FilterModal: React.FC<ModalProps> = ({
           <ModalTitle>{title}</ModalTitle>
           {options.map((option) => (
             <ModalOption key={option} onClick={() => handleOptionSelect(option)}>
-              <Image src={localSelectedOptions.includes(option) ? Images.checkBox_selec_en : Images.checkBox_unselec_dis} alt={option} width={20} height={20} />
+              <Image src={localSelectedOptions.includes(option) ? Images.choice_selec : Images.choice_unselec} alt={option} width={20} height={20} />
               <OptionText>{option}</OptionText>
             </ModalOption>
           ))}

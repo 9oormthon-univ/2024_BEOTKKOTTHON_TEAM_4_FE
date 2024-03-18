@@ -35,7 +35,8 @@ import nav_vachistory_unselec from '../../public/assets/ico/ico-nav-vachistory-u
 import nav_vaclookup_selec from '../../public/assets/ico/ico-nav-vaclookup-selec.svg';
 import nav_vaclookup_unselec from '../../public/assets/ico/ico-nav-vaclookup-unselec.svg';
 import warning from '../../public/assets/ico/ico-warning.svg';
-
+import choice_selec from '../../public/assets/ico/ico-choice-selec.svg';
+import choice_unselec from '../../public/assets/ico/ico-choice-unselec.svg';
 // prettier-ignore
 export const Images: ImagesType = {
   // icon
@@ -68,6 +69,8 @@ export const Images: ImagesType = {
   nav_vaclookup_selec: nav_vaclookup_selec,
   nav_vaclookup_unselec: nav_vaclookup_unselec,
   warning: warning,
+  choice_selec: choice_selec,
+  choice_unselec: choice_unselec,
 
   //image
   vacgom01: Vacgom01,
