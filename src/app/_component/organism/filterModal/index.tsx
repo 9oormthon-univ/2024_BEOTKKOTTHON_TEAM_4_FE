@@ -5,8 +5,6 @@ import Button from '../../atom/button/button';
 import WarningToast from '../../atom/WarningToast';
 import { Overlay, ModalContainer, ModalHeader, ModalContent, ModalTitle, ModalOption, OptionText, ButtonSection, FogEffect } from './styles';
 
-// 나머지 코드는 동일하며, ModalContent 내부에 FogEffect 추가 부분만 보여줍니다.
-
 interface ModalProps {
   isOpen: boolean;
   title: string;
@@ -75,7 +73,7 @@ const FilterModal: React.FC<ModalProps> = ({
           <ModalTitle>{title}</ModalTitle>
           {options.map((option) => (
             <ModalOption key={option} onClick={() => handleOptionSelect(option)}>
-              <Image src={localSelectedOptions.includes(option) ? Images.checkBox_selec_en : Images.checkBox_unselec_dis} alt={option} width={20} height={20} />
+              <Image src={localSelectedOptions.includes(option) ? Images.choice_selec : Images.choice_unselec} alt={option} width={20} height={20} />
               <OptionText>{option}</OptionText>
             </ModalOption>
           ))}
