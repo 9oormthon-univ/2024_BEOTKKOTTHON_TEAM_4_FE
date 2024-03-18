@@ -4,7 +4,7 @@ import { SplashWrapper } from './style';
 import Image from 'next/image';
 import { Colors, Icons, Images } from '@globalStyles';
 
-export default function Splash() {
+export default function Splash(): React.JSX.Element {
   return (
     <SplashWrapper>
       <div className="main">

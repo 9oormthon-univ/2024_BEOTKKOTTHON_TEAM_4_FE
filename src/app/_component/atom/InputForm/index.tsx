@@ -49,9 +49,11 @@ const Index = ({
   onClick = (event: React.MouseEvent<HTMLInputElement>) => {},
   leftIcon,
   rightIcon,
+  iconSize = '2.4rem',
   onClickLeftIcon = (event: React.MouseEvent<HTMLSpanElement>) => {},
   onClickRightIcon = (event: React.MouseEvent<HTMLSpanElement>) => {},
   description,
+  descriptionTop,
   customStyle = css``,
   className,
   size = '',
@@ -68,13 +70,16 @@ const Index = ({
       variant={variant}
       disabled={disabled}
     >
+      {descriptionTop && (
+        <div className="input-form__description-top">{descriptionTop}</div>
+      )}
       <div className="input__content">
         {leftIcon && (
           <Icon
             className="input__content--left__icon"
             icon={leftIcon}
             onClick={onClickLeftIcon}
-            size="2.4rem"
+            size={iconSize}
           />
         )}
         <input
@@ -99,7 +104,7 @@ const Index = ({
             className="input__content--right__icon"
             icon={rightIcon}
             onClick={onClickRightIcon}
-            size="2.4rem"
+            size={iconSize}
           />
         )}
         {children}
