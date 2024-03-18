@@ -5,8 +5,6 @@ import Button from '../../atom/button/button';
 import WarningToast from '../../atom/WarningToast';
 import { Overlay, ModalContainer, ModalHeader, ModalContent, ModalTitle, ModalOption, OptionText, ButtonSection, FogEffect } from './styles';
 
-// 나머지 코드는 동일하며, ModalContent 내부에 FogEffect 추가 부분만 보여줍니다.
-
 interface ModalProps {
   isOpen: boolean;
   title: string;
