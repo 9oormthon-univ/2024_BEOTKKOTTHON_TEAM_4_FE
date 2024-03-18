@@ -7,12 +7,26 @@ import { css } from '@emotion/react';
 
 import Button from '@/app/_component/atom/button/button';
 import { Colors, Icons, Images } from '@globalStyles';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import InputForm from '@/app/_component/atom/InputForm';
+import FilterModal from '@/app/_component/organism/filterModal';
+import { agencyRanges, ageRanges, situationRanges } from '@/constants';
 
 export default function Signup(): React.JSX.Element {
+  // const [params, setParams] = useState<>();
+  const [selectedAgency, setSelectedAgency] = useState<string[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAgencySelect = (selectedOptions: string[]) => {
+    setSelectedAgency(selectedOptions);
+    setIsModalOpen(false);
+  };
+  const resetAgencyOptions = () => {
+    setSelectedAgency([]);
+  };
+
   return (
     <SignupWrapper>
       <BackHeader title={'회원가입'} url={'/vachistory'} />
@@ -61,7 +75,7 @@ export default function Signup(): React.JSX.Element {
         <div className="item">
           <InputForm
             placeholder="통신사"
-            value="통신사"
+            value={selectedAgency}
             descriptionTop={'통신사'}
             rightIcon={Icons.arrow_down}
             type="text"
@@ -71,6 +85,9 @@ export default function Signup(): React.JSX.Element {
                 height: 24px;
               }
             `}
+            onClick={() => {
+              setIsModalOpen(true);
+            }}
           />
         </div>
         <div className="item">
@@ -82,6 +99,17 @@ export default function Signup(): React.JSX.Element {
           />
         </div>
       </div>
+      <Fragment>
+        <FilterModal
+          isOpen={isModalOpen}
+          title="통신사를 선택해 주세요"
+          options={agencyRanges}
+          selectedOptions={selectedAgency}
+          onClose={() => setIsModalOpen(false)}
+          onOptionSelect={handleAgencySelect}
+          onReset={resetAgencyOptions}
+        />
+      </Fragment>
       <div className="bottom">
         <button className={'confirm_button'}>다음</button>
       </div>
