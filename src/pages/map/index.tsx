@@ -1,9 +1,21 @@
+import React, { useState } from 'react';
 import HospitalMap from "@/app/_component/temp/hospitalmap";
+import MainHeader from '@/app/_component/atom/MainHeader';
+import SectionHeader from '@/app/_component/atom/SectionHeader';
 
 export default function Map() {
+  const [selectedSection, setSelectedSection] = useState("병원 조회");
+  const sectionTexts = ["병원 조회", "지원사업 소개"];
+
+  const handleSectionChange = (section) => {
+    setSelectedSection(section);
+  };
+
   return (
     <div>
-      <HospitalMap />
+      <MainHeader title="병원 조회" />
+      <SectionHeader sections={sectionTexts} onSectionChange={handleSectionChange} />
+      {selectedSection === "병원 조회" && <HospitalMap />}
     </div>
   );
 }
