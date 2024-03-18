@@ -12,12 +12,26 @@ const PageContainer = styled.div``;
 
 const FiltersContainer = styled.div`
   display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   align-items: center;
   gap: 6px;
   margin-left: 14px;
   margin-top: 20px;
   margin-bottom: 20px;
+  z-index: 1000px;
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 `;
+
 
 export default function VacLookup() {
   const [selectedSection, setSelectedSection] = useState('필수예방접종');
@@ -30,7 +44,12 @@ export default function VacLookup() {
 
   const handleAgeSelect = (selectedOptions: string[]) => {
     setSelectedAgeOptions(selectedOptions);
-    const text = selectedOptions.length > 1 ? `${selectedOptions[0]} 외 ${selectedOptions.length - 1}건` : selectedOptions[0] || '전체';
+    let text = selectedOptions[0] || '전체';
+  
+    if (selectedOptions.length > 1) {
+      text = text.length > 8 ? `${text.slice(0, 6)}... 외 ${selectedOptions.length - 1}건` : `${text} 외 ${selectedOptions.length - 1}건`;
+    } 
+  
     setAgeFilter(text);
     setIsAgeModalOpen(false);
   };
