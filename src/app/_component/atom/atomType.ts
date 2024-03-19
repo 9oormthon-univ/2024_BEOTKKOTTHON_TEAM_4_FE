@@ -176,6 +176,6 @@ export interface FilterTypes {
 export interface MenuTitleType {
   title: string;
   rightIconUrl: string;
-  username: string;
+  username?: string;
   customStyle?: SerializedStyles;
 }

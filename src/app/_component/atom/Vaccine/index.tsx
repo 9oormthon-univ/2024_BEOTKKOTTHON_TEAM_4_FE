@@ -6,7 +6,7 @@ import { Images } from '@/styles';
 
 interface CardType {
   account_id?: string;
-  vaccineName: string;
+  vaccineName?: string;
   subLabel?: string;
   date?: string;
   image: string;
