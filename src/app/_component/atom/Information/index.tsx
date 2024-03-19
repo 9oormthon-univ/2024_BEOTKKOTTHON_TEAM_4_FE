@@ -1,6 +1,5 @@
 import React from 'react';
 import { InformationContainer, Text } from './styles';
-import { InformationProps } from '../atomType';
 import { Images } from '@globalStyles';
 import Image from 'next/image';
 
