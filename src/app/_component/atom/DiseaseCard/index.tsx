@@ -5,11 +5,11 @@ import styled from '@emotion/styled';
 
 interface DiseaseCardProps {
   diseaseName: string;
-  imageUrl: string;  // 변경: 이미지 URL을 필수 프롭으로 변경
+  imageUrl: string;
 }
 
 const Card = styled.div`
-  width: 169.5px;
+  width: 200px;
   height: auto;
   padding: 20px 21.77px;
   gap: 20px;
@@ -36,7 +36,7 @@ const DiseaseName = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 100%;  // 추가: 텍스트 너비 제한
+  width: 100%;
 `;
 
 const DiseaseCard: React.FC<DiseaseCardProps> = ({ diseaseName, imageUrl }) => {

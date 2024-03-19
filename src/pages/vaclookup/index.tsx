@@ -13,7 +13,7 @@ import { diseaseList } from '@/utils/disease-api';
 const DiseaseContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
   justify-content: center;
 `;
 
