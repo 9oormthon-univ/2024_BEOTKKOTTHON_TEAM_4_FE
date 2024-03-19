@@ -20,7 +20,8 @@ export const VerificationWrap = styled.main`
     padding: 10px 20px;
 
     & > .not {
-      margin-top: 16px;
+      cursor: pointer;
+      margin-top: 12px;
       width: 100%;
       display: flex;
       justify-content: center;
