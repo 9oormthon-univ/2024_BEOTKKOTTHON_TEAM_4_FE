@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { HeaderContainer, Title } from './style';
 import { MainHeaderType } from '../moleculeType';

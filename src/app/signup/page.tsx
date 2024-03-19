@@ -13,11 +13,19 @@ import BackHeader from '@/app/_component/molecule/BackHeader';
 import InputForm from '@/app/_component/atom/InputForm';
 import FilterModal from '@/app/_component/organism/filterModal';
 import { agencyRanges, ageRanges, situationRanges } from '@/constants';
+import { OnChangeValueType, ParamsType } from '@/types/globalType';
 
 export default function Signup(): React.JSX.Element {
-  // const [params, setParams] = useState<>();
+  const [params, setParams] = useState<ParamsType>();
   const [selectedAgency, setSelectedAgency] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const onChangeValue: OnChangeValueType = (field, value) => {
+    setParams((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
 
   const handleAgencySelect = (selectedOptions: string[]) => {
     setSelectedAgency(selectedOptions);
@@ -29,7 +37,6 @@ export default function Signup(): React.JSX.Element {
 
   return (
     <SignupWrapper>
-      <BackHeader title={'회원가입'} url={'/vachistory'} />
       <div className="top">정보를 입력해 주세요</div>
       <div className="container">
         <div className="item">
@@ -37,7 +44,7 @@ export default function Signup(): React.JSX.Element {
           <div className="item_row">
             <InputForm
               placeholder="번호 입력"
-              value="번호 입력"
+              value={params.phoneNumber}
               type="text"
               maxLength={6}
               customStyle={css`
