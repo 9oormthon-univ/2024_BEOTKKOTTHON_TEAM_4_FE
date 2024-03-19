@@ -15,7 +15,7 @@ export default function DetailDesPage() {
 
   return (
     <>
-      <MainHeader title="감염병 정보" />
+      <MainHeader title="감염병 정보" url="/vaclookup" />
       <DiseaseDetail disease={disease} />
     </>
   );
