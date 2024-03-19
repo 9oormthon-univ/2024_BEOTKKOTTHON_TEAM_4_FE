@@ -43,6 +43,28 @@ import choice_unselec from '../../public/assets/ico/ico-choice-unselec.svg';
 
 import VaccineCardBack from '../../public/assets/image/img-VaccineCard-back.svg';
 
+import ico_vac1 from '../../public/assets/ico/ico-vac1.svg';
+import ico_vac2 from '../../public/assets/ico/ico-vac2.svg';
+import ico_vac3 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac4 from '../../public/assets/ico/ico-vac4.svg';
+import ico_vac5 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac6 from '../../public/assets/ico/ico-vac6.svg';
+import ico_vac7 from '../../public/assets/ico/ico-vac7.svg';
+import ico_vac8 from '../../public/assets/ico/ico-vac8.svg';
+import ico_vac9 from '../../public/assets/ico/ico-vac9.svg';
+import ico_vac10 from '../../public/assets/ico/ico-vac10.svg';
+import ico_vac11 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac12 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac13 from '../../public/assets/ico/ico-vac13.svg';
+import ico_vac14 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac15 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac16 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac17 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac18 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac19 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac20 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac21 from '../../public/assets/ico/ico-vac-none.svg';
+
 // prettier-ignore
 export const Images: ImagesType = {
   // icon
@@ -79,6 +101,27 @@ export const Images: ImagesType = {
   arrow_right: arrow_right,
   choice_selec: choice_selec,
   choice_unselec: choice_unselec,
+  ico_vac1: ico_vac1,
+  ico_vac2: ico_vac2,
+  ico_vac3: ico_vac3,
+  ico_vac4: ico_vac4,
+  ico_vac5: ico_vac5,
+  ico_vac6: ico_vac6,
+  ico_vac7: ico_vac7,
+  ico_vac8: ico_vac8,
+  ico_vac9: ico_vac9,
+  ico_vac10: ico_vac10,
+  ico_vac11: ico_vac11,
+  ico_vac12: ico_vac12,
+  ico_vac13: ico_vac13,
+  ico_vac14: ico_vac14,
+  ico_vac15: ico_vac15,
+  ico_vac16: ico_vac16,
+  ico_vac17: ico_vac17,
+  ico_vac18: ico_vac18,
+  ico_vac19: ico_vac19,
+  ico_vac20: ico_vac20,
+  ico_vac21: ico_vac21,
 
 
   //image
