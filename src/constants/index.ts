@@ -37,3 +37,13 @@ export const situationRanges = [
   '임신부',
   '의료기관 종사자',
 ];
+
+// 통신사 목록
+export const agencyRanges = [
+  'SKT',
+  'KT',
+  'LG U+',
+  'SKT 알뜰폰',
+  'KT 알뜰폰',
+  'LG U+ 알뜰폰',
+];

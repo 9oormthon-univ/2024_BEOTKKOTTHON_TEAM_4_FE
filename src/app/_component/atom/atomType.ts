@@ -1,4 +1,3 @@
-import { SerializedStyles } from '@emotion/react';
 import React from 'react';
 
 export interface CssArchiveType
@@ -32,14 +31,14 @@ export interface ButtonStyleType {
   customStyle?: SerializedStyles;
   variant?: string;
   size?: string;
-  icon?: string;
+  icon?: IconDetailType;
   prevIcon?: IconDetailType;
 }
 
 // atom/Icon 의 타입
 export interface IconType extends CustomStyleType {
   icon: IconDetailType;
-  src: string;
+  src?: string;
   size?: string;
   alt?: string;
   className?: string;

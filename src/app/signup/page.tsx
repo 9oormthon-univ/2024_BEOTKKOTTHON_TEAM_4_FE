@@ -7,12 +7,57 @@ import { css } from '@emotion/react';
 
 import Button from '@/app/_component/atom/button/button';
 import { Colors, Icons, Images } from '@globalStyles';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import InputForm from '@/app/_component/atom/InputForm';
+import FilterModal from '@/app/_component/organism/filterModal';
+import { agencyRanges, ageRanges, situationRanges } from '@/constants';
+import { OnChangeValueType, ParamsType } from '@/types/globalType';
 
 export default function Signup(): React.JSX.Element {
+  const [params, setParams] = useState<ParamsType>({
+    identity_first: '',
+    identity_last: '',
+    userName: '',
+    phoneNumber: '',
+    telecom: '',
+  });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openVarifi, setOpenVarifi] = useState(false);
+  const router = useRouter();
+
+  const onChangeValue: OnChangeValueType = (field, value) => {
+    setParams((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
+
+  // param 모든 값이 존재하는지
+  const checkParamsFilled = () => {
+    const { identity_first, identity_last, userName, phoneNumber, telecom } =
+      params;
+    return (
+      identity_first && identity_last && userName && phoneNumber && telecom
+    );
+  };
+
+  const handleNextButtonClick = () => {
+    if (checkParamsFilled()) {
+      setOpenVarifi(true);
+      router.push('/signup/verification');
+    }
+  };
+
+  const handleAgencySelect = (selectedOptions: string[]) => {
+    onChangeValue('telecom', selectedOptions);
+    setIsModalOpen(false);
+  };
+  const resetAgencyOptions = () => {
+    onChangeValue('telecom', []);
+  };
+
   return (
     <SignupWrapper>
       <BackHeader title={'회원가입'} url={'/vachistory'} />
@@ -22,23 +67,29 @@ export default function Signup(): React.JSX.Element {
           <div className="input_title">주민등록번호</div>
           <div className="item_row">
             <InputForm
-              placeholder="번호 입력"
-              value="번호 입력"
+              placeholder="YYMMDD"
+              value={params.identity_first}
               type="text"
               maxLength={6}
               customStyle={css`
                 width: 50%;
               `}
+              onChange={(e) => {
+                onChangeValue('identity_first', e.target.value);
+              }}
             />
             <p>-</p>
             <InputForm
-              placeholder="번호 입력"
-              value="번호 입력"
+              placeholder=""
+              value={params.identity_last}
               type="text"
               maxLength={1}
               customStyle={css`
                 width: 60px;
               `}
+              onChange={(e) => {
+                onChangeValue('identity_last', e.target.value);
+              }}
             />
             <div className="hiden_item">
               <p></p>
@@ -53,15 +104,18 @@ export default function Signup(): React.JSX.Element {
         <div className="item">
           <InputForm
             placeholder="이름"
-            value="이름"
+            value={params.userName}
             descriptionTop={'이름'}
             type="text"
+            onChange={(e) => {
+              onChangeValue('userName', e.target.value);
+            }}
           />
         </div>
         <div className="item">
           <InputForm
             placeholder="통신사"
-            value="통신사"
+            value={params.telecom}
             descriptionTop={'통신사'}
             rightIcon={Icons.arrow_down}
             type="text"
@@ -71,19 +125,44 @@ export default function Signup(): React.JSX.Element {
                 height: 24px;
               }
             `}
+            onClick={() => {
+              setIsModalOpen(true);
+            }}
           />
         </div>
         <div className="item">
           <InputForm
             placeholder="번호 입력"
-            value="번호 입력"
+            value={params.phoneNumber}
             descriptionTop={'휴대폰 번호'}
             type="text"
+            onChange={(e) => {
+              onChangeValue('phoneNumber', e.target.value);
+            }}
           />
         </div>
       </div>
+      <Fragment>
+        <FilterModal
+          isOpen={isModalOpen}
+          title="통신사를 선택해 주세요"
+          options={agencyRanges}
+          selectedOptions={params.telecom}
+          onClose={() => setIsModalOpen(false)}
+          onOptionSelect={handleAgencySelect}
+          onReset={resetAgencyOptions}
+        />
+      </Fragment>
       <div className="bottom">
-        <button className={'confirm_button'}>다음</button>
+        <button
+          className={
+            !checkParamsFilled() ? 'confirm_button' : 'confirm_button_Filled'
+          }
+          onClick={handleNextButtonClick}
+          disabled={!checkParamsFilled()}
+        >
+          다음
+        </button>
       </div>
     </SignupWrapper>
   );

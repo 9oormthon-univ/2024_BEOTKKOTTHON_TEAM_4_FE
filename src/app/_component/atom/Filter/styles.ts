@@ -24,7 +24,12 @@ export const FilterText = styled.span`
   color: #8b95a1;
 `;
 
-export const SelectedFilterText = styled.span`
+//소현님 빌드시 타입 오류가 나서 잠시 타입 빼두겠습니다!
+interface SelectedFilterTextProps {
+  isDefaultSelected: boolean;
+}
+
+export const SelectedFilterText = styled.span<SelectedFilterTextProps>`
   ${textStyle};
   font-weight: 600;
   color: ${({ isDefaultSelected }) =>

@@ -29,7 +29,7 @@ function Icon({
   className = '',
   style = {},
   customStyle,
-  onClick = (e: MouseEvent<HTMLButtonElement>) => {},
+  onClick = (e: MouseEvent<HTMLSpanElement>) => {},
 }: React.PropsWithChildren<IconType>) {
   const materialIconStyle = css`
     width: ${size};
