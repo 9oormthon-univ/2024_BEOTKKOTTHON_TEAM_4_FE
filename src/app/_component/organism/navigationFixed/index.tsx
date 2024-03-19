@@ -31,6 +31,7 @@ const NavigationContainer = styled.div`
   z-index: 1000;
   max-width: 500px;
   margin: 0 auto;
+  background: #ffffff;
 `;
 
 const NavItem = styled.div<{ isActive: boolean }>`
@@ -58,10 +59,12 @@ export default function NavigationFixed() {
     router.push(route);
   };
 
+  const isDetailPage = router.pathname.includes('/detaildis/');
+
   return (
     <NavigationContainer>
       {navItems.map((item) => {
-        const isActive = router.pathname === item.route;
+        const isActive = isDetailPage ? item.route === '/vaclookup' : router.pathname === item.route;
         const icon = isActive ? Images[item.iconSelected] : Images[item.iconUnselected];
         return (
           <NavItem
