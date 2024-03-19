@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import { Images } from '@globalStyles';
+import Accordion from '@/app/_component/atom/Accordion';
 
 const DiseaseDetailContainer= styled.div`
   padding: 20px, 20px, 0px, 20px; 
@@ -81,6 +82,7 @@ const DiseaseDetail = ({ disease }) => {
             <DiseaseName>{disease.vacName}</DiseaseName>
           </DiseaseNameContainer>
           <DiseaseDescription>{disease.vacDes}</DiseaseDescription>
+          <Accordion qaList={disease.qaList} />
         </DiseaseInfoContainer>
       </DiseaseDetailContainer>
     </>

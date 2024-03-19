@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 const AccordionContainer = styled.div`
-  width: 353px;
+  width: 100%;
   padding: 10px 14px;
   border: 1px solid #F2F4F6;
   border-radius: 20px;
@@ -12,7 +12,7 @@ const AccordionContainer = styled.div`
 const AccordionItem = styled.div`
   border-radius: 10px;
   margin-bottom: 10px;
-  background: #F2F4F6;
+  background: #FFFFFF;
 `;
 
 const Question = styled.div`
@@ -27,13 +27,13 @@ const Question = styled.div`
 
 const Answer = styled.div`
   padding: 13px 20px;
-  background: #ffffff;
+  background: #F2F4F6;
   font-family: Pretendard;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
   color: #6B7684;
-  display: none;
+  display: ${({ isActive }) => (isActive ? 'block' : 'none')};
 `;
 
 const Accordion = ({ qaList }) => {
@@ -50,7 +50,7 @@ const Accordion = ({ qaList }) => {
           <Question onClick={() => toggleAccordion(index)}>
             {item.ques}
           </Question>
-          {activeIndex === index && <Answer>{item.ans}</Answer>}
+          <Answer isActive={activeIndex === index}>{item.ans}</Answer>
         </AccordionItem>
       ))}
     </AccordionContainer>
