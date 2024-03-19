@@ -10,10 +10,14 @@ import { useRouter } from 'next/navigation';
 
 export default function Spiner(): React.JSX.Element {
   const router = useRouter();
-  let code: string | null;
+  const [code, setCode] = useState<string | null>(null);
+
   useEffect(() => {
-    code = new URL(window.location.href).searchParams.get('code');
-    console.log(code);
+    const queryCode = new URL(window.location.href).searchParams.get('code');
+    console.log(queryCode);
+    if (queryCode) {
+      setCode(queryCode);
+    }
   }, []);
 
   useEffect(() => {
@@ -22,19 +26,23 @@ export default function Spiner(): React.JSX.Element {
         const response = await fetch(
           `https://api-dev.vacgom.co.kr/api/v1/oauth/kakao/login?code=${code}`,
         );
-        if (!response.ok) {
-          throw new Error('Failed to fetch');
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          localStorage.setItem('accessToken', data.token.accessToken);
+          setTimeout(() => {
+            router.push('/signup');
+          }, 1000);
+        } else {
+          console.error('Failed to fetch data:', response.status);
         }
-        const data = await response.json();
-        console.log(data);
-        // router.push('https://api-dev.vacgom.co.kr/api/v1/oauth/kakao');
       } catch (error) {
-        console.error('error', error);
+        console.error('Error fetching data:', error);
       }
     };
 
     if (code) {
-      fetchData(); // 코드가 존재할 때만 fetchData 함수 호출
+      fetchData();
     }
   }, [code]);
 
