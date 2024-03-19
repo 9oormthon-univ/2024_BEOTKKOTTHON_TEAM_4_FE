@@ -11,9 +11,9 @@ export default function DetailDesPage() {
   const { id } = router.query;
   const disease = diseaseList.find((d) => d.id === Number(id));
   const [isToastOpen, setIsToastOpen] = useState(false);
-
+  
   useEffect(() => {
-    if (!disease && id) { 
+    if (!disease && id && !isNaN(Number(id))) {
       setIsToastOpen(true);
       setTimeout(() => {
         setIsToastOpen(false);

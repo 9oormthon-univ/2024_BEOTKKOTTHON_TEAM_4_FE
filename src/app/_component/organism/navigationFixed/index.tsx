@@ -3,6 +3,7 @@ import { Images } from '@globalStyles';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 // 다른 페이지 디자인이 안나와서 네비게이션이 전 페이지 다 되는지 안되는지 모르겠네요...
 // 그래서 우선 컴포넌트로 만들고 페이지에 불러와서 사용하도록 구현했습니다
@@ -59,7 +60,13 @@ export default function NavigationFixed() {
     router.push(route);
   };
 
-  const isDetailPage = router.pathname.includes('/detaildis/');
+  const [isDetailPage, setIsDetailPage] = useState(false);
+
+  useEffect(() => {
+
+    setIsDetailPage(router.pathname.includes('/detaildis/'));
+  }, [router.pathname]);
+  
 
   return (
     <NavigationContainer>
