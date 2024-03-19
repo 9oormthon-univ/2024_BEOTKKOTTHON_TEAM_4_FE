@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
+import { Images } from '@globalStyles';
 
 const DiseaseDetailContainer= styled.div`
   padding: 20px, 20px, 0px, 20px; 
@@ -44,6 +45,16 @@ const DiseaseDescription = styled.p`
   color: #6b7684;
 `;
 
+const DiseaseNameContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+`;
+
+const Icon = styled.div`
+  margin-right: 10px; // 아이콘과 텍스트 사이의 간격
+`;
+
 const DiseaseDetail = ({ disease }) => {
   return (
     <>
@@ -57,7 +68,17 @@ const DiseaseDetail = ({ disease }) => {
           />
         </DiseaseImageContainer>
         <DiseaseInfoContainer>
-          <DiseaseName>{disease.vacName}</DiseaseName>
+          <DiseaseNameContainer>
+            <Icon>
+              <Image
+                src={Images.ico_check_filled}
+                alt=""
+                width={24}
+                height={24}
+              />
+            </Icon>
+            <DiseaseName>{disease.vacName}</DiseaseName>
+          </DiseaseNameContainer>
           <DiseaseDescription>{disease.vacDes}</DiseaseDescription>
         </DiseaseInfoContainer>
       </DiseaseDetailContainer>
