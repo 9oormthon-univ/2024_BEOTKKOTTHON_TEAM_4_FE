@@ -6,6 +6,7 @@ import Accordion from '@/app/_component/atom/Accordion';
 
 const DiseaseDetailContainer= styled.div`
   padding: 20px, 20px, 0px, 20px; 
+  margin-bottom: 100px;
 `
 
 const DiseaseImageContainer = styled.div`
@@ -17,6 +18,7 @@ const DiseaseImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  margin-bottom: 20px;
 `;
 
 const DiseaseInfoContainer = styled.div`
@@ -24,7 +26,7 @@ const DiseaseInfoContainer = styled.div`
   padding: 30px 24px;
   border: 1px solid #f2f4f6;
   border-radius: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 const DiseaseName = styled.h1`
@@ -82,8 +84,8 @@ const DiseaseDetail = ({ disease }) => {
             <DiseaseName>{disease.vacName}</DiseaseName>
           </DiseaseNameContainer>
           <DiseaseDescription>{disease.vacDes}</DiseaseDescription>
-          <Accordion qaList={disease.qaList} />
         </DiseaseInfoContainer>
+        <Accordion qaList={disease.qaList} />
       </DiseaseDetailContainer>
     </>
   );
