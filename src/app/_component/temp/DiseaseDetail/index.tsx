@@ -8,7 +8,7 @@ const DiseaseDetailContainer= styled.div`
 `
 
 const DiseaseImageContainer = styled.div`
-  width: 80%;
+  width: 100%;
   height: 290px;
   padding-top: 30px;
   background: #f9fafb;
@@ -19,10 +19,11 @@ const DiseaseImageContainer = styled.div`
 `;
 
 const DiseaseInfoContainer = styled.div`
-  width: 80%;
+  width: 100%;
   padding: 30px 24px;
   border: 1px solid #f2f4f6;
   border-radius: 20px;
+  margin-bottom: 10px;
 `;
 
 const DiseaseName = styled.h1`

@@ -38,6 +38,7 @@ import warning from '../../public/assets/ico/ico-warning.svg';
 
 import arrow_down from '../../public/assets/ico/ico-arrow-down.png';
 import arrow_right from '../../public/assets/ico/ico-arrow-right.svg';
+import arrow_left from '../../public/assets/ico/ico-arrow-left.svg';
 import choice_selec from '../../public/assets/ico/ico-choice-selec.svg';
 import choice_unselec from '../../public/assets/ico/ico-choice-unselec.svg';
 
@@ -103,6 +104,7 @@ export const Images: ImagesType = {
   nav_vaclookup_unselec: nav_vaclookup_unselec,
   warning: warning,
   arrow_down: arrow_down,
+  arrow_left: arrow_left,
   arrow_right: arrow_right,
   choice_selec: choice_selec,
   choice_unselec: choice_unselec,
