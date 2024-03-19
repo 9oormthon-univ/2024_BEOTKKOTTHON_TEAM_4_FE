@@ -65,6 +65,11 @@ import ico_vac19 from '../../public/assets/ico/ico-vac-none.svg';
 import ico_vac20 from '../../public/assets/ico/ico-vac-none.svg';
 import ico_vac21 from '../../public/assets/ico/ico-vac-none.svg';
 
+// 감염병 세부 페이지에 들어가는 요소들
+import ico_check_filled from '../../public/assets/ico/ico-check-filled.svg';
+import ico_pin_selec from '../../public/assets/ico/ico-pin-selec.svg';
+import ico_pin_unselec from '../../public/assets/ico/ico-pin-unselec.svg';
+
 // prettier-ignore
 export const Images: ImagesType = {
   // icon
@@ -122,6 +127,10 @@ export const Images: ImagesType = {
   ico_vac19: ico_vac19,
   ico_vac20: ico_vac20,
   ico_vac21: ico_vac21,
+  ico_check_filled: ico_check_filled,
+  ico_pin_selec: ico_pin_selec,
+  ico_pin_unselec: ico_pin_unselec,
+
 
 
   //image
