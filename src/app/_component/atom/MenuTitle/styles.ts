@@ -11,7 +11,8 @@ export const MenuTitleContainer = styled.main`
     //padding: 0 20px;
     box-sizing: border-box;
     & > .content_title {
-      ${fontGenerator('16px', '700', '32px')}
+      font-family: 'Pretendard', sans-serif;
+      ${fontGenerator('16px', '600', '32px')}
     }
     & > span {
       width: 24px;

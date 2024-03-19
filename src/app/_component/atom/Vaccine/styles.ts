@@ -117,6 +117,7 @@ export const VaccineCardStyle: CssArchiveType = {
       bottom: -24px;
 
       & > .label {
+        font-family: 'Pretendard', sans-serif;
         ${fontGenerator('16px', '600', '19px')}
         color: ${Colors.White};
         margin-bottom: 4px;
@@ -128,6 +129,7 @@ export const VaccineCardStyle: CssArchiveType = {
         gap: 10px;
 
         & > .percent {
+          font-family: 'Pretendard', sans-serif;
           ${fontGenerator('14px', '400', '16.71px')}
           color: ${Colors.Gray200};
         }
