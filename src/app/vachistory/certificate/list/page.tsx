@@ -10,13 +10,15 @@ export default function CertificateList(): React.JSX.Element {
   const onClickHandler = () => {};
   return (
     <Container>
-      <BackHeader title={'백신 인증서'} url={'/vachistory'} />
+      <BackHeader title={'접종 인증서'} url={'/vachistory'} />
       <div className="container">
-        <div className="item">백신인증서</div>
-        <div className="item">백신인증서</div>
-        <div className="item">백신인증서</div>
-        <div className="item">백신인증서</div>
-        <div className="item">백신인증서</div>
+        <VaccineCard variant={'small'} image={Images.vacgom01} />
+        <VaccineCard variant={'small'} image={Images.vacgom01} />
+        <VaccineCard variant={'small'} image={Images.vacgom01} />
+        <VaccineCard variant={'small'} image={Images.vacgom01} />
+        <VaccineCard variant={'small'} image={Images.vacgom01} />
+        <VaccineCard variant={'small'} image={Images.vacgom01} />
+        <VaccineCard variant={'small'} image={Images.vacgom01} />
       </div>
     </Container>
   );

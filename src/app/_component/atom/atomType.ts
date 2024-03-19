@@ -171,3 +171,11 @@ export interface FilterTypes {
   onClear: React.MouseEventHandler<HTMLButtonElement>;
   isSelected: boolean;
 }
+
+//atom/MenuTitle type
+export interface MenuTitleType {
+  title: string;
+  rightIconUrl: string;
+  username?: string;
+  customStyle?: SerializedStyles;
+}

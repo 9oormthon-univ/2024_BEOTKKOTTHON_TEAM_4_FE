@@ -30,6 +30,7 @@ export const Icons = {
     error: {src: "error", type: "material-symbols-outlined"},
 
     arrow_down: {src: "arrow_down", type: "custom"},
+    arrow_right: {src: "arrow_right", type: "custom"},
 
 
     kakao: {src: "kakao", type: "custom"},

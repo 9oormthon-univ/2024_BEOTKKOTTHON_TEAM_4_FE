@@ -8,6 +8,8 @@ import Icon from '@/app/_component/atom/Icon/Icon';
 import Link from 'next/link';
 import SectionHeader from '@/app/_component/atom/SectionHeader';
 import MainHeader from '@/app/_component/atom/MainHeader';
+import { MenuTitleContainer } from '@/app/_component/atom/MenuTitle/styles';
+import MenuTitle from '@/app/_component/atom/MenuTitle';
 
 export default function Vachistory() {
   return (
@@ -15,30 +17,24 @@ export default function Vachistory() {
       <MainHeader title="접종내역" />
       <div className="body_wrap">
         <div className="content_head">
-          <div className="content_title">접종 인증서</div>
-          <Link className="all" href={'/vachistory/certificate/list'}>
-            전체 보기
-          </Link>
+          <MenuTitle
+            title={'접종 인증서'}
+            rightIconUrl={'/vachistory/certificate/list'}
+          />
         </div>
         <div className="content_body">
-          <div className="item">접종 인증서</div>
-          <div className="item">접종 인증서</div>
-          <div className="item">접종 인증서</div>
-          <div className="item">접종 인증서</div>
-          <div className="item">접종 인증서</div>
-        </div>
-        <div className="content_more">
-          백곰의 접종 인증서는 법적인 효력이 없습니다. <br />
-          실제 예방접종 증명서는 예방접종도우미사이트, 정부24 등에서
-          발급받아주세요.
+          <VaccineCard variant={'small'} image={Images.vacgom01} />
+          <VaccineCard variant={'small'} image={Images.vacgom01} />
+          <VaccineCard variant={'small'} image={Images.vacgom01} />
+          <VaccineCard variant={'small'} image={Images.vacgom01} />
+          <VaccineCard variant={'small'} image={Images.vacgom01} />
         </div>
 
-        <div className="content_head">
-          <div className="content_title">예방접종 내역</div>
-          <Link className="all" href={'/vachistory/vaccine/national'}>
-            전체 보기
-          </Link>
-        </div>
+        <MenuTitle
+          username="전예나"
+          title={'님의 예방접종내역을 확인해보세요!'}
+          rightIconUrl={'/vachistory/vaccine/national'}
+        />
       </div>
     </Container>
   );

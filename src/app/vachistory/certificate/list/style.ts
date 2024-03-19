@@ -8,12 +8,13 @@ export const Container = styled.main`
   & > .container {
     display: flex;
     flex-wrap: wrap;
-    padding: 20px 50px;
+    justify-content: center;
+    padding: 20px 20px;
     gap: 10px;
     overflow-y: auto;
     & > div {
-      width: 16vh;
-      height: 200px;
+      //width: 16vh;
+      //height: 200px;
       background-color: ${Colors.Gray200};
     }
   }
