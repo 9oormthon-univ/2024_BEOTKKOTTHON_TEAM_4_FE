@@ -10,8 +10,11 @@ import { useRouter } from 'next/navigation';
 
 export default function Spiner(): React.JSX.Element {
   const router = useRouter();
-  const code = new URL(window.location.href).searchParams.get('code');
-  console.log(code);
+  let code: string | null;
+  useEffect(() => {
+    code = new URL(window.location.href).searchParams.get('code');
+    console.log(code);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {

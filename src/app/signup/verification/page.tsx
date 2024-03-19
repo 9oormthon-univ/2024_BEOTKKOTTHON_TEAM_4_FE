@@ -14,7 +14,6 @@ export default function Verification(): React.JSX.Element {
   return (
     <VerificationWrap>
       <BackHeader title={'본인인증'} url={'/signup'} />
-
       <div className="top">
         문자로 전송받은 <br />
         인증번호 6자리를 입력해 주세요.
