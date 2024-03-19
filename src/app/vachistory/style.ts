@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 export const Container = styled.main`
   width: 100%;
   height: 100vh;
-  padding: 20px;
 
   & > .head {
     height: 54px;
@@ -14,22 +13,18 @@ export const Container = styled.main`
   }
 
   & > .body_wrap {
-    & > .content_head {
-      height: 54px;
-      display: flex;
-      align-items: center;
+    padding: 0 20px;
 
-      justify-content: space-between;
-    }
     & > .content_body {
       display: flex;
       flex-direction: row;
       overflow-x: auto;
       gap: 15px;
-      margin-top: 20px;
+      margin: 10px -20px 10px 0;
       & > .item {
-        width: 100px;
-        height: 100px;
+        //width: 100px;
+        //height: 100px;
+
         flex-shrink: 0;
         background-color: ${Colors.Gray200};
       }
