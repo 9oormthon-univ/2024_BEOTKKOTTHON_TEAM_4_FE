@@ -7,8 +7,18 @@ import Filter from '@/app/_component/atom/Filter';
 import { introMessages, ageRanges, situationRanges } from '@/constants';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
 import FilterModal from '@/app/_component/organism/filterModal';
+import DiseaseCard from '@/app/_component/atom/DiseaseCard';
+import { diseaseList } from '@/utils/disease-api';
 
-const PageContainer = styled.div``;
+const DiseaseContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+`;
+
+const PageContainer = styled.div`
+`;
 
 const FiltersContainer = styled.div`
   display: flex;
@@ -140,7 +150,15 @@ export default function VacLookup() {
             onReset={resetSitOptions}
           />
         </Fragment>
-        <p>선택된 섹션: {selectedSection}우선 구분용입니다~</p>
+        <DiseaseContainer>
+        {diseaseList.map((disease) => (
+          <DiseaseCard
+            key={disease.id}
+            diseaseName={disease.vacName}
+            imageUrl={disease.iconsImage}
+          />
+        ))}
+      </DiseaseContainer>
       </PageContainer>
       <NavigationFixed />
     </div>

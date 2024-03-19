@@ -31,6 +31,7 @@ const NavigationContainer = styled.div`
   z-index: 1000;
   max-width: 500px;
   margin: 0 auto;
+  background: #ffffff;
 `;
 
 const NavItem = styled.div<{ isActive: boolean }>`
