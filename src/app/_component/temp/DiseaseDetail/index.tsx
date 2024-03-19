@@ -53,7 +53,7 @@ const DiseaseNameContainer = styled.div`
 `;
 
 const Icon = styled.div`
-  margin-right: 10px; // 아이콘과 텍스트 사이의 간격
+  margin-right: 10px;
 `;
 
 const DiseaseDetail = ({ disease }) => {
