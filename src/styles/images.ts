@@ -42,6 +42,9 @@ import arrow_left from '../../public/assets/ico/ico-arrow-left.svg';
 import choice_selec from '../../public/assets/ico/ico-choice-selec.svg';
 import choice_unselec from '../../public/assets/ico/ico-choice-unselec.svg';
 
+import dropdown_up from '../../public/assets/ico/ico-dropdown-up.svg';
+import dropdown_down from '../../public/assets/ico/ico-dropdown-down.svg';
+
 import VaccineCardBack from '../../public/assets/image/img-VaccineCard-back.svg';
 
 import ico_vac1 from '../../public/assets/ico/ico-vac1.svg';
@@ -133,7 +136,8 @@ export const Images: ImagesType = {
   ico_pin_selec: ico_pin_selec,
   ico_pin_unselec: ico_pin_unselec,
 
-
+  dropdown_up: dropdown_up,
+  dropdown_down: dropdown_down,
 
   //image
   vacgom01: Vacgom01,

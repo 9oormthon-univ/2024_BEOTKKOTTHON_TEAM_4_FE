@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import Image from 'next/image';
+import { Images } from '@globalStyles';
 
 const AccordionContainer = styled.div`
   width: 100%;
-  padding: 10px 14px;
+  padding: 20px, 20px, 0px, 20px; 
   border: 1px solid #F2F4F6;
   border-radius: 20px;
-  margin-bottom: 20px;
+  margin-top:20px;
 `;
 
 const AccordionItem = styled.div`
@@ -15,14 +17,23 @@ const AccordionItem = styled.div`
   background: #FFFFFF;
 `;
 
-const Question = styled.div`
+const QuestionContainer = styled.div`
   padding: 16px 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+`;
+
+const QuestionText = styled.div`
   font-family: Pretendard;
   font-size: 15px;
   font-weight: 600;
   line-height: 20px;
   color: #4E5968;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
 
 const Answer = styled.div`
@@ -47,9 +58,23 @@ const Accordion = ({ qaList }) => {
     <AccordionContainer>
       {qaList.map((item, index) => (
         <AccordionItem key={item.id}>
-          <Question onClick={() => toggleAccordion(index)}>
-            {item.ques}
-          </Question>
+          <QuestionContainer onClick={() => toggleAccordion(index)}>
+            <QuestionText>
+              <Image
+                src={activeIndex === index ? Images.ico_pin_selec : Images.ico_pin_unselec}
+                alt="Pin Icon"
+                width={20}
+                height={20}
+              />
+              {item.ques}
+            </QuestionText>
+            <Image
+              src={activeIndex === index ? Images.dropdown_up : Images.dropdown_down}
+              alt="Dropdown Icon"
+              width={20}
+              height={20}
+            />
+          </QuestionContainer>
           <Answer isActive={activeIndex === index}>{item.ans}</Answer>
         </AccordionItem>
       ))}

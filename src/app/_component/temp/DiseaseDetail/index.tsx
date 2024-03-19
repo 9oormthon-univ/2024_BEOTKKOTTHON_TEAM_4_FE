@@ -33,7 +33,7 @@ const DiseaseName = styled.h1`
   font-weight: 700;
   line-height: 23px;
   text-align: left;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   color: #333d4b;
 `;
 
@@ -50,7 +50,7 @@ const DiseaseDescription = styled.p`
 const DiseaseNameContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 `;
 
 const Icon = styled.div`
