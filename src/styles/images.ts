@@ -42,7 +42,8 @@ import choice_selec from '../../public/assets/ico/ico-choice-selec.svg';
 import choice_unselec from '../../public/assets/ico/ico-choice-unselec.svg';
 
 import VaccineCardBack from '../../public/assets/image/img-VaccineCard-back.svg';
-
+import vaccine_status_true from '../../public/assets/image/img-vaccineStatus-true.svg';
+import vaccine_status_false from '../../public/assets/image/img-vaccineStatus-false.svg';
 // prettier-ignore
 export const Images: ImagesType = {
   // icon
@@ -85,4 +86,6 @@ export const Images: ImagesType = {
   vacgom01: Vacgom01,
   vacgom: vacgom,
   VaccineCardBack: VaccineCardBack,
+  vaccine_status_false: vaccine_status_false,
+  vaccine_status_true: vaccine_status_true,
 };

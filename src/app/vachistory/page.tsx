@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Container } from './style';
-import VaccineCard from '@/app/_component/atom/Vaccine/index';
+import VaccineCard from '@/app/_component/atom/VaccineCertificate/index';
 import { Icons, Images } from '@globalStyles';
 import Icon from '@/app/_component/atom/Icon/Icon';
 import Link from 'next/link';
@@ -10,6 +10,7 @@ import SectionHeader from '@/app/_component/atom/SectionHeader';
 import MainHeader from '@/app/_component/atom/MainHeader';
 import { MenuTitleContainer } from '@/app/_component/atom/MenuTitle/styles';
 import MenuTitle from '@/app/_component/atom/MenuTitle';
+import VaccineItem from '@/app/_component/atom/VaccineItem';
 
 export default function Vachistory() {
   return (
@@ -35,6 +36,58 @@ export default function Vachistory() {
           title={'님의 예방접종내역을 확인해보세요!'}
           rightIconUrl={'/vachistory/vaccine/national'}
         />
+        <div className="vaccine_wrap">
+          <div className="category">국가 예방접종</div>
+          <div className="vaccine_list">
+            <VaccineItem
+              category={'국가 예방접종'}
+              vaccineName={'결핵'}
+              subLabel={'BCG(피내용)'}
+              vaccineStatus={false}
+            />{' '}
+            <VaccineItem
+              category={'국가 예방접종'}
+              vaccineName={'결핵'}
+              subLabel={'BCG(피내용)'}
+              vaccineStatus={false}
+            />{' '}
+            <VaccineItem
+              category={'국가 예방접종'}
+              vaccineName={'결핵'}
+              subLabel={'BCG(피내용)'}
+              vaccineStatus={false}
+            />{' '}
+            <VaccineItem
+              category={'국가 예방접종'}
+              vaccineName={'결핵'}
+              subLabel={'BCG(피내용)'}
+              vaccineStatus={false}
+            />
+          </div>
+        </div>
+        <div className="vaccine_wrap">
+          <div className="category">기타 예방접종</div>
+          <div className="vaccine_list">
+            <VaccineItem
+              category={'기타 예방접종'}
+              vaccineName={'결핵'}
+              subLabel={'BCG(피내용)'}
+              vaccineStatus={true}
+            />{' '}
+            <VaccineItem
+              category={'기타 예방접종'}
+              vaccineName={'결핵'}
+              subLabel={'BCG(피내용)'}
+              vaccineStatus={true}
+            />{' '}
+            <VaccineItem
+              category={'기타 예방접종'}
+              vaccineName={'결핵'}
+              subLabel={'BCG(피내용)'}
+              vaccineStatus={false}
+            />
+          </div>
+        </div>
       </div>
     </Container>
   );
