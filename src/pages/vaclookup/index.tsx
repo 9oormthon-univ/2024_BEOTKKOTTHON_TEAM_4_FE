@@ -152,11 +152,17 @@ export default function VacLookup() {
         </Fragment>
         <DiseaseContainer>
         {diseaseList.map((disease) => (
-          <DiseaseCard
-            key={disease.id}
-            diseaseName={disease.vacName}
-            imageUrl={disease.iconsImage}
-          />
+          <DiseaseContainer>
+          {diseaseList.map((disease) => (
+            <DiseaseCard
+              key={disease.id}
+              id={disease.id}
+              diseaseName={disease.vacName}
+              imageUrl={disease.iconsImage}
+            />
+          ))}
+        </DiseaseContainer>
+        
         ))}
       </DiseaseContainer>
       </PageContainer>

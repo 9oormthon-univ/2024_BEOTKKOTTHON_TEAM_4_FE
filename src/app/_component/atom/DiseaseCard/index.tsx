@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 
 interface DiseaseCardProps {
   diseaseName: string;
@@ -38,12 +39,17 @@ const DiseaseName = styled.span`
   width: 100%;
 `;
 
-const DiseaseCard: React.FC<DiseaseCardProps> = ({ diseaseName, imageUrl }) => {
+const DiseaseCard: React.FC<DiseaseCardProps> = ({ id, diseaseName, imageUrl }) => {
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(`/detaildis/${id}`);
+  };
   const formattedName = diseaseName.length > 8 ? `${diseaseName.slice(0, 8)}...` : diseaseName;
 
   return (
     <Card>
-      <DiseaseImage>
+      <DiseaseImage onClick={handleCardClick}>
         <Image src={imageUrl} alt={diseaseName} width={100} height={100} layout="responsive" />
       </DiseaseImage>
       <DiseaseName>{formattedName}</DiseaseName>
