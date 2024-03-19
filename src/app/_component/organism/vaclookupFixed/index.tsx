@@ -16,7 +16,7 @@ const VacLookupFixed: React.FC<VacLookupFixedProps> = ({ selectedSection, handle
           background: '#F2F4F6',
           padding: '15px 20px',
           gap: '14px',
-          height: '70px', // Default height
+          height: '70px',
         }}
         iconProps={{
           color: '#6B7684',
