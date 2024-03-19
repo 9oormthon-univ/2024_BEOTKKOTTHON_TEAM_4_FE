@@ -31,6 +31,7 @@ export const Icons = {
 
     arrow_down: {src: "arrow_down", type: "custom"},
     arrow_right: {src: "arrow_right", type: "custom"},
+    arrow_left: {src: "arrow_left", type: "custom"},
 
 
     kakao: {src: "kakao", type: "custom"},
