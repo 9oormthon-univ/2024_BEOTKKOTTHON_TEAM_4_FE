@@ -5,10 +5,10 @@ import { Images } from '@globalStyles';
 
 const AccordionContainer = styled.div`
   width: 100%;
-  padding: 20px, 20px, 0px, 20px; 
+  padding: 14px, 20px, 14px, 20px 
   border: 1px solid #F2F4F6;
   border-radius: 20px;
-  margin-top:20px;
+  margin-top: 20px;
 `;
 
 const AccordionItem = styled.div`
