@@ -54,8 +54,8 @@ export default function HospitalMap() {
             title: 'Your Location',
             icon: {
               url: '/assets/ico/ico-map-my.svg',
-              size: new naver.maps.Size(24, 37),
-              scaledSize: new naver.maps.Size(24, 37),
+              size: new naver.maps.Size(50, 63),
+              scaledSize: new naver.maps.Size(50, 63),
               origin: new naver.maps.Point(0, 0),
               anchor: new naver.maps.Point(12, 37)
             }
@@ -72,8 +72,8 @@ export default function HospitalMap() {
           title: hospital.name,
           icon: {
             url: selectedHospitalId === hospital.id ? '/assets/ico/ico-map-selec.svg' : '/assets/ico/ico-map-unselec.svg',
-            size: new naver.maps.Size(24, 37),
-            scaledSize: new naver.maps.Size(24, 37),
+            size: new naver.maps.Size(50, 63),
+            scaledSize: new naver.maps.Size(50, 63),
             origin: new naver.maps.Point(0, 0),
             anchor: new naver.maps.Point(12, 37)
           }
