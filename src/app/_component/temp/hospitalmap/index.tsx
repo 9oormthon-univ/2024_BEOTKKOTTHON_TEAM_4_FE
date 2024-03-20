@@ -4,6 +4,7 @@ import { hospitals } from '@/utils/influ-api';
 import Tooltip from '@/app/_component/atom/Tooltip';
 import { Modal } from '../../atom/MapModal';
 import ReloadButton from '@/app/_component/atom/ReloadButton';
+import { Images } from '@globalStyles';
 
 const Main = styled.div`
   display: flex;
@@ -19,7 +20,21 @@ export default function HospitalMap() {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedHospitalId, setSelectedHospitalId] = useState(null);
   const mapRef = useRef(null);
+
+   // 현재 위치를 재검색하는 함수
+   const handleCurrentLocationClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const currentLocation = new naver.maps.LatLng(
+          position.coords.latitude,
+          position.coords.longitude,
+        );
+        mapRef.current.setCenter(currentLocation);
+      });
+    }
+  };
 
   useEffect(() => {
     const loadMap = () => {
@@ -33,14 +48,18 @@ export default function HospitalMap() {
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
-          const currentLocation = new naver.maps.LatLng(
-            position.coords.latitude,
-            position.coords.longitude,
-          );
+          const currentLocation = new naver.maps.LatLng(position.coords.latitude, position.coords.longitude);
           new naver.maps.Marker({
             position: currentLocation,
             map: map,
             title: 'Your Location',
+            icon: {
+              url: Images.ico_map_my,
+              size: new naver.maps.Size(24, 37),
+              scaledSize: new naver.maps.Size(24, 37),
+              origin: new naver.maps.Point(0, 0),
+              anchor: new naver.maps.Point(12, 37)
+            }
           });
 
           map.setCenter(currentLocation);
@@ -52,19 +71,18 @@ export default function HospitalMap() {
           position: new naver.maps.LatLng(hospital.lat, hospital.lng),
           map: map,
           title: hospital.name,
-          // icon: {
-          //   url: '/path/to/your/image.png', // 이미지 URL
-          //   size: new naver.maps.Size(24, 37), // 이미지 크기
-          //   scaledSize: new naver.maps.Size(24, 37), // 스케일링된 이미지 크기
-          //   origin: new naver.maps.Point(0, 0), // 이미지에서 아이콘의 시작점
-          //   anchor: new naver.maps.Point(12, 37) // 마커의 위치에 해당하는 이미지 내의 점
-          // }
+          icon: {
+            url: selectedHospitalId === hospital.id ? Images.ico_map_selec : Images.ico_map_unselec,
+            size: new naver.maps.Size(24, 37),
+            scaledSize: new naver.maps.Size(24, 37),
+            origin: new naver.maps.Point(0, 0),
+            anchor: new naver.maps.Point(12, 37)
+          }
         });
 
         naver.maps.Event.addListener(marker, 'click', () => {
-          setModalContent(
-            `${hospital.name}<br/>주소: ${hospital.address}<br/>전공: ${hospital.major}`,
-          );
+          setSelectedHospitalId(selectedHospitalId === hospital.id ? null : hospital.id);
+          setModalContent(`${hospital.name}<br/>주소: ${hospital.address}<br/>전공: ${hospital.major}`);
           setIsModalOpen(true);
         });
       });
@@ -80,23 +98,7 @@ export default function HospitalMap() {
       mapScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_MAP_KEY}`;
       document.head.appendChild(mapScript);
     }
-  }, []);
-
-  const handleCurrentLocationClick = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const currentLocation = new naver.maps.LatLng(
-          position.coords.latitude,
-          position.coords.longitude,
-        );
-        mapRef.current.setCenter(currentLocation);
-      });
-    }
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  }, [selectedHospitalId]); // selectedHospitalId를 의존성 배열에 추가
 
   return (
     <Main>
@@ -105,7 +107,7 @@ export default function HospitalMap() {
         <Tooltip />
         <ReloadButton onClick={handleCurrentLocationClick} />
       </div>
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal} content={modalContent} />
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} content={modalContent} />
     </Main>
   );
 }
