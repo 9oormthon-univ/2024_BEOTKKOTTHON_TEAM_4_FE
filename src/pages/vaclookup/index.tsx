@@ -97,7 +97,7 @@ export default function VacLookup() {
   };
 
   return (
-    <div>
+    <div> {/* 모든 내용을 감싸는 단일 부모 div */}
       <VacLookupFixed
         selectedSection={selectedSection}
         handleSectionChange={setSelectedSection}
@@ -151,8 +151,6 @@ export default function VacLookup() {
           />
         </Fragment>
         <DiseaseContainer>
-        {diseaseList.map((disease) => (
-          <DiseaseContainer>
           {diseaseList.map((disease) => (
             <DiseaseCard
               key={disease.id}
@@ -162,11 +160,8 @@ export default function VacLookup() {
             />
           ))}
         </DiseaseContainer>
-        
-        ))}
-      </DiseaseContainer>
       </PageContainer>
       <NavigationFixed />
     </div>
-  );
+  ); 
 }
