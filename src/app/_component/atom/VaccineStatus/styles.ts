@@ -6,7 +6,7 @@ import { CssArchiveType, CustomStyleType } from '../atomType';
 import { Colors, fontGenerator, Images } from '@/styles';
 import backimg from '../../public/assets/image/img-VaccineCard-back.svg';
 
-export const VaccineDetailContainer = styled.div`
+export const VaccineStatusContainer = styled.div`
   * {
     font-family: 'Pretendard', sans-serif;
   }

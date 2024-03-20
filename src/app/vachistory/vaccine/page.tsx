@@ -22,8 +22,9 @@ import { css } from '@emotion/react';
 import FilterModal from '@/app/_component/organism/filterModal';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
 import VaccineDetail from '@/app/_component/atom/VaccineDetail';
+import VaccineStatus from '@/app/_component/atom/VaccineStatus';
 
-export default function Vaccination() {
+export default function Vaccine() {
   const [params, setParams] = useState<ParamsType>({
     disease: '',
   });
@@ -72,6 +73,11 @@ export default function Vaccination() {
           <VaccineDetail />
           <VaccineDetail />
           <VaccineDetail />
+        </div>{' '}
+        <div className="content_wrap">
+          <VaccineStatus />
+          <VaccineStatus />
+          <VaccineStatus />
         </div>
       </div>
       <Fragment>

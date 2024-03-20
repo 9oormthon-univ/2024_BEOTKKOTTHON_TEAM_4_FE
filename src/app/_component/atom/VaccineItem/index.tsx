@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 import React from 'react';
 import { VaccineItemContainer } from './styles';
 import Image from 'next/image';
