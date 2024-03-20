@@ -4,7 +4,6 @@ import { hospitals } from '@/utils/influ-api';
 import Tooltip from '@/app/_component/atom/Tooltip';
 import { Modal } from '../../atom/MapModal';
 import ReloadButton from '@/app/_component/atom/ReloadButton';
-import { Images } from '@globalStyles';
 
 const Main = styled.div`
   display: flex;
@@ -54,7 +53,7 @@ export default function HospitalMap() {
             map: map,
             title: 'Your Location',
             icon: {
-              url: Images.ico_map_my,
+              url: '/assets/ico/ico-map-my.svg',
               size: new naver.maps.Size(24, 37),
               scaledSize: new naver.maps.Size(24, 37),
               origin: new naver.maps.Point(0, 0),
@@ -72,7 +71,7 @@ export default function HospitalMap() {
           map: map,
           title: hospital.name,
           icon: {
-            url: selectedHospitalId === hospital.id ? Images.ico_map_selec : Images.ico_map_unselec,
+            url: selectedHospitalId === hospital.id ? '/assets/ico/ico-map-selec.svg' : '/assets/ico/ico-map-unselec.svg',
             size: new naver.maps.Size(24, 37),
             scaledSize: new naver.maps.Size(24, 37),
             origin: new naver.maps.Point(0, 0),
@@ -98,7 +97,7 @@ export default function HospitalMap() {
       mapScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_MAP_KEY}`;
       document.head.appendChild(mapScript);
     }
-  }, [selectedHospitalId]); // selectedHospitalId를 의존성 배열에 추가
+  }, [selectedHospitalId]);
 
   return (
     <Main>
