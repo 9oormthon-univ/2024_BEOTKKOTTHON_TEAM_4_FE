@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Container } from './style';
-import VaccineCard from '@/app/_component/atom/Vaccine/index';
+import VaccineCard from '@/app/_component/atom/VaccineCertificate/index';
 import { Images } from '@globalStyles';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 

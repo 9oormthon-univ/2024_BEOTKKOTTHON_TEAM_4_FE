@@ -46,6 +46,8 @@ import dropdown_up from '../../public/assets/ico/ico-dropdown-up.svg';
 import dropdown_down from '../../public/assets/ico/ico-dropdown-down.svg';
 
 import VaccineCardBack from '../../public/assets/image/img-VaccineCard-back.svg';
+import vaccine_status_true from '../../public/assets/image/img-vaccineStatus-true.svg';
+import vaccine_status_false from '../../public/assets/image/img-vaccineStatus-false.svg';
 
 import ico_vac1 from '../../public/assets/ico/ico-vac1.svg';
 import ico_vac2 from '../../public/assets/ico/ico-vac2.svg';
@@ -106,8 +108,11 @@ export const Images: ImagesType = {
   nav_vaclookup_selec: nav_vaclookup_selec,
   nav_vaclookup_unselec: nav_vaclookup_unselec,
   warning: warning,
+  
   arrow_down: arrow_down,
   arrow_right: arrow_right,
+  arrow_left: arrow_left,
+  
   choice_selec: choice_selec,
   choice_unselec: choice_unselec,
   ico_vac1: ico_vac1,
@@ -142,4 +147,6 @@ export const Images: ImagesType = {
   vacgom01: Vacgom01,
   vacgom: vacgom,
   VaccineCardBack: VaccineCardBack,
+  vaccine_status_false: vaccine_status_false,
+  vaccine_status_true: vaccine_status_true,
 };
