@@ -34,12 +34,7 @@ export default function Vaccination() {
     onChangeValue('disease', selectedOptions);
     setIsModalOpen(false);
   };
-  const onChangeValue: OnChangeValueType = (field, value) => {
-    setParams((prevState) => ({
-      ...prevState,
-      [field]: value,
-    }));
-  };
+
   const resetAgencyOptions = () => {
     onChangeValue('disease', []);
   };

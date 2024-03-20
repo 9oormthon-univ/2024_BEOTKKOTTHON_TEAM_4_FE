@@ -64,7 +64,7 @@ export const ButtonSizes: CssArchiveType = {
     ${fontGenerator('1rem', '600', '1rem', '-0.3px')}
     padding: 0 1.2rem;
     width: 100%;
-    max-width: 343px;
+    //max-width: 343px;
     height: 56px;
   `,
   medium: css`
