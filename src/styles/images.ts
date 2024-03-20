@@ -74,10 +74,12 @@ import ico_check_filled from '../../public/assets/ico/ico-check-filled.svg';
 import ico_pin_selec from '../../public/assets/ico/ico-pin-selec.svg';
 import ico_pin_unselec from '../../public/assets/ico/ico-pin-unselec.svg';
 
-//백신 지도에 들어가는 마커 이미지들
+//병원 지도에 들어가는 요소
 import ico_map_my from '../../public/assets/ico/ico-map-my.svg';
 import ico_map_selec from '../../public/assets/ico/ico-map-selec.svg';
 import ico_map_unselec from '../../public/assets/ico/ico-map-unselec.svg';
+import ico_map_tooltip from '../../public/assets/ico/ico-map-tooltip.svg';
+import ico_map_tooltip_button from '../../public/assets/ico/ico-map-tooltip-button.svg';
 
 // prettier-ignore
 export const Images: ImagesType = {
@@ -146,6 +148,8 @@ export const Images: ImagesType = {
   ico_map_my:ico_map_my,
   ico_map_selec:  ico_map_selec,
   ico_map_unselec: ico_map_unselec,
+  ico_map_tooltip: ico_map_tooltip,
+  ico_map_tooltip_button: ico_map_tooltip_button,
 
 
   //image

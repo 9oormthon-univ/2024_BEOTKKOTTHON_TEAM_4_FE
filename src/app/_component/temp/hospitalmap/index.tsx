@@ -105,7 +105,7 @@ export default function HospitalMap() {
 
   return (
     <Main>
-      <div id="map" style={{ width: "100%", height: "500px" }}>
+      <div id="map" style={{ width: "160%", height: "500px" }}>
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
         <Tooltip />
         <CurrentLocationButton onClick={handleCurrentLocationClick}>
