@@ -11,7 +11,8 @@ interface CardType {
   date?: string;
   image: string;
   variant?: string;
-  definition?: string;
+  definition?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export default function VaccineCard({
@@ -22,18 +23,19 @@ export default function VaccineCard({
   definition,
   image,
   variant = 'primary',
+  onClick,
 }: React.PropsWithChildren<CardType>) {
   const onShareButtonClick = () => {
     console.log('shareButton Click');
   };
 
   return (
-    <VaccineCardWrapper variant={variant}>
+    <VaccineCardWrapper variant={variant} onClick={onClick}>
       {variant !== 'small' && (
         <div className="top">
           <div className="ordercount">@{account_id}</div>
           <div className="share_button" onClick={onShareButtonClick}>
-            <Image src={Images.share} alt={'공유 Icon'} />
+            <Image src={Images.vacgom} alt={'공유 Icon'} />
           </div>
         </div>
       )}
@@ -43,10 +45,14 @@ export default function VaccineCard({
       <div className="bottom_content">
         <div className="label">{vaccineName}</div>
         <div className="sublabel_wrap">
-          {subLabel && <div className="sublabel">{subLabel}</div>}
+          {subLabel && <div className="sublabel">접종일자</div>}
           <div className="percent">{date}</div>
         </div>
-        {definition && <div className="definition">{definition}</div>}
+        {definition && (
+          <div className="definition">
+            백곰의 접종 인증서는 법적인 효력이 없습니다.
+          </div>
+        )}
       </div>
       <div className="bottom"></div>
     </VaccineCardWrapper>

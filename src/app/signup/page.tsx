@@ -58,6 +58,8 @@ export default function Signup(): React.JSX.Element {
     onChangeValue('telecom', []);
   };
 
+  // 일단 급하게 넣었습니다...
+  // 추후 리펙터링 하도록 하겠습니다!
   const [code, setCode] = useState<string | null>(null);
 
   useEffect(() => {

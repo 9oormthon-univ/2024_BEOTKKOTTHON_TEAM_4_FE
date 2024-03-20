@@ -1,10 +1,12 @@
 'use client';
+
 import * as React from 'react';
+import Link from 'next/link';
+
 import { Container } from './style';
 import VaccineCard from '@/app/_component/atom/VaccineCertificate/index';
 import { Icons, Images } from '@globalStyles';
 import Icon from '@/app/_component/atom/Icon/Icon';
-import Link from 'next/link';
 import SectionHeader from '@/app/_component/atom/SectionHeader';
 import MainHeader from '@/app/_component/atom/MainHeader';
 import { MenuTitleContainer } from '@/app/_component/atom/MenuTitle/styles';
@@ -73,13 +75,13 @@ export default function Vachistory() {
               vaccineName={'결핵'}
               subLabel={'BCG(피내용)'}
               vaccineStatus={true}
-            />{' '}
+            />
             <VaccineItem
               category={'기타 예방접종'}
               vaccineName={'결핵'}
               subLabel={'BCG(피내용)'}
               vaccineStatus={true}
-            />{' '}
+            />
             <VaccineItem
               category={'기타 예방접종'}
               vaccineName={'결핵'}
@@ -89,7 +91,7 @@ export default function Vachistory() {
           </div>
         </div>
       </div>
-      {/*<NavigationFixed />*/}
+      <NavigationFixed />
     </Container>
   );
 }

@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
+import { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { Images } from '@globalStyles';
 import Image from 'next/image';
 import styled from '@emotion/styled';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 
 // 다른 페이지 디자인이 안나와서 네비게이션이 전 페이지 다 되는지 안되는지 모르겠네요...
 // 그래서 우선 컴포넌트로 만들고 페이지에 불러와서 사용하도록 구현했습니다
@@ -82,6 +82,7 @@ const NavItem = styled.div<{ isActive: boolean }>`
 
 export default function NavigationFixed() {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleNavigation = (route: string) => {
     router.push(route);
@@ -90,15 +91,15 @@ export default function NavigationFixed() {
   const [isDetailPage, setIsDetailPage] = useState(false);
 
   useEffect(() => {
-    setIsDetailPage(router.pathname.includes('/detaildis/'));
-  }, [router.pathname]);
+    setIsDetailPage(pathname.includes('/detaildis/'));
+  }, [pathname]);
 
   return (
     <NavigationContainer>
       {navItems.map((item) => {
         const isActive = isDetailPage
           ? item.route === '/vaclookup'
-          : router.pathname === item.route;
+          : pathname === item.route;
         const icon = isActive
           ? Images[item.iconSelected]
           : Images[item.iconUnselected];
