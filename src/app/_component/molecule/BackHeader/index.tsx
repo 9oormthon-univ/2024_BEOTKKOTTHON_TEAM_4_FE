@@ -2,23 +2,22 @@
 import React from 'react';
 import { HeaderContainer, Title } from './style';
 import { MainHeaderType } from '../moleculeType';
-import Image from 'next/image';
-import { Images } from '@globalStyles';
-import { useRouter } from 'next/router';
+import Icon from '@/app/_component/atom/Icon/Icon';
+import { Icons } from '@/styles';
+import { useRouter } from 'next/navigation';
 
 const MainHeader: React.FC<MainHeaderType> = ({ title, url }) => {
   const router = useRouter();
 
   return (
     <HeaderContainer>
-      <div onClick={() => router.push(url)} style={{ cursor: 'pointer' }}>
-        <Image
-          src={Images.arrow_left}
-          alt="Back"
-          width={20}
-          height={20}
-        />
-      </div>
+      <Icon
+        icon={Icons.arrow_back_ios_new}
+        onClick={() => {
+          router.push(url);
+        }}
+        size={'20px'}
+      />
       <Title>{title}</Title>
     </HeaderContainer>
   );
