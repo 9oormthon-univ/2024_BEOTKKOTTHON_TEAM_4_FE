@@ -39,6 +39,12 @@ const DiseaseName = styled.span`
   width: 100%;
 `;
 
+interface DiseaseCardProps {
+  id: number; 
+  diseaseName: string;
+  imageUrl: string;
+}
+
 const DiseaseCard: React.FC<DiseaseCardProps> = ({ id, diseaseName, imageUrl }) => {
   const router = useRouter();
 

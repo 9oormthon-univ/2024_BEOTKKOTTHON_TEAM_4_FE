@@ -110,7 +110,6 @@ export const Images: ImagesType = {
   warning: warning,
   
   arrow_down: arrow_down,
-  arrow_left: arrow_left,
   arrow_right: arrow_right,
   arrow_left: arrow_left,
   
@@ -140,7 +139,7 @@ export const Images: ImagesType = {
   ico_check_filled: ico_check_filled,
   ico_pin_selec: ico_pin_selec,
   ico_pin_unselec: ico_pin_unselec,
-
+  arrow_left: arrow_left,
   dropdown_up: dropdown_up,
   dropdown_down: dropdown_down,
 

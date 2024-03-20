@@ -2,8 +2,8 @@
 import React from 'react';
 import { HeaderContainer, Title } from './style';
 import { MainHeaderType } from '../moleculeType';
-import Image from 'next/image';
-import { Images } from '@globalStyles';
+import Icon from '@/app/_component/atom/Icon/Icon';
+import { Icons } from '@/styles';
 import { useRouter } from 'next/navigation';
 
 const MainHeader: React.FC<MainHeaderType> = ({ title, url }) => {
@@ -11,9 +11,13 @@ const MainHeader: React.FC<MainHeaderType> = ({ title, url }) => {
 
   return (
     <HeaderContainer>
-      <div onClick={() => router.push(url)} style={{ cursor: 'pointer' }}>
-        <Image src={Images.arrow_left} alt="Back" width={24} height={24} />
-      </div>
+      <Icon
+        icon={Icons.arrow_back_ios_new}
+        onClick={() => {
+          router.push(url);
+        }}
+        size={'20px'}
+      />
       <Title>{title}</Title>
     </HeaderContainer>
   );
