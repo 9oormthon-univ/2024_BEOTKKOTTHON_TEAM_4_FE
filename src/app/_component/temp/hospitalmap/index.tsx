@@ -1,8 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
-import styled from "@emotion/styled";
-import { hospitals } from "@/utils/influ-api";
-import Tooltip from "@/app/_component/atom/Tooltip";
-import { Modal } from "../../atom/MapModal";
+import React, { useEffect, useState, useRef } from 'react';
+import styled from '@emotion/styled';
+import { hospitals } from '@/utils/influ-api';
+import Tooltip from '@/app/_component/atom/Tooltip';
+import { Modal } from '../../atom/MapModal';
+import { Images } from '@globalStyles';
+import Image from 'next/image';
 
 const Main = styled.div`
   display: flex;
@@ -14,18 +16,34 @@ const Main = styled.div`
   margin-top: -110px;
 `;
 
-const CurrentLocationButton = styled.button`
+const CurrentLocationButton = styled.div`
   position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 20px;
-  background-color: #ACACAC;
+  left: 30%;
+  top: 15px;
+  width: 150px;
+  height: 40px;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #ffffff;
   color: #000000;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   z-index: 5;
+  gap: 12px;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.8px;
+  text-align: center;
+`;
+
+const ClickableArea = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export default function HospitalMap() {
@@ -46,18 +64,21 @@ export default function HospitalMap() {
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
-          const currentLocation = new naver.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          const currentLocation = new naver.maps.LatLng(
+            position.coords.latitude,
+            position.coords.longitude,
+          );
           new naver.maps.Marker({
             position: currentLocation,
             map: map,
-            title: "Your Location",
+            title: 'Your Location',
           });
 
           map.setCenter(currentLocation);
         });
       }
 
-      hospitals.forEach(hospital => {
+      hospitals.forEach((hospital) => {
         const marker = new naver.maps.Marker({
           position: new naver.maps.LatLng(hospital.lat, hospital.lng),
           map: map,
@@ -72,7 +93,9 @@ export default function HospitalMap() {
         });
 
         naver.maps.Event.addListener(marker, 'click', () => {
-          setModalContent(`${hospital.name}<br/>주소: ${hospital.address}<br/>전공: ${hospital.major}`);
+          setModalContent(
+            `${hospital.name}<br/>주소: ${hospital.address}<br/>전공: ${hospital.major}`,
+          );
           setIsModalOpen(true);
         });
       });
@@ -83,7 +106,7 @@ export default function HospitalMap() {
     if (window.naver && window.naver.maps) {
       loadMap();
     } else {
-      const mapScript = document.createElement("script");
+      const mapScript = document.createElement('script');
       mapScript.onload = loadMap;
       mapScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_MAP_KEY}`;
       document.head.appendChild(mapScript);
@@ -93,7 +116,10 @@ export default function HospitalMap() {
   const handleCurrentLocationClick = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        const currentLocation = new naver.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        const currentLocation = new naver.maps.LatLng(
+          position.coords.latitude,
+          position.coords.longitude,
+        );
         mapRef.current.setCenter(currentLocation);
       });
     }
@@ -105,14 +131,21 @@ export default function HospitalMap() {
 
   return (
     <Main>
-      <div id="map" style={{ width: "160%", height: "500px" }}>
+      <div id="map" style={{ width: '160%', height: '500px' }}>
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
         <Tooltip />
-        <CurrentLocationButton onClick={handleCurrentLocationClick}>
-          현재 위치 재검색
+        <CurrentLocationButton>
+          <ClickableArea onClick={handleCurrentLocationClick}>
+            <Image src={Images.ico_map_reload} alt={'현재 위치 재조회'} />
+            현재 위치 재검색
+          </ClickableArea>
         </CurrentLocationButton>
       </div>
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal} content={modalContent} />
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        content={modalContent}
+      />
     </Main>
   );
 }
