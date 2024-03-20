@@ -12,7 +12,7 @@ const MainHeader: React.FC<MainHeaderType> = ({ title, url }) => {
   return (
     <HeaderContainer>
       <Icon
-        icon={Icons.arrow_back_ios_new}
+        icon={Icons.arrow_left}
         onClick={() => {
           router.push(url);
         }}
