@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { VaccineItemContainer } from './styles';
+import { VaccineDetailContainer } from './styles';
 import Image from 'next/image';
 import { Images } from '@/styles';
 

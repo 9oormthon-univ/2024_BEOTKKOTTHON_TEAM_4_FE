@@ -2,33 +2,24 @@
 
 import * as React from 'react';
 import { Container } from './style';
-import VaccineCard from '@/app/_component/atom/VaccineCertificate';
 import { Icons, Images } from '@/styles';
-import CertificateDetail from '@/app/vachistory/certificate/list/page';
-import MainHeader from '@/app/_component/atom/MainHeader';
-import VacLookupFixed from '@/app/_component/organism/vaclookupFixed';
-import {
-  agencyRanges,
-  diseaseRanges,
-  introMessages,
-  situationRanges,
-  vaccine,
-} from '@/constants';
+
+import { diseaseRanges } from '@/constants';
 import { Fragment, useState } from 'react';
 import SectionHeader from '@/app/_component/atom/SectionHeader';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import InputForm from '@/app/_component/atom/InputForm';
 import { css } from '@emotion/react';
-import FilterModal from '@/app/_component/organism/filterModal';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
 import VaccineDetail from '@/app/_component/atom/VaccineDetail';
 import VaccineStatus from '@/app/_component/atom/VaccineStatus';
+import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
 
 export default function Vaccine() {
   const [params, setParams] = useState<ParamsType>({
     disease: '',
   });
-  const [selectedSection, setSelectedSection] = useState('필수예방접종');
+  const [selectedSection, setSelectedSection] = useState('국가예방접종');
   const sectionTexts = ['국가예방접종', '기타예방접종'];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleAgencySelect = (selectedOptions: string[]) => {
@@ -47,7 +38,7 @@ export default function Vaccine() {
 
   return (
     <Container>
-      <BackHeader title={'접종 상세'} url={'/vachistory'} />
+      <BackHeader title={'예방접종 내역'} url={'/vachistory'} />
       <SectionHeader
         sections={sectionTexts}
         onSectionChange={setSelectedSection}
@@ -68,20 +59,30 @@ export default function Vaccine() {
             setIsModalOpen(true);
           }}
         />
-        <div className="content_wrap">
-          <VaccineDetail />
-          <VaccineDetail />
-          <VaccineDetail />
-          <VaccineDetail />
-        </div>{' '}
-        <div className="content_wrap">
-          <VaccineStatus />
-          <VaccineStatus />
-          <VaccineStatus />
-        </div>
+
+        {selectedSection === '국가예방접종' ? (
+          <>
+            {params.disease === '전체' ? (
+              <div className="content_wrap">
+                <VaccineStatus />
+                <VaccineStatus />
+                <VaccineStatus />
+              </div>
+            ) : (
+              <div className="content_wrap">
+                <VaccineDetail />
+                <VaccineDetail />
+                <VaccineDetail />
+                <VaccineDetail />
+              </div>
+            )}
+          </>
+        ) : (
+          ''
+        )}
       </div>
       <Fragment>
-        <FilterModal
+        <FilterRadioModal
           isOpen={isModalOpen}
           title="병명"
           options={diseaseRanges}

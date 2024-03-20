@@ -41,7 +41,8 @@ import arrow_right from '../../public/assets/ico/ico-arrow-right.svg';
 import arrow_left from '../../public/assets/ico/ico-arrow-left.svg';
 import choice_selec from '../../public/assets/ico/ico-choice-selec.svg';
 import choice_unselec from '../../public/assets/ico/ico-choice-unselec.svg';
-
+import radio_selec from '../../public/assets/ico/ico-Radiobox_select.svg';
+import radio_unselec from '../../public/assets/ico/ico-Radiobox_unselec.svg';
 import dropdown_up from '../../public/assets/ico/ico-dropdown-up.svg';
 import dropdown_down from '../../public/assets/ico/ico-dropdown-down.svg';
 
@@ -116,6 +117,8 @@ export const Images: ImagesType = {
   
   choice_selec: choice_selec,
   choice_unselec: choice_unselec,
+  radio_selec: radio_selec,
+  radio_unselec: radio_unselec,
   ico_vac1: ico_vac1,
   ico_vac2: ico_vac2,
   ico_vac3: ico_vac3,

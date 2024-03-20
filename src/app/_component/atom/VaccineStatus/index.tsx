@@ -4,6 +4,7 @@ import { VaccineStatusContainer } from './styles';
 import Image from 'next/image';
 import { Images } from '@/styles';
 
+//여기 로직 수정해야함
 interface VaccineStatusType {
   vaccineType?: string;
   order?: number;
@@ -22,7 +23,7 @@ export default function VaccineStatus({
   vaccineType = 'DTaP',
   order = 4,
   orderString = '4차',
-  maxOrder = 2,
+  maxOrder = 4,
   diseaseName = '결핵',
 }: React.PropsWithChildren<VaccineStatusType>) {
   // const [status, setStatus] = useState<boolean>();

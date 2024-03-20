@@ -23,38 +23,37 @@ export const VaccineStatusContainer = styled.div`
     & > .top {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-start;
+      align-items: center;
       margin-bottom: 11px;
-      & > .vaccineDose {
-        ${fontGenerator('16px', '700', '19.2px', '-0.3px')}
-        color: ${Colors.Primary}
+      gap: 10px;
+      & > .status {
+        background-color: ${Colors.PrimaryLight};
+        width: 52px;
+        //height: 19px;
+        border-radius: 5px;
+
+        & > .complete {
+          color: ${Colors.Primary};
+          padding: 2.3px 5px;
+
+          ${fontGenerator('12px', '600', '14.32px')}
+        }
       }
-      & > .inoculatedAt {
-        ${fontGenerator('12px', '500', '14.4px', '-0.3px')}
-        color: ${Colors.Gray400}
+      & > .diseaseName {
+        ${fontGenerator('16px', '600', '19.09px')}
       }
-    }
-    & > .inoculationAgency {
-      ${fontGenerator('14px', '600', '16.71px')}
-      margin-bottom: 4px;
+      & > .vaccineType {
+        ${fontGenerator('14px', '500', '16.71px')}
+        color: ${Colors.Gray600};
+      }
     }
     & > .detail {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       gap: 5px;
-      & > .vaccineProductName {
-        ${fontGenerator('12px', '500', '14.4px', '-0.3px')}
-        color: ${Colors.Gray600}
-      }
-      & > .vaccineBrandName {
-        ${fontGenerator('12px', '500', '14.4px', '-0.3px')}
-        color: ${Colors.Gray600}
-      }
-      & > .lotNo {
-        ${fontGenerator('12px', '500', '14.4px', '-0.3px')}
-        color: ${Colors.Gray600}
-      }
+      justify-content: space-between;
     }
   }
 `;
