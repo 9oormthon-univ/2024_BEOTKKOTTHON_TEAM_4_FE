@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import DiseaseDetail from '@/app/_component/temp/DiseaseDetail';
-import MainHeader from "@/app/_component/molecule/BackHeader";
+import MainHeader from "@/app/_component/atom/RouteHeader";
 import { diseaseList } from "@/utils/disease-api";
 import Toast from '@/app/_component/atom/Toast';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';

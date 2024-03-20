@@ -107,7 +107,6 @@ export const Images: ImagesType = {
   nav_vaclookup_unselec: nav_vaclookup_unselec,
   warning: warning,
   arrow_down: arrow_down,
-  arrow_left: arrow_left,
   arrow_right: arrow_right,
   choice_selec: choice_selec,
   choice_unselec: choice_unselec,
@@ -135,7 +134,7 @@ export const Images: ImagesType = {
   ico_check_filled: ico_check_filled,
   ico_pin_selec: ico_pin_selec,
   ico_pin_unselec: ico_pin_unselec,
-
+  arrow_left: arrow_left,
   dropdown_up: dropdown_up,
   dropdown_down: dropdown_down,
 
