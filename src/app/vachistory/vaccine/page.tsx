@@ -9,6 +9,7 @@ import MainHeader from '@/app/_component/atom/MainHeader';
 import VacLookupFixed from '@/app/_component/organism/vaclookupFixed';
 import {
   agencyRanges,
+  diseaseRanges,
   introMessages,
   situationRanges,
   vaccine,
@@ -68,13 +69,16 @@ export default function Vaccination() {
         />
         <div className="content_wrap">
           <VaccineDetail />
+          <VaccineDetail />
+          <VaccineDetail />
+          <VaccineDetail />
         </div>
       </div>
       <Fragment>
         <FilterModal
           isOpen={isModalOpen}
           title="병명"
-          options={situationRanges}
+          options={diseaseRanges}
           selectedOptions={params.disease}
           onClose={() => setIsModalOpen(false)}
           onOptionSelect={handleAgencySelect}
