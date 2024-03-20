@@ -1,5 +1,4 @@
 'use client';
-
 import * as React from 'react';
 import { Container } from './style';
 import VaccineCard from '@/app/_component/atom/VaccineCertificate/index';
@@ -11,6 +10,7 @@ import MainHeader from '@/app/_component/atom/MainHeader';
 import { MenuTitleContainer } from '@/app/_component/atom/MenuTitle/styles';
 import MenuTitle from '@/app/_component/atom/MenuTitle';
 import VaccineItem from '@/app/_component/atom/VaccineItem';
+import NavigationFixed from '@/app/_component/organism/navigationFixed';
 
 export default function Vachistory() {
   return (
@@ -34,7 +34,7 @@ export default function Vachistory() {
         <MenuTitle
           username="전예나"
           title={'님의 예방접종내역을 확인해보세요!'}
-          rightIconUrl={'/vachistory/vaccine/national'}
+          rightIconUrl={'/vachistory/vaccine'}
         />
         <div className="vaccine_wrap">
           <div className="category">국가 예방접종</div>
@@ -89,6 +89,7 @@ export default function Vachistory() {
           </div>
         </div>
       </div>
+      {/*<NavigationFixed />*/}
     </Container>
   );
 }
