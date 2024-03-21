@@ -11,8 +11,8 @@ const Main = styled.div`
   justify-content: center;
   align-items: center;
   padding: 6rem 0;
-  min-height: 70vh;
-  margin-top: -140px;
+  min-height: 100vh;
+  margin-top: -135px;
 `;
 
 export default function HospitalMap() {
