@@ -76,7 +76,6 @@ export default function HospitalMap() {
             icon: {
               url: '/assets/ico/ico-map-my.svg',
               size: new naver.maps.Size(50, 63),
-              scaledSize: new naver.maps.Size(50, 63),
               origin: new naver.maps.Point(0, 0),
               anchor: new naver.maps.Point(12, 37)
             }
@@ -123,18 +122,13 @@ export default function HospitalMap() {
   }, [selectedHospitalId]);
 
   return (
-    <Main
-      style={{
-        '--header-height': headerHeight,
-        '--navigation-height': navigationHeight,
-      }}
-    >
+    <Main>
       <MapContainer id="map">
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
         <Tooltip />
         <ReloadButton onClick={handleCurrentLocationClick} />
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} content={modalContent} />
       </MapContainer>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} content={modalContent} />
     </Main>
   );
 }
