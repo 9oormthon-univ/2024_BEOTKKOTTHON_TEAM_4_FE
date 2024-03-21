@@ -89,6 +89,10 @@ import ico_map_tooltip_button from '../../public/assets/ico/ico-map-tooltip-butt
 import ico_map_reload from '../../public/assets/ico/ico-map-reload.svg';
 import ico_support_intro from '../../public/assets/ico/ico-support-influ.svg';
 import ico_support_hintro from '../../public/assets/ico/ico-support-hpv.svg';
+import ico_map_bell from '../../public/assets/ico/ico-map-bell.svg';
+import ico_map_vacgom from '../../public/assets/ico/ico-map-vacgom.svg';
+import ico_map_main from '../../public/assets/ico/ico-map-main.svg';
+import ico_map_home from '../../public/assets/ico/ico-map-home.svg';
 
 // prettier-ignore
 export const Images: ImagesType = {
@@ -122,11 +126,11 @@ export const Images: ImagesType = {
   nav_vaclookup_selec: nav_vaclookup_selec,
   nav_vaclookup_unselec: nav_vaclookup_unselec,
   warning: warning,
-  
+
   arrow_down: arrow_down,
   arrow_right: arrow_right,
   arrow_left: arrow_left,
-  
+
   choice_selec: choice_selec,
   choice_unselec: choice_unselec,
   radio_selec: radio_selec,
@@ -159,8 +163,8 @@ export const Images: ImagesType = {
   dropdown_up: dropdown_up,
   dropdown_down: dropdown_down,
 
-  ico_map_my:ico_map_my,
-  ico_map_selec:  ico_map_selec,
+  ico_map_my: ico_map_my,
+  ico_map_selec: ico_map_selec,
   ico_map_unselec: ico_map_unselec,
   ico_map_tooltip: ico_map_tooltip,
   ico_map_influ_tooltip: ico_map_influ_tooltip,
@@ -168,7 +172,10 @@ export const Images: ImagesType = {
   ico_map_reload: ico_map_reload,
   ico_support_intro: ico_support_intro,
   ico_support_hintro: ico_support_hintro,
-
+  ico_map_bell: ico_map_bell,
+  ico_map_vacgom: ico_map_vacgom,
+  ico_map_main: ico_map_main,
+  ico_map_home: ico_map_home,
 
   //image
   vacgom01: Vacgom01,
