@@ -31,6 +31,11 @@ export default function Signup(): React.JSX.Element {
     password: '',
     password_check: '',
   });
+  const [validate, setValidate] = useState<ParamsType>({
+    id: { condition1: 'default', condition2: 'default' },
+    password: { condition1: 'default', condition2: 'default' },
+    password_check: { condition1: 'default' },
+  });
 
   const router = useRouter();
   const onChangeValue: OnChangeValueType = (field, value, type) => {
@@ -45,6 +50,7 @@ export default function Signup(): React.JSX.Element {
         [field]: value,
       }));
     }
+    updateValidation(field, value);
   };
 
   const handleNextButtonClick = () => {
@@ -52,6 +58,47 @@ export default function Signup(): React.JSX.Element {
       router.push('/signup/more');
 
       // @Todo 여기에 api 호출
+    }
+  };
+
+  const updateValidation = (field: string, value: string) => {
+    switch (field) {
+      case 'id':
+        const isStartWithEnglish = /^[a-zA-Z]/.test(value);
+        const isWithinLength = value.length >= 6 && value.length <= 10;
+        setValidate((prevValidate) => ({
+          ...prevValidate,
+          id: {
+            condition1: isStartWithEnglish ? 'true' : 'false',
+            condition2: isWithinLength ? 'true' : 'false',
+          },
+        }));
+        break;
+      case 'password':
+        const isPasswordValid = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])/.test(
+          value,
+        );
+        const isPasswordLengthValid = value.length >= 9;
+        console.log(isPasswordLengthValid);
+        setValidate((prevValidate) => ({
+          ...prevValidate,
+          password: {
+            condition1: isPasswordValid ? 'true' : 'false',
+            condition2: isPasswordLengthValid ? 'true' : 'false',
+          },
+        }));
+        break;
+      case 'password_check':
+        const isPasswordMatched = value === params.password;
+        setValidate((prevValidate) => ({
+          ...prevValidate,
+          password_check: {
+            condition1: isPasswordMatched ? 'true' : 'false',
+          },
+        }));
+        break;
+      default:
+        break;
     }
   };
 
@@ -66,14 +113,25 @@ export default function Signup(): React.JSX.Element {
             value={params.id}
             descriptionTop={'예방접종도우미 아이디'}
             type="text"
-            variant={variant.id}
+            variant={
+              validate.id.condition1 === 'false' ||
+              validate.id.condition2 === 'false'
+                ? 'error'
+                : 'default'
+            }
             onChange={(e) => {
               onChangeValue('id', e.target.value);
             }}
           />
           <div className="wrap">
-            <ValidateCheck label={'영문 시작'} status={'default'} />
-            <ValidateCheck label={'6-10자 이내'} status={'default'} />
+            <ValidateCheck
+              label={'영문 시작'}
+              status={validate.id.condition1}
+            />
+            <ValidateCheck
+              label={'6-10자 이내'}
+              status={validate.id.condition2}
+            />
           </div>
         </div>
         <div className="item">
@@ -82,7 +140,12 @@ export default function Signup(): React.JSX.Element {
             value={params.password}
             descriptionTop={'예방접종도우미 비밀번호'}
             type="text"
-            variant={variant.password}
+            variant={
+              validate.password.condition1 === 'false' ||
+              validate.password.condition2 === 'false'
+                ? 'error'
+                : 'default'
+            }
             onChange={(e) => {
               onChangeValue('password', e.target.value);
             }}
@@ -90,9 +153,12 @@ export default function Signup(): React.JSX.Element {
           <div className="wrap">
             <ValidateCheck
               label={'영문, 숫자, 특수문자(!@#$%^&*) 포함'}
-              status={'default'}
+              status={validate.password.condition1}
             />
-            <ValidateCheck label={'9자 이상'} status={'default'} />
+            <ValidateCheck
+              label={'9자 이상'}
+              status={validate.password.condition2}
+            />
           </div>
         </div>
         <div className="item">
@@ -101,17 +167,19 @@ export default function Signup(): React.JSX.Element {
             value={params.password_check}
             descriptionTop={'비밀번호 확인'}
             type="text"
-            variant={variant.password_check}
+            variant={
+              validate.password_check.condition1 === 'false'
+                ? 'error'
+                : 'default'
+            }
             onChange={(e) => {
               onChangeValue('password_check', e.target.value);
             }}
-            onKeyDown={(e) => {
-              if (params.password !== params.password_check) {
-                onChangeValue('password_check', 'error', 'variant');
-              }
-            }}
           />
-          <ValidateCheck label={'비밀번호 일치'} status={'default'} />
+          <ValidateCheck
+            label={'비밀번호 일치'}
+            status={validate.password_check.condition1}
+          />
         </div>
       </div>
 
