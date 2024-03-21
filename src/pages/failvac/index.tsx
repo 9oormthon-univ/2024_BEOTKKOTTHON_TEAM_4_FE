@@ -3,7 +3,7 @@ import MainHeader from '@/app/_component/atom/RouteHeader';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
 
 
-export default function failVaccine() {
+export default function failVac() {
 
   return (
     <div>

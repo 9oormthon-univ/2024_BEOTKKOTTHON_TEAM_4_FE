@@ -79,7 +79,7 @@ export default function Home() {
           <div className="content_head">
             <MenuTitle
               title={`${userName}님을 위한 추천 백신`}
-              rightIconUrl={'/vachistory/certificate/list'}
+              rightIconUrl={'/vac'}
             />
           </div>
           <div className="content_body">
@@ -96,7 +96,7 @@ export default function Home() {
           <div className="content_head">
             <MenuTitle
               title={'누락된 백신'}
-              rightIconUrl={'/vachistory/certificate/list'}
+              rightIconUrl={'/failvac'}
             />
           </div>
           <div className="content_body">
