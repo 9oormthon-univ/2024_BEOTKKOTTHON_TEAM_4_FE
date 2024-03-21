@@ -10,9 +10,26 @@ const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 6rem 0;
+  width: 100%;
   min-height: 100vh;
-  margin-top: -135px;
+  padding: 0;
+
+  @media (max-width: 768px) {
+    margin-top: -100px;
+  }
+`;
+
+const MapContainer = styled.div`
+  width: 100%;
+  height: 650px;
+
+  @media (max-width: 768px) {
+    height: 300px;
+  }
+
+  @media (max-width: 1024px) {
+    height: 500px;
+  }
 `;
 
 export default function HospitalMap() {
@@ -106,11 +123,11 @@ export default function HospitalMap() {
 
   return (
     <Main>
-      <div id="map" style={{ width: '100%', height: '650px' }}>
+      <MapContainer id="map">
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
         <Tooltip />
         <ReloadButton onClick={handleCurrentLocationClick} />
-      </div>
+      </MapContainer>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} content={modalContent} />
     </Main>
   );

@@ -144,6 +144,7 @@
 }
 
 html, body {
+  min-width: 393px;
   max-width: 500px;
   width: 100%;
   height: calc(var(--vh) * 100);
