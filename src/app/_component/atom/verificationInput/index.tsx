@@ -7,12 +7,14 @@ import { css } from '@emotion/react';
 
 import { Colors, Icons, Images } from '@globalStyles';
 import { Fragment, useRef, useState } from 'react';
-
-export default function VarificationInput({
-  onChangeValue,
-}): React.JSX.Element {
+import { OnChangeValueType } from '@/types/globalType';
+type props = { inputLength: number };
+export default function VerificationInput({ inputLength }): React.JSX.Element {
   const inputRef = useRef<HTMLInputElement>(null);
-  const Button = ['cell1', 'cell2', 'cell3', 'cell4', 'cell5', 'cell6'];
+  const Button = Array.from(
+    { length: inputLength },
+    (_, index) => `cell${index + 1}`,
+  );
 
   const [active, setActive] = React.useState(0); //현재 입력된 숫자 인덱스
   const [password, setPassword] = React.useState(''); //현재 입력된 숫자
@@ -45,7 +47,7 @@ export default function VarificationInput({
         ref={inputRef}
         id="password"
         type="text"
-        maxLength={6}
+        maxLength={inputLength}
         value={password} //password
         onChange={(e) => {
           setPassword(e.target.value);

@@ -16,6 +16,7 @@ import {
   parseIdentity,
   filterNumericInput,
   checkParamsFilled,
+  isAllConditionsTrue,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
@@ -26,11 +27,7 @@ export default function Signup(): React.JSX.Element {
     password: '',
     password_check: '',
   });
-  const [variant, setVariant] = useState<ParamsType>({
-    id: '',
-    password: '',
-    password_check: '',
-  });
+
   const [validate, setValidate] = useState<ParamsType>({
     id: { condition1: 'default', condition2: 'default' },
     password: { condition1: 'default', condition2: 'default' },
@@ -38,26 +35,21 @@ export default function Signup(): React.JSX.Element {
   });
 
   const router = useRouter();
+  const allConditionsTrue = isAllConditionsTrue(validate);
+
   const onChangeValue: OnChangeValueType = (field, value, type) => {
-    if (type === 'variant') {
-      setVariant((prevState) => ({
-        ...prevState,
-        [field]: value,
-      }));
-    } else {
-      setParams((prevState) => ({
-        ...prevState,
-        [field]: value,
-      }));
-    }
+    setParams((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
     updateValidation(field, value);
   };
 
   const handleNextButtonClick = () => {
-    if (checkParamsFilled()) {
-      router.push('/signup/more');
+    if (allConditionsTrue) {
+      router.push('/signup/captcha');
 
-      // @Todo 여기에 api 호출
+      // @Todo secureLocalStorage 저장 로직 필요
     }
   };
 
@@ -184,7 +176,7 @@ export default function Signup(): React.JSX.Element {
       </div>
 
       <BottomButton
-        filled={!checkParamsFilled(params)}
+        filled={!allConditionsTrue}
         handleNextButtonClick={handleNextButtonClick}
       />
     </SignupWrapper>
