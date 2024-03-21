@@ -44,7 +44,7 @@ export default function HospitalMap() {
 
       const mapOptions = {
         center: hackathonLocation,
-        zoom: 10,
+        zoom: 12.5,
       };
 
       const map = new naver.maps.Map('map', mapOptions);
