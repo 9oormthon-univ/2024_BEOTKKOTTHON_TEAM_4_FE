@@ -21,7 +21,7 @@ export default function Verification(): React.JSX.Element {
   const router = useRouter();
   const handleNextButtonClick = () => {
     if (password.length >= 5) {
-      router.push('/signup/verification');
+      router.push('/login/verification');
 
       // @Todo 여기에 api 호출
     }
@@ -29,7 +29,7 @@ export default function Verification(): React.JSX.Element {
   const onClickRefresh = () => {};
   return (
     <VerificationWrap>
-      <BackHeader title={'예방접종도우미 회원가입'} url={'/signup/more'} />
+      <BackHeader title={'아이디/비밀번호 찾기'} url={''} />
       <div className="top">보안문자를 입력해주세요</div>
       <div className="captcha_img">
         <Image
@@ -39,18 +39,7 @@ export default function Verification(): React.JSX.Element {
           height={140}
         />
       </div>
-      <div className="refresh">
-        <Button
-          prevIcon={Icons.refresh}
-          label={'다른 문자 보기'}
-          variant={'OutlineWhite'}
-          size={'refresh'}
-          customStyle={css`
-            border-radius: 26px;
-          `}
-          onClick={onClickRefresh}
-        />
-      </div>
+      <div className="refresh"></div>
       <div className="wrap">
         <VerificationInput
           inputLength={5}
