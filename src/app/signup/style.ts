@@ -5,15 +5,16 @@ export const SignupWrapper = styled.main`
   height: 62px;
   .input_title {
     ${fontGenerator('14px', '600', '16.71px')}
-    padding-bottom: 10px;
+    padding-bottom: 8px;
   }
   & > .top {
-    padding: 18px 20px;
+    padding: 20px 20px;
+    //height: 24px;
     ${fontGenerator('20px', '700', '23.87px')}
   }
   & > .container {
     & > .item {
-      padding: 18px 20px 18px 20px;
+      padding: 14px 20px;
       & > .item_row {
         display: flex;
         flex-direction: row;

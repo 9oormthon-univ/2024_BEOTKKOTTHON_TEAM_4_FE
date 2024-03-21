@@ -14,6 +14,7 @@ import InputForm from '@/app/_component/atom/InputForm';
 import FilterModal from '@/app/_component/organism/filterModal';
 import { agencyRanges, ageRanges, situationRanges } from '@/constants';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
+import { parseIdentity } from '@/hooks/useIdentity';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -23,10 +24,12 @@ export default function Signup(): React.JSX.Element {
     phoneNumber: '',
     telecom: '',
   });
+  // api 요청 시 identity_first 을 parseIdentity 사용하여 변환
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openVarifi, setOpenVarifi] = useState(false);
   const router = useRouter();
-
+  console.log(params);
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
       ...prevState,
@@ -41,6 +44,11 @@ export default function Signup(): React.JSX.Element {
     return (
       identity_first && identity_last && userName && phoneNumber && telecom
     );
+  };
+  const filterNumericInput = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ): string => {
+    return e.target.value.replace(/\D/g, ''); // 숫자가 아닌 문자를 필터링하여 제거
   };
 
   const handleNextButtonClick = () => {
@@ -62,7 +70,6 @@ export default function Signup(): React.JSX.Element {
 
   useEffect(() => {
     const queryCode = new URL(window.location.href).searchParams.get('code');
-    console.log(queryCode);
     if (queryCode) {
       setCode(queryCode);
     }
@@ -100,51 +107,13 @@ export default function Signup(): React.JSX.Element {
       <div className="top">정보를 입력해 주세요</div>
       <div className="container">
         <div className="item">
-          <div className="input_title">주민등록번호</div>
-          <div className="item_row">
-            <InputForm
-              placeholder="YYMMDD"
-              value={params.identity_first}
-              type="text"
-              maxLength={6}
-              customStyle={css`
-                width: 50%;
-              `}
-              onChange={(e) => {
-                onChangeValue('identity_first', e.target.value);
-              }}
-            />
-            <p>-</p>
-            <InputForm
-              placeholder=""
-              value={params.identity_last}
-              type="text"
-              maxLength={1}
-              customStyle={css`
-                width: 60px;
-              `}
-              onChange={(e) => {
-                onChangeValue('identity_last', e.target.value);
-              }}
-            />
-            <div className="hiden_item">
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-            </div>
-          </div>
-        </div>
-        <div className="item">
           <InputForm
             placeholder="이름"
             value={params.userName}
             descriptionTop={'이름'}
             type="text"
             onChange={(e) => {
-              onChangeValue('userName', e.target.value);
+              onChangeValue('userName', filterNumericInput(e));
             }}
           />
         </div>
@@ -173,11 +142,55 @@ export default function Signup(): React.JSX.Element {
             descriptionTop={'휴대폰 번호'}
             type="text"
             onChange={(e) => {
-              onChangeValue('phoneNumber', e.target.value);
+              let filteredValue = filterNumericInput(e);
+              if (filteredValue.length > 11) {
+                filteredValue = filteredValue.slice(0, 11);
+              }
+              onChangeValue('phoneNumber', filteredValue);
             }}
           />
         </div>
+        <div className="item">
+          <div className="input_title">주민등록번호</div>
+          <div className="item_row">
+            <InputForm
+              placeholder="YYMMDD"
+              value={params.identity_first}
+              type="text"
+              maxLength={6}
+              customStyle={css`
+                width: 50%;
+              `}
+              onChange={(e) => {
+                let filteredValue = filterNumericInput(e);
+                onChangeValue('identity_first', filteredValue);
+              }}
+            />
+            <p>-</p>
+            <InputForm
+              placeholder=""
+              value={params.identity_last}
+              type="text"
+              maxLength={1}
+              customStyle={css`
+                width: 60px;
+              `}
+              onChange={(e) => {
+                onChangeValue('identity_last', filterNumericInput(e));
+              }}
+            />
+            <div className="hiden_item">
+              <p></p>
+              <p></p>
+              <p></p>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+        </div>
       </div>
+
       <Fragment>
         <FilterModal
           isOpen={isModalOpen}
