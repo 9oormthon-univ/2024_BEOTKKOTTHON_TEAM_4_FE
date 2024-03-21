@@ -43,13 +43,16 @@ import arrow_right from '../../public/assets/ico/ico-arrow-right.svg';
 import arrow_left from '../../public/assets/ico/ico-arrow-left.svg';
 import choice_selec from '../../public/assets/ico/ico-choice-selec.svg';
 import choice_unselec from '../../public/assets/ico/ico-choice-unselec.svg';
-
+import radio_selec from '../../public/assets/ico/ico-Radiobox_select.svg';
+import radio_unselec from '../../public/assets/ico/ico-Radiobox_unselec.svg';
 import dropdown_up from '../../public/assets/ico/ico-dropdown-up.svg';
 import dropdown_down from '../../public/assets/ico/ico-dropdown-down.svg';
 
 import VaccineCardBack from '../../public/assets/image/img-VaccineCard-back.svg';
+import VaccineCardBackLarge from '../../public/assets/image/img-VaccineCardBack_Large.svg';
 import vaccine_status_true from '../../public/assets/image/img-vaccineStatus-true.svg';
 import vaccine_status_false from '../../public/assets/image/img-vaccineStatus-false.svg';
+import vaccine_status_disable from '../../public/assets/image/img-vaccine_status_disable.svg';
 
 import check_default from '../../public/assets/image/img-check-default.svg';
 import check_true from '../../public/assets/image/img-check-true.svg';
@@ -81,6 +84,25 @@ import ico_vac21 from '../../public/assets/ico/ico-vac-none.svg';
 import ico_check_filled from '../../public/assets/ico/ico-check-filled.svg';
 import ico_pin_selec from '../../public/assets/ico/ico-pin-selec.svg';
 import ico_pin_unselec from '../../public/assets/ico/ico-pin-unselec.svg';
+
+//병원 지도에 들어가는 요소
+import ico_map_my from '../../public/assets/ico/ico-map-my.svg';
+import ico_map_selec from '../../public/assets/ico/ico-map-selec.svg';
+import ico_map_unselec from '../../public/assets/ico/ico-map-unselec.svg';
+import ico_map_tooltip from '../../public/assets/ico/ico-map-tooltip.svg';
+import ico_map_influ_tooltip from '../../public/assets/ico/ico-map-influ-tooltip.svg';
+import ico_map_tooltip_button from '../../public/assets/ico/ico-map-tooltip-button.svg';
+import ico_map_reload from '../../public/assets/ico/ico-map-reload.svg';
+import ico_support_intro from '../../public/assets/ico/ico-support-influ.svg';
+import ico_support_hintro from '../../public/assets/ico/ico-support-hpv.svg';
+import ico_map_bell from '../../public/assets/ico/ico-map-bell.svg';
+import ico_map_vacgom from '../../public/assets/ico/ico-map-vacgom.svg';
+import ico_map_main from '../../public/assets/ico/ico-map-main.svg';
+import ico_map_home from '../../public/assets/ico/ico-map-home.svg';
+
+// 홈화면에 들어가는 이미지들
+import ico_home_greet from '../../public/assets/ico/ico-home-greet.svg';
+import ico_syringe from '../../public/assets/ico/ico-syringe.svg';
 
 // prettier-ignore
 export const Images: ImagesType = {
@@ -114,13 +136,15 @@ export const Images: ImagesType = {
   nav_vaclookup_selec: nav_vaclookup_selec,
   nav_vaclookup_unselec: nav_vaclookup_unselec,
   warning: warning,
-  
+
   arrow_down: arrow_down,
   arrow_right: arrow_right,
   arrow_left: arrow_left,
-  
+
   choice_selec: choice_selec,
   choice_unselec: choice_unselec,
+  radio_selec: radio_selec,
+  radio_unselec: radio_unselec,
   ico_vac1: ico_vac1,
   ico_vac2: ico_vac2,
   ico_vac3: ico_vac3,
@@ -152,11 +176,29 @@ export const Images: ImagesType = {
   check_true :check_true,
   check_false : check_false,
 
+  ico_map_my: ico_map_my,
+  ico_map_selec: ico_map_selec,
+  ico_map_unselec: ico_map_unselec,
+  ico_map_tooltip: ico_map_tooltip,
+  ico_map_influ_tooltip: ico_map_influ_tooltip,
+  ico_map_tooltip_button: ico_map_tooltip_button,
+  ico_map_reload: ico_map_reload,
+  ico_support_intro: ico_support_intro,
+  ico_support_hintro: ico_support_hintro,
+  ico_map_bell: ico_map_bell,
+  ico_map_vacgom: ico_map_vacgom,
+  ico_map_main: ico_map_main,
+  ico_map_home: ico_map_home,
+  ico_home_greet: ico_home_greet,
+  ico_syringe: ico_syringe,
+  
   //image
   vacgom01: Vacgom01,
   vacgom: vacgom,
   vacgom_face: vacgom_face,
   VaccineCardBack: VaccineCardBack,
+  VaccineCardBackLarge: VaccineCardBackLarge,
   vaccine_status_false: vaccine_status_false,
   vaccine_status_true: vaccine_status_true,
+  vaccine_status_disable: vaccine_status_disable,
 };

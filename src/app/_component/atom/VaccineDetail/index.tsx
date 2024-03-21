@@ -1,16 +1,16 @@
-// 'use client';
+'use client';
 import React from 'react';
-import { VaccineItemContainer } from './styles';
+import { VaccineDetailContainer } from './styles';
 import Image from 'next/image';
 import { Images } from '@/styles';
 
 interface VaccineDetailType {
-  vaccineDose: boolean;
-  inoculationAgency: string;
-  inoculatedAt: string;
+  vaccineDose?: boolean;
+  inoculationAgency?: string;
+  inoculatedAt?: string;
   vaccineProductName?: string;
-  vaccineBrandName: string;
-  lotNo: string;
+  vaccineBrandName?: string;
+  lotNo?: string;
 }
 // @Definition
 //   inoculationAgency : 접종기관
@@ -28,7 +28,7 @@ export default function VaccineDetail({
   lotNo = 'PB1001801',
 }: React.PropsWithChildren<VaccineDetailType>) {
   return (
-    <VaccineItemContainer>
+    <VaccineDetailContainer>
       <div className="container">
         <div className="top">
           <div className="vaccineDose">{vaccineDose}차</div>
@@ -41,6 +41,6 @@ export default function VaccineDetail({
           <div className="lotNo">{lotNo}</div>
         </div>
       </div>
-    </VaccineItemContainer>
+    </VaccineDetailContainer>
   );
 }

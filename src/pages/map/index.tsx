@@ -1,23 +1,53 @@
-import React, { useState } from 'react';
-import HospitalMap from "@/app/_component/temp/hospitalmap";
-import MainHeader from '@/app/_component/atom/MainHeader';
-import SectionHeader from '@/app/_component/atom/SectionHeader';
+import React from 'react';
+import styled from '@emotion/styled';
+import MainHeader from '@/app/_component/atom/MapMainHeader';
+import Image from 'next/image';
+import { Images } from '@globalStyles';
+import MainMap from '@/app/_component/organism/mainMap';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
 
-export default function Map() {
-  const [selectedSection, setSelectedSection] = useState("병원 조회");
-  const sectionTexts = ["병원 조회", "지원사업 소개"];
+const MapHomeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #4196fd;
+`;
 
-  const handleSectionChange = (section) => {
-    setSelectedSection(section);
-  };
+const ImageContainer = styled.div`
+  width: 100vw;
+  height: auto;
+  background-image: url('${Images.ico_map_home}');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
+  & > img {
+    width : 100vw
+    }
+    
+`;
+
+const MainHomeContainer = styled.div`
+  width: 100%;
+  height: auto;
+  margin-top: -50px;
+`;
+
+
+
+export default function MapHome() {
   return (
-    <div>
-      <MainHeader title="병원 조회" />
-      <SectionHeader sections={sectionTexts} onSectionChange={handleSectionChange} />
-      {selectedSection === "병원 조회" && <HospitalMap />}
+    <>
+      <MainHeader title="병원조회" />
+      <MapHomeContainer>
+        <ImageContainer>
+          <Image src={Images.ico_map_home} alt="" />
+        </ImageContainer>
+      </MapHomeContainer>
+      <MainHomeContainer>
+      <MainMap/>
+      </MainHomeContainer>
       <NavigationFixed/>
-    </div>
+    </>
   );
 }

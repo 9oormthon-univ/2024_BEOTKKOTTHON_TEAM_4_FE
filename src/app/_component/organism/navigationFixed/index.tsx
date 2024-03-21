@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
+import { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { Images } from '@globalStyles';
 import Image from 'next/image';
 import styled from '@emotion/styled';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 
 // 다른 페이지 디자인이 안나와서 네비게이션이 전 페이지 다 되는지 안되는지 모르겠네요...
 // 그래서 우선 컴포넌트로 만들고 페이지에 불러와서 사용하도록 구현했습니다
@@ -18,6 +18,7 @@ const navItems = [
     iconUnselected: 'nav_home_unselec',
     label: '홈',
     route: '/home',
+    subRoutes: ['/recomvac', '/failvac'],
   },
   {
     iconSelected: 'nav_vachistory_selec',
@@ -30,12 +31,13 @@ const navItems = [
     iconUnselected: 'nav_map_unselec',
     label: '병원조회',
     route: '/map',
+    subRoutes: ['/hpvmap', '/influmap'],
   },
   {
     iconSelected: 'nav_vaclookup_selec',
     iconUnselected: 'nav_vaclookup_unselec',
     label: '백신정보',
-    route: '/vaclookup',
+    route: '/vaclookup'
   },
   {
     iconSelected: 'nav_my_selec',
@@ -77,28 +79,39 @@ const NavItem = styled.div<{ isActive: boolean }>`
     font-size: 12px;
     font-weight: 500;
     line-height: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media (max-width: 400px) {
+      font-size: 10px;
+    }
   }
 `;
 
-export default function NavigationFixed() {
-  const router = useRouter();
 
-  const handleNavigation = (route: string) => {
-    router.push(route);
+const NavigationFixed = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNavigation = (route: string, subRoutes?: string[]) => {
+    if (subRoutes && subRoutes.includes(pathname)) {
+      router.push(route);
+    } else {
+      router.push(route);
+    }
   };
 
   const [isDetailPage, setIsDetailPage] = useState(false);
 
   useEffect(() => {
-    setIsDetailPage(router.pathname.includes('/detaildis/'));
-  }, [router.pathname]);
+    setIsDetailPage(pathname.includes('/detaildis/'));
+  }, [pathname]);
 
   return (
     <NavigationContainer>
       {navItems.map((item) => {
-        const isActive = isDetailPage
-          ? item.route === '/vaclookup'
-          : router.pathname === item.route;
+        const isActive = pathname === item.route || item.subRoutes?.includes(pathname);
         const icon = isActive
           ? Images[item.iconSelected]
           : Images[item.iconUnselected];
@@ -106,7 +119,7 @@ export default function NavigationFixed() {
           <NavItem
             key={item.label}
             isActive={isActive}
-            onClick={() => handleNavigation(item.route)}
+            onClick={() => handleNavigation(item.route, item.subRoutes)}
           >
             <Image src={icon} alt={item.label} width={24} height={24} />
             <span>{item.label}</span>
@@ -115,4 +128,6 @@ export default function NavigationFixed() {
       })}
     </NavigationContainer>
   );
-}
+};
+
+export default NavigationFixed;
