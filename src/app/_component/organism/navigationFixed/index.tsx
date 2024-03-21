@@ -30,12 +30,13 @@ const navItems = [
     iconUnselected: 'nav_map_unselec',
     label: '병원조회',
     route: '/map',
+    subRoutes: ['/hpvmap', '/influmap'],
   },
   {
     iconSelected: 'nav_vaclookup_selec',
     iconUnselected: 'nav_vaclookup_unselec',
     label: '백신정보',
-    route: '/vaclookup',
+    routes: '/vaclookup'
   },
   {
     iconSelected: 'nav_my_selec',
@@ -80,12 +81,16 @@ const NavItem = styled.div<{ isActive: boolean }>`
   }
 `;
 
-export default function NavigationFixed() {
+const NavigationFixed = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleNavigation = (route: string) => {
-    router.push(route);
+  const handleNavigation = (route: string, subRoutes?: string[]) => {
+    if (subRoutes && subRoutes.includes(pathname)) {
+      router.push(route);
+    } else {
+      router.push(route);
+    }
   };
 
   const [isDetailPage, setIsDetailPage] = useState(false);
@@ -97,9 +102,7 @@ export default function NavigationFixed() {
   return (
     <NavigationContainer>
       {navItems.map((item) => {
-        const isActive = isDetailPage
-          ? item.route === '/vaclookup'
-          : pathname === item.route;
+        const isActive = pathname === item.route || item.subRoutes?.includes(pathname);
         const icon = isActive
           ? Images[item.iconSelected]
           : Images[item.iconUnselected];
@@ -107,7 +110,7 @@ export default function NavigationFixed() {
           <NavItem
             key={item.label}
             isActive={isActive}
-            onClick={() => handleNavigation(item.route)}
+            onClick={() => handleNavigation(item.route, item.subRoutes)}
           >
             <Image src={icon} alt={item.label} width={24} height={24} />
             <span>{item.label}</span>
@@ -116,4 +119,6 @@ export default function NavigationFixed() {
       })}
     </NavigationContainer>
   );
-}
+};
+
+export default NavigationFixed;
