@@ -6,20 +6,25 @@ import Image from 'next/image';
 import { css } from '@emotion/react';
 
 import { Colors, Icons, Images } from '@globalStyles';
-import { Fragment, useState } from 'react';
-import VerificationInput from '../../_component/atom/verificationInput';
-import BackHeader from '@/app/_component/molecule/BackHeader';
-import BottomButton from '@/app/_component/atom/BottomButton';
-import { router } from 'next/navigation';
-import { MainHeaderType } from '@/app/_component/molecule/moleculeType';
+import Button from '../../atom/button/button';
 
-type props = { title: string; content: string };
-const DonePage: React.FC<MainHeaderType> = ({ title, content }) => {
+type props = { title: string; content_top: string; content_bottom: string };
+const DonePage: React.FC<props> = ({ title, content_top, content_bottom }) => {
   return (
     <DonePageWrap>
-      <Image src={Images.vacgom_face} alt={'접종 이미지'} />
-      <div className="title">{title}</div>
-      <div className="content">{content}</div>
+      <div className="container">
+        <Image src={Images.vacgom_face} alt={'접종 이미지'} />
+        <div className="title">{title}</div>
+        <div className="content">{content_top}</div>
+        <div className="content">{content_bottom}</div>
+      </div>
+      <Button
+        label={'내 정보 입력하기'}
+        size={'large'}
+        customStyle={css`
+          width: 100%;
+        `}
+      />
     </DonePageWrap>
   );
 };

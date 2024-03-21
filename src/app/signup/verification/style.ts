@@ -11,6 +11,9 @@ export const VerificationWrap = styled.main`
     padding: 18px 20px;
     ${fontGenerator('20px', '700', '28px')}
     & > .time_count {
+      display: flex;
+      flex-direction: row;
+      gap: 6px;
       ${fontGenerator('14px', '500', '25px')}
       color: ${Colors.Primary};
       padding: 10px 0;
