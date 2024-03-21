@@ -21,27 +21,6 @@ export default function Join(): React.JSX.Element {
     router.push(`/moreinfo/med`);
   };
 
-  const [code, setCode] = useState<string | null>(null);
-
-  useEffect(() => {
-    const queryCode = new URL(window.location.href).searchParams.get('code');
-    if (queryCode) {
-      setCode(queryCode);
-    }
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (code) {
-        const response = await fetchAccessToken(code);
-        console.log(response);
-        if (response.accessToken) {
-          localStorage.setItem('accessToken', response.accessToken);
-        }
-      }
-    };
-    fetchData();
-  }, [code]);
 
   return (
     <JoinWrap>
