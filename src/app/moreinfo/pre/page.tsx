@@ -15,7 +15,7 @@ import { fetchAccessToken } from '@/hooks/useKakaoLogin';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
-  const { params, onChangeValue } = useQueryParams();
+  const { queryparams, onChangeValue } = useQueryParams();
 
   const handleClick = () => {
     router.push(`/moreinfo/med`);
@@ -30,12 +30,12 @@ export default function Join(): React.JSX.Element {
         subBottom={'금기해야 할 백신을 알려드릴게요'}
         falseLabel={'임신 중이 아니에요'}
         trueLabel={'임신 중이에요'}
-        params={params}
+        params={queryparams}
         field={'preYn'}
         onChangeValue={onChangeValue}
       />
       <BottomButton
-        filled={params.signupState === false}
+        filled={queryparams.signupState === false}
         handleNextButtonClick={() => {
           handleClick();
         }}

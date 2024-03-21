@@ -26,14 +26,12 @@ export default function SignupDone(): React.JSX.Element {
   // 만약 가입한 이력이 있으면 true
   // 최초 가입이면 false
   // searchparam 으로 하는 게 좋을듯
-  const { params, onChangeValue } = useQueryParams();
-
-  console.log(params);
+  const { queryparams, onChangeValue } = useQueryParams();
 
   return (
     <SignupDoneWrap>
       <BackHeader title={''} url={'/signup'} />
-      {params.type === 'helpalready' ? (
+      {queryparams.type === 'helpalready' ? (
         <div className="padding">
           <DonePage
             more={alreadyUser}
@@ -56,7 +54,7 @@ export default function SignupDone(): React.JSX.Element {
             비밀번호가 기억나지 않아요
           </Link>
         </div>
-      ) : params.type === 'helpnew' ? (
+      ) : queryparams.type === 'helpnew' ? (
         <div className="padding">
           <DonePage
             title={'예방접종도우미 가입 완료!'}
@@ -74,7 +72,7 @@ export default function SignupDone(): React.JSX.Element {
             }}
           />
         </div>
-      ) : params.type === 'submit' ? (
+      ) : queryparams.type === 'submit' ? (
         <div className="padding">
           <DonePage
             title={'전예나님의'}

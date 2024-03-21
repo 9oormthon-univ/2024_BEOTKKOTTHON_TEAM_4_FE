@@ -15,7 +15,7 @@ import { fetchAccessToken } from '@/hooks/useKakaoLogin';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
-  const { params, onChangeValue } = useQueryParams();
+  const { queryparams, onChangeValue } = useQueryParams();
 
   const handleClick = () => {
     router.push(`/moreinfo/id`);

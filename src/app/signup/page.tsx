@@ -15,10 +15,10 @@ import { fetchAccessToken } from '@/hooks/useKakaoLogin';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
-  const { params, onChangeValue } = useQueryParams();
+  const { queryparams, onChangeValue } = useQueryParams();
 
   const handleClick = () => {
-    if (params.signupState === true) {
+    if (queryparams.signupState === true) {
       router.push('/home');
     } else {
       router.push(`/signup/terms`);
@@ -56,12 +56,12 @@ export default function Join(): React.JSX.Element {
         subBottom={'질병관리청의 예방접종도우미 가입이 필요해요'}
         falseLabel={'아니요, 가입한 적이 없어요'}
         trueLabel={'네, 가입한 적이 있어요'}
-        params={params}
+        params={queryparams}
         field={'signupState'}
         onChangeValue={onChangeValue}
       />
       <BottomButton
-        filled={params.signupState === false}
+        filled={queryparams.signupState === false}
         handleNextButtonClick={() => {
           handleClick();
         }}

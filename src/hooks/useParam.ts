@@ -11,7 +11,7 @@ import { OnChangeValueType, ParamsType } from '@/types/globalType';
 
 export function useQueryParams() {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
-  const [params, setParams] = useState<ParamsType>({});
+  const [queryparams, setParams] = useState<ParamsType>({});
 
   useEffect(() => {
     const newParams = Object.fromEntries(searchParams);
@@ -23,5 +23,5 @@ export function useQueryParams() {
       [field]: value,
     }));
   };
-  return { params, onChangeValue };
+  return { queryparams, onChangeValue };
 }
