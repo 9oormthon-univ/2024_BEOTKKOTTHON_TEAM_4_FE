@@ -94,6 +94,10 @@ import ico_map_vacgom from '../../public/assets/ico/ico-map-vacgom.svg';
 import ico_map_main from '../../public/assets/ico/ico-map-main.svg';
 import ico_map_home from '../../public/assets/ico/ico-map-home.svg';
 
+// 홈화면에 들어가는 이미지들
+import ico_home_greet from '../../public/assets/ico/ico-home-greet.svg';
+import ico_syringe from '../../public/assets/ico/ico-syringe.svg';
+
 // prettier-ignore
 export const Images: ImagesType = {
   // icon
@@ -176,7 +180,9 @@ export const Images: ImagesType = {
   ico_map_vacgom: ico_map_vacgom,
   ico_map_main: ico_map_main,
   ico_map_home: ico_map_home,
-
+  ico_home_greet: ico_home_greet,
+  ico_syringe: ico_syringe,
+  
   //image
   vacgom01: Vacgom01,
   vacgom: vacgom,

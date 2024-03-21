@@ -29,18 +29,20 @@ export default function HospitalMap() {
   const headerHeight = '54px'; 
   const navigationHeight = '68px';
 
-  // 현재 위치를 재검색하는 함수
-  const handleCurrentLocationClick = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const currentLocation = new naver.maps.LatLng(
-          position.coords.latitude,
-          position.coords.longitude,
-        );
-        mapRef.current.setCenter(currentLocation);
-      });
-    }
-  };
+     // 현재 위치를 재검색하는 함수
+     const handleCurrentLocationClick = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          const currentLocation = new naver.maps.LatLng(
+            position.coords.latitude,
+            position.coords.longitude,
+          );
+          mapRef.current.setCenter(currentLocation);
+        });
+      }
+    };
+  
+
 
   useEffect(() => {
     const loadMap = () => {

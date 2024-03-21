@@ -18,6 +18,7 @@ const navItems = [
     iconUnselected: 'nav_home_unselec',
     label: '홈',
     route: '/home',
+    subRoutes: ['/recomvac', '/failvac'],
   },
   {
     iconSelected: 'nav_vachistory_selec',
