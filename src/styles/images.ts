@@ -79,6 +79,17 @@ import ico_check_filled from '../../public/assets/ico/ico-check-filled.svg';
 import ico_pin_selec from '../../public/assets/ico/ico-pin-selec.svg';
 import ico_pin_unselec from '../../public/assets/ico/ico-pin-unselec.svg';
 
+//병원 지도에 들어가는 요소
+import ico_map_my from '../../public/assets/ico/ico-map-my.svg';
+import ico_map_selec from '../../public/assets/ico/ico-map-selec.svg';
+import ico_map_unselec from '../../public/assets/ico/ico-map-unselec.svg';
+import ico_map_tooltip from '../../public/assets/ico/ico-map-tooltip.svg';
+import ico_map_influ_tooltip from '../../public/assets/ico/ico-map-influ-tooltip.svg';
+import ico_map_tooltip_button from '../../public/assets/ico/ico-map-tooltip-button.svg';
+import ico_map_reload from '../../public/assets/ico/ico-map-reload.svg';
+import ico_support_intro from '../../public/assets/ico/ico-support-influ.svg';
+import ico_support_hintro from '../../public/assets/ico/ico-support-hpv.svg';
+
 // prettier-ignore
 export const Images: ImagesType = {
   // icon
@@ -147,6 +158,17 @@ export const Images: ImagesType = {
   arrow_left: arrow_left,
   dropdown_up: dropdown_up,
   dropdown_down: dropdown_down,
+
+  ico_map_my:ico_map_my,
+  ico_map_selec:  ico_map_selec,
+  ico_map_unselec: ico_map_unselec,
+  ico_map_tooltip: ico_map_tooltip,
+  ico_map_influ_tooltip: ico_map_influ_tooltip,
+  ico_map_tooltip_button: ico_map_tooltip_button,
+  ico_map_reload: ico_map_reload,
+  ico_support_intro: ico_support_intro,
+  ico_support_hintro: ico_support_hintro,
+
 
   //image
   vacgom01: Vacgom01,
