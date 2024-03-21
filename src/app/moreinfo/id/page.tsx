@@ -76,14 +76,14 @@ export default function Signup(): React.JSX.Element {
 
   return (
     <SignupWrapper>
-      <BackHeader title={''} url={''} />
+      <BackHeader title={''} url={'/moreinfo/trans'} counter={5} />
       <div className="top">벡곰에서 사용할 닉네임을 입력해주세요.</div>
       <div className="container">
         <div className="item">
           <InputForm
             placeholder="@닉네임"
             value={params.nickname}
-            descriptionTop={'닉네임'}
+            descriptionTop={'백곰 닉네임'}
             type="text"
             variant={
               validate.nickname.condition1 === 'false' ||

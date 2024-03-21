@@ -23,7 +23,7 @@ export default function Join(): React.JSX.Element {
 
   return (
     <JoinWrap>
-      <BackHeader title={' '} url={'/'} />
+      <BackHeader title={' '} url={'/'} counter={1} />
       <JoinTemplate
         title={'갖고계신 질환이 있으신가요? '}
         subTop={'질환이 있으시다면, 각 질환별로 꼭 필요한 백신과'}

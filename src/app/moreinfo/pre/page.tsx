@@ -21,10 +21,9 @@ export default function Join(): React.JSX.Element {
     router.push(`/moreinfo/med`);
   };
 
-
   return (
     <JoinWrap>
-      <BackHeader title={' '} url={'/'} />
+      <BackHeader title={' '} url={'/moreinfo/dis'} counter={2} />
       <JoinTemplate
         title={'임신 중이신가요?'}
         subTop={'임신 중에 꼭 필요한 백신과 '}
