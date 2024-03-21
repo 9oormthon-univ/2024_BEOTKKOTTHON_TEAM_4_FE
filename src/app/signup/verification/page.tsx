@@ -10,15 +10,19 @@ import { Fragment, useEffect, useState } from 'react';
 import VerificationInput from '../../_component/atom/verificationInput';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import BottomButton from '@/app/_component/atom/BottomButton';
-import { router } from 'next/navigation';
+import { router, useRouter } from 'next/navigation';
 
 export default function Verification(): React.JSX.Element {
+  const router = useRouter();
   const [password, setPassword] = useState('');
   const handleNextButtonClick = () => {
     if (password.length >= 5) {
-      router.push('/signup/verification');
+      // router.push('/signup/done?type=helpalready');
+      router.push('/signup/done?type=helpnew');
 
       // @Todo 여기에 api 호출
+      // api 호출 했는데 이미 가입한 계정이면 /signup/done?type=helpalready
+      // api 호출 했는데 신규 가입이면 /signup/done?type=helpnew
     }
   };
   const MINUTES_IN_MS = 3 * 60 * 1000;

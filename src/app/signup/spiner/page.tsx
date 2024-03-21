@@ -4,7 +4,7 @@ import * as React from 'react';
 import { SpinerWrapper } from './style';
 import Image from 'next/image';
 import Button from '@/app/_component/atom/button/button';
-import { Colors, Icons, Images } from '@globalStyles';
+import { Colors, Icons, Images } from '@/styles';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 

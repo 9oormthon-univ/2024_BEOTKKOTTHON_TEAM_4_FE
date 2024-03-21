@@ -41,7 +41,7 @@ export default function Signup(): React.JSX.Element {
   };
 
   const handleNextButtonClick = () => {
-    if (checkParamsFilled()) {
+    if (checkParamsFilled(params)) {
       setOpenVarifi(true);
       router.push('/signup/more');
 
