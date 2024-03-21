@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 export const Container = styled.main`
   width: 100%;
   height: 100vh;
+  margin-bottom: 300px;
 
   & > .head {
     height: 54px;
