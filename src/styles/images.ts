@@ -8,6 +8,8 @@ import kakao from '../../public/assets/ico/ico-kakao.svg';
 import google from '../../public/assets/ico/ic-google.svg';
 import vacgom from '../../public/assets/image/img-splash-vacgom.svg';
 import Vacgom01 from '../../public/assets/image/img-Vacgom01.svg';
+import vacgom_face from '../../public/assets/image/img-vacgom-face.svg';
+
 import share from '../../public/assets/ico/ico-share.svg';
 import eye from '../../public/assets/ico/ico-eye.svg';
 import eyeSlash from '../../public/assets/ico/ico-eye-slash.svg';
@@ -153,6 +155,7 @@ export const Images: ImagesType = {
   //image
   vacgom01: Vacgom01,
   vacgom: vacgom,
+  vacgom_face: vacgom_face,
   VaccineCardBack: VaccineCardBack,
   vaccine_status_false: vaccine_status_false,
   vaccine_status_true: vaccine_status_true,

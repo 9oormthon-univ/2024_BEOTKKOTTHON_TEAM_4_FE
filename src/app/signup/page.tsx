@@ -19,9 +19,9 @@ export default function Join(): React.JSX.Element {
 
   const handleClick = () => {
     if (params.signupState === true) {
-      router.push(`/signup/terms`);
-    } else {
       router.push('/home');
+    } else {
+      router.push(`/signup/terms`);
     }
   };
 
@@ -44,7 +44,6 @@ export default function Join(): React.JSX.Element {
         }
       }
     };
-
     fetchData();
   }, [code]);
 
@@ -62,7 +61,7 @@ export default function Join(): React.JSX.Element {
         onChangeValue={onChangeValue}
       />
       <BottomButton
-        filled={params.signupState === null}
+        filled={params.signupState === false}
         handleNextButtonClick={() => {
           handleClick();
         }}

@@ -13,9 +13,8 @@ type props = {
 const BottomButton: React.FC<props> = ({ filled, handleNextButtonClick }) => {
   return (
     <BottomButtonWrap
-      className={filled ? 'confirm_button' : 'confirm_button_Filled'}
+      className={filled ? 'confirm_button_Filled' : 'confirm_button'}
       onClick={handleNextButtonClick}
-      disabled={filled}
     >
       다음
     </BottomButtonWrap>

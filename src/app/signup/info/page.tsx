@@ -159,7 +159,7 @@ export default function Signup(): React.JSX.Element {
         />
       </Fragment>
       <BottomButton
-        filled={!checkParamsFilled(params)}
+        filled={checkParamsFilled(params)}
         handleNextButtonClick={handleNextButtonClick}
       />
     </SignupWrapper>

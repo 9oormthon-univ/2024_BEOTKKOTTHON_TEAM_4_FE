@@ -176,7 +176,7 @@ export default function Signup(): React.JSX.Element {
       </div>
 
       <BottomButton
-        filled={!allConditionsTrue}
+        filled={allConditionsTrue}
         handleNextButtonClick={handleNextButtonClick}
       />
     </SignupWrapper>

@@ -24,8 +24,7 @@ export default function VerificationInput({
     { length: inputLength },
     (_, index) => `cell${index + 1}`,
   );
-
-  const [active, setActive] = React.useState(0); //현재 입력된 숫자 인덱스
+  const [active, setActive] = React.useState(0);
 
   return (
     <VerificationInputWrap>

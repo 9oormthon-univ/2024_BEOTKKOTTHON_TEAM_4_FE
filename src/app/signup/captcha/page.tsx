@@ -59,7 +59,7 @@ export default function Verification(): React.JSX.Element {
         />
       </div>
       <BottomButton
-        filled={password === ''}
+        filled={password !== ''}
         handleNextButtonClick={handleNextButtonClick}
       />
     </VerificationWrap>

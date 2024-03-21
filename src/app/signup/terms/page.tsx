@@ -15,7 +15,6 @@ import { useQueryParams } from '@/hooks/useParam';
 export default function Terms(): React.JSX.Element {
   const router = useRouter();
   const { params, onChangeValue } = useQueryParams();
-  console.log(params);
   const handleClick = () => {
     router.push('/signup/info');
   };
@@ -32,10 +31,8 @@ export default function Terms(): React.JSX.Element {
         onChangeValue={onChangeValue}
       />
       <BottomButton
-        filled={params.signupState === null}
-        handleNextButtonClick={() => {
-          handleClick();
-        }}
+        filled={params.terms === true}
+        handleNextButtonClick={handleClick}
       />
     </JoinWrap>
   );
