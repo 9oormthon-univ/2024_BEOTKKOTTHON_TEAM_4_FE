@@ -14,22 +14,23 @@ const MapHomeContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  width: 100%;
+  width: 100vw;
   height: auto;
   background-image: url('${Images.ico_map_home}');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  & > img {
+    width : 100vw
+    }
+    
 `;
 
 const MainHomeContainer = styled.div`
   width: 100%;
   height: auto;
   margin-top: -50px;
-  background-image: url('${Images.ico_map_home}');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 `;
 
 

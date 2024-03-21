@@ -36,7 +36,7 @@ const navItems = [
     iconSelected: 'nav_vaclookup_selec',
     iconUnselected: 'nav_vaclookup_unselec',
     label: '백신정보',
-    routes: '/vaclookup'
+    route: '/vaclookup'
   },
   {
     iconSelected: 'nav_my_selec',
@@ -78,8 +78,16 @@ const NavItem = styled.div<{ isActive: boolean }>`
     font-size: 12px;
     font-weight: 500;
     line-height: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media (max-width: 400px) {
+      font-size: 10px;
+    }
   }
 `;
+
 
 const NavigationFixed = () => {
   const router = useRouter();

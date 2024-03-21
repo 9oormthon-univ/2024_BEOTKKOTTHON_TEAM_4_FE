@@ -8,29 +8,17 @@ import ReloadButton from '@/app/_component/atom/ReloadButton';
 const Main = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
   width: 100%;
-  min-height: 100vh;
+  height: calc(100vh - var(--header-height) - var(--navigation-height));
   padding: 0;
-
-  @media (max-width: 768px) {
-    margin-top: -100px;
-  }
-`;
+`
 
 const MapContainer = styled.div`
   width: 100%;
-  height: 650px;
-
-  @media (max-width: 768px) {
-    height: 300px;
-  }
-
-  @media (max-width: 1024px) {
-    height: 500px;
-  }
+  height: 100%;
 `;
+
 
 export default function HospitalMap() {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
@@ -41,7 +29,6 @@ export default function HospitalMap() {
 
   const headerHeight = '54px'; 
   const navigationHeight = '68px';
-
 
    // 현재 위치를 재검색하는 함수
    const handleCurrentLocationClick = () => {
@@ -126,6 +113,7 @@ export default function HospitalMap() {
   }, [selectedHospitalId]);
 
   return (
+
     <Main
       style={{
         '--header-height': headerHeight,
