@@ -40,3 +40,19 @@ export function checkParamsFilled(params: ParamsType): boolean {
   }
   return true;
 }
+
+/**
+ * @define 모든 컨디션이 ture 라면 통과, 하나라도 false 이거나 default 이면 불통
+ * @param params
+ */
+export const isAllConditionsTrue = (params: ParamsType): boolean => {
+  for (const key in params) {
+    const conditions = params[key];
+    for (const conditionKey in conditions) {
+      if (conditions[conditionKey] !== 'true') {
+        return false;
+      }
+    }
+  }
+  return true;
+};
