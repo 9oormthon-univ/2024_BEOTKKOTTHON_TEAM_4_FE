@@ -23,13 +23,11 @@ import ValidateCheck from '@/app/_component/atom/ValidateCheck';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
-    id: '',
     password: '',
     password_check: '',
   });
 
   const [validate, setValidate] = useState<ParamsType>({
-    id: { condition1: 'default', condition2: 'default' },
     password: { condition1: 'default', condition2: 'default' },
     password_check: { condition1: 'default' },
   });
@@ -47,7 +45,7 @@ export default function Signup(): React.JSX.Element {
 
   const handleNextButtonClick = () => {
     if (allConditionsTrue) {
-      router.push('/signup/captcha');
+      router.push('/login/captcha');
 
       // @Todo secureLocalStorage 저장 로직 필요
     }
@@ -55,17 +53,6 @@ export default function Signup(): React.JSX.Element {
 
   const updateValidation = (field: string, value: string) => {
     switch (field) {
-      case 'id':
-        const isStartWithEnglish = /^[a-zA-Z]/.test(value);
-        const isWithinLength = value.length >= 6 && value.length <= 10;
-        setValidate((prevValidate) => ({
-          ...prevValidate,
-          id: {
-            condition1: isStartWithEnglish ? 'true' : 'false',
-            condition2: isWithinLength ? 'true' : 'false',
-          },
-        }));
-        break;
       case 'password':
         const isPasswordValid = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])/.test(
           value,
@@ -96,41 +83,17 @@ export default function Signup(): React.JSX.Element {
 
   return (
     <SignupWrapper>
-      <BackHeader title={'예방접종도우미 회원가입'} url={'/signup/info'} />
-      <div className="top">정보를 입력해 주세요</div>
+      <BackHeader title={'아이디/비밀번호 찾기'} url={''} />
+      <div className="top">
+        비밀번호를 변경하면 <br />
+        아이디를 자동을 조회할 수 있어요
+      </div>
       <div className="container">
-        <div className="item">
-          <InputForm
-            placeholder="영문자로 시작하여 영문자, 숫자의 조합"
-            value={params.id}
-            descriptionTop={'예방접종도우미 아이디'}
-            type="text"
-            variant={
-              validate.id.condition1 === 'false' ||
-              validate.id.condition2 === 'false'
-                ? 'error'
-                : 'default'
-            }
-            onChange={(e) => {
-              onChangeValue('id', e.target.value);
-            }}
-          />
-          <div className="wrap">
-            <ValidateCheck
-              label={'영문 시작'}
-              status={validate.id.condition1}
-            />
-            <ValidateCheck
-              label={'6-10자 이내'}
-              status={validate.id.condition2}
-            />
-          </div>
-        </div>
         <div className="item">
           <InputForm
             placeholder="영문, 숫자, 특수문자 조합 9자 이상"
             value={params.password}
-            descriptionTop={'예방접종도우미 비밀번호'}
+            descriptionTop={'예방접종도우미 비밀번호 변경'}
             type="text"
             variant={
               validate.password.condition1 === 'false' ||
