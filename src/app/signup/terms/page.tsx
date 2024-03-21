@@ -22,7 +22,7 @@ export default function Terms(): React.JSX.Element {
 
   return (
     <JoinWrap>
-      <BackHeader title={' '} url={'/signup/info'} />
+      <BackHeader title={' '} url={'/signup'} />
       <JoinTemplate
         title={'예방접종도우미의 \n' + '약관내용에 동의해주세요'}
         subTop={'회원약관에 동의해야 정상적으로 서비스를 이용할 수 있어요.'}

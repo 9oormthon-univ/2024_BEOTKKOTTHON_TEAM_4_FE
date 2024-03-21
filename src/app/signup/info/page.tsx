@@ -43,7 +43,7 @@ export default function Signup(): React.JSX.Element {
   const handleNextButtonClick = () => {
     if (checkParamsFilled()) {
       setOpenVarifi(true);
-      router.push('/signup/verification');
+      router.push('/signup/more');
 
       // @Todo 여기에 api 호출
     }
@@ -59,7 +59,7 @@ export default function Signup(): React.JSX.Element {
 
   return (
     <SignupWrapper>
-      <BackHeader title={'회원가입'} url={'/vachistory'} />
+      <BackHeader title={'예방접종도우미 회원가입'} url={'/signup/terms'} />
       <div className="top">정보를 입력해 주세요</div>
       <div className="container">
         <div className="item">
@@ -159,7 +159,7 @@ export default function Signup(): React.JSX.Element {
         />
       </Fragment>
       <BottomButton
-        filled={!checkParamsFilled()}
+        filled={!checkParamsFilled(params)}
         handleNextButtonClick={handleNextButtonClick}
       />
     </SignupWrapper>
