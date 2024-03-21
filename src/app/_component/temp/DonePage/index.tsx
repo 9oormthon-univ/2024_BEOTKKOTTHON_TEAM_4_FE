@@ -18,13 +18,6 @@ const DonePage: React.FC<props> = ({ title, content_top, content_bottom }) => {
         <div className="content">{content_top}</div>
         <div className="content">{content_bottom}</div>
       </div>
-      <Button
-        label={'내 정보 입력하기'}
-        size={'large'}
-        customStyle={css`
-          width: 100%;
-        `}
-      />
     </DonePageWrap>
   );
 };
