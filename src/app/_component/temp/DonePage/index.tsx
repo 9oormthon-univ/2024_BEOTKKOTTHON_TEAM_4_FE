@@ -8,15 +8,28 @@ import { css } from '@emotion/react';
 import { Colors, Icons, Images } from '@globalStyles';
 import Button from '../../atom/button/button';
 
-type props = { title: string; content_top: string; content_bottom: string };
-const DonePage: React.FC<props> = ({ title, content_top, content_bottom }) => {
+type props = {
+  more: boolean;
+  title: string;
+  title_bottom: string;
+  content_top: string;
+  content_bottom: string;
+};
+const DonePage: React.FC<props> = ({
+  more,
+  title,
+  title_bottom,
+  content_top,
+  content_bottom,
+}) => {
   return (
-    <DonePageWrap>
+    <DonePageWrap more={more}>
       <div className="container">
         <Image src={Images.vacgom_face} alt={'접종 이미지'} />
         <div className="title">{title}</div>
-        <div className="content">{content_top}</div>
-        <div className="content">{content_bottom}</div>
+        {title_bottom && <div className="title">{title_bottom}</div>}
+        <div className="content_top">{content_top}</div>
+        <div className="content_bottom">{content_bottom}</div>
       </div>
     </DonePageWrap>
   );

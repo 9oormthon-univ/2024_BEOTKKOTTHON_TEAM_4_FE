@@ -10,28 +10,64 @@ import { Fragment, useEffect, useState } from 'react';
 import VerificationInput from '../../_component/atom/verificationInput';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import BottomButton from '@/app/_component/atom/BottomButton';
-import { router } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import DonePage from '@/app/_component/temp/DonePage';
 import Button from '@/app/_component/atom/button/button';
 
 export default function SignupDone(): React.JSX.Element {
+  const router = useRouter();
+  const [alreadyUser, setAlreadyUser] = useState(true);
+  // 만약 가입한 이력이 있으면 true
+  // 최초 가입이면 false
+  // searchparam 으로 하는 게 좋을듯
+
   return (
     <SignupDoneWrap>
       <BackHeader title={''} url={'/signup'} />
-      <div className="padding">
-        <DonePage
-          title={'예방접종도우미 가입 완료!'}
-          content_top={'서비스 이용을 위해 전예나님의 정보를 입력해 주세요'}
-          content_bottom={'전예나님에게 꼭 맞는 백신을 추천해 드릴게요!'}
-        />
-        <Button
-          label={'내 정보 입력하기'}
-          size={'large'}
-          customStyle={css`
-            width: 100%;
-          `}
-        />
-      </div>
+      {alreadyUser ? (
+        <div className="padding">
+          <DonePage
+            more={alreadyUser}
+            title={`예방접종도우미에`}
+            title_bottom={'가입한 이력이 있어요!'}
+            content_top={'서비스 이용을 위해 전예나님의 정보를 입력해 주세요'}
+            content_bottom={'전예나님에게 꼭 맞는 백신을 추천해 드릴게요!'}
+          />
+          <Button
+            label={'예방접종도우미 로그인하기'}
+            size={'large'}
+            customStyle={css`
+              width: 100%;
+            `}
+            onClick={() => {
+              router.push('/login/helper');
+            }}
+          />
+          <div
+            className={'password'}
+            onClick={() => {
+              router.push('/login/find');
+            }}
+          >
+            비밀번호가 기억나지 않아요
+          </div>
+        </div>
+      ) : (
+        <div className="padding">
+          <DonePage
+            title={'예방접종도우미 가입 완료!'}
+            content_top={'서비스 이용을 위해 전예나님의 정보를 입력해 주세요'}
+            content_bottom={'전예나님에게 꼭 맞는 백신을 추천해 드릴게요!'}
+          />
+          <Button
+            label={'내 정보 입력하기'}
+            size={'large'}
+            customStyle={css`
+              width: 100%;
+            `}
+          />
+        </div>
+      )}
     </SignupDoneWrap>
   );
 }
