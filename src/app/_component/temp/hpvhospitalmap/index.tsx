@@ -39,6 +39,9 @@ export default function HospitalMap() {
   const [selectedHospitalId, setSelectedHospitalId] = useState(null);
   const mapRef = useRef(null);
 
+  const headerHeight = '54px'; 
+  const navigationHeight = '68px';
+
 
    // 현재 위치를 재검색하는 함수
    const handleCurrentLocationClick = () => {
