@@ -89,6 +89,8 @@ import ico_map_tooltip_button from '../../public/assets/ico/ico-map-tooltip-butt
 import ico_map_reload from '../../public/assets/ico/ico-map-reload.svg';
 import ico_support_intro from '../../public/assets/ico/ico-support-influ.svg';
 import ico_support_hintro from '../../public/assets/ico/ico-support-hpv.svg';
+import ico_map_bell from '../../public/assets/ico/ico-map-bell.svg';
+import ico_map_vacgom from '../../public/assets/ico/ico-map-vacgom.svg';
 
 // prettier-ignore
 export const Images: ImagesType = {
@@ -168,6 +170,8 @@ export const Images: ImagesType = {
   ico_map_reload: ico_map_reload,
   ico_support_intro: ico_support_intro,
   ico_support_hintro: ico_support_hintro,
+  ico_map_bell: ico_map_bell,
+  ico_map_vacgom: ico_map_vacgom,
 
 
   //image

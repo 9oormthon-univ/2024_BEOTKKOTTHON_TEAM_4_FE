@@ -123,11 +123,11 @@ export default function HospitalMap() {
 
   return (
     <Main>
-      <MapContainer id="map">
+      <div id="map" style={{ width: '100%', height: '650px' }}>
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
         <Tooltip />
         <ReloadButton onClick={handleCurrentLocationClick} />
-      </MapContainer>
+      </div>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} content={modalContent} />
     </Main>
   );
