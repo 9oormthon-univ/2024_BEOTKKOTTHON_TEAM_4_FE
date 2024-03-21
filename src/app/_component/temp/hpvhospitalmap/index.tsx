@@ -26,7 +26,8 @@ export default function HospitalMap() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHospitalId, setSelectedHospitalId] = useState(null);
   const mapRef = useRef(null);
-  const headerHeight = '54px';
+
+  const headerHeight = '54px'; 
   const navigationHeight = '68px';
 
    // 현재 위치를 재검색하는 함수
@@ -65,6 +66,7 @@ export default function HospitalMap() {
             icon: {
               url: '/assets/ico/ico-map-my.svg',
               size: new naver.maps.Size(50, 63),
+              scaledSize: new naver.maps.Size(50, 63),
               origin: new naver.maps.Point(0, 0),
               anchor: new naver.maps.Point(12, 37)
             }
@@ -111,13 +113,19 @@ export default function HospitalMap() {
   }, [selectedHospitalId]);
 
   return (
-    <Main style={{ '--header-height': headerHeight, '--navigation-height': navigationHeight }}>
+
+    <Main
+      style={{
+        '--header-height': headerHeight,
+        '--navigation-height': navigationHeight,
+      }}
+    >
       <MapContainer id="map">
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
         <Tooltip />
         <ReloadButton onClick={handleCurrentLocationClick} />
-      </MapContainer>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} content={modalContent} />
+      </MapContainer>
     </Main>
   );
 }
