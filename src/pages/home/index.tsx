@@ -1,12 +1,21 @@
-import React from 'react';
+'use client';
+
+import * as React from 'react';
+import Link from 'next/link';
+
+import { Container } from './style';
+import VaccineCard from '@/app/_component/atom/VaccineCertificate/index';
+import { Icons, Images } from '@globalStyles';
+import Icon from '@/app/_component/atom/Icon/Icon';
+import SectionHeader from '@/app/_component/atom/SectionHeader';
+import MainHeader from '@/app/_component/atom/MainHeader';
+import { MenuTitleContainer } from '@/app/_component/atom/MenuTitle/styles';
+import MenuTitle from '@/app/_component/atom/MenuTitle';
+import VaccineItem from '@/app/_component/atom/VaccineItem';
+import NavigationFixed from '@/app/_component/organism/navigationFixed';
+
 import styled from '@emotion/styled';
 import Image from 'next/image';
-import { Images } from '@globalStyles';
-import MainHeader from '@/app/_component/atom/MainHeader';
-import MenuTitle from '@/app/_component/atom/MenuTitle';
-import VaccineCard from '@/app/_component/atom/VaccineCertificate/index';
-import NavigationFixed from '@/app/_component/organism/navigationFixed';
-import { Container } from './style';
 
 const GreetingContainer = styled.div`
   text-align: left;
@@ -49,18 +58,50 @@ export default function Home() {
         <ImageContainer>
           <Image src={Images.ico_home_greet} alt="추천하는 이미지" />
         </ImageContainer>
-        <div className="content_head">
-          <MenuTitle
-            title={'접종 인증서'}
-            rightIconUrl={'/vachistory/certificate/list'}
-          />
+        <div className="body_wrap">
+          <div className="content_head">
+            <MenuTitle
+              title={'{userName}님을 위한 추천 백신'}
+              rightIconUrl={'/vachistory/certificate/list'}
+            />
+          </div>
+          <div className="content_body">
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+          </div>
         </div>
-        <div className="content_body">
-          <VaccineCard variant={'small'} image={Images.vacgom01} />
-          <VaccineCard variant={'small'} image={Images.vacgom01} />
-          <VaccineCard variant={'small'} image={Images.vacgom01} />
-          <VaccineCard variant={'small'} image={Images.vacgom01} />
-          <VaccineCard variant={'small'} image={Images.vacgom01} />
+        <div className="body_wrap">
+          <div className="content_head">
+            <MenuTitle
+              title={'접종 인증서'}
+              rightIconUrl={'/vachistory/certificate/list'}
+            />
+          </div>
+          <div className="content_body">
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+          </div>
+        </div>
+        <div className="body_wrap">
+          <div className="content_head">
+            <MenuTitle
+              title={'접종 인증서'}
+              rightIconUrl={'/vachistory/certificate/list'}
+            />
+          </div>
+          <div className="content_body">
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} />
+          </div>
         </div>
         <NavigationFixed />
       </Container>
