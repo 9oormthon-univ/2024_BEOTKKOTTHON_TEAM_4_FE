@@ -5,14 +5,15 @@ import Tooltip from '@/app/_component/atom/Tooltip';
 import { Modal } from '../../atom/MapModal';
 import ReloadButton from '@/app/_component/atom/ReloadButton';
 
+// Main 컴포넌트 스타일 변경: div id="map"의 스타일을 직접 수정
 const Main = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 6rem;
+  padding: 6rem 0;
   min-height: 100vh;
-  margin-top: -110px;
+  margin-top: -140px;
 `;
 
 export default function HospitalMap() {
@@ -21,6 +22,7 @@ export default function HospitalMap() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHospitalId, setSelectedHospitalId] = useState(null);
   const mapRef = useRef(null);
+
 
    // 현재 위치를 재검색하는 함수
    const handleCurrentLocationClick = () => {
@@ -37,8 +39,11 @@ export default function HospitalMap() {
 
   useEffect(() => {
     const loadMap = () => {
+      // 해커톤 장소 위도 경도를 지도의 초기 위치로 설정
+      const hackathonLocation = new naver.maps.LatLng(37.351586, 127.071880);
+
       const mapOptions = {
-        center: new naver.maps.LatLng(37.3595704, 127.105399),
+        center: hackathonLocation,
         zoom: 10,
       };
 
@@ -55,13 +60,10 @@ export default function HospitalMap() {
             icon: {
               url: '/assets/ico/ico-map-my.svg',
               size: new naver.maps.Size(50, 63),
-              scaledSize: new naver.maps.Size(50, 63),
               origin: new naver.maps.Point(0, 0),
               anchor: new naver.maps.Point(12, 37)
             }
           });
-
-          map.setCenter(currentLocation);
         });
       }
 
@@ -105,7 +107,7 @@ export default function HospitalMap() {
 
   return (
     <Main>
-      <div id="map" style={{ width: '160%', height: '500px' }}>
+      <div id="map" style={{ width: '100%', height: '650px' }}>
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
         <Tooltip />
         <ReloadButton onClick={handleCurrentLocationClick} />
