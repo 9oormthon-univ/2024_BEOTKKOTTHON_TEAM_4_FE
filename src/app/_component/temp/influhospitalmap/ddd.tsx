@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from '@emotion/styled';
-import { hospitals } from '@/utils/influ-api';
+import { hospitals } from '@/utils/hpv-api';
 import Tooltip from '@/app/_component/atom/Tooltip';
 import { Modal } from '../../atom/MapModal';
 import ReloadButton from '@/app/_component/atom/ReloadButton';
@@ -8,15 +8,28 @@ import ReloadButton from '@/app/_component/atom/ReloadButton';
 const Main = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: calc(100vh - var(--header-height) - var(--navigation-height));
+  min-height: 100vh;
   padding: 0;
-`
+
+  @media (max-width: 768px) {
+    margin-top: -100px;
+  }
+`;
 
 const MapContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 650px;
+
+  @media (max-width: 768px) {
+    height: 300px;
+  }
+
+  @media (max-width: 1024px) {
+    height: 500px;
+  }
 `;
 
 export default function HospitalMap() {
@@ -26,28 +39,24 @@ export default function HospitalMap() {
   const [selectedHospitalId, setSelectedHospitalId] = useState(null);
   const mapRef = useRef(null);
 
-  const headerHeight = '54px'; 
-  const navigationHeight = '68px';
 
-     // 현재 위치를 재검색하는 함수
-     const handleCurrentLocationClick = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const currentLocation = new naver.maps.LatLng(
-            position.coords.latitude,
-            position.coords.longitude,
-          );
-          mapRef.current.setCenter(currentLocation);
-        });
-      }
-    };
-  
-
+   // 현재 위치를 재검색하는 함수
+   const handleCurrentLocationClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const currentLocation = new naver.maps.LatLng(
+          position.coords.latitude,
+          position.coords.longitude,
+        );
+        mapRef.current.setCenter(currentLocation);
+      });
+    }
+  };
 
   useEffect(() => {
     const loadMap = () => {
       // 해커톤 장소 위도 경도를 지도의 초기 위치로 설정
-      const hackathonLocation = new naver.maps.LatLng(37.351586, 127.07188);
+      const hackathonLocation = new naver.maps.LatLng(37.351586, 127.071880);
 
       const mapOptions = {
         center: hackathonLocation,
@@ -59,10 +68,7 @@ export default function HospitalMap() {
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
-          const currentLocation = new naver.maps.LatLng(
-            position.coords.latitude,
-            position.coords.longitude,
-          );
+          const currentLocation = new naver.maps.LatLng(position.coords.latitude, position.coords.longitude);
           new naver.maps.Marker({
             position: currentLocation,
             map: map,
@@ -70,10 +76,9 @@ export default function HospitalMap() {
             icon: {
               url: '/assets/ico/ico-map-my.svg',
               size: new naver.maps.Size(50, 63),
-              scaledSize: new naver.maps.Size(50, 63),
               origin: new naver.maps.Point(0, 0),
-              anchor: new naver.maps.Point(12, 37),
-            },
+              anchor: new naver.maps.Point(12, 37)
+            }
           });
         });
       }
@@ -84,25 +89,20 @@ export default function HospitalMap() {
           map: map,
           title: hospital.name,
           icon: {
-            url:
-              selectedHospitalId === hospital.id
-                ? '/assets/ico/ico-map-selec.svg'
-                : '/assets/ico/ico-map-unselec.svg',
+            url: selectedHospitalId === hospital.id ? '/assets/ico/ico-map-selec.svg' : '/assets/ico/ico-map-unselec.svg',
             size: new naver.maps.Size(50, 63),
             scaledSize: new naver.maps.Size(50, 63),
             origin: new naver.maps.Point(0, 0),
-            anchor: new naver.maps.Point(12, 37),
-          },
+            anchor: new naver.maps.Point(12, 37)
+          }
         });
 
         naver.maps.Event.addListener(marker, 'click', () => {
-          setSelectedHospitalId(
-            selectedHospitalId === hospital.id ? null : hospital.id,
-          );
+          setSelectedHospitalId(selectedHospitalId === hospital.id ? null : hospital.id);
           setModalContent({
             name: hospital.name,
             major: hospital.major,
-            address: hospital.address,
+            address: hospital.address
           });
           setIsModalOpen(true);
         });
@@ -122,22 +122,13 @@ export default function HospitalMap() {
   }, [selectedHospitalId]);
 
   return (
-    <Main
-      style={{
-        '--header-height': headerHeight,
-        '--navigation-height': navigationHeight,
-      }}
-    >
+    <Main>
       <MapContainer id="map">
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
         <Tooltip />
         <ReloadButton onClick={handleCurrentLocationClick} />
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          content={modalContent}
-        />
       </MapContainer>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} content={modalContent} />
     </Main>
   );
 }
