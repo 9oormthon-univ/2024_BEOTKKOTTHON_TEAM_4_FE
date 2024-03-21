@@ -3,6 +3,14 @@ import styled from '@emotion/styled';
 
 export const SignupWrapper = styled.main`
   height: 62px;
+
+  .wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
   .input_title {
     ${fontGenerator('14px', '600', '16.71px')}
     padding-bottom: 8px;
@@ -10,7 +18,7 @@ export const SignupWrapper = styled.main`
   & > .top {
     padding: 20px 20px;
     //height: 24px;
-    ${fontGenerator('20px', '700', '23.87px')}
+    ${fontGenerator('20px', '700', '28px')}
   }
   & > .container {
     & > .item {

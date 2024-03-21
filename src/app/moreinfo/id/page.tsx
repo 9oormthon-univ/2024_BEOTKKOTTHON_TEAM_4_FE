@@ -16,150 +16,105 @@ import {
   parseIdentity,
   filterNumericInput,
   checkParamsFilled,
+  isAllConditionsTrue,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
+import ValidateCheck from '@/app/_component/atom/ValidateCheck';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
-    identity_first: '',
-    identity_last: '',
-    userName: '',
-    phoneNumber: '',
-    telecom: '',
+    nickname: '',
   });
-  // api 요청 시 identity_first 을 parseIdentity 사용하여 변환
+  console.log(params.nickname);
+  const [validate, setValidate] = useState<ParamsType>({
+    nickname: {
+      condition1: 'default',
+      condition2: 'default',
+      condition3: 'default',
+    },
+  });
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [openVarifi, setOpenVarifi] = useState(false);
   const router = useRouter();
-  console.log(params);
-  const onChangeValue: OnChangeValueType = (field, value) => {
+  const allConditionsTrue = isAllConditionsTrue(validate);
+
+  const onChangeValue: OnChangeValueType = (field, value, type) => {
     setParams((prevState) => ({
       ...prevState,
       [field]: value,
     }));
+    updateValidation(field, value);
   };
 
   const handleNextButtonClick = () => {
-    if (checkParamsFilled(params)) {
-      setOpenVarifi(true);
-      router.push('/signup/more');
+    if (allConditionsTrue) {
+      router.push('/moreinfo/welcome');
 
-      // @Todo 여기에 api 호출
+      // @Todo secureLocalStorage 저장 로직 필요
     }
   };
 
-  const handleAgencySelect = (selectedOptions: string[]) => {
-    onChangeValue('telecom', selectedOptions);
-    setIsModalOpen(false);
-  };
-  const resetAgencyOptions = () => {
-    onChangeValue('telecom', []);
+  const updateValidation = (field: string, value: string) => {
+    switch (field) {
+      case 'nickname':
+        const isStartWithEnglish = /^[a-zA-Z]/.test(value);
+        const isLowerCase = /^[a-z]+$/.test(value);
+        const isWithinLength = value.length >= 6 && value.length <= 10;
+        setValidate((prevValidate) => ({
+          ...prevValidate,
+          nickname: {
+            condition1: isStartWithEnglish ? 'true' : 'false',
+            condition2: isLowerCase ? 'true' : 'false',
+            condition3: isWithinLength ? 'true' : 'false',
+          },
+        }));
+        break;
+
+      default:
+        break;
+    }
   };
 
   return (
     <SignupWrapper>
-      <BackHeader title={'아이디/비밀번호 찾기'} url={''} />
-      <div className="top">정보를 입력해 주세요</div>
+      <BackHeader title={''} url={''} />
+      <div className="top">벡곰에서 사용할 닉네임을 입력해주세요.</div>
       <div className="container">
         <div className="item">
           <InputForm
-            placeholder="이름"
-            value={params.userName}
-            descriptionTop={'이름'}
+            placeholder="@닉네임"
+            value={params.nickname}
+            descriptionTop={'닉네임'}
             type="text"
+            variant={
+              validate.nickname.condition1 === 'false' ||
+              validate.nickname.condition2 === 'false' ||
+              validate.nickname.condition3 === 'false'
+                ? 'error'
+                : 'default'
+            }
             onChange={(e) => {
-              onChangeValue('userName', e.target.value);
+              onChangeValue('nickname', e.target.value);
             }}
           />
-        </div>
-        <div className="item">
-          <InputForm
-            placeholder="통신사"
-            value={params.telecom}
-            descriptionTop={'통신사'}
-            rightIcon={Icons.arrow_down}
-            type="text"
-            customStyle={css`
-              & > .input__content > .input__content--right__icon > img {
-                width: 24px;
-                height: 24px;
-              }
-            `}
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-          />
-        </div>
-        <div className="item">
-          <InputForm
-            placeholder="번호 입력"
-            value={params.phoneNumber}
-            descriptionTop={'휴대폰 번호'}
-            type="text"
-            onChange={(e) => {
-              let filteredValue = filterNumericInput(e);
-              if (filteredValue.length > 11) {
-                filteredValue = filteredValue.slice(0, 11);
-              }
-              onChangeValue('phoneNumber', filteredValue);
-            }}
-          />
-        </div>
-        <div className="item">
-          <div className="input_title">주민등록번호</div>
-          <div className="item_row">
-            <InputForm
-              placeholder="YYMMDD"
-              value={params.identity_first}
-              type="text"
-              maxLength={6}
-              customStyle={css`
-                width: 50%;
-              `}
-              onChange={(e) => {
-                let filteredValue = filterNumericInput(e);
-                onChangeValue('identity_first', filteredValue);
-              }}
+          <div className="wrap">
+            <ValidateCheck
+              label={'영문 시작'}
+              status={validate.nickname.condition1}
             />
-            <p>-</p>
-            <InputForm
-              placeholder=""
-              value={params.identity_last}
-              type="text"
-              maxLength={1}
-              customStyle={css`
-                width: 60px;
-              `}
-              onChange={(e) => {
-                onChangeValue('identity_last', filterNumericInput(e));
-              }}
+            <ValidateCheck
+              label={'영문 소문자'}
+              status={validate.nickname.condition2}
             />
-            <div className="hiden_item">
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-            </div>
+            <ValidateCheck
+              label={'4-10자 이내'}
+              status={validate.nickname.condition3}
+            />
           </div>
         </div>
       </div>
 
-      <Fragment>
-        <FilterModal
-          isOpen={isModalOpen}
-          title="통신사를 선택해 주세요"
-          options={agencyRanges}
-          selectedOptions={params.telecom}
-          onClose={() => setIsModalOpen(false)}
-          onOptionSelect={handleAgencySelect}
-          onReset={resetAgencyOptions}
-        />
-      </Fragment>
       <BottomButton
-        filled={checkParamsFilled(params)}
+        filled={allConditionsTrue}
         handleNextButtonClick={handleNextButtonClick}
       />
     </SignupWrapper>

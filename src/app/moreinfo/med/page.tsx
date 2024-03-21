@@ -18,7 +18,7 @@ export default function Join(): React.JSX.Element {
   const { params, onChangeValue } = useQueryParams();
 
   const handleClick = () => {
-    router.push(`/moreinfo/trans`);
+    router.push(`/moreinfo/id`);
   };
 
   return (
