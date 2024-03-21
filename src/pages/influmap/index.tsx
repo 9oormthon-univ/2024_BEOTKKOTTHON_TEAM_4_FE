@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import HospitalMap from "@/app/_component/temp/hpvhospitalmap";
 import MainHeader from '@/app/_component/atom/MainHeader';
 import SectionHeader from '@/app/_component/atom/SectionHeader';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
+import InfluHospitalMap from "@/app/_component/temp/influhospitalmap";
 
 export default function Map() {
   const [selectedSection, setSelectedSection] = useState("병원 조회");
@@ -16,7 +16,7 @@ export default function Map() {
     <div>
       <MainHeader title="병원 조회" />
       <SectionHeader sections={sectionTexts} onSectionChange={handleSectionChange} />
-      {selectedSection === "병원 조회" && <HospitalMap />}
+      {selectedSection === "병원 조회" && <InfluHospitalMap />}
       <NavigationFixed/>
     </div>
   );
