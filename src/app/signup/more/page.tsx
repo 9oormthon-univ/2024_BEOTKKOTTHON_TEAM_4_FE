@@ -71,7 +71,10 @@ export default function Signup(): React.JSX.Element {
               onChangeValue('id', e.target.value);
             }}
           />
-          <ValidateCheck label={''} />
+          <div className="wrap">
+            <ValidateCheck label={'영문 시작'} status={'default'} />
+            <ValidateCheck label={'6-10자 이내'} status={'default'} />
+          </div>
         </div>
         <div className="item">
           <InputForm
@@ -84,6 +87,13 @@ export default function Signup(): React.JSX.Element {
               onChangeValue('password', e.target.value);
             }}
           />
+          <div className="wrap">
+            <ValidateCheck
+              label={'영문, 숫자, 특수문자(!@#$%^&*) 포함'}
+              status={'default'}
+            />
+            <ValidateCheck label={'9자 이상'} status={'default'} />
+          </div>
         </div>
         <div className="item">
           <InputForm
@@ -101,6 +111,7 @@ export default function Signup(): React.JSX.Element {
               }
             }}
           />
+          <ValidateCheck label={'비밀번호 일치'} status={'default'} />
         </div>
       </div>
 
