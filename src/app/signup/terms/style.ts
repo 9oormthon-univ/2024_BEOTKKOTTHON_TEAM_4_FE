@@ -31,4 +31,10 @@ export const JoinWrap = styled.main`
       text-decoration: underline;
     }
   }
+  & > .detail {
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+    padding: 10px 20px;
+  }
 `;

@@ -7,11 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@/app/_component/atom/button/button';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
 import BottomButton from '@/app/_component/atom/BottomButton';
+import TermsDetail from '@/app/_component/molecule/TermsDetail';
 
 type props = {
   title: string;
+  titleBottom: string;
   subTop?: string;
   subBottom?: string;
+  useterm?: boolean;
   falseLabel: string;
   trueLabel: string;
   params: ParamsType;
@@ -21,6 +24,8 @@ type props = {
 const JoinTemplate: React.FC<props> = ({
   params,
   title,
+  titleBottom,
+  useterm,
   subTop,
   subBottom,
   falseLabel,
@@ -32,7 +37,12 @@ const JoinTemplate: React.FC<props> = ({
     <JoinTemplateContainer>
       <div className={'top'}>
         <div className={'title'}>{title}</div>
-        <div className={'subTop'}>{subTop}</div>
+        {useterm && (
+          <div className={'useterm title'}>
+            <p>약관 내용에 동의</p>해주세요
+          </div>
+        )}
+        {subTop && <div className={'subTop'}>{subTop}</div>}
         <div className={'subBottom'}>{subBottom}</div>
       </div>
       <div className={'button'}>

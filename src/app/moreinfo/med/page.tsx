@@ -30,12 +30,12 @@ export default function Join(): React.JSX.Element {
         subBottom={'금기해야 할 백신을 알려드릴게요'}
         falseLabel={'장기이식 경험이 없어요'}
         trueLabel={'장기이식 경험이 있어요'}
-        params={params}
+        params={queryparams}
         field={'transYn'}
         onChangeValue={onChangeValue}
       />
       <BottomButton
-        filled={params.signupState === false}
+        filled={queryparams.signupState === false}
         handleNextButtonClick={() => {
           handleClick();
         }}

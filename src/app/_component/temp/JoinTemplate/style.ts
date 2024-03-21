@@ -9,9 +9,18 @@ export const JoinTemplateContainer = styled.div`
   & > .top {
     padding: 20px;
     & > .title {
-      margin-bottom: 6px;
       ${fontGenerator('20px', '700', '28px')}
-      margin-bottom: 6px;
+    }
+    & > .useterm {
+      display: flex;
+      flex-direction: row;
+    }
+    & > .useterm > p {
+      color: ${Colors.Primary};
+      ${fontGenerator('20px', '700', '28px')}
+    }
+    & > .subTop {
+      margin-top: 6px;
     }
     & > .subTop,
     .subBottom {
@@ -31,5 +40,11 @@ export const JoinTemplateContainer = styled.div`
       background-color: ${Colors.PrimaryLight};
       border: none;
     }
+  }
+  & > .detail {
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+    padding: 10px 20px;
   }
 `;
