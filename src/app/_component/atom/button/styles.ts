@@ -94,7 +94,9 @@ export const ButtonSizes: CssArchiveType = {
     padding: 13px 10px;
     width: 100%;
   `,
-  inputButton: css``,
+  refresh: css`
+    padding: 8px 16px;
+  `,
   half: css``,
 };
 

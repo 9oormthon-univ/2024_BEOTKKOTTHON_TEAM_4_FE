@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 export const VerificationInputWrap = styled.main`
   .mt-2 {
-    ${fontGenerator('16px', '500', '16px', '-0.3px')}
+    ${fontGenerator('22px', '500', '22px', '-0.3px')}
   }
 
   & > button {

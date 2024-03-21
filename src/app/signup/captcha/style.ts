@@ -17,10 +17,15 @@ export const VerificationWrap = styled.main`
     }
   }
   & > .captcha_img {
-    margin: 0 20px 20px 20px;
+    margin: 0 20px;
     text-align: center;
     border: 1px solid ${Colors.Gray200};
     border-radius: 8px;
+  }
+  & > .refresh {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
   }
   & > .wrap {
     padding: 0 20px;

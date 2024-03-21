@@ -1,6 +1,8 @@
 'use client';
 
 import * as React from 'react';
+import { useRouter } from 'next/navigation';
+
 import { VerificationWrap } from './style';
 import Image from 'next/image';
 import { css } from '@emotion/react';
@@ -9,8 +11,22 @@ import { Colors, Icons, Images } from '@globalStyles';
 import { Fragment, useState } from 'react';
 import VerificationInput from '../../_component/atom/verificationInput';
 import BackHeader from '@/app/_component/molecule/BackHeader';
+import Button from '@/app/_component/atom/button/button';
+import BottomButton from '@/app/_component/atom/BottomButton';
+import { OnChangeValueType } from '@/types/globalType';
+import { checkParamsFilled } from '@/hooks/useUtil';
 
 export default function Verification(): React.JSX.Element {
+  const [password, setPassword] = React.useState(''); //현재 입력된 숫자
+  const router = useRouter();
+  const handleNextButtonClick = () => {
+    if (password.length >= 5) {
+      router.push('/signup/verification');
+
+      // @Todo 여기에 api 호출
+    }
+  };
+  const onClickRefresh = () => {};
   return (
     <VerificationWrap>
       <BackHeader title={'예방접종도우미 회원가입'} url={'/signup/more'} />
@@ -23,9 +39,29 @@ export default function Verification(): React.JSX.Element {
           height={140}
         />
       </div>
-      <div className="wrap">
-        <VerificationInput inputLength={5} />
+      <div className="refresh">
+        <Button
+          prevIcon={Icons.refresh}
+          label={'다른 문자 보기'}
+          variant={'OutlineWhite'}
+          size={'refresh'}
+          customStyle={css`
+            border-radius: 26px;
+          `}
+          onClick={onClickRefresh}
+        />
       </div>
+      <div className="wrap">
+        <VerificationInput
+          inputLength={5}
+          password={password}
+          setPassword={setPassword}
+        />
+      </div>
+      <BottomButton
+        filled={password === ''}
+        handleNextButtonClick={handleNextButtonClick}
+      />
     </VerificationWrap>
   );
 }

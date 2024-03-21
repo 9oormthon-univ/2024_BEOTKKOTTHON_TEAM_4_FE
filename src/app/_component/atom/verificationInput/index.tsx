@@ -8,8 +8,17 @@ import { css } from '@emotion/react';
 import { Colors, Icons, Images } from '@globalStyles';
 import { Fragment, useRef, useState } from 'react';
 import { OnChangeValueType } from '@/types/globalType';
-type props = { inputLength: number };
-export default function VerificationInput({ inputLength }): React.JSX.Element {
+
+type props = {
+  inputLength: number;
+  password: string;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+};
+export default function VerificationInput({
+  inputLength,
+  password,
+  setPassword,
+}: props): React.JSX.Element {
   const inputRef = useRef<HTMLInputElement>(null);
   const Button = Array.from(
     { length: inputLength },
@@ -17,7 +26,6 @@ export default function VerificationInput({ inputLength }): React.JSX.Element {
   );
 
   const [active, setActive] = React.useState(0); //현재 입력된 숫자 인덱스
-  const [password, setPassword] = React.useState(''); //현재 입력된 숫자
 
   return (
     <VerificationInputWrap>
@@ -46,7 +54,7 @@ export default function VerificationInput({ inputLength }): React.JSX.Element {
         className={'input'}
         ref={inputRef}
         id="password"
-        type="text"
+        type="number"
         maxLength={inputLength}
         value={password} //password
         onChange={(e) => {
