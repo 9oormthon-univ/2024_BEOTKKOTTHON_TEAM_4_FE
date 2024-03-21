@@ -7,15 +7,24 @@ import { css } from '@emotion/react';
 
 import { Colors, Icons, Images } from '@globalStyles';
 import { Fragment, useRef, useState } from 'react';
+import { OnChangeValueType } from '@/types/globalType';
 
-export default function VarificationInput({
-  onChangeValue,
-}): React.JSX.Element {
+type props = {
+  inputLength: number;
+  password: string;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+};
+export default function VerificationInput({
+  inputLength,
+  password,
+  setPassword,
+}: props): React.JSX.Element {
   const inputRef = useRef<HTMLInputElement>(null);
-  const Button = ['cell1', 'cell2', 'cell3', 'cell4', 'cell5', 'cell6'];
-
-  const [active, setActive] = React.useState(0); //현재 입력된 숫자 인덱스
-  const [password, setPassword] = React.useState(''); //현재 입력된 숫자
+  const Button = Array.from(
+    { length: inputLength },
+    (_, index) => `cell${index + 1}`,
+  );
+  const [active, setActive] = React.useState(0);
 
   return (
     <VerificationInputWrap>
@@ -44,8 +53,8 @@ export default function VarificationInput({
         className={'input'}
         ref={inputRef}
         id="password"
-        type="text"
-        maxLength={6}
+        type="number"
+        maxLength={inputLength}
         value={password} //password
         onChange={(e) => {
           setPassword(e.target.value);

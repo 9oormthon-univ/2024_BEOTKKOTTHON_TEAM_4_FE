@@ -133,8 +133,8 @@ export const InputFormStyles: CssArchiveType = {
         height: 4.4rem;
         padding: 0 1rem 0 2rem;
         border-radius: 1.4rem;
-        border: solid 0.1rem rgba(134, 197, 255, 0.2);
-        background-color: solid 0.1rem ${Colors.Gray500};
+        border: solid 1px rgba(134, 197, 255, 0.2);
+        background-color: ${Colors.Gray500};
       }
 
       & > span.common-icon {
@@ -175,6 +175,13 @@ export const InputFormStyles: CssArchiveType = {
     & > div.input__content {
       & > input.input__content--input {
         background-color: ${Colors.White};
+      }
+    }
+  `,
+  success: css`
+    & > div.input__content {
+      & > input.input__content--input {
+        border: solid 0.1rem ${Colors.Primary};
       }
     }
   `,

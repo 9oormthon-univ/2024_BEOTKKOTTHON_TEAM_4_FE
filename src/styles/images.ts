@@ -8,6 +8,8 @@ import kakao from '../../public/assets/ico/ico-kakao.svg';
 import google from '../../public/assets/ico/ic-google.svg';
 import vacgom from '../../public/assets/image/img-splash-vacgom.svg';
 import Vacgom01 from '../../public/assets/image/img-Vacgom01.svg';
+import vacgom_face from '../../public/assets/image/img-vacgom-face.svg';
+
 import share from '../../public/assets/ico/ico-share.svg';
 import eye from '../../public/assets/ico/ico-eye.svg';
 import eyeSlash from '../../public/assets/ico/ico-eye-slash.svg';
@@ -51,6 +53,10 @@ import VaccineCardBackLarge from '../../public/assets/image/img-VaccineCardBack_
 import vaccine_status_true from '../../public/assets/image/img-vaccineStatus-true.svg';
 import vaccine_status_false from '../../public/assets/image/img-vaccineStatus-false.svg';
 import vaccine_status_disable from '../../public/assets/image/img-vaccine_status_disable.svg';
+
+import check_default from '../../public/assets/image/img-check-default.svg';
+import check_true from '../../public/assets/image/img-check-true.svg';
+import check_false from '../../public/assets/image/img-check-false.svg';
 
 import ico_vac1 from '../../public/assets/ico/ico-vac1.svg';
 import ico_vac2 from '../../public/assets/ico/ico-vac2.svg';
@@ -166,6 +172,9 @@ export const Images: ImagesType = {
   arrow_left: arrow_left,
   dropdown_up: dropdown_up,
   dropdown_down: dropdown_down,
+  check_default:check_default,
+  check_true :check_true,
+  check_false : check_false,
 
   ico_map_my: ico_map_my,
   ico_map_selec: ico_map_selec,
@@ -186,6 +195,7 @@ export const Images: ImagesType = {
   //image
   vacgom01: Vacgom01,
   vacgom: vacgom,
+  vacgom_face: vacgom_face,
   VaccineCardBack: VaccineCardBack,
   VaccineCardBackLarge: VaccineCardBackLarge,
   vaccine_status_false: vaccine_status_false,

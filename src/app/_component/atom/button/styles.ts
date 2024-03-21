@@ -50,6 +50,10 @@ export const ButtonStyles: CssArchiveType = {
       background-color: ${Colors.KakaoDark};
     }
   `,
+  UnSelect: css`
+    background-color: ${Colors.Gray100};
+    color: ${Colors.Gray700};
+  `,
 };
 
 export const ButtonSizes: CssArchiveType = {
@@ -64,7 +68,7 @@ export const ButtonSizes: CssArchiveType = {
     ${fontGenerator('1rem', '600', '1rem', '-0.3px')}
     padding: 0 1.2rem;
     width: 100%;
-    max-width: 343px;
+    //max-width: 343px;
     height: 56px;
   `,
   medium: css`
@@ -88,13 +92,18 @@ export const ButtonSizes: CssArchiveType = {
     height: 2.5rem;
     ${fontGenerator('1rem', '400')}
   `,
-  xsmall: css``,
+  xsmall: css`
+    ${fontGenerator('14px', '500', '16.71px')}
+    border-radius: 100px;
+  `,
   kakao: css`
     ${fontGenerator('16px', '500', '16px', '-0.3px')}
     padding: 13px 10px;
     width: 100%;
   `,
-  inputButton: css``,
+  refresh: css`
+    padding: 8px 16px;
+  `,
   half: css``,
 };
 

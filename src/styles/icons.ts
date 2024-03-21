@@ -32,8 +32,12 @@ export const Icons = {
     arrow_down: {src: "arrow_down", type: "custom"},
     arrow_right: {src: "arrow_right", type: "custom"},
     arrow_left: {src: "arrow_left", type: "custom"},
-
-
+    
+    check_default: {src: "check_default", type: "custom"},
+    check_true: {src: "check_true", type: "custom"},
+    check_false: {src: "check_false", type: "custom"},
+    
+    
     kakao: {src: "kakao", type: "custom"},
     google: {src: "google", type: "custom"},
     eye: {src: "eye", type: "custom"},
