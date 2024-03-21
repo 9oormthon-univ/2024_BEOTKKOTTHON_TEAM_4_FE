@@ -1,9 +1,11 @@
+'use client';
+
 import React from 'react';
+import { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { Images } from '@globalStyles';
 import Image from 'next/image';
 import styled from '@emotion/styled';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 
 // 다른 페이지 디자인이 안나와서 네비게이션이 전 페이지 다 되는지 안되는지 모르겠네요...
 // 그래서 우선 컴포넌트로 만들고 페이지에 불러와서 사용하도록 구현했습니다
@@ -11,11 +13,36 @@ import { useEffect, useState } from 'react';
 // 우선 사용하는 페이지에서 <NavigationFixed /> 이렇게 불러만 주시면 됩니다
 
 const navItems = [
-  { iconSelected: 'nav_home_selec', iconUnselected: 'nav_home_unselec', label: '홈', route: '/home' },
-  { iconSelected: 'nav_vachistory_selec', iconUnselected: 'nav_vachistory_unselec', label: '접종내역', route: '/vachistory' },
-  { iconSelected: 'nav_map_selec', iconUnselected: 'nav_map_unselec', label: '병원조회', route: '/map' },
-  { iconSelected: 'nav_vaclookup_selec', iconUnselected: 'nav_vaclookup_unselec', label: '백신정보', route: '/vaclookup' },
-  { iconSelected: 'nav_my_selec', iconUnselected: 'nav_my_unselec', label: '마이', route: '/my' },
+  {
+    iconSelected: 'nav_home_selec',
+    iconUnselected: 'nav_home_unselec',
+    label: '홈',
+    route: '/home',
+  },
+  {
+    iconSelected: 'nav_vachistory_selec',
+    iconUnselected: 'nav_vachistory_unselec',
+    label: '접종내역',
+    route: '/vachistory',
+  },
+  {
+    iconSelected: 'nav_map_selec',
+    iconUnselected: 'nav_map_unselec',
+    label: '병원조회',
+    route: '/map',
+  },
+  {
+    iconSelected: 'nav_vaclookup_selec',
+    iconUnselected: 'nav_vaclookup_unselec',
+    label: '백신정보',
+    route: '/vaclookup',
+  },
+  {
+    iconSelected: 'nav_my_selec',
+    iconUnselected: 'nav_my_unselec',
+    label: '마이',
+    route: '/my',
+  },
 ];
 
 const NavigationContainer = styled.div`
@@ -55,6 +82,7 @@ const NavItem = styled.div<{ isActive: boolean }>`
 
 export default function NavigationFixed() {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleNavigation = (route: string) => {
     router.push(route);
@@ -63,28 +91,25 @@ export default function NavigationFixed() {
   const [isDetailPage, setIsDetailPage] = useState(false);
 
   useEffect(() => {
-
-    setIsDetailPage(router.pathname.includes('/detaildis/'));
-  }, [router.pathname]);
-  
+    setIsDetailPage(pathname.includes('/detaildis/'));
+  }, [pathname]);
 
   return (
     <NavigationContainer>
       {navItems.map((item) => {
-        const isActive = isDetailPage ? item.route === '/vaclookup' : router.pathname === item.route;
-        const icon = isActive ? Images[item.iconSelected] : Images[item.iconUnselected];
+        const isActive = isDetailPage
+          ? item.route === '/vaclookup'
+          : pathname === item.route;
+        const icon = isActive
+          ? Images[item.iconSelected]
+          : Images[item.iconUnselected];
         return (
           <NavItem
             key={item.label}
             isActive={isActive}
             onClick={() => handleNavigation(item.route)}
           >
-            <Image
-              src={icon}
-              alt={item.label}
-              width={24}
-              height={24}
-            />
+            <Image src={icon} alt={item.label} width={24} height={24} />
             <span>{item.label}</span>
           </NavItem>
         );

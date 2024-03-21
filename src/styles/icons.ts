@@ -31,12 +31,14 @@ export const Icons = {
 
     arrow_down: {src: "arrow_down", type: "custom"},
     arrow_right: {src: "arrow_right", type: "custom"},
+    arrow_left: {src: "arrow_left", type: "custom"},
 
 
     kakao: {src: "kakao", type: "custom"},
     google: {src: "google", type: "custom"},
     eye: {src: "eye", type: "custom"},
     eyeSlash: {src: "eyeSlash", type: "custom"},
+    share: {src: "share", type: "custom"},
     
     checkBox_selec_dis: {src: "checkBox_selec_dis", type: "custom"},
     checkBox_selec_en: {src: "checkBox_selec_en", type: "custom"},
