@@ -77,7 +77,7 @@ export default function SignupDone(): React.JSX.Element {
       ) : params.type === 'submit' ? (
         <div className="padding">
           <DonePage
-            title={'전예나님의 '}
+            title={'전예나님의'}
             title_bottom={'접종 내역 조회 완료!'}
             content_top={'전예나님의 백신을 확인해 보세요'}
           />
@@ -87,6 +87,9 @@ export default function SignupDone(): React.JSX.Element {
             customStyle={css`
               width: 100%;
             `}
+            onClick={() => {
+              router.push('/moreinfo/dis');
+            }}
           />
         </div>
       ) : (
