@@ -78,8 +78,16 @@ const NavItem = styled.div<{ isActive: boolean }>`
     font-size: 12px;
     font-weight: 500;
     line-height: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media (max-width: 400px) {
+      font-size: 10px;
+    }
   }
 `;
+
 
 const NavigationFixed = () => {
   const router = useRouter();
