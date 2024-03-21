@@ -1,64 +1,34 @@
 import { Colors, fontGenerator } from '@/styles';
 import styled from '@emotion/styled';
 
-export const SignupWrapper = styled.main`
+export const JoinWrap = styled.main`
   height: 62px;
   .input_title {
     ${fontGenerator('14px', '600', '16.71px')}
-    padding-bottom: 8px;
+    padding-bottom: 10px;
   }
   & > .top {
-    padding: 20px 20px;
-    //height: 24px;
-    ${fontGenerator('20px', '700', '23.87px')}
-  }
-  & > .container {
-    & > .item {
-      padding: 14px 20px;
-      & > .item_row {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-        & > .hiden_item {
-          display: flex;
-          flex-direction: row;
-          gap: 6px;
-          & > p {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: ${Colors.Gray600};
-          }
-          margin-right: 24px;
-        }
-      }
+    padding: 18px 20px;
+    ${fontGenerator('20px', '700', '28px')}
+    & > .time_count {
+      ${fontGenerator('14px', '500', '25px')}
+      color: ${Colors.Primary};
+      padding: 10px 0;
     }
   }
-  & > .bottom {
-    & > .confirm_button {
-      border: none;
-      height: 56px;
+  & > .wrap {
+    padding: 10px 20px;
+
+    & > .not {
+      cursor: pointer;
+      margin-top: 12px;
       width: 100%;
-      max-width: 500px;
-      padding: 20px 140px 20px 140px;
-      ${fontGenerator('16px', '600', '16px', '-0.3px')}
-      color: ${Colors.Gray500};
-      background-color: ${Colors.Gray100};
-      position: absolute;
-      bottom: 0;
-    }
-    & > .confirm_button_Filled {
-      border: none;
-      height: 56px;
-      width: 100%;
-      max-width: 500px;
-      padding: 20px 140px 20px 140px;
-      ${fontGenerator('16px', '600', '16px', '-0.3px')}
-      color: ${Colors.White};
-      background-color: ${Colors.Primary};
-      position: absolute;
-      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      ${fontGenerator('14px', '500', '25px')}
+      color: ${Colors.Gray600};
+      text-decoration: underline;
     }
   }
 `;
