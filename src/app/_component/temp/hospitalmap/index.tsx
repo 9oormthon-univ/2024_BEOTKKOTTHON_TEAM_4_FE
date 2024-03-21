@@ -81,7 +81,11 @@ export default function HospitalMap() {
 
         naver.maps.Event.addListener(marker, 'click', () => {
           setSelectedHospitalId(selectedHospitalId === hospital.id ? null : hospital.id);
-          setModalContent(`${hospital.name}<br/>주소: ${hospital.address}<br/>전공: ${hospital.major}`);
+          setModalContent({
+            name: hospital.name,
+            major: hospital.major,
+            address: hospital.address
+          });
           setIsModalOpen(true);
         });
       });
