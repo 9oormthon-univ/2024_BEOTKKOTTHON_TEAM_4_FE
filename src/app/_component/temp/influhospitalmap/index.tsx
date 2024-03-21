@@ -5,7 +5,6 @@ import Tooltip from '@/app/_component/atom/Tooltip';
 import { Modal } from '../../atom/MapModal';
 import ReloadButton from '@/app/_component/atom/ReloadButton';
 
-// Main 컴포넌트 스타일 변경: div id="map"의 스타일을 직접 수정
 const Main = styled.div`
   display: flex;
   flex-direction: column;

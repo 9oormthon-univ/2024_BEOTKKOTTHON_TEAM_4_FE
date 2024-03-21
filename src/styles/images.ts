@@ -79,6 +79,7 @@ import ico_map_my from '../../public/assets/ico/ico-map-my.svg';
 import ico_map_selec from '../../public/assets/ico/ico-map-selec.svg';
 import ico_map_unselec from '../../public/assets/ico/ico-map-unselec.svg';
 import ico_map_tooltip from '../../public/assets/ico/ico-map-tooltip.svg';
+import ico_map_influ_tooltip from '../../public/assets/ico/ico-map-influ-tooltip.svg';
 import ico_map_tooltip_button from '../../public/assets/ico/ico-map-tooltip-button.svg';
 import ico_map_reload from '../../public/assets/ico/ico-map-reload.svg';
 
@@ -150,6 +151,7 @@ export const Images: ImagesType = {
   ico_map_selec:  ico_map_selec,
   ico_map_unselec: ico_map_unselec,
   ico_map_tooltip: ico_map_tooltip,
+  ico_map_influ_tooltip: ico_map_influ_tooltip,
   ico_map_tooltip_button: ico_map_tooltip_button,
   ico_map_reload: ico_map_reload,
 
