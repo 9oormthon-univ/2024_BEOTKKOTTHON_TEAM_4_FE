@@ -71,7 +71,7 @@ export default function MoreIdentity(): React.JSX.Element {
               placeholder="뒷자리 입력"
               value={params.identity_last}
               type="text"
-              maxLength={6}
+              maxLength={7}
               onChange={(e) => {
                 onChangeValue('identity_last', filterNumericInput(e));
               }}

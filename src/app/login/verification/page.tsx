@@ -18,11 +18,9 @@ export default function Verification(): React.JSX.Element {
   const handleNextButtonClick = () => {
     if (password.length >= 5) {
       // router.push('/signup/done?type=helpalready');
-      router.push('/signup/done?type=helpnew');
+      router.push('/signup/done?type=loginEnd');
 
       // @Todo 여기에 api 호출
-      // api 호출 했는데 이미 가입한 계정이면 /signup/done?type=helpalready
-      // api 호출 했는데 신규 가입이면 /signup/done?type=helpnew
     }
   };
   const MINUTES_IN_MS = 3 * 60 * 1000;
@@ -51,7 +49,7 @@ export default function Verification(): React.JSX.Element {
 
   return (
     <VerificationWrap>
-      <BackHeader title={'본인인증'} url={'/signup'} />
+      <BackHeader title={'아이디/비밀번호 찾기'} url={''} />
       <div className="top">
         문자로 전송받은 <br />
         인증번호 6자리를 입력해 주세요.
