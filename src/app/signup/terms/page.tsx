@@ -11,6 +11,7 @@ import { OnChangeValueType } from '@/types/globalType';
 import * as queryString from 'querystring';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useQueryParams } from '@/hooks/useParam';
+import Button from '@/app/_component/atom/button/button';
 
 export default function Terms(): React.JSX.Element {
   const router = useRouter();
