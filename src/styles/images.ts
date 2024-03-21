@@ -49,6 +49,10 @@ import VaccineCardBack from '../../public/assets/image/img-VaccineCard-back.svg'
 import vaccine_status_true from '../../public/assets/image/img-vaccineStatus-true.svg';
 import vaccine_status_false from '../../public/assets/image/img-vaccineStatus-false.svg';
 
+import check_default from '../../public/assets/image/img-check-default.svg';
+import check_true from '../../public/assets/image/img-check-true.svg';
+import check_false from '../../public/assets/image/img-check-false.svg';
+
 import ico_vac1 from '../../public/assets/ico/ico-vac1.svg';
 import ico_vac2 from '../../public/assets/ico/ico-vac2.svg';
 import ico_vac3 from '../../public/assets/ico/ico-vac-none.svg';
@@ -142,6 +146,9 @@ export const Images: ImagesType = {
   arrow_left: arrow_left,
   dropdown_up: dropdown_up,
   dropdown_down: dropdown_down,
+  check_default:check_default,
+  check_true :check_true,
+  check_false : check_false,
 
   //image
   vacgom01: Vacgom01,
