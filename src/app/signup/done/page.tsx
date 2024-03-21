@@ -102,6 +102,9 @@ export default function SignupDone(): React.JSX.Element {
             customStyle={css`
               width: 100%;
             `}
+            onClick={() => {
+              router.push('/signup/moreidentity');
+            }}
           />
         </div>
       )}
