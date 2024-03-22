@@ -52,7 +52,7 @@ export default function Signup(): React.JSX.Element {
       localStorage.setItem('identity_last', params.identity_last);
       localStorage.setItem('userName', params.userName);
       localStorage.setItem('phoneNumber', params.phoneNumber);
-      localStorage.setItem('telecom', params.phoneNumber);
+      localStorage.setItem('telecom', params.telecom);
 
       let telecom = localStorage.getItem('telecom');
       if (telecom !== 'undefined' || telecom !== null) {
