@@ -30,9 +30,7 @@ export default function Signup(): React.JSX.Element {
   // api 요청 시 identity_first 을 parseIdentity 사용하여 변환
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [openVarifi, setOpenVarifi] = useState(false);
   const router = useRouter();
-  console.log(params);
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
       ...prevState,
@@ -42,8 +40,27 @@ export default function Signup(): React.JSX.Element {
 
   const handleNextButtonClick = () => {
     if (checkParamsFilled(params)) {
-      setOpenVarifi(true);
-      router.push('/signup/more?');
+      console.log(params);
+      localStorage.setItem('identity_first', params.identity_first);
+      localStorage.setItem('identity_last', params.identity_last);
+      localStorage.setItem('userName', params.userName);
+      localStorage.setItem('phoneNumber', params.phoneNumber);
+      localStorage.setItem('telecom', params.phoneNumber);
+      let identity_first = localStorage.getItem('identity_first');
+      let identity_last = localStorage.getItem('identity_last');
+      let userName = localStorage.getItem('userName');
+      let phoneNumber = localStorage.getItem('phoneNumber');
+      let telecom = localStorage.getItem('telecom');
+
+      console.log('identity_first: ', identity_first);
+      console.log('identity_last: ', identity_last);
+      console.log('userName: ', userName);
+      console.log('phoneNumber: ', phoneNumber);
+      console.log('telecom: ', telecom);
+      console.log('telecom: 왜 콘솔 ㅈ기히니?');
+      // if (telecom !== 'undefined' || telecom !== null) {
+      //   router.push('/signup/more?');
+      // }
     }
   };
 
