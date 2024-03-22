@@ -60,25 +60,26 @@ import check_false from '../../public/assets/image/img-check-false.svg';
 
 import ico_vac1 from '../../public/assets/ico/ico-vac1.svg';
 import ico_vac2 from '../../public/assets/ico/ico-vac2.svg';
-import ico_vac3 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac3 from '../../public/assets/ico/ico-vac4.svg';
 import ico_vac4 from '../../public/assets/ico/ico-vac4.svg';
-import ico_vac5 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac5 from '../../public/assets/ico/ico-vac5.svg';
 import ico_vac6 from '../../public/assets/ico/ico-vac6.svg';
 import ico_vac7 from '../../public/assets/ico/ico-vac7.svg';
 import ico_vac8 from '../../public/assets/ico/ico-vac8.svg';
 import ico_vac9 from '../../public/assets/ico/ico-vac9.svg';
 import ico_vac10 from '../../public/assets/ico/ico-vac10.svg';
-import ico_vac11 from '../../public/assets/ico/ico-vac-none.svg';
-import ico_vac12 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac11 from '../../public/assets/ico/ico-vac11.svg';
+import ico_vac12 from '../../public/assets/ico/ico-vac12.svg';
 import ico_vac13 from '../../public/assets/ico/ico-vac13.svg';
-import ico_vac14 from '../../public/assets/ico/ico-vac-none.svg';
-import ico_vac15 from '../../public/assets/ico/ico-vac-none.svg';
-import ico_vac16 from '../../public/assets/ico/ico-vac-none.svg';
-import ico_vac17 from '../../public/assets/ico/ico-vac-none.svg';
-import ico_vac18 from '../../public/assets/ico/ico-vac-none.svg';
-import ico_vac19 from '../../public/assets/ico/ico-vac-none.svg';
-import ico_vac20 from '../../public/assets/ico/ico-vac-none.svg';
-import ico_vac21 from '../../public/assets/ico/ico-vac-none.svg';
+import ico_vac14 from '../../public/assets/ico/ico-vac14.svg';
+import ico_vac15 from '../../public/assets/ico/ico-vac15.svg';
+import ico_vac16 from '../../public/assets/ico/ico-vac16.svg';
+import ico_vac17 from '../../public/assets/ico/ico-vac17.svg';
+import ico_vac18 from '../../public/assets/ico/ico-vac4.svg';
+import ico_vac19 from '../../public/assets/ico/ico-vac4.svg';
+import ico_vac20 from '../../public/assets/ico/ico-vac7.svg';
+import ico_vac21 from '../../public/assets/ico/ico-vac7.svg';
+import ico_vac22 from '../../public/assets/ico/ico-vac22.svg';
 
 // 감염병 세부 페이지에 들어가는 요소들
 import ico_check_filled from '../../public/assets/ico/ico-check-filled.svg';
@@ -103,6 +104,7 @@ import ico_map_home from '../../public/assets/ico/ico-map-home.svg';
 // 홈화면에 들어가는 이미지들
 import ico_home_greet from '../../public/assets/ico/ico-home-greet.svg';
 import ico_syringe from '../../public/assets/ico/ico-syringe.svg';
+import ico_none_syringe from '../../public/assets/ico/ico-none-syringe.svg';
 
 //알람창에 들어가는 이미지들
 import ico_alert_clock from '../../public/assets/ico/ico-alert-clock.svg';
@@ -172,6 +174,7 @@ export const Images: ImagesType = {
   ico_vac19: ico_vac19,
   ico_vac20: ico_vac20,
   ico_vac21: ico_vac21,
+  ico_vac22: ico_vac22,
   ico_check_filled: ico_check_filled,
   ico_pin_selec: ico_pin_selec,
   ico_pin_unselec: ico_pin_unselec,
@@ -197,6 +200,7 @@ export const Images: ImagesType = {
   ico_map_home: ico_map_home,
   ico_home_greet: ico_home_greet,
   ico_syringe: ico_syringe,
+  ico_none_syringe: ico_none_syringe,
 
   ico_alert_clock:ico_alert_clock,
   ico_alert_fail: ico_alert_fail,

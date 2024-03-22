@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import styled from '@emotion/styled';
 import { hospitals } from '@/utils/influ-api';
 import Tooltip from '@/app/_component/atom/Tooltip';
+import { Images } from '@globalStyles';
 import { Modal } from '../../atom/MapModal';
 import ReloadButton from '@/app/_component/atom/ReloadButton';
 
@@ -130,7 +131,7 @@ export default function HospitalMap() {
     >
       <MapContainer id="map">
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
-        <Tooltip />
+        <Tooltip tooltipImage={{ button: Images.ico_map_tooltip_button, content: Images.ico_map_influ_tooltip }} />
         <ReloadButton onClick={handleCurrentLocationClick} />
         <Modal
           isOpen={isModalOpen}
