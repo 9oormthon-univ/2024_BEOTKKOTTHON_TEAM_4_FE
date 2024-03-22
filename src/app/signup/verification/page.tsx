@@ -30,31 +30,6 @@ export default function Verification(): React.JSX.Element {
   );
   const second = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, '0');
 
-  const handleNextButtonClick = async () => {
-    if (password.length >= 5) {
-      try {
-        const response = await postSMSCode(password);
-        console.log('sms 인증 성공:', response);
-        if (response.success) {
-          LocalStorage.setItem('type', 'helpnew');
-          router.push(`/signup/done`);
-        } else {
-          LocalStorage.setItem('type', 'helpalready');
-          router.push(`/signup/done`);
-        }
-      } catch (error) {
-        console.error('sms 실패:', error.message);
-        console.error('sms 성공여부', error.success);
-        if (error.message === 'USER_ALREADY_REGISTERED') {
-          LocalStorage.setItem('type', 'helpalready');
-          router.push(`/signup/done`);
-        }
-      }
-      // api 호출 했는데 이미 가입한 계정이면 /signup/done?type=helpalready
-      // api 호출 했는데 신규 가입이면 /signup/done?type=helpnew
-    }
-  };
-
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => prevTime - INTERVAL);
