@@ -47,17 +47,8 @@ export default function Signup(): React.JSX.Element {
       localStorage.setItem('userName', params.userName);
       localStorage.setItem('phoneNumber', params.phoneNumber);
       localStorage.setItem('telecom', params.phoneNumber);
-      let identity_first = localStorage.getItem('identity_first');
-      let identity_last = localStorage.getItem('identity_last');
-      let userName = localStorage.getItem('userName');
-      let phoneNumber = localStorage.getItem('phoneNumber');
-      let telecom = localStorage.getItem('telecom');
 
-      console.log('identity_first: ', identity_first);
-      console.log('identity_last: ', identity_last);
-      console.log('userName: ', userName);
-      console.log('phoneNumber: ', phoneNumber);
-      console.log('telecom: ', telecom);
+      let telecom = localStorage.getItem('telecom');
       if (telecom !== 'undefined' || telecom !== null) {
         router.push('/signup/more');
       }
@@ -65,7 +56,7 @@ export default function Signup(): React.JSX.Element {
   };
 
   const handleAgencySelect = (selectedOptions: string[]) => {
-    onChangeValue('telecom', selectedOptions);
+    onChangeValue('telecom', selectedOptions[0]);
     setIsModalOpen(false);
   };
   const resetAgencyOptions = () => {

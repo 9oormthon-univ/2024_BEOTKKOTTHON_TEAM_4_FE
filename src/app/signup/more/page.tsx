@@ -20,6 +20,7 @@ import {
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
+import { postSignup } from '@/app/_lib/postSignup';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -27,7 +28,15 @@ export default function Signup(): React.JSX.Element {
     password: '',
     password_check: '',
   });
+  const [validate, setValidate] = useState<ParamsType>({
+    id: { condition1: 'default', condition2: 'default' },
+    password: { condition1: 'default', condition2: 'default' },
+    password_check: { condition1: 'default' },
+  });
+
   console.log(params);
+
+  //이전 페이지 데이터 끌고 오는
   if (typeof window !== 'undefined') {
     useEffect(() => {
       let identity_first = localStorage.getItem('identity_first');
@@ -46,12 +55,6 @@ export default function Signup(): React.JSX.Element {
     }, []);
   }
 
-  const [validate, setValidate] = useState<ParamsType>({
-    id: { condition1: 'default', condition2: 'default' },
-    password: { condition1: 'default', condition2: 'default' },
-    password_check: { condition1: 'default' },
-  });
-
   const router = useRouter();
   const allConditionsTrue = isAllConditionsTrue(validate);
 
@@ -63,14 +66,20 @@ export default function Signup(): React.JSX.Element {
     updateValidation(field, value);
   };
 
-  const handleNextButtonClick = () => {
+  const handleNextButtonClick = async () => {
     if (allConditionsTrue) {
       router.push('/signup/captcha');
 
-      // @Todo secureLocalStorage 저장 로직 필요
+      try {
+        const response = await postSignup(params);
+        console.log('Signup successful:', response);
+      } catch (error) {
+        console.error('Signup failed:', error.message);
+      }
     }
   };
 
+  // 값 validation 체크 및 업데이트
   const updateValidation = (field: string, value: string) => {
     switch (field) {
       case 'id':
