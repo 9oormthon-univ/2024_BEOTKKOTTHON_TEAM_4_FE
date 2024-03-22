@@ -35,6 +35,7 @@ const DiseaseContainer = styled.div`
   flex-wrap: wrap;
   gap: 30px;
   justify-content: center;
+  margin-bottom: 100px;
 `;
 
 const EssentialDiseaseSection = ({ selectedSection }) => {
