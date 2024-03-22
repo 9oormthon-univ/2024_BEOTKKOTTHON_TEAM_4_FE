@@ -13,7 +13,7 @@ export async function postSignup(userData) {
   } = userData;
 
   const update_identity = parseIdentity(identity_first);
-  const mappedTelecom = mapTelecom(telecom); // Map telecom value
+  const mappedTelecom = mapTelecom(telecom);
 
   const api_params = JSON.stringify({
     userName: userName,
