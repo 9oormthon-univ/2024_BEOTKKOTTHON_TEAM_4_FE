@@ -9,11 +9,11 @@ import { Colors, Icons, Images } from '@globalStyles';
 import Button from '../../atom/button/button';
 
 type props = {
-  more: boolean;
+  more?: boolean;
   title: string;
-  title_bottom: string;
-  content_top: string;
-  content_bottom: string;
+  title_bottom?: string;
+  content_top?: string;
+  content_bottom?: string;
 };
 const DonePage: React.FC<props> = ({
   more,

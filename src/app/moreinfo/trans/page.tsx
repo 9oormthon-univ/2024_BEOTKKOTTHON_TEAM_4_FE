@@ -9,34 +9,46 @@ import BottomButton from '@/app/_component/atom/BottomButton';
 
 import { useRouter } from 'next/navigation';
 import { useQueryParams } from '@/hooks/useParam';
+import { Suspense, useState } from 'react';
+import { OnChangeValueType, ParamsType } from '@/types/globalType';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
-  const { queryparams, onChangeValue } = useQueryParams();
-
   const handleClick = () => {
     router.push(`/moreinfo/trans`);
   };
 
+  const [params, setParams] = useState<ParamsType>({
+    medYn: '',
+  });
+  const onChangeValue: OnChangeValueType = (field, value) => {
+    setParams((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
+
   return (
-    <JoinWrap>
-      <BackHeader title={' '} url={'/moreinfo/med'} counter={4} />
-      <JoinTemplate
-        title={'의료기관 종사자이신가요?'}
-        subTop={'의료기관 종사자에게 '}
-        subBottom={'꼭 필요한 백신을 알려드릴게요'}
-        falseLabel={'의료기관 종사자가 아니에요'}
-        trueLabel={'의료기관 종사자에요'}
-        params={queryparams}
-        field={'medYn'}
-        onChangeValue={onChangeValue}
-      />
-      <BottomButton
-        filled={queryparams.signupState === false}
-        handleNextButtonClick={() => {
-          handleClick();
-        }}
-      />
-    </JoinWrap>
+    <Suspense fallback={<div>Loading...</div>}>
+      <JoinWrap>
+        <BackHeader title={' '} url={'/moreinfo/med'} counter={4} />
+        <JoinTemplate
+          title={'의료기관 종사자이신가요?'}
+          subTop={'의료기관 종사자에게 '}
+          subBottom={'꼭 필요한 백신을 알려드릴게요'}
+          falseLabel={'의료기관 종사자가 아니에요'}
+          trueLabel={'의료기관 종사자에요'}
+          params={params}
+          field={'medYn'}
+          onChangeValue={onChangeValue}
+        />
+        <BottomButton
+          filled={params.signupState === false}
+          handleNextButtonClick={() => {
+            handleClick();
+          }}
+        />
+      </JoinWrap>
+    </Suspense>
   );
 }
