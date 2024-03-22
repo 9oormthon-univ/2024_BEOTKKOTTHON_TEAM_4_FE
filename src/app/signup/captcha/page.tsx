@@ -24,7 +24,7 @@ export default function Captcha(): React.JSX.Element {
       try {
         const response = await postchallenge(password);
         console.log('Signup successful:', response);
-        router.push(`/signup/verification?${}`);
+        router.push(`/signup/verification`);
       } catch (error) {
         console.error('Signup failed:', error.message);
       }

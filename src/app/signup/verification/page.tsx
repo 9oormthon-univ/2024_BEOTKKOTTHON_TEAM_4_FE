@@ -10,17 +10,28 @@ import { Fragment, useEffect, useState } from 'react';
 import VerificationInput from '../../_component/atom/verificationInput';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import BottomButton from '@/app/_component/atom/BottomButton';
-import { router, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { postchallenge } from '@/app/_lib/postchallenge';
+import { postSMSCode } from '@/app/_lib/postSMSCode';
 
 export default function Verification(): React.JSX.Element {
   const router = useRouter();
   const [password, setPassword] = useState('');
-  const handleNextButtonClick = () => {
+  const handleNextButtonClick = async () => {
     if (password.length >= 5) {
-      // router.push('/signup/done?type=helpalready');
       router.push('/signup/done?type=helpnew');
-
-      // @Todo 여기에 api 호출
+      try {
+        const response = await postSMSCode(password);
+        console.log('Signup successful:', response);
+        if (response.success) {
+          localStorage.setItem('smsCodetype', 'helpnew');
+        } else {
+          localStorage.setItem('smsCodeSuccess', 'helpalready');
+        }
+        router.push(`/signup/done`);
+      } catch (error) {
+        console.error('Signup failed:', error.message);
+      }
       // api 호출 했는데 이미 가입한 계정이면 /signup/done?type=helpalready
       // api 호출 했는데 신규 가입이면 /signup/done?type=helpnew
     }
