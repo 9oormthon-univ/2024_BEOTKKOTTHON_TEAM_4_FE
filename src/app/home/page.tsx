@@ -17,6 +17,7 @@ import NavigationFixed from '@/app/_component/organism/navigationFixed';
 import HomeDiseaseCard from '@/app/_component/atom/HomeDiseaseCard';
 import styled from '@emotion/styled';
 import Image from 'next/image';
+import NoneHome from '@/app/_component/atom/NoneHome';
 
 const GreetingContainer = styled.div`
   text-align: left;
@@ -75,53 +76,48 @@ export default function Home() {
         <ImageContainer>
           <Image src={Images.ico_home_greet} alt="추천하는 이미지" />
         </ImageContainer>
+        {/* 추천된 백신 섹션 */}
         <div className="body_wrap">
           <div className="content_head">
-            <MenuTitle
-              title={`${userName}님을 위한 추천 백신`}
-              rightIconUrl={'/recomvac'}
-            />
+            <MenuTitle title={`${userName}님을 위한 추천 백신`} rightIconUrl={'/recomvac'} />
           </div>
           <div className="content_body">
-            {recommendVaccine.map((disease) => (
-              <HomeDiseaseCard
-                key={disease.id}
-                diseaseName={disease.vacName}
-                imageUrl={disease.iconsImage}
-              />
-            ))}
+            {recommendVaccine.length > 0 ? (
+              recommendVaccine.map((disease) => (
+                <HomeDiseaseCard key={disease.id} diseaseName={disease.vacName} imageUrl={disease.iconsImage} />
+              ))
+            ) : (
+              <NoneHome title="앗! 추천 백신이 없어요" />
+            )}
+          </div>
+        </div>
+        {/* 누락된 백신 섹션 */}
+        <div className="body_wrap">
+          <div className="content_head">
+            <MenuTitle title="누락된 백신" rightIconUrl={'/failvac'} />
+          </div>
+          <div className="content_body">
+            {failedVaccine.length > 0 ? (
+              failedVaccine.map((disease) => (
+                <HomeDiseaseCard key={disease.id} diseaseName={disease.vacName} imageUrl={disease.iconsImage} />
+              ))
+            ) : (
+              <NoneHome title="앗! 누락된 백신이 없어요" />
+            )}
           </div>
         </div>
         <div className="body_wrap">
           <div className="content_head">
-            <MenuTitle
-              title={'누락된 백신'}
-              rightIconUrl={'/failvac'}
-            />
+            <MenuTitle title="접종 인증서" rightIconUrl={'/vachistory/certificate/list'} />
           </div>
           <div className="content_body">
-            {failedVaccine.map((disease) => (
-              <HomeDiseaseCard
-                key={disease.id}
-                diseaseName={disease.vacName}
-                imageUrl={disease.iconsImage}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="body_wrap">
-          <div className="content_head">
-            <MenuTitle
-              title={'접종 인증서'}
-              rightIconUrl={'/vachistory/certificate/list'}
-            />
-          </div>
-          <div className="content_body">
+          {/* 접종 인증서 있을 때 */}
+          {/* <VaccineCard variant={'small'} image={Images.vacgom01} />
             <VaccineCard variant={'small'} image={Images.vacgom01} />
             <VaccineCard variant={'small'} image={Images.vacgom01} />
             <VaccineCard variant={'small'} image={Images.vacgom01} />
-            <VaccineCard variant={'small'} image={Images.vacgom01} />
-            <VaccineCard variant={'small'} image={Images.vacgom01} />
+            <VaccineCard variant={'small'} image={Images.vacgom01} /> */}
+            <NoneHome title="앗! 접종 인증서가 없어요" />
           </div>
         </div>
         <NavigationFixed />

@@ -103,6 +103,7 @@ import ico_map_home from '../../public/assets/ico/ico-map-home.svg';
 // 홈화면에 들어가는 이미지들
 import ico_home_greet from '../../public/assets/ico/ico-home-greet.svg';
 import ico_syringe from '../../public/assets/ico/ico-syringe.svg';
+import ico_none_syringe from '../../public/assets/ico/ico-none-syringe.svg';
 
 //알람창에 들어가는 이미지들
 import ico_alert_clock from '../../public/assets/ico/ico-alert-clock.svg';
@@ -197,6 +198,7 @@ export const Images: ImagesType = {
   ico_map_home: ico_map_home,
   ico_home_greet: ico_home_greet,
   ico_syringe: ico_syringe,
+  ico_none_syringe: ico_none_syringe,
 
   ico_alert_clock:ico_alert_clock,
   ico_alert_fail: ico_alert_fail,
