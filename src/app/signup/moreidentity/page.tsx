@@ -16,6 +16,7 @@ import {
   parseIdentity,
   filterNumericInput,
   checkParamsFilled,
+  LocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import { postchallenge } from '@/app/_lib/postchallenge';
@@ -46,7 +47,7 @@ export default function MoreIdentity(): React.JSX.Element {
         const response = await postRegister(params);
         console.log('Signup successful:', response);
         if (response.success) {
-          localStorage.setItem('type', 'submit');
+          LocalStorage.setItem('type', 'submit');
           router.push(`/signup/done`);
         } else {
           setError(response.message);

@@ -11,11 +11,12 @@ import BackHeader from '@/app/_component/molecule/BackHeader';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import { postSignup } from '@/app/_lib/postSignup';
 import { postchallenge } from '@/app/_lib/postchallenge';
+import { LocalStorage } from '@/hooks/useUtil';
 
 export default function Captcha(): React.JSX.Element {
   const [password, setPassword] = React.useState(''); //현재 입력된 숫자
   const router = useRouter();
-  let secureNoImage = localStorage.getItem('secureNoImage');
+  let secureNoImage = LocalStorage.getItem('secureNoImage');
 
   const handleNextButtonClick = async () => {
     if (password.length >= 5) {

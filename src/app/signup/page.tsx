@@ -13,6 +13,7 @@ import * as queryString from 'querystring';
 import { useRouter } from 'next/navigation';
 import { useQueryParams } from '@/hooks/useParam';
 import { fetchAccessToken } from '@/hooks/useKakaoLogin';
+import { LocalStorage } from '@/hooks/useUtil';
 
 export default function Signup(): React.JSX.Element {
   const router = useRouter();
@@ -48,7 +49,7 @@ export default function Signup(): React.JSX.Element {
         const response = await fetchAccessToken(code);
         console.log(response);
         if (response.accessToken) {
-          localStorage.setItem('accessToken', response.accessToken);
+          LocalStorage.setItem('accessToken', response.accessToken);
         }
       }
     };
