@@ -25,6 +25,7 @@ import {
 import BottomButton from '@/app/_component/atom/BottomButton';
 import secureLocalStorage from 'react-secure-storage';
 import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
+import { postSignup } from '@/app/_lib/postSignup';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -44,19 +45,31 @@ export default function Signup(): React.JSX.Element {
       [field]: value,
     }));
   };
+
+  //이전 페이지 데이터 끌고 오는
+  if (typeof window !== 'undefined') {
+    useEffect(() => {
+      let id = localStorage.getItem('id');
+      let password = localStorage.getItem('password');
+      let secureid = secureLocalStorage.getItem('id');
+      let securepassword = secureLocalStorage.getItem('password');
+      console.log('secure', secureid, securepassword);
+
+      setParams({
+        ...params,
+        id,
+        password,
+      });
+    }, []);
+  }
+
   const handleNextButtonClick = () => {
     if (checkParamsFilled(params)) {
-      console.log(params);
-      localStorage.setItem('identity_first', params.identity_first);
-      secureLocalStorage.setItem('identity_first', params.identity_first);
-      localStorage.setItem('identity_last', params.identity_last);
-      localStorage.setItem('userName', params.userName);
-      localStorage.setItem('phoneNumber', params.phoneNumber);
-      localStorage.setItem('telecom', params.telecom);
-
-      let telecom = localStorage.getItem('telecom');
-      if (telecom !== 'undefined' || telecom !== null) {
-        router.push('/signup/more');
+      try {
+        const response = await postSignup(params);
+        console.log('Signup successful:', response);
+      } catch (error) {
+        console.error('Signup failed:', error.message);
       }
     }
   };

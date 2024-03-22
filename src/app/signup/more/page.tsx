@@ -21,6 +21,7 @@ import {
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
 import { postSignup } from '@/app/_lib/postSignup';
+import secureLocalStorage from 'react-secure-storage';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -35,25 +36,6 @@ export default function Signup(): React.JSX.Element {
   });
 
   console.log(params);
-
-  //이전 페이지 데이터 끌고 오는
-  if (typeof window !== 'undefined') {
-    useEffect(() => {
-      let identity_first = localStorage.getItem('identity_first');
-      let identity_last = localStorage.getItem('identity_last');
-      let userName = localStorage.getItem('userName');
-      let phoneNumber = localStorage.getItem('phoneNumber');
-      let telecom = localStorage.getItem('telecom');
-      setParams({
-        ...params,
-        identity_first,
-        identity_last,
-        userName,
-        phoneNumber,
-        telecom,
-      });
-    }, []);
-  }
 
   const router = useRouter();
   const allConditionsTrue = isAllConditionsTrue(validate);
@@ -70,11 +52,14 @@ export default function Signup(): React.JSX.Element {
     if (allConditionsTrue) {
       router.push('/signup/captcha');
 
-      try {
-        const response = await postSignup(params);
-        console.log('Signup successful:', response);
-      } catch (error) {
-        console.error('Signup failed:', error.message);
+      secureLocalStorage.setItem('id', params.password);
+      secureLocalStorage.setItem('password', params.password);
+      localStorage.setItem('id', params.identity_last);
+      localStorage.setItem('password', params.userName);
+
+      let telecom = localStorage.getItem('telecom');
+      if (telecom !== 'undefined' || telecom !== null) {
+        router.push('/signup/info');
       }
     }
   };
@@ -158,7 +143,7 @@ export default function Signup(): React.JSX.Element {
             placeholder="영문, 숫자, 특수문자 조합 9자 이상"
             value={params.password}
             descriptionTop={'예방접종도우미 비밀번호'}
-            type="text"
+            type="password"
             variant={
               validate.password.condition1 === 'false' ||
               validate.password.condition2 === 'false'
@@ -185,7 +170,7 @@ export default function Signup(): React.JSX.Element {
             placeholder="비밀번호를 다시 입력해 주세요"
             value={params.password_check}
             descriptionTop={'비밀번호 확인'}
-            type="text"
+            type="password"
             variant={
               validate.password_check.condition1 === 'false'
                 ? 'error'

@@ -25,7 +25,7 @@ export default function Terms(): React.JSX.Element {
     }));
   };
   const handleClick = () => {
-    router.push('/signup/info');
+    router.push('/signup/more');
   };
 
   return (

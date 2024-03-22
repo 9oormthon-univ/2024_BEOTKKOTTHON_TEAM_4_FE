@@ -39,18 +39,7 @@ export default function Verification(): React.JSX.Element {
           height={140}
         />
       </div>
-      <div className="refresh">
-        <Button
-          prevIcon={Icons.refresh}
-          label={'다른 문자 보기'}
-          variant={'OutlineWhite'}
-          size={'refresh'}
-          customStyle={css`
-            border-radius: 26px;
-          `}
-          onClick={onClickRefresh}
-        />
-      </div>
+      <div className="refresh"></div>
       <div className="wrap">
         <VerificationInput
           inputLength={5}
