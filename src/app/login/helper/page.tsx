@@ -10,7 +10,11 @@ import { useRouter } from 'next/navigation';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import InputForm from '@/app/_component/atom/InputForm';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
-import { checkParamsFilled, LocalStorage } from '@/hooks/useUtil';
+import {
+  checkParamsFilled,
+  LocalStorage,
+  SecureLocalStorage,
+} from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import Link from 'next/link';
 import { postSignup } from '@/app/_lib/postSignup';
@@ -53,8 +57,8 @@ export default function HelperLogin(): React.JSX.Element {
       try {
         const response = await postLogin(params);
         console.log('로그인 successful:', response);
-        LocalStorage.setItem('id', params.id);
-        LocalStorage.setItem('password', params.password);
+        SecureLocalStorage.setItem('id', params.id);
+        SecureLocalStorage.setItem('password', params.password);
         LocalStorage.setItem('type', 'loginEnd');
         router.push(`/signup/done`);
       } catch (error) {
