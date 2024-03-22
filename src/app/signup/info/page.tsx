@@ -65,7 +65,7 @@ export default function Signup(): React.JSX.Element {
   /**
    *  api 호출
    */
-  const handleNextButtonClick = () => {
+  const handleNextButtonClick = async () => {
     if (checkParamsFilled(params)) {
       try {
         const response = await postSignup(params);
