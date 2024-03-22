@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Images } from '@/styles';
 
 interface VaccineDetailType {
-  vaccineDose?: boolean;
+  vaccineDose?: string;
   inoculationAgency?: string;
   inoculatedAt?: string;
   vaccineProductName?: string;
@@ -20,7 +20,7 @@ interface VaccineDetailType {
 //   lotNo : 일련번호
 
 export default function VaccineDetail({
-  vaccineDose = 1,
+  vaccineDose,
   inoculationAgency = '경상남도 창원시 창원보건소',
   inoculatedAt = '2010.10.28',
   vaccineProductName = '플루HA코박스PF주',
@@ -31,7 +31,7 @@ export default function VaccineDetail({
     <VaccineDetailContainer>
       <div className="container">
         <div className="top">
-          <div className="vaccineDose">{vaccineDose}차</div>
+          <div className="vaccineDose">{vaccineDose}</div>
           <div className="inoculatedAt">{inoculatedAt}</div>
         </div>
         <div className="inoculationAgency">{inoculationAgency}</div>
