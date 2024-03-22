@@ -1,11 +1,9 @@
 import { apiUrl } from '@/hooks/api';
 import { mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
-export async function postSMSCode(params) {
-  const { code } = params;
-
+export async function postSMSCode(password) {
   const api_params = JSON.stringify({
-    code: code,
+    code: password,
     type: 'SMS',
   });
 
