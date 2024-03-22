@@ -1,7 +1,7 @@
 import { apiDevUrl } from '@/hooks/api';
-import { mapTelecom, parseIdentity } from '@/hooks/useUtil';
+import { LocalStorage, mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
-export async function postFinalInfo(userData) {
+export async function postVacSignup(userData) {
   const api_params = JSON.stringify({
     memberInfo: { userData },
     vaccinationInfo: {
@@ -14,7 +14,8 @@ export async function postFinalInfo(userData) {
 
   console.log(api_params);
 
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = LocalStorage.getItem('accessToken');
+
   try {
     const res = await fetch(`${apiDevUrl}/member/signup`, {
       method: 'POST',
@@ -31,7 +32,7 @@ export async function postFinalInfo(userData) {
     }
 
     const responseData = await res.json();
-
+    LocalStorage.setItem('accessToken', responseData.token.accessToken);
     return responseData;
   } catch (error) {
     console.error('Error during POST request:', error);

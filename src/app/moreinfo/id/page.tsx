@@ -20,7 +20,7 @@ import {
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
-import { postFinalInfo } from '@/app/_lib/postFinalInfo';
+import { postVacSignup } from '@/app/_lib/postVacSignup';
 
 export default function Id(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -79,7 +79,7 @@ export default function Id(): React.JSX.Element {
   const handleNextButtonClick = async () => {
     if (allConditionsTrue) {
       try {
-        const response = await postFinalInfo(params);
+        const response = await postVacSignup(params);
         if (response.success) {
           router.push('/moreinfo/welcome');
         }

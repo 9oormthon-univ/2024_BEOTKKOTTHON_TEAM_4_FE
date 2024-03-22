@@ -1,5 +1,5 @@
 import { apiUrl } from '@/hooks/api';
-import { mapTelecom, parseIdentity } from '@/hooks/useUtil';
+import { LocalStorage, mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
 export async function postFind(userData) {
   const { userName, identity_first, identity_last, telecom, phoneNumber } =
@@ -17,7 +17,7 @@ export async function postFind(userData) {
 
   console.log(api_params);
 
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = LocalStorage.getItem('accessToken');
   try {
     const res = await fetch(`${apiUrl}/reset-password`, {
       method: 'POST',

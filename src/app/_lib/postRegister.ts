@@ -1,5 +1,5 @@
 import { apiUrl } from '@/hooks/api';
-import { mapTelecom, parseIdentity } from '@/hooks/useUtil';
+import { LocalStorage, mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
 /** 비
  * 밀번호 전송
@@ -16,7 +16,7 @@ export async function postRegister(params) {
 
   console.log(api_params);
 
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = LocalStorage.getItem('accessToken');
 
   try {
     const res = await fetch(`${apiUrl}/register-rnn`, {

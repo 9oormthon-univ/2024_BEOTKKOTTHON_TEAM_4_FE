@@ -4,10 +4,11 @@ import '../app/globals.css';
 import Layout from '../app/layout';
 import 'react-tooltip/dist/react-tooltip.css';
 import { useEffect } from 'react';
+import { LocalStorage } from '@/hooks/useUtil';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = LocalStorage.getItem('accessToken');
     if (accessToken) {
       console.log('Access Token:', accessToken);
     } else {

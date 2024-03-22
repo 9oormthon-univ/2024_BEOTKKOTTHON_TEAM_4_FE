@@ -1,5 +1,5 @@
 import { apiUrl } from '@/hooks/api';
-import { mapTelecom, parseIdentity } from '@/hooks/useUtil';
+import { LocalStorage, mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
 /**
  * 로그인과 데이터 조회
@@ -14,7 +14,7 @@ export async function postLogin(props) {
   });
 
   console.log(api_params);
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = LocalStorage.getItem('accessToken');
   try {
     const res = await fetch(`${apiUrl}/vaccination`, {
       method: 'POST',
