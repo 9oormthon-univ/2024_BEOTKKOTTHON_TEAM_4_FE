@@ -15,6 +15,7 @@ import {
   filterNumericInput,
   checkParamsFilled,
   isAllConditionsTrue,
+  SecureLocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
@@ -31,6 +32,17 @@ export default function Id(): React.JSX.Element {
       condition3: 'default',
     },
   });
+
+  useEffect(() => {
+    let MEDICAL_WORKER = SecureLocalStorage.getItem('MEDICAL_WORKER');
+    let PREGNANCY = SecureLocalStorage.getItem('PREGNANCY');
+    let ORGAN_TRANSPLANTATION = SecureLocalStorage.getItem(
+      'ORGAN_TRANSPLANTATION',
+    );
+    let disease = localStorage.getItem('disease');
+
+    console.log(MEDICAL_WORKER, PREGNANCY, ORGAN_TRANSPLANTATION, disease);
+  }, []);
 
   const router = useRouter();
   const allConditionsTrue = isAllConditionsTrue(validate);

@@ -46,7 +46,7 @@ export default function MoreIdentity(): React.JSX.Element {
       try {
         const response = await postRegister(params);
         console.log('데이터 조회 successful:', response);
-        if (response.success) {
+        if (response) {
           LocalStorage.setItem('type', 'submit');
           router.push(`/signup/done`);
         } else {
