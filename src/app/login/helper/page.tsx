@@ -15,6 +15,7 @@ import BottomButton from '@/app/_component/atom/BottomButton';
 import Link from 'next/link';
 import { postSignup } from '@/app/_lib/postSignup';
 import { postLogin } from '@/app/_lib/postLogin';
+import WarningToast from '@/app/_component/atom/WarningToast';
 
 export default function HelperLogin(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>(() => {
@@ -24,6 +25,7 @@ export default function HelperLogin(): React.JSX.Element {
       password: '',
     };
   });
+  const [error, setError] = useState(null);
 
   const router = useRouter();
   const onChangeValue: OnChangeValueType = (field, value) => {
@@ -54,6 +56,7 @@ export default function HelperLogin(): React.JSX.Element {
         LocalStorage.setItem('type', 'loginEnd');
         router.push(`/signup/done`);
       } catch (error) {
+        setError(true);
         console.error('Signup failed:', error.message);
       }
     }
@@ -98,6 +101,7 @@ export default function HelperLogin(): React.JSX.Element {
         </Link>
       </div>
 
+      {error !== null && <WarningToast message={error} />}
       <BottomButton
         filled={checkParamsFilled(params)}
         handleNextButtonClick={handleNextButtonClick}

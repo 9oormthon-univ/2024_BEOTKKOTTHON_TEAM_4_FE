@@ -45,7 +45,6 @@ export default function Join(): React.JSX.Element {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
       <JoinWrap>
         <BackHeader title={' '} url={'/'} counter={1} />
         <JoinTemplate
@@ -95,6 +94,5 @@ export default function Join(): React.JSX.Element {
           }}
         />
       </JoinWrap>
-    </Suspense>
   );
 }
