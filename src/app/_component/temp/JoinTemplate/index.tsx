@@ -11,12 +11,12 @@ import TermsDetail from '@/app/_component/molecule/TermsDetail';
 
 type props = {
   title: string;
-  titleBottom: string;
+  titleBottom?: string;
   subTop?: string;
   subBottom?: string;
   useterm?: boolean;
-  falseLabel: string;
-  trueLabel: string;
+  falseLabel?: string;
+  trueLabel?: string;
   params: ParamsType;
   field: string;
   onChangeValue: OnChangeValueType;

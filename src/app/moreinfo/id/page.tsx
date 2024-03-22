@@ -4,13 +4,11 @@ import * as React from 'react';
 import { SignupWrapper } from './style';
 import { css } from '@emotion/react';
 
-import { Colors, Icons, Images } from '@/styles';
 import { Fragment, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import InputForm from '@/app/_component/atom/InputForm';
 import FilterModal from '@/app/_component/organism/filterModal';
-import { agencyRanges, ageRanges, situationRanges } from '@/constants';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
 import {
   parseIdentity,
@@ -21,7 +19,7 @@ import {
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
 
-export default function Signup(): React.JSX.Element {
+export default function Id(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
     nickname: '',
   });
