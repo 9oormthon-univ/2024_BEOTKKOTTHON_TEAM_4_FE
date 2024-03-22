@@ -1,4 +1,5 @@
 'use client';
+
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 
@@ -15,10 +16,17 @@ import { fetchAccessToken } from '@/hooks/useKakaoLogin';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
-  const { queryparams, onChangeValue } = useQueryParams();
-
+  const [params, setParam] = useState({
+    signupState: false,
+  });
+  const onChangeValue: OnChangeValueType = (field, value) => {
+    setParam((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
   const handleClick = () => {
-    if (queryparams.signupState === true) {
+    if (params.signupState === true) {
       router.push('/home');
     } else {
       router.push(`/signup/terms`);
@@ -56,12 +64,12 @@ export default function Join(): React.JSX.Element {
         subBottom={'질병관리청의 예방접종도우미 가입이 필요해요'}
         falseLabel={'아니요, 가입한 적이 없어요'}
         trueLabel={'네, 가입한 적이 있어요'}
-        params={queryparams}
+        params={params}
         field={'signupState'}
         onChangeValue={onChangeValue}
       />
       <BottomButton
-        filled={queryparams.signupState !== undefined}
+        filled={params.signupState !== undefined}
         handleNextButtonClick={() => {
           handleClick();
         }}
