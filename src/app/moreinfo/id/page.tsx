@@ -16,6 +16,7 @@ import {
   checkParamsFilled,
   isAllConditionsTrue,
   SecureLocalStorage,
+  LocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
@@ -23,6 +24,7 @@ import ValidateCheck from '@/app/_component/atom/ValidateCheck';
 export default function Id(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
     nickname: '',
+    healthConditions: [],
   });
 
   const [validate, setValidate] = useState<ParamsType>({
@@ -34,13 +36,31 @@ export default function Id(): React.JSX.Element {
   });
 
   useEffect(() => {
-    let MEDICAL_WORKER = SecureLocalStorage.getItem('MEDICAL_WORKER');
-    let PREGNANCY = SecureLocalStorage.getItem('PREGNANCY');
-    let ORGAN_TRANSPLANTATION = SecureLocalStorage.getItem(
-      'ORGAN_TRANSPLANTATION',
-    );
-    let disease = localStorage.getItem('disease');
+    let MEDICAL_WORKER = LocalStorage.getItem('MEDICAL_WORKER');
+    let PREGNANCY = LocalStorage.getItem('PREGNANCY');
+    let ORGAN_TRANSPLANTATION = LocalStorage.getItem('ORGAN_TRANSPLANTATION');
+    let disease = LocalStorage.getItem('disease');
+    let diseaseList = [];
+    if (disease) {
+      diseaseList = disease.split(',');
+    }
+    let newList = [];
+    if (MEDICAL_WORKER === 'true') {
+      newList.push('MEDICAL_WORKER');
+    }
+    if (PREGNANCY === 'true') {
+      newList.push('PREGNANCY');
+    }
+    if (ORGAN_TRANSPLANTATION === 'true') {
+      newList.push('ORGAN_TRANSPLANTATION');
+    }
+    let finalList = [...newList, ...diseaseList];
+    setParams((prevState) => ({
+      ...prevState,
+      healthConditions: finalList,
+    }));
 
+    console.log('finalList : ', finalList);
     console.log(MEDICAL_WORKER, PREGNANCY, ORGAN_TRANSPLANTATION, disease);
   }, []);
 
@@ -63,6 +83,7 @@ export default function Id(): React.JSX.Element {
     }
   };
 
+  console.log(params);
   const updateValidation = (field: string, value: string) => {
     switch (field) {
       case 'nickname':
