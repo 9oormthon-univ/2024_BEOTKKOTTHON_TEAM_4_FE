@@ -43,7 +43,6 @@ export default function MoreIdentity(): React.JSX.Element {
 
   const handleNextButtonClick = async () => {
     if (checkParamsFilled(params)) {
-      router.push('/signup/done?type=submit');
       try {
         const response = await postRegister(params);
         console.log('데이터 조회 successful:', response);
