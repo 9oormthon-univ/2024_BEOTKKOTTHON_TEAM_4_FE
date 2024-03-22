@@ -91,7 +91,7 @@ export default function Home() {
             )}
           </div>
         </div>
-        {/* 누락된 백신 섹션 */}
+        {/* 누락된 백신 섹션
         <div className="body_wrap">
           <div className="content_head">
             <MenuTitle title="누락된 백신" rightIconUrl={'/failvac'} />
@@ -105,7 +105,7 @@ export default function Home() {
               <NoneHome title="앗! 누락된 백신이 없어요" />
             )}
           </div>
-        </div>
+        </div> */}
         <div className="body_wrap">
           <div className="content_head">
             <MenuTitle title="접종 인증서" rightIconUrl={'/vachistory/certificate/list'} />
