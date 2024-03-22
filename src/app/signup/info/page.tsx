@@ -48,18 +48,14 @@ export default function Signup(): React.JSX.Element {
    */
   if (typeof window !== 'undefined') {
     useEffect(() => {
-      let id = localStorage.getItem('id');
-      let password = localStorage.getItem('password');
-      let secureid = secureLocalStorage.getItem('id');
-      let securepassword = secureLocalStorage.getItem('password');
-      console.log('secure', secureid, securepassword);
+      let id = secureLocalStorage.getItem('id');
+      let password = secureLocalStorage.getItem('password');
+      console.log('secure', id, password);
 
       setParams({
         ...params,
         id,
         password,
-        secureid,
-        securepassword,
       });
     }, []);
   }
@@ -73,6 +69,7 @@ export default function Signup(): React.JSX.Element {
       try {
         const response = await postSignup(params);
         console.log('Signup successful:', response);
+        router.push(`/signup/captcha?${response}`);
       } catch (error) {
         console.error('Signup failed:', error.message);
       }

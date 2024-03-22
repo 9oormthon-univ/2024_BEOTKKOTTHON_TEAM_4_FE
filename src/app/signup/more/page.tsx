@@ -52,10 +52,10 @@ export default function Signup(): React.JSX.Element {
     if (allConditionsTrue) {
       router.push('/signup/captcha');
 
-      secureLocalStorage.setItem('id', params.password);
+      secureLocalStorage.setItem('id', params.id);
       secureLocalStorage.setItem('password', params.password);
-      localStorage.setItem('id', params.identity_last);
-      localStorage.setItem('password', params.userName);
+      localStorage.setItem('id', params.id);
+      localStorage.setItem('password', params.password);
 
       let telecom = localStorage.getItem('telecom');
       if (telecom !== 'undefined' || telecom !== null) {
