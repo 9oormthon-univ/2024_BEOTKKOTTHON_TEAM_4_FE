@@ -549,6 +549,7 @@ export const NationDiseaseList = [
     id: 21,
     iconsImage: Images.ico_vac4,
     vacName: '폴리오',
+    vacSub: 'IPV',
     vacDes: '폴리오바이러스(Poliovirus) 감염으로 인해 소아에게 하지 마비를 일으키는 질병이며 흔히 소아마비로 알려져 있습니다. 예방접종으로 국내에서는 1983년 이후 환자가 발생하지 않고 있습니다.',
     qaList: [
       {
