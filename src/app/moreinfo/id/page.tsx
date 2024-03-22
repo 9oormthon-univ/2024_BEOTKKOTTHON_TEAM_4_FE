@@ -20,6 +20,7 @@ import {
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
+import { postFinalInfo } from '@/app/_lib/postFinalInfo';
 
 export default function Id(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -75,11 +76,16 @@ export default function Id(): React.JSX.Element {
     updateValidation(field, value);
   };
 
-  const handleNextButtonClick = () => {
+  const handleNextButtonClick = async () => {
     if (allConditionsTrue) {
-      router.push('/moreinfo/welcome');
-
-      // @Todo secureLocalStorage 저장 로직 필요
+      try {
+        const response = await postFinalInfo(params);
+        if (response.success) {
+          router.push('/moreinfo/welcome');
+        }
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
