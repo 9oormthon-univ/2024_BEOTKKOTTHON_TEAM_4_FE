@@ -1,3 +1,5 @@
+'use client';
+
 // export const
 import { ReadonlyURLSearchParams, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -10,15 +12,18 @@ import { OnChangeValueType, ParamsType } from '@/types/globalType';
  **/
 
 export function useQueryParams() {
-  const searchParams: ReadonlyURLSearchParams = useSearchParams();
-  const [queryparams, setParams] = useState<ParamsType>({});
+  const [queryparams, setQueryparams] = useState<ParamsType>({});
 
   useEffect(() => {
-    const newParams = Object.fromEntries(searchParams);
-    setParams(newParams);
-  }, [searchParams]);
+    let searchParams;
+    if (typeof window !== 'undefined') {
+      searchParams = require('next/navigation').useSearchParams();
+      const newParams = Object.fromEntries(searchParams);
+      setQueryparams(newParams);
+    }
+  }, []);
   const onChangeValue: OnChangeValueType = (field, value) => {
-    setParams((prevState) => ({
+    setQueryparams((prevState) => ({
       ...prevState,
       [field]: value,
     }));

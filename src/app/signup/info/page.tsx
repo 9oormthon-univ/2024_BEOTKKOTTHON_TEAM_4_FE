@@ -43,9 +43,7 @@ export default function Signup(): React.JSX.Element {
   const handleNextButtonClick = () => {
     if (checkParamsFilled(params)) {
       setOpenVarifi(true);
-      router.push('/signup/more');
-
-      // @Todo 여기에 api 호출
+      router.push('/signup/more?');
     }
   };
 
