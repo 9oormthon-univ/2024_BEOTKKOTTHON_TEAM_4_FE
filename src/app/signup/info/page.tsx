@@ -9,13 +9,7 @@ import { Fragment, Suspense, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import InputForm from '@/app/_component/atom/InputForm';
-import FilterModal from '@/app/_component/organism/filterModal';
-import {
-  agencyRanges,
-  ageRanges,
-  diseaseRanges,
-  situationRanges,
-} from '@/constants';
+import { agencyRanges } from '@/constants';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
 import {
   parseIdentity,

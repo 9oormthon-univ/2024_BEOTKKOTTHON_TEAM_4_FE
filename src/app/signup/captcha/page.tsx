@@ -2,24 +2,22 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
+import { useLocation } from 'react-router-dom';
 
 import { VerificationWrap } from './style';
 import Image from 'next/image';
-import { css } from '@emotion/react';
 
-import { Colors, Icons, Images } from '@/styles';
-import { Fragment, useState } from 'react';
 import VerificationInput from '../../_component/atom/verificationInput';
 import BackHeader from '@/app/_component/molecule/BackHeader';
-import Button from '@/app/_component/atom/button/button';
 import BottomButton from '@/app/_component/atom/BottomButton';
-import { OnChangeValueType } from '@/types/globalType';
-import { checkParamsFilled } from '@/hooks/useUtil';
 
 export default function Verification(): React.JSX.Element {
   const [password, setPassword] = React.useState(''); //현재 입력된 숫자
   const router = useRouter();
   console.log(router);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const queryParamValue = queryParams.get('paramName');
 
   const handleNextButtonClick = () => {
     if (password.length >= 5) {

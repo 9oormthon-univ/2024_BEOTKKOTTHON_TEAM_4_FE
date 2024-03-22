@@ -26,10 +26,13 @@ export async function postSignup(userData) {
 
   console.log(api_params);
 
+  const accessToken = localStorage.getItem('accessToken');
+
   try {
     const res = await fetch(`${apiUrl}/signup`, {
       method: 'POST',
       headers: {
+        Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
       },
       body: api_params,

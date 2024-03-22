@@ -57,10 +57,7 @@ export default function Signup(): React.JSX.Element {
       localStorage.setItem('id', params.id);
       localStorage.setItem('password', params.password);
 
-      let telecom = localStorage.getItem('telecom');
-      if (telecom !== 'undefined' || telecom !== null) {
-        router.push('/signup/info');
-      }
+      router.push('/signup/info');
     }
   };
 
