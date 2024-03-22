@@ -60,7 +60,7 @@ export const diseaseList = [
   },
   {
     id: 3,
-    iconsImage: Images.ico_vac3,
+    iconsImage: Images.ico_vac4,
     vacName: '디프테리아',
     vacDes: '디프테리아균(Corynebacterium diphtheriae) 감염 후 발생하는 급성, 독소(toxin) 매개성 호흡기 감염병입니다. 디프테리아는 온대기후 지역에서 상대적으로 발생율이 높으나 전 세계적으로 디프테리아 발생은 매우 드물며, 예방접종으로 국내에서는 1988년 이후부터는 환자가 발생하고 있지 않습니다.',
     qaList: [
@@ -229,7 +229,7 @@ export const diseaseList = [
   {
     id: 9,
     iconsImage: Images.ico_vac9,
-    vacName: '일본뇌염',
+    vacName: '일본뇌염(약독화생)',
     vacDes: '일본뇌염은 Flavivirus 속 일본뇌염 바이러스(Japanese encephalitis virus)에 의한 인수공통감염병으로 작은빨간집모기(Culex tritaeniorhynchus)에 의해 감염되어 뇌염을 일으키는 질환입니다. 일단 일본뇌염에 걸리면 특별한 치료방법이 없으므로 백신 접종을 통한 예방이 최선입니다.',
     qaList: [
       {
@@ -624,5 +624,33 @@ export const diseaseList = [
         ans:'MMR 예방접종 후에 생길 수 있는 이상반응은 발열, 림프절 비대와 관절통입니다. 국소 이상반응으로 접종부위 통증, 압통 등이 발생할 수 있으며, 이러한 이상반응은 풍진에 대한 면역이 없던 사람에서만 나타나며 성인, 특히 여성에서 더 흔하게 나타납니다.'
       }
     ]
-  }
+  },
+  {
+    id: 22,
+    iconsImage: Images.ico_vac22,
+    vacName: '일본뇌염(불활성화)',
+    vacDes: '일본뇌염은 Flavivirus 속 일본뇌염 바이러스(Japanese encephalitis virus)에 의한 인수공통감염병으로 작은빨간집모기(Culex tritaeniorhynchus)에 의해 감염되어 뇌염을 일으키는 질환입니다. 일단 일본뇌염에 걸리면 특별한 치료방법이 없으므로 백신 접종을 통한 예방이 최선입니다.',
+    qaList: [
+      {
+        id: 1,
+        ques:'일본뇌염은 어떻게 전파되나요?',
+        ans:'일본뇌염은 Flavivirus 속 일본뇌염 바이러스(Japanese encephalitis virus)에 의한 인수공통감염병으로 작은빨간집모기(Culex tritaeniorhynchus)에 의해 감염되어 뇌염을 일으키는 질환입니다. 일단 일본뇌염에 걸리면 특별한 치료방법이 없으므로 백신 접종을 통한 예방이 최선입니다.'
+      },
+      {
+        id: 2,
+        ques:'일본뇌염의 증상은 무엇인가요?',
+        ans:'일본뇌염 바이러스를 가진 "작은빨간집모기"에 물리면 감염됩니다.'
+      },
+      {
+        id: 3,
+        ques:'일본뇌염의 치료는 어떻게 하나요?',
+        ans:'일본뇌염 바이러스의 인체 감염은 대부분 무증상이며, 감염자의 약 250명 중 1명에서 임상증상을 나타내며, 열을 동반하는 가벼운 증상이나 바이러스성 수막염으로 이행되기도 하고 드물게 뇌염으로까지 진행될 수 있습니다. 뇌염으로 진행된 경우 약 30%의 치명률을 보입니다.'
+      },
+      {
+        id: 4,
+        ques:'일본뇌염은 어떻게 예방하나요?',
+        ans:'일본뇌염에 대한 특이적인 치료법은 없고 호흡장애, 순환장애, 세균감염 등에 대해서는 보존적인 치료가 필요합니다. ▶ 일본뇌염은 어떻게 예방하나요? 일본뇌염 예방접종을 통해 일본뇌염을 예방할 수 있습니다.'
+      }
+    ]
+  },
 ];
