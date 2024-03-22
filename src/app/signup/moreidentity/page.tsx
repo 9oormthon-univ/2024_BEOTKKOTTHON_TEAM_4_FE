@@ -17,6 +17,7 @@ import {
   filterNumericInput,
   checkParamsFilled,
   LocalStorage,
+  SecureLocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import { postchallenge } from '@/app/_lib/postchallenge';
@@ -61,18 +62,16 @@ export default function MoreIdentity(): React.JSX.Element {
   /**
    *  이전 페이지 데이터 끌고 오는
    */
-  if (typeof window !== 'undefined') {
-    useEffect(() => {
-      let id = secureLocalStorage.getItem('id');
-      let password = secureLocalStorage.getItem('password');
+  useEffect(() => {
+    let id = SecureLocalStorage.getItem('id');
+    let password = SecureLocalStorage.getItem('password');
 
-      setParams({
-        ...params,
-        id,
-        password,
-      });
-    }, []);
-  }
+    setParams({
+      ...params,
+      id,
+      password,
+    });
+  }, []);
 
   return (
     <MoreIdentityWrapper>

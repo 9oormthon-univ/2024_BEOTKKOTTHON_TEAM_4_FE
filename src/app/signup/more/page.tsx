@@ -17,6 +17,7 @@ import {
   filterNumericInput,
   checkParamsFilled,
   isAllConditionsTrue,
+  SecureLocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
@@ -52,8 +53,8 @@ export default function Signup(): React.JSX.Element {
     if (allConditionsTrue) {
       router.push('/signup/captcha');
 
-      secureLocalStorage.setItem('id', params.id);
-      secureLocalStorage.setItem('password', params.password);
+      SecureLocalStorage.setItem('id', params.id);
+      SecureLocalStorage.setItem('password', params.password);
       localStorage.setItem('id', params.id);
       localStorage.setItem('password', params.password);
 

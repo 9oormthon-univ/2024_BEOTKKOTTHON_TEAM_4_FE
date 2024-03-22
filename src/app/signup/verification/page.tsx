@@ -13,6 +13,7 @@ import BottomButton from '@/app/_component/atom/BottomButton';
 import { useRouter } from 'next/navigation';
 import { postchallenge } from '@/app/_lib/postchallenge';
 import { postSMSCode } from '@/app/_lib/postSMSCode';
+import { LocalStorage } from '@/hooks/useUtil';
 
 export default function Verification(): React.JSX.Element {
   const router = useRouter();
@@ -24,9 +25,9 @@ export default function Verification(): React.JSX.Element {
         const response = await postSMSCode(password);
         console.log('Signup successful:', response);
         if (response.success) {
-          localStorage.setItem('type', 'helpnew');
+          LocalStorage.setItem('type', 'helpnew');
         } else {
-          localStorage.setItem('type', 'helpalready');
+          LocalStorage.setItem('type', 'helpalready');
         }
         router.push(`/signup/done`);
       } catch (error) {
