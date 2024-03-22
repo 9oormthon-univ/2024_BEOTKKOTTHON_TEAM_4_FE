@@ -58,10 +58,13 @@ export default function Signup(): React.JSX.Element {
         ...params,
         id,
         password,
+        secureid,
+        securepassword,
       });
     }, []);
   }
 
+  console.log(params);
   /**
    *  api 호출
    */

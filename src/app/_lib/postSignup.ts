@@ -24,6 +24,8 @@ export async function postSignup(userData) {
     phoneNumber: phoneNumber,
   });
 
+  console.log(api_params);
+
   try {
     const res = await fetch(`${apiUrl}/signup`, {
       method: 'POST',
