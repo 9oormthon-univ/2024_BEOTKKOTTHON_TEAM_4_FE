@@ -19,6 +19,7 @@ import { LocalStorage } from '@/hooks/useUtil';
 export default function Join(): React.JSX.Element {
   const router = useRouter();
   const [params, setParams] = useState({ disease: [], disYn: false });
+
   const handleClick = () => {
     if (params.disease) {
       LocalStorage.setItem('disease', params.disease);
@@ -26,6 +27,7 @@ export default function Join(): React.JSX.Element {
     router.push(`/moreinfo/pre`);
   };
 
+  console.log(params);
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
       ...prevState,
@@ -41,7 +43,7 @@ export default function Join(): React.JSX.Element {
     } else {
       updatedDisease.push(first);
     }
-    setParams({ disease: updatedDisease });
+    onChangeValue('disease', updatedDisease);
   };
 
   return (
