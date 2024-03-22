@@ -53,6 +53,8 @@ export default function HelperLogin(): React.JSX.Element {
       try {
         const response = await postLogin(params);
         console.log('로그인 successful:', response);
+        LocalStorage.setItem('id', params.id);
+        LocalStorage.setItem('password', params.password);
         LocalStorage.setItem('type', 'loginEnd');
         router.push(`/signup/done`);
       } catch (error) {
