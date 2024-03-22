@@ -1,24 +1,15 @@
 import { apiUrl } from '@/hooks/api';
 import { LocalStorage, mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
-export async function postSignup(userData) {
-  const {
-    userName,
-    id,
-    password,
-    identity_first,
-    identity_last,
-    telecom,
-    phoneNumber,
-  } = userData;
+export async function postFind(userData) {
+  const { userName, identity_first, identity_last, telecom, phoneNumber } =
+    userData;
 
   const update_identity = parseIdentity(identity_first);
   const mappedTelecom = mapTelecom(telecom);
 
   const api_params = JSON.stringify({
     userName: userName,
-    id: id,
-    password: password,
     identity: update_identity.date + identity_last,
     telecom: mappedTelecom,
     phoneNumber: phoneNumber,
@@ -28,7 +19,7 @@ export async function postSignup(userData) {
 
   const accessToken = LocalStorage.getItem('accessToken');
   try {
-    const res = await fetch(`${apiUrl}/signup`, {
+    const res = await fetch(`${apiUrl}/reset-password`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${accessToken}`,

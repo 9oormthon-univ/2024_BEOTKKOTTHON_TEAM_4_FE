@@ -9,24 +9,29 @@ import { Fragment, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import InputForm from '@/app/_component/atom/InputForm';
-import FilterModal from '@/app/_component/organism/filterModal';
-import { agencyRanges, ageRanges, situationRanges } from '@/constants';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
 import {
-  parseIdentity,
-  filterNumericInput,
   checkParamsFilled,
+  LocalStorage,
+  SecureLocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import Link from 'next/link';
+import { postSignup } from '@/app/_lib/postSignup';
+import { postLogin } from '@/app/_lib/postLogin';
+import WarningToast from '@/app/_component/atom/WarningToast';
 
 export default function HelperLogin(): React.JSX.Element {
-  const [params, setParams] = useState<ParamsType>({
-    id: '',
-    password: '',
+  const [params, setParams] = useState<ParamsType>(() => {
+    const storedId = LocalStorage.getItem('id') || '';
+    return {
+      id: storedId,
+      password: '',
+    };
   });
+  const [error, setError] = useState(null);
+
   const router = useRouter();
-  console.log(params);
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
       ...prevState,
@@ -34,10 +39,36 @@ export default function HelperLogin(): React.JSX.Element {
     }));
   };
 
-  const handleNextButtonClick = () => {
+  useEffect(() => {
+    const storedId = localStorage.getItem('id') || '';
+    if (storedId) {
+      setParams((prevState) => ({
+        ...prevState,
+        id: storedId,
+      }));
+    }
+  }, []);
+
+  /**
+   *  api 호출
+   */
+  const handleNextButtonClick = async () => {
     if (checkParamsFilled(params)) {
-      router.push(`/signup/more?type=loginDone}`);
-      // @Todo 여기에 api 호출
+      try {
+        const response = await postLogin(params);
+        console.log('로그인 successful:', response);
+        SecureLocalStorage.setItem('id', params.id);
+        SecureLocalStorage.setItem('password', params.password);
+        if (response.access) {
+          LocalStorage.setItem('type', 'loginEnd');
+          router.push(`/signup/done`);
+        } else {
+          setError(response.message);
+        }
+      } catch (error) {
+        setError('error');
+        console.error('Signup failed:', error.message);
+      }
     }
   };
 
@@ -80,6 +111,7 @@ export default function HelperLogin(): React.JSX.Element {
         </Link>
       </div>
 
+      {error !== null && <WarningToast message={error} />}
       <BottomButton
         filled={checkParamsFilled(params)}
         handleNextButtonClick={handleNextButtonClick}

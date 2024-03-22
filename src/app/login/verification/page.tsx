@@ -11,18 +11,13 @@ import VerificationInput from '../../_component/atom/verificationInput';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import { router, useRouter } from 'next/navigation';
+import { postSMSCode } from '@/app/_lib/postSMSCode';
+import { LocalStorage } from '@/hooks/useUtil';
 
 export default function Verification(): React.JSX.Element {
   const router = useRouter();
   const [password, setPassword] = useState('');
-  const handleNextButtonClick = () => {
-    if (password.length >= 5) {
-      // router.push('/signup/done?type=helpalready');
-      router.push('/signup/done?type=loginEnd');
-
-      // @Todo 여기에 api 호출
-    }
-  };
+  const [error, setError] = useState('');
   const MINUTES_IN_MS = 3 * 60 * 1000;
   const INTERVAL = 1000;
   const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
@@ -32,6 +27,7 @@ export default function Verification(): React.JSX.Element {
     '0',
   );
   const second = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, '0');
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => prevTime - INTERVAL);
@@ -46,6 +42,23 @@ export default function Verification(): React.JSX.Element {
       clearInterval(timer);
     };
   }, [timeLeft]);
+
+  const handleNextButtonClick = async () => {
+    if (password.length >= 5) {
+      try {
+        const response = await postSMSCode(password);
+        console.log('sms 인증 성공:', response);
+        if (response.success) {
+          LocalStorage.setItem('type', 'loginEnd');
+          router.push(`/signup/done`);
+        }
+      } catch (error) {
+        console.error('sms 실패:', error.message);
+        console.error('sms 성공여부', error.success);
+        setError(error.message);
+      }
+    }
+  };
 
   return (
     <VerificationWrap>

@@ -1,34 +1,17 @@
 import { apiUrl } from '@/hooks/api';
 import { LocalStorage, mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
-export async function postSignup(userData) {
-  const {
-    userName,
-    id,
-    password,
-    identity_first,
-    identity_last,
-    telecom,
-    phoneNumber,
-  } = userData;
-
-  const update_identity = parseIdentity(identity_first);
-  const mappedTelecom = mapTelecom(telecom);
-
+export async function postchallenge(password) {
   const api_params = JSON.stringify({
-    userName: userName,
-    id: id,
-    password: password,
-    identity: update_identity.date + identity_last,
-    telecom: mappedTelecom,
-    phoneNumber: phoneNumber,
+    code: password,
+    type: 'SECURE_NO',
   });
 
   console.log(api_params);
 
   const accessToken = LocalStorage.getItem('accessToken');
   try {
-    const res = await fetch(`${apiUrl}/signup`, {
+    const res = await fetch(`${apiUrl}/signup/challenge`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -41,10 +24,11 @@ export async function postSignup(userData) {
     if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
+    if (res) {
+      const responseData = await res.json();
 
-    const responseData = await res.json();
-
-    return responseData;
+      return responseData;
+    }
   } catch (error) {
     console.error('Error during POST request:', error);
     throw error;

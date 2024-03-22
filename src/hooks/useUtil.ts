@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ParamsType } from '@/types/globalType';
+import secureLocalStorage from 'react-secure-storage';
 
 type UserIdentity = { date: string; sex: string };
 
@@ -79,5 +80,56 @@ export function mapTelecom(telecom) {
       return 'LG_MVNO';
     default:
       return telecom;
+  }
+}
+
+/**
+ * LocalStorage
+ */
+export class LocalStorage {
+  constructor() {}
+
+  static setItem(key: string, value: string) {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(key, value);
+    }
+  }
+
+  static getItem(key: string) {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem(key);
+    }
+    return null;
+  }
+
+  static removeItem(key: string) {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(key);
+    }
+  }
+}
+/**
+ * LocalStorage
+ */
+export class SecureLocalStorage {
+  constructor() {}
+
+  static setItem(key: string, value: string) {
+    if (typeof window !== 'undefined') {
+      secureLocalStorage.setItem(key, value);
+    }
+  }
+
+  static getItem(key: string) {
+    if (typeof window !== 'undefined') {
+      return secureLocalStorage.getItem(key);
+    }
+    return null;
+  }
+
+  static removeItem(key: string) {
+    if (typeof window !== 'undefined') {
+      secureLocalStorage.removeItem(key);
+    }
   }
 }

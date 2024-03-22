@@ -16,14 +16,21 @@ import {
   parseIdentity,
   filterNumericInput,
   checkParamsFilled,
+  LocalStorage,
+  SecureLocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
+import { postchallenge } from '@/app/_lib/postchallenge';
+import secureLocalStorage from 'react-secure-storage';
+import { postRegister } from '@/app/_lib/postRegister';
+import WarningToast from '@/app/_component/atom/WarningToast';
 
 export default function MoreIdentity(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
     identity_first: '',
     identity_last: '',
   });
+  const [error, setError] = useState(null);
   // api 요청 시 identity_first 을 parseIdentity 사용하여 변환
 
   const router = useRouter();
@@ -34,12 +41,36 @@ export default function MoreIdentity(): React.JSX.Element {
     }));
   };
 
-  const handleNextButtonClick = () => {
+  const handleNextButtonClick = async () => {
     if (checkParamsFilled(params)) {
-      router.push('/signup/done?type=submit');
-      // @Todo 여기에 api 호출
+      try {
+        const response = await postRegister(params);
+        console.log('데이터 조회 successful:', response);
+        if (response) {
+          LocalStorage.setItem('type', 'submit');
+          router.push(`/signup/done`);
+        } else {
+          setError(response.message);
+        }
+      } catch (error) {
+        console.error('Signup failed:', error.message);
+      }
     }
   };
+
+  /**
+   *  이전 페이지 데이터 끌고 오는
+   */
+  useEffect(() => {
+    let id = SecureLocalStorage.getItem('id');
+    let password = SecureLocalStorage.getItem('password');
+
+    setParams({
+      ...params,
+      id,
+      password,
+    });
+  }, []);
 
   return (
     <MoreIdentityWrapper>
@@ -79,7 +110,7 @@ export default function MoreIdentity(): React.JSX.Element {
           </div>
         </div>
       </div>
-
+      {error !== null && <WarningToast message={error} />}
       <BottomButton
         filled={checkParamsFilled(params)}
         handleNextButtonClick={handleNextButtonClick}

@@ -15,15 +15,19 @@ import {
   filterNumericInput,
   checkParamsFilled,
   isAllConditionsTrue,
+  SecureLocalStorage,
+  LocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
+import { postVacSignup } from '@/app/_lib/postVacSignup';
 
 export default function Id(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
     nickname: '',
+    healthConditions: [],
   });
-  console.log(params.nickname);
+
   const [validate, setValidate] = useState<ParamsType>({
     nickname: {
       condition1: 'default',
@@ -31,6 +35,35 @@ export default function Id(): React.JSX.Element {
       condition3: 'default',
     },
   });
+
+  useEffect(() => {
+    let MEDICAL_WORKER = LocalStorage.getItem('MEDICAL_WORKER');
+    let PREGNANCY = LocalStorage.getItem('PREGNANCY');
+    let ORGAN_TRANSPLANTATION = LocalStorage.getItem('ORGAN_TRANSPLANTATION');
+    let disease = LocalStorage.getItem('disease');
+    let diseaseList = [];
+    if (disease) {
+      diseaseList = disease.split(',');
+    }
+    let newList = [];
+    if (MEDICAL_WORKER === 'true') {
+      newList.push('MEDICAL_WORKER');
+    }
+    if (PREGNANCY === 'true') {
+      newList.push('PREGNANCY');
+    }
+    if (ORGAN_TRANSPLANTATION === 'true') {
+      newList.push('ORGAN_TRANSPLANTATION');
+    }
+    let finalList = [...newList, ...diseaseList];
+    setParams((prevState) => ({
+      ...prevState,
+      healthConditions: finalList,
+    }));
+
+    console.log('finalList : ', finalList);
+    console.log(MEDICAL_WORKER, PREGNANCY, ORGAN_TRANSPLANTATION, disease);
+  }, []);
 
   const router = useRouter();
   const allConditionsTrue = isAllConditionsTrue(validate);
@@ -43,14 +76,20 @@ export default function Id(): React.JSX.Element {
     updateValidation(field, value);
   };
 
-  const handleNextButtonClick = () => {
+  const handleNextButtonClick = async () => {
     if (allConditionsTrue) {
-      router.push('/moreinfo/welcome');
-
-      // @Todo secureLocalStorage 저장 로직 필요
+      try {
+        const response = await postVacSignup(params);
+        if (response.success) {
+          router.push('/moreinfo/welcome');
+        }
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
+  console.log(params);
   const updateValidation = (field: string, value: string) => {
     switch (field) {
       case 'nickname':

@@ -23,12 +23,19 @@ import { OnChangeValueType, ParamsType } from '@/types/globalType';
 export default function SignupDone(): React.JSX.Element {
   const router = useRouter();
   const [alreadyUser, setAlreadyUser] = useState(true);
-  // 만약 가입한 이력이 있으면 true
-  // 최초 가입이면 false
-  // searchparam 으로 하는 게 좋을듯
+  // 예방접종도우미 가입한 이력이 있으면 helpalready
+  // 예방접종도우미 최초 가입이면 helpnew
+  // 조회완료면 submit
+  // 로그인 완료이면
   const [params, setParams] = useState<ParamsType>({
-    nickname: '',
+    type: '',
   });
+
+  useEffect(() => {
+    let type = localStorage.getItem('type');
+    setParams({ type: type });
+  }, []);
+
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
       ...prevState,

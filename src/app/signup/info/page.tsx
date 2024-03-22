@@ -15,6 +15,8 @@ import {
   parseIdentity,
   filterNumericInput,
   checkParamsFilled,
+  LocalStorage,
+  SecureLocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import secureLocalStorage from 'react-secure-storage';
@@ -42,8 +44,8 @@ export default function Signup(): React.JSX.Element {
    */
   if (typeof window !== 'undefined') {
     useEffect(() => {
-      let id = secureLocalStorage.getItem('id');
-      let password = secureLocalStorage.getItem('password');
+      let id = SecureLocalStorage.getItem('id');
+      let password = SecureLocalStorage.getItem('password');
       console.log('secure', id, password);
 
       setParams({
@@ -63,6 +65,7 @@ export default function Signup(): React.JSX.Element {
       try {
         const response = await postSignup(params);
         console.log('Signup successful:', response);
+        LocalStorage.setItem('secureNoImage', response.data.secureNoImage);
         router.push(
           `/signup/captcha?secureNoImage=${response.data.secureNoImage}`,
         );

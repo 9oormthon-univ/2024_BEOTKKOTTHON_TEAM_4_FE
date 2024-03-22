@@ -11,11 +11,13 @@ import BottomButton from '@/app/_component/atom/BottomButton';
 import { useRouter } from 'next/navigation';
 import { useQueryParams } from '@/hooks/useParam';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
+import { LocalStorage } from '@/hooks/useUtil';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
 
   const handleClick = () => {
+    LocalStorage.setItem('MEDICAL_WORKER', params.transYn);
     router.push(`/moreinfo/id`);
   };
 

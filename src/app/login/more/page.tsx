@@ -17,9 +17,13 @@ import {
   filterNumericInput,
   checkParamsFilled,
   isAllConditionsTrue,
+  LocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
+import { postSignup } from '@/app/_lib/postSignup';
+import { postFindChallenge } from '@/app/_lib/postFindChallenge';
+import { postFind } from '@/app/_lib/postFind';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -43,10 +47,16 @@ export default function Signup(): React.JSX.Element {
     updateValidation(field, value);
   };
 
-  const handleNextButtonClick = () => {
+  const handleNextButtonClick = async () => {
     if (allConditionsTrue) {
-      router.push('/login/captcha');
-
+      try {
+        const response = await postFind(params);
+        console.log('Signup successful:', response);
+        LocalStorage.setItem('secureNoImage', response.data.secureNoImage);
+        router.push('/login/captcha');
+      } catch (error) {
+        console.error('Signup failed:', error.message);
+      }
       // @Todo secureLocalStorage 저장 로직 필요
     }
   };

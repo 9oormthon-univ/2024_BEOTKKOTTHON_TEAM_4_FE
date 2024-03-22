@@ -11,13 +11,15 @@ import { useRouter } from 'next/navigation';
 import { useQueryParams } from '@/hooks/useParam';
 import { Suspense, useState } from 'react';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
+import { LocalStorage } from '@/hooks/useUtil';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
-  const handleClick = () => {
-    router.push(`/moreinfo/trans`);
-  };
 
+  const handleClick = () => {
+    LocalStorage.setItem('ORGAN_TRANSPLANTATION', params.transYn);
+    router.push(`/moreinfo/id`);
+  };
   const [params, setParams] = useState<ParamsType>({
     medYn: '',
   });

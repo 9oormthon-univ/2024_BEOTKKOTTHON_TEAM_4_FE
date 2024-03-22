@@ -1,34 +1,25 @@
 import { apiUrl } from '@/hooks/api';
 import { LocalStorage, mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
-export async function postSignup(userData) {
-  const {
-    userName,
-    id,
-    password,
-    identity_first,
-    identity_last,
-    telecom,
-    phoneNumber,
-  } = userData;
-
-  const update_identity = parseIdentity(identity_first);
-  const mappedTelecom = mapTelecom(telecom);
+/** 비
+ * 밀번호 전송
+ * @param params
+ */
+export async function postRegister(params) {
+  const { id, password, identity_first, identity_last } = params;
 
   const api_params = JSON.stringify({
-    userName: userName,
     id: id,
     password: password,
-    identity: update_identity.date + identity_last,
-    telecom: mappedTelecom,
-    phoneNumber: phoneNumber,
+    rnn: identity_first + '-' + identity_last,
   });
 
   console.log(api_params);
 
   const accessToken = LocalStorage.getItem('accessToken');
+
   try {
-    const res = await fetch(`${apiUrl}/signup`, {
+    const res = await fetch(`${apiUrl}/register-rnn`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -43,8 +34,9 @@ export async function postSignup(userData) {
     }
 
     const responseData = await res.json();
-
-    return responseData;
+    if (responseData.success) {
+      return 'true';
+    } else return responseData.message;
   } catch (error) {
     console.error('Error during POST request:', error);
     throw error;
