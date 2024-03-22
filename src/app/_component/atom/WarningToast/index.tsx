@@ -7,7 +7,7 @@ interface WarningToastProps {
   message: string;
 }
 
-const WarningToast: React.FC<WarningToastProps> = ({ message }) => {
+const ccc: React.FC<WarningToastProps> = ({ message }) => {
   return (
     <ToastContainer>
       <Image src={Images.warning} alt="Warning" width={20} height={20} />
