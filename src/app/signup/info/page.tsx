@@ -61,8 +61,8 @@ export default function Signup(): React.JSX.Element {
     }
   };
 
-  const handleAgencySelect = (selectedOptions: string[]) => {
-    onChangeValue('telecom', selectedOptions[0]);
+  const handleAgencySelect = (selectedOptions) => {
+    onChangeValue('telecom', selectedOptions);
     setIsModalOpen(false);
   };
   const resetAgencyOptions = () => {
