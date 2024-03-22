@@ -18,6 +18,7 @@ import {
   checkParamsFilled,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
+import secureLocalStorage from 'react-secure-storage';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -37,11 +38,11 @@ export default function Signup(): React.JSX.Element {
       [field]: value,
     }));
   };
-
   const handleNextButtonClick = () => {
     if (checkParamsFilled(params)) {
       console.log(params);
       localStorage.setItem('identity_first', params.identity_first);
+      secureLocalStorage.setItem('identity_first', params.identity_first);
       localStorage.setItem('identity_last', params.identity_last);
       localStorage.setItem('userName', params.userName);
       localStorage.setItem('phoneNumber', params.phoneNumber);
