@@ -47,35 +47,25 @@ const EssentialDiseaseSection = ({ selectedSection }) => {
   const [diseaseList, setDiseaseList] = useState([]);
 
   useEffect(() => {
-    const fetchDiseaseList = async () => {
-      const data = await getDiseaseListForSection(selectedSection);
-      setDiseaseList(data);
-    };
+    console.log('필터링 시작', { ageFilter, sitFilter });
 
-    fetchDiseaseList();
-  }, [selectedSection]);
-
-  useEffect(() => {
-    // 필터링 로직
     const filterDiseases = () => {
-      const ageIndex = ageRanges.indexOf(ageFilter) - 1; // "전체"를 제외한 인덱스
-      const sitIndex = situationRanges.indexOf(sitFilter) - 1; // "해당 없음"을 제외한 인덱스
+      const ageIndex = ageFilter === '전체' ? -1 : ageRanges.indexOf(ageFilter);
+      const sitIndex =
+        sitFilter === '해당 없음' ? -1 : situationRanges.indexOf(sitFilter);
 
-      // 연령과 상황에 맞는 질병만 필터링
-      const filteredDiseases = essentialDiseaseList.filter((disease) => {
-        // 연령 필터 확인
-        const ageMatch = ageFilter === '전체' || disease.age[ageIndex] === 1;
-        // 상황 필터 확인
-        const situationMatch = sitFilter === '해당 없음' || disease.sit[sitIndex] === 1;
-
-        return ageMatch && situationMatch;
+      const filtered = essentialDiseaseList.filter((disease) => {
+        const ageCondition = ageIndex === -1 || disease.age[ageIndex - 1] === 1;
+        const sitCondition = sitIndex === -1 || disease.sit[sitIndex - 1] === 1;
+        return ageCondition && sitCondition;
       });
 
-      setDiseaseList(filteredDiseases);
+      setDiseaseList(filtered);
+      console.log('필터링 결과', filtered);
     };
 
     filterDiseases();
-  }, [ageFilter, sitFilter, essentialDiseaseList]);
+  }, [ageFilter, sitFilter]);
 
   const handleAgeSelect = (selectedOptions: string[]) => {
     setSelectedAgeOptions(selectedOptions);
@@ -87,7 +77,7 @@ const EssentialDiseaseSection = ({ selectedSection }) => {
           ? `${text.slice(0, 6)}... 외 ${selectedOptions.length - 1}건`
           : `${text} 외 ${selectedOptions.length - 1}건`;
     }
-  console.log('Age Filter:', text); // 상태가 업데이트된 후 로그를 확인
+    console.log('Age Filter:', text);
     setAgeFilter(text);
     setIsAgeModalOpen(false);
   };
@@ -174,7 +164,7 @@ const EssentialDiseaseSection = ({ selectedSection }) => {
         />
       </Fragment>
       <DiseaseContainer>
-        {essentialDiseaseList.map((disease) => (
+        {diseaseList.map((disease) => (
           <DiseaseCard
             key={disease.id}
             id={disease.id}
