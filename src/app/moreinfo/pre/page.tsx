@@ -10,15 +10,22 @@ import BottomButton from '@/app/_component/atom/BottomButton';
 
 import { useRouter } from 'next/navigation';
 import { useQueryParams } from '@/hooks/useParam';
+import { OnChangeValueType, ParamsType } from '@/types/globalType';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
-  const { queryparams, onChangeValue } = useQueryParams();
-
   const handleClick = () => {
     router.push(`/moreinfo/med`);
   };
-
+  const [params, setParams] = useState<ParamsType>({
+    preYn: '',
+  });
+  const onChangeValue: OnChangeValueType = (field, value) => {
+    setParams((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <JoinWrap>
@@ -29,12 +36,12 @@ export default function Join(): React.JSX.Element {
           subBottom={'금기해야 할 백신을 알려드릴게요'}
           falseLabel={'임신 중이 아니에요'}
           trueLabel={'임신 중이에요'}
-          params={queryparams}
+          params={params}
           field={'preYn'}
           onChangeValue={onChangeValue}
         />
         <BottomButton
-          filled={queryparams.signupState === false}
+          filled={params.signupState === false}
           handleNextButtonClick={() => {
             handleClick();
           }}

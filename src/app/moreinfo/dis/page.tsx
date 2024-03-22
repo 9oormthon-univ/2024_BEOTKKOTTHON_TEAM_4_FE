@@ -17,11 +17,16 @@ import { fontGenerator } from '@/styles';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
-  const { queryparams, onChangeValue } = useQueryParams();
-  const [count, setCount] = useState(0);
-  const [params, setParams] = useState({ disease: [] });
+  const [params, setParams] = useState({ disease: [], disYn: false });
   const handleClick = () => {
     router.push(`/moreinfo/pre`);
+  };
+
+  const onChangeValue: OnChangeValueType = (field, value) => {
+    setParams((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
   };
 
   const handleChangeValue = (first: any) => {
@@ -45,12 +50,12 @@ export default function Join(): React.JSX.Element {
           subBottom={'금기해야 할 백신을 알려드릴게요'}
           falseLabel={'기저질환이 없어요'}
           trueLabel={'기저질환이 있어요'}
-          params={queryparams}
+          params={params}
           field={'disYn'}
           onChangeValue={onChangeValue}
         />
 
-        {queryparams.disYn && (
+        {params.disYn && (
           <>
             <div className="wrap">
               <div className="title">질환을 선택해 주세요</div>
@@ -80,7 +85,7 @@ export default function Join(): React.JSX.Element {
         )}
 
         <BottomButton
-          filled={queryparams.signupState === false}
+          filled={params.disYn !== false}
           handleNextButtonClick={() => {
             handleClick();
           }}
