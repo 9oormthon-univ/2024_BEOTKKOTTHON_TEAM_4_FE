@@ -1,5 +1,5 @@
 import { apiUrl } from '@/hooks/api';
-import { parseIdentity } from '@/hooks/useUtil';
+import { mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
 export async function postSignup(userData) {
   const {
@@ -13,13 +13,14 @@ export async function postSignup(userData) {
   } = userData;
 
   const update_identity = parseIdentity(identity_first);
+  const mappedTelecom = mapTelecom(telecom); // Map telecom value
 
   const api_params = JSON.stringify({
     userName: userName,
     id: id,
     password: password,
     identity: update_identity.date + identity_last,
-    telecom: telecom,
+    telecom: mappedTelecom,
     phoneNumber: phoneNumber,
   });
 

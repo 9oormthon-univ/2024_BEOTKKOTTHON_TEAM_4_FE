@@ -35,8 +35,6 @@ export default function Signup(): React.JSX.Element {
     phoneNumber: '',
     telecom: '',
   });
-  // api 요청 시 identity_first 을 parseIdentity 사용하여 변환
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const onChangeValue: OnChangeValueType = (field, value) => {
@@ -45,8 +43,9 @@ export default function Signup(): React.JSX.Element {
       [field]: value,
     }));
   };
-
-  //이전 페이지 데이터 끌고 오는
+  /**
+   *  이전 페이지 데이터 끌고 오는
+   */
   if (typeof window !== 'undefined') {
     useEffect(() => {
       let id = localStorage.getItem('id');
@@ -63,6 +62,9 @@ export default function Signup(): React.JSX.Element {
     }, []);
   }
 
+  /**
+   *  api 호출
+   */
   const handleNextButtonClick = () => {
     if (checkParamsFilled(params)) {
       try {
