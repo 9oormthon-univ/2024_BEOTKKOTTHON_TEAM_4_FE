@@ -5,8 +5,10 @@ import { Images } from '@globalStyles';
 import Accordion from '@/app/_component/atom/Accordion';
 
 const DiseaseDetailContainer= styled.div`
-  padding: 20px, 20px, 0px, 20px; 
+  width: 100%;
+  padding: 0px, 20px, 20px, 20px;
   margin-bottom: 100px;
+  gap:14px;
 `
 
 const DiseaseImageContainer = styled.div`

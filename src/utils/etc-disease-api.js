@@ -178,7 +178,7 @@ export const EtcDiseaseList = [
     iconsImage: Images.ico_vac13,
     vacName: 'A형간염',
     vacSub: 'HepA, 성인용',
-    vacDes: 'A형간염은 A형간염 바이러스(Hepatitis A virus, HAV)에 의하여 발생하는 간염으로 환경 및 위생개선과 적절한 예방조치로 예방이 가능합니다. ▶ A형간염은 어떻게 전파되나요? A형간염은 분변-경구 경로로 전파되며, 대부분 사람에서 사람으로 직접적으로 전파되거나 분변에 오염된 물이나 음식물을 섭취함으로써 간접적으로 전파되기도 합니다.',
+    vacDes: 'A형간염은 A형간염 바이러스(Hepatitis A virus, HAV)에 의하여 발생하는 간염으로 환경 및 위생개선과 적절한 예방조치로 예방이 가능합니다.',
     qaList: [
       {
         id: 1,
