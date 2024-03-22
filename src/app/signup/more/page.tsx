@@ -26,25 +26,25 @@ export default function Signup(): React.JSX.Element {
     id: '',
     password: '',
     password_check: '',
-    'isSave?': localStorage.getItem('identity_first'),
   });
   console.log(params);
-
-  useEffect(() => {
-    let identity_first = localStorage.getItem('identity_first');
-    let identity_last = localStorage.getItem('identity_last');
-    let userName = localStorage.getItem('userName');
-    let phoneNumber = localStorage.getItem('phoneNumber');
-    let telecom = localStorage.getItem('telecom');
-    setParams({
-      ...params,
-      identity_first,
-      identity_last,
-      userName,
-      phoneNumber,
-      telecom,
-    });
-  }, []);
+  if (typeof window !== 'undefined') {
+    useEffect(() => {
+      let identity_first = localStorage.getItem('identity_first');
+      let identity_last = localStorage.getItem('identity_last');
+      let userName = localStorage.getItem('userName');
+      let phoneNumber = localStorage.getItem('phoneNumber');
+      let telecom = localStorage.getItem('telecom');
+      setParams({
+        ...params,
+        identity_first,
+        identity_last,
+        userName,
+        phoneNumber,
+        telecom,
+      });
+    }, []);
+  }
 
   const [validate, setValidate] = useState<ParamsType>({
     id: { condition1: 'default', condition2: 'default' },
