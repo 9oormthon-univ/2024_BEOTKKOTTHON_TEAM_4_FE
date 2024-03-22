@@ -14,10 +14,22 @@ import { useRouter } from 'next/navigation';
 import { postchallenge } from '@/app/_lib/postchallenge';
 import { postSMSCode } from '@/app/_lib/postSMSCode';
 import { LocalStorage } from '@/hooks/useUtil';
+import { OnChangeValueType } from '@/types/globalType';
 
 export default function Verification(): React.JSX.Element {
   const router = useRouter();
   const [password, setPassword] = useState('');
+
+  const MINUTES_IN_MS = 3 * 60 * 1000;
+  const INTERVAL = 1000;
+  const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
+
+  const minutes = String(Math.floor((timeLeft / (1000 * 60)) % 60)).padStart(
+    2,
+    '0',
+  );
+  const second = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, '0');
+
   const handleNextButtonClick = async () => {
     if (password.length >= 5) {
       router.push('/signup/done?type=helpnew');
@@ -37,15 +49,7 @@ export default function Verification(): React.JSX.Element {
       // api 호출 했는데 신규 가입이면 /signup/done?type=helpnew
     }
   };
-  const MINUTES_IN_MS = 3 * 60 * 1000;
-  const INTERVAL = 1000;
-  const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
 
-  const minutes = String(Math.floor((timeLeft / (1000 * 60)) % 60)).padStart(
-    2,
-    '0',
-  );
-  const second = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, '0');
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => prevTime - INTERVAL);
@@ -55,11 +59,14 @@ export default function Verification(): React.JSX.Element {
       clearInterval(timer);
       router.push('/signup/info');
     }
-
     return () => {
       clearInterval(timer);
     };
   }, [timeLeft]);
+
+  const onChangeValue: OnChangeValueType = (value: number | string) => {
+    setPassword(value);
+  };
 
   return (
     <VerificationWrap>
@@ -78,7 +85,7 @@ export default function Verification(): React.JSX.Element {
         <VerificationInput
           inputLength={6}
           password={password}
-          setPassword={setPassword}
+          onChangeValue={onChangeValue}
         />
       </div>
       <BottomButton
