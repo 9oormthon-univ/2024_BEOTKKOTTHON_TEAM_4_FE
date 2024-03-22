@@ -16,14 +16,18 @@ import {
   parseIdentity,
   filterNumericInput,
   checkParamsFilled,
+  LocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import Link from 'next/link';
 
 export default function HelperLogin(): React.JSX.Element {
-  const [params, setParams] = useState<ParamsType>({
-    id: '',
-    password: '',
+  const [params, setParams] = useState<ParamsType>(() => {
+    const storedId = LocalStorage.getItem('id') || '';
+    return {
+      id: storedId,
+      password: '',
+    };
   });
   const router = useRouter();
   console.log(params);
@@ -33,6 +37,15 @@ export default function HelperLogin(): React.JSX.Element {
       [field]: value,
     }));
   };
+  useEffect(() => {
+    const storedId = localStorage.getItem('id') || '';
+    if (storedId) {
+      setParams((prevState) => ({
+        ...prevState,
+        id: storedId,
+      }));
+    }
+  }, []);
 
   const handleNextButtonClick = () => {
     if (checkParamsFilled(params)) {

@@ -7,14 +7,10 @@ import { VerificationWrap } from './style';
 import Image from 'next/image';
 import { css } from '@emotion/react';
 
-import { Colors, Icons, Images } from '@globalStyles';
-import { Fragment, useState } from 'react';
 import VerificationInput from '../../_component/atom/verificationInput';
 import BackHeader from '@/app/_component/molecule/BackHeader';
-import Button from '@/app/_component/atom/button/button';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import { OnChangeValueType } from '@/types/globalType';
-import { checkParamsFilled } from '@/hooks/useUtil';
 
 export default function Verification(): React.JSX.Element {
   const [password, setPassword] = React.useState(''); //현재 입력된 숫자
@@ -26,7 +22,10 @@ export default function Verification(): React.JSX.Element {
       // @Todo 여기에 api 호출
     }
   };
-  const onClickRefresh = () => {};
+
+  const onChangeValue: OnChangeValueType = (value: number | string) => {
+    setPassword(value);
+  };
   return (
     <VerificationWrap>
       <BackHeader title={'아이디/비밀번호 찾기'} url={''} />
@@ -44,7 +43,7 @@ export default function Verification(): React.JSX.Element {
         <VerificationInput
           inputLength={5}
           password={password}
-          setPassword={setPassword}
+          onChangeValue={onChangeValue}
         />
       </div>
       <BottomButton

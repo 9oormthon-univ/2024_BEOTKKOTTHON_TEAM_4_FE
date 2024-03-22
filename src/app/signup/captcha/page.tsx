@@ -14,7 +14,7 @@ import { OnChangeValueType } from '@/types/globalType';
 import { useState } from 'react';
 
 export default function Captcha(): React.JSX.Element {
-  const [password, setPassword] = useState<string>(); //현재 입력된 숫자
+  const [password, setPassword] = useState<string>(''); //현재 입력된 숫자
   const router = useRouter();
   let secureNoImage = LocalStorage.getItem('secureNoImage');
 
@@ -23,18 +23,19 @@ export default function Captcha(): React.JSX.Element {
 
   const handleNextButtonClick = async () => {
     if (password && password.length >= 5) {
-      // Perform a null/undefined check before accessing length
       try {
         const response = await postchallenge(password);
-        console.log('Signup successful:', response);
-        router.push(`/signup/verification`);
+        if (response) {
+          console.log('Signup successful:', response);
+          router.push(`/signup/verification`);
+        }
       } catch (error) {
         console.error('Signup failed:', error.message);
       }
     }
   };
 
-  const onChangeValue: OnChangeValueType = (value: number | string) => {
+  const onChangeValue: OnChangeValueType = (value: any) => {
     setPassword(value);
   };
 
@@ -44,7 +45,7 @@ export default function Captcha(): React.JSX.Element {
       <div className="top">보안문자를 입력해주세요</div>
       <div className="captcha_img">
         <Image
-          src={secureNoImage || Images.vacgom}
+          src={secureNoImage ? secureNoImage : Images.vacgom}
           alt={'보안이미지'}
           width={353}
           height={140}

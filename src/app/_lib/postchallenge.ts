@@ -28,10 +28,11 @@ export async function postchallenge(params) {
     if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
+    if (res) {
+      const responseData = await res.json();
 
-    const responseData = await res.json();
-
-    return responseData;
+      return responseData;
+    }
   } catch (error) {
     console.error('Error during POST request:', error);
     throw error;
