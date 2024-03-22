@@ -104,6 +104,12 @@ import ico_map_home from '../../public/assets/ico/ico-map-home.svg';
 import ico_home_greet from '../../public/assets/ico/ico-home-greet.svg';
 import ico_syringe from '../../public/assets/ico/ico-syringe.svg';
 
+//알람창에 들어가는 이미지들
+import ico_alert_clock from '../../public/assets/ico/ico-alert-clock.svg';
+import ico_alert_fail from '../../public/assets/ico/ico-alert-fail.svg';
+import ico_alert_vaccine from '../../public/assets/ico/ico-alert-vaccine.svg';
+import ico_alert_welcome from '../../public/assets/ico/ico-alert-welcome.svg';
+
 // prettier-ignore
 export const Images: ImagesType = {
   // icon
@@ -191,6 +197,12 @@ export const Images: ImagesType = {
   ico_map_home: ico_map_home,
   ico_home_greet: ico_home_greet,
   ico_syringe: ico_syringe,
+
+  ico_alert_clock:ico_alert_clock,
+  ico_alert_fail: ico_alert_fail,
+  ico_alert_vaccine:ico_alert_vaccine,
+  ico_alert_welcome:ico_alert_welcome,
+
   
   //image
   vacgom01: Vacgom01,

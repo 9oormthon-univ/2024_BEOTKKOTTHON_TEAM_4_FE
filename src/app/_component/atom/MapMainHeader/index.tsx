@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import { Images } from '@globalStyles';
+import Link from 'next/link';
 
 interface MapMainHeaderProps {
   title: string;
@@ -31,7 +32,9 @@ const MapMainHeader: React.FC<MapMainHeaderProps> = ({ title }) => {
   return (
     <HeaderContainer>
       <Title>{title}</Title>
-      <Image src={Images.ico_map_bell} alt="Notifications" />
+      <Link href="/alert">
+        <Image src={Images.ico_map_bell} alt="Notification" style={{ cursor: 'pointer' }} />
+      </Link>
     </HeaderContainer>
   );
 };
