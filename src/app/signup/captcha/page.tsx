@@ -19,6 +19,8 @@ import { checkParamsFilled } from '@/hooks/useUtil';
 export default function Verification(): React.JSX.Element {
   const [password, setPassword] = React.useState(''); //현재 입력된 숫자
   const router = useRouter();
+  console.log(router);
+
   const handleNextButtonClick = () => {
     if (password.length >= 5) {
       router.push('/signup/verification');

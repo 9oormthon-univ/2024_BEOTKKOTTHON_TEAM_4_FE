@@ -69,7 +69,9 @@ export default function Signup(): React.JSX.Element {
       try {
         const response = await postSignup(params);
         console.log('Signup successful:', response);
-        router.push(`/signup/captcha?${response}`);
+        router.push(
+          `/signup/captcha?secureNoImage=${response.data.secureNoImage}`,
+        );
       } catch (error) {
         console.error('Signup failed:', error.message);
       }
