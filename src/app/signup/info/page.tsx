@@ -10,7 +10,12 @@ import { useRouter } from 'next/navigation';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import InputForm from '@/app/_component/atom/InputForm';
 import FilterModal from '@/app/_component/organism/filterModal';
-import { agencyRanges, ageRanges, situationRanges } from '@/constants';
+import {
+  agencyRanges,
+  ageRanges,
+  diseaseRanges,
+  situationRanges,
+} from '@/constants';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
 import {
   parseIdentity,
@@ -19,6 +24,7 @@ import {
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import secureLocalStorage from 'react-secure-storage';
+import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -155,7 +161,7 @@ export default function Signup(): React.JSX.Element {
         </div>
 
         <Fragment>
-          <FilterModal
+          <FilterRadioModal
             isOpen={isModalOpen}
             title="통신사를 선택해 주세요"
             options={agencyRanges}
