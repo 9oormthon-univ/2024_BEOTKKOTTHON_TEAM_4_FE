@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useLocation } from 'react-router-dom';
 
 import { VerificationWrap } from './style';
@@ -14,12 +14,14 @@ import BottomButton from '@/app/_component/atom/BottomButton';
 export default function Captcha(): React.JSX.Element {
   const [password, setPassword] = React.useState(''); //현재 입력된 숫자
   const router = useRouter();
-  console.log(router);
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const queryParamValue = queryParams.get('secureNoImage');
 
-  console.log(queryParamValue);
+  const pathname = usePathname();
+  console.log(pathname);
+  // const location = useLocation();
+  // const queryParams = new URLSearchParams(location.search);
+  // const queryParamValue = queryParams.get('secureNoImage');
+  //
+  // console.log(queryParamValue);
 
   const handleNextButtonClick = () => {
     if (password.length >= 5) {
