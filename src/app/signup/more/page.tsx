@@ -20,6 +20,8 @@ import {
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
+import { postSignup } from '@/app/_lib/postSignup';
+import secureLocalStorage from 'react-secure-storage';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -27,12 +29,13 @@ export default function Signup(): React.JSX.Element {
     password: '',
     password_check: '',
   });
-
   const [validate, setValidate] = useState<ParamsType>({
     id: { condition1: 'default', condition2: 'default' },
     password: { condition1: 'default', condition2: 'default' },
     password_check: { condition1: 'default' },
   });
+
+  console.log(params);
 
   const router = useRouter();
   const allConditionsTrue = isAllConditionsTrue(validate);
@@ -45,14 +48,20 @@ export default function Signup(): React.JSX.Element {
     updateValidation(field, value);
   };
 
-  const handleNextButtonClick = () => {
+  const handleNextButtonClick = async () => {
     if (allConditionsTrue) {
       router.push('/signup/captcha');
 
-      // @Todo secureLocalStorage 저장 로직 필요
+      secureLocalStorage.setItem('id', params.id);
+      secureLocalStorage.setItem('password', params.password);
+      localStorage.setItem('id', params.id);
+      localStorage.setItem('password', params.password);
+
+      router.push('/signup/info');
     }
   };
 
+  // 값 validation 체크 및 업데이트
   const updateValidation = (field: string, value: string) => {
     switch (field) {
       case 'id':
@@ -131,7 +140,7 @@ export default function Signup(): React.JSX.Element {
             placeholder="영문, 숫자, 특수문자 조합 9자 이상"
             value={params.password}
             descriptionTop={'예방접종도우미 비밀번호'}
-            type="text"
+            type="password"
             variant={
               validate.password.condition1 === 'false' ||
               validate.password.condition2 === 'false'
@@ -158,7 +167,7 @@ export default function Signup(): React.JSX.Element {
             placeholder="비밀번호를 다시 입력해 주세요"
             value={params.password_check}
             descriptionTop={'비밀번호 확인'}
-            type="text"
+            type="password"
             variant={
               validate.password_check.condition1 === 'false'
                 ? 'error'

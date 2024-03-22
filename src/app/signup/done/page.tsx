@@ -18,6 +18,7 @@ import DonePage from '@/app/_component/temp/DonePage';
 import Button from '@/app/_component/atom/button/button';
 import Link from 'next/link';
 import { useQueryParams } from '@/hooks/useParam';
+import { OnChangeValueType, ParamsType } from '@/types/globalType';
 
 export default function SignupDone(): React.JSX.Element {
   const router = useRouter();
@@ -25,13 +26,20 @@ export default function SignupDone(): React.JSX.Element {
   // 만약 가입한 이력이 있으면 true
   // 최초 가입이면 false
   // searchparam 으로 하는 게 좋을듯
-  const { queryparams, onChangeValue } = useQueryParams();
-
+  const [params, setParams] = useState<ParamsType>({
+    nickname: '',
+  });
+  const onChangeValue: OnChangeValueType = (field, value) => {
+    setParams((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <SignupDoneWrap>
         <BackHeader title={''} url={'/signup'} />
-        {queryparams.type === 'helpalready' ? (
+        {params.type === 'helpalready' ? (
           <div className="padding">
             <DonePage
               more={alreadyUser}
@@ -54,7 +62,7 @@ export default function SignupDone(): React.JSX.Element {
               비밀번호가 기억나지 않아요
             </Link>
           </div>
-        ) : queryparams.type === 'helpnew' ? (
+        ) : params.type === 'helpnew' ? (
           <div className="padding">
             <DonePage
               title={'예방접종도우미 가입 완료!'}
@@ -72,7 +80,7 @@ export default function SignupDone(): React.JSX.Element {
               }}
             />
           </div>
-        ) : queryparams.type === 'submit' ? (
+        ) : params.type === 'submit' ? (
           <div className="padding">
             <DonePage
               title={'전예나님의'}

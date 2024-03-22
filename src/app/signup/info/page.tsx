@@ -9,8 +9,7 @@ import { Fragment, Suspense, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import InputForm from '@/app/_component/atom/InputForm';
-import FilterModal from '@/app/_component/organism/filterModal';
-import { agencyRanges, ageRanges, situationRanges } from '@/constants';
+import { agencyRanges } from '@/constants';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
 import {
   parseIdentity,
@@ -18,6 +17,9 @@ import {
   checkParamsFilled,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
+import secureLocalStorage from 'react-secure-storage';
+import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
+import { postSignup } from '@/app/_lib/postSignup';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -27,27 +29,50 @@ export default function Signup(): React.JSX.Element {
     phoneNumber: '',
     telecom: '',
   });
-  // api 요청 시 identity_first 을 parseIdentity 사용하여 변환
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [openVarifi, setOpenVarifi] = useState(false);
   const router = useRouter();
-  console.log(params);
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
       ...prevState,
       [field]: value,
     }));
   };
+  /**
+   *  이전 페이지 데이터 끌고 오는
+   */
+  if (typeof window !== 'undefined') {
+    useEffect(() => {
+      let id = secureLocalStorage.getItem('id');
+      let password = secureLocalStorage.getItem('password');
+      console.log('secure', id, password);
 
-  const handleNextButtonClick = () => {
+      setParams({
+        ...params,
+        id,
+        password,
+      });
+    }, []);
+  }
+
+  console.log(params);
+  /**
+   *  api 호출
+   */
+  const handleNextButtonClick = async () => {
     if (checkParamsFilled(params)) {
-      setOpenVarifi(true);
-      router.push('/signup/more?');
+      try {
+        const response = await postSignup(params);
+        console.log('Signup successful:', response);
+        router.push(
+          `/signup/captcha?secureNoImage=${response.data.secureNoImage}`,
+        );
+      } catch (error) {
+        console.error('Signup failed:', error.message);
+      }
     }
   };
 
-  const handleAgencySelect = (selectedOptions: string[]) => {
+  const handleAgencySelect = (selectedOptions) => {
     onChangeValue('telecom', selectedOptions);
     setIsModalOpen(false);
   };
@@ -147,7 +172,7 @@ export default function Signup(): React.JSX.Element {
         </div>
 
         <Fragment>
-          <FilterModal
+          <FilterRadioModal
             isOpen={isModalOpen}
             title="통신사를 선택해 주세요"
             options={agencyRanges}
