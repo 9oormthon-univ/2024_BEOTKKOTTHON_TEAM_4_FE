@@ -24,9 +24,9 @@ export default function Verification(): React.JSX.Element {
         const response = await postSMSCode(password);
         console.log('Signup successful:', response);
         if (response.success) {
-          localStorage.setItem('smsCodetype', 'helpnew');
+          localStorage.setItem('type', 'helpnew');
         } else {
-          localStorage.setItem('smsCodeSuccess', 'helpalready');
+          localStorage.setItem('type', 'helpalready');
         }
         router.push(`/signup/done`);
       } catch (error) {

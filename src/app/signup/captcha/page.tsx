@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { useLocation } from 'react-router-dom';
 
 import { VerificationWrap } from './style';
 import Image from 'next/image';
@@ -16,7 +15,7 @@ import { postchallenge } from '@/app/_lib/postchallenge';
 export default function Captcha(): React.JSX.Element {
   const [password, setPassword] = React.useState(''); //현재 입력된 숫자
   const router = useRouter();
-  const secureNoImage = localStorage.getItem('secureNoImage');
+  let secureNoImage = localStorage.getItem('secureNoImage');
 
   const handleNextButtonClick = async () => {
     if (password.length >= 5) {
