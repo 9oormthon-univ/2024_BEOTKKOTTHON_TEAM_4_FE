@@ -7,17 +7,17 @@ import { css } from '@emotion/react';
 
 import { Colors, Icons, Images } from '@globalStyles';
 import { Fragment, useRef, useState } from 'react';
-import { OnChangeValueType } from '@/types/globalType';
+import { OnChangePasswordType } from '@/types/globalType';
 
 type props = {
   inputLength: number;
-  password: string;
-  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  password: string | null;
+  onChangeValue: OnChangePasswordType;
 };
 export default function VerificationInput({
   inputLength,
   password,
-  setPassword,
+  onChangeValue,
 }: props): React.JSX.Element {
   const inputRef = useRef<HTMLInputElement>(null);
   const Button = Array.from(
@@ -57,7 +57,7 @@ export default function VerificationInput({
         maxLength={inputLength}
         value={password} //password
         onChange={(e) => {
-          setPassword(e.target.value);
+          onChangeValue(e.target.value);
           setActive(e.target.value.length - 1);
         }}
       />
