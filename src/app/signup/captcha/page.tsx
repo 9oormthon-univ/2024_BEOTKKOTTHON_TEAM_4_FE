@@ -11,9 +11,10 @@ import { postchallenge } from '@/app/_lib/postchallenge';
 import { LocalStorage } from '@/hooks/useUtil';
 import { Images } from '@/styles';
 import { OnChangeValueType } from '@/types/globalType';
+import { useState } from 'react';
 
 export default function Captcha(): React.JSX.Element {
-  const [password, setPassword] = React.useState(); //현재 입력된 숫자
+  const [password, setPassword] = useState<string>(); //현재 입력된 숫자
   const router = useRouter();
   let secureNoImage = LocalStorage.getItem('secureNoImage');
 
@@ -21,7 +22,8 @@ export default function Captcha(): React.JSX.Element {
   console.log(password);
 
   const handleNextButtonClick = async () => {
-    if (password.length >= 5) {
+    if (password && password.length >= 5) {
+      // Perform a null/undefined check before accessing length
       try {
         const response = await postchallenge(password);
         console.log('Signup successful:', response);

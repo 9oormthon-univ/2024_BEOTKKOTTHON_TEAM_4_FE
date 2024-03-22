@@ -11,7 +11,7 @@ import { OnChangePasswordType } from '@/types/globalType';
 
 type props = {
   inputLength: number;
-  password: any;
+  password: string;
   onChangeValue: OnChangePasswordType;
 };
 export default function VerificationInput({
