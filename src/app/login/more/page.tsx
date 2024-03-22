@@ -22,6 +22,8 @@ import {
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
 import { postSignup } from '@/app/_lib/postSignup';
+import { postFindChallenge } from '@/app/_lib/postFindChallenge';
+import { postFind } from '@/app/_lib/postFind';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -48,7 +50,7 @@ export default function Signup(): React.JSX.Element {
   const handleNextButtonClick = async () => {
     if (allConditionsTrue) {
       try {
-        const response = await postSignup(params);
+        const response = await postFind(params);
         console.log('Signup successful:', response);
         LocalStorage.setItem('secureNoImage', response.data.secureNoImage);
         router.push('/login/captcha');

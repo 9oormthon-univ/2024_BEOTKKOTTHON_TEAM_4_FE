@@ -11,21 +11,30 @@ import VerificationInput from '../../_component/atom/verificationInput';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import { OnChangeValueType } from '@/types/globalType';
+import { postchallenge } from '@/app/_lib/postchallenge';
+import { postFindChallenge } from '@/app/_lib/postFindChallenge';
 
 export default function Verification(): React.JSX.Element {
   const [password, setPassword] = React.useState(''); //현재 입력된 숫자
   const router = useRouter();
-  const handleNextButtonClick = () => {
-    if (password.length >= 5) {
-      router.push('/login/verification');
-
-      // @Todo 여기에 api 호출
+  const handleNextButtonClick = async () => {
+    if (password && password.length >= 5) {
+      try {
+        const response = await postFindChallenge(password);
+        if (response) {
+          console.log('Signup successful:', response);
+          router.push('/login/verification');
+        }
+      } catch (error) {
+        console.error('Signup failed:', error.message);
+      }
     }
   };
 
   const onChangeValue: OnChangeValueType = (value: number | string) => {
     setPassword(value);
   };
+
   return (
     <VerificationWrap>
       <BackHeader title={'아이디/비밀번호 찾기'} url={''} />

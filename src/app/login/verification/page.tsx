@@ -17,10 +17,7 @@ export default function Verification(): React.JSX.Element {
   const [password, setPassword] = useState('');
   const handleNextButtonClick = () => {
     if (password.length >= 5) {
-      // router.push('/signup/done?type=helpalready');
-      router.push('/signup/done?type=loginEnd');
-
-      // @Todo 여기에 api 호출
+      router.push('/signup/done');
     }
   };
   const MINUTES_IN_MS = 3 * 60 * 1000;
