@@ -52,8 +52,28 @@ export default function AlertPage() {
 
   const renderDate = () => {
     const today = new Date();
-    const date = `${today.getMonth() + 1}월 ${today.getDate()}일`;
-    return today ? "오늘" : date;
+    const date = new Date();
+    const formattedDate = `${date.getMonth() + 1}월 ${date.getDate()}일`;
+  
+    return (today.getDate() === date.getDate() &&
+            today.getMonth() === date.getMonth() &&
+            today.getFullYear() === date.getFullYear()) ? "오늘" : formattedDate;
+  };
+  
+
+  const renderAlarmIcon = (type) => {
+    switch (type) {
+      case "접종인증서":
+        return Images.ico_alert_clock;
+      case "가입":
+        return Images.ico_alert_welcome;
+      case "누락":
+        return Images.ico_alert_fail;
+      case "백신":
+        return Images.ico_alert_vaccine;
+      default:
+        return Images.ico_alert_clock;
+    }
   };
 
   const renderAlarmText = (alarm) => {
@@ -78,7 +98,7 @@ export default function AlertPage() {
       <AlarmList>
         {alarms.map((alarm, index) => (
           <AlarmItem key={index}>
-            <Image src={Images.ico_alert_clock} alt="Alert Clock" width={20} height={20} />
+            <Image src={renderAlarmIcon(alarm.type)} alt="Alert Icon" width={20} height={20} />
             <div>{renderAlarmText(alarm)}</div>
           </AlarmItem>
         ))}
