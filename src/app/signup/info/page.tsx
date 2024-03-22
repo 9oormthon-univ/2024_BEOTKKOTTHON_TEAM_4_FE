@@ -58,10 +58,9 @@ export default function Signup(): React.JSX.Element {
       console.log('userName: ', userName);
       console.log('phoneNumber: ', phoneNumber);
       console.log('telecom: ', telecom);
-      console.log('telecom: 왜 콘솔 ㅈ기히니?');
-      // if (telecom !== 'undefined' || telecom !== null) {
-      //   router.push('/signup/more?');
-      // }
+      if (telecom !== 'undefined' || telecom !== null) {
+        router.push('/signup/more');
+      }
     }
   };
 

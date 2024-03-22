@@ -56,3 +56,11 @@ export const isAllConditionsTrue = (params: ParamsType): boolean => {
   }
   return true;
 };
+
+/**
+ *  로컬 스토리지에서 저장된 값 가져오기
+ * @param key
+ */
+const getLocalStorageItem = (key: string) => {
+  return localStorage.getItem(key) || '';
+};
