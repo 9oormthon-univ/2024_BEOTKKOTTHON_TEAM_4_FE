@@ -56,3 +56,28 @@ export const isAllConditionsTrue = (params: ParamsType): boolean => {
   }
   return true;
 };
+
+/**
+ *  로컬 스토리지에서 저장된 값 가져오기
+ * @param key
+ */
+const getLocalStorageItem = (key: string) => {
+  return localStorage.getItem(key) || '';
+};
+
+/**
+ * 통신사 param 값을 변환해주는 함수
+ * @param telecom
+ */
+export function mapTelecom(telecom) {
+  switch (telecom) {
+    case 'SKT 알뜰폰':
+      return 'SKT_MVNO';
+    case 'KT 알뜰폰':
+      return 'KT_MVNO';
+    case 'LG U+ 알뜰폰':
+      return 'LG_MVNO';
+    default:
+      return telecom;
+  }
+}

@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 import { useQueryParams } from '@/hooks/useParam';
 import { fetchAccessToken } from '@/hooks/useKakaoLogin';
 
-export default function Join(): React.JSX.Element {
+export default function Signup(): React.JSX.Element {
   const router = useRouter();
   const [params, setParam] = useState({
     signupState: false,

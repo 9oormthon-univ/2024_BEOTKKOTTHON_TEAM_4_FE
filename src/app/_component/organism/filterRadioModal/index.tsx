@@ -25,7 +25,7 @@ interface ModalProps {
   onReset: () => void;
 }
 
-const FilterModal: React.FC<ModalProps> = ({
+const FilterRadioModal: React.FC<ModalProps> = ({
   isOpen,
   title,
   options,
@@ -45,7 +45,7 @@ const FilterModal: React.FC<ModalProps> = ({
   }, [options.length]);
 
   useEffect(() => {
-    setLocalSelectedOption(selectedOptions[0]);
+    setLocalSelectedOption(selectedOptions);
   }, [selectedOptions]);
 
   const handleOptionSelect = (option) => {
@@ -117,4 +117,4 @@ const FilterModal: React.FC<ModalProps> = ({
   );
 };
 
-export default FilterModal;
+export default FilterRadioModal;

@@ -1,24 +1,28 @@
 'use client';
 
 import * as React from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { useLocation } from 'react-router-dom';
 
 import { VerificationWrap } from './style';
 import Image from 'next/image';
-import { css } from '@emotion/react';
 
-import { Colors, Icons, Images } from '@/styles';
-import { Fragment, useState } from 'react';
 import VerificationInput from '../../_component/atom/verificationInput';
 import BackHeader from '@/app/_component/molecule/BackHeader';
-import Button from '@/app/_component/atom/button/button';
 import BottomButton from '@/app/_component/atom/BottomButton';
-import { OnChangeValueType } from '@/types/globalType';
-import { checkParamsFilled } from '@/hooks/useUtil';
 
-export default function Verification(): React.JSX.Element {
+export default function Captcha(): React.JSX.Element {
   const [password, setPassword] = React.useState(''); //현재 입력된 숫자
   const router = useRouter();
+
+  const pathname = usePathname();
+  console.log(pathname);
+  // const location = useLocation();
+  // const queryParams = new URLSearchParams(location.search);
+  // const queryParamValue = queryParams.get('secureNoImage');
+  //
+  // console.log(queryParamValue);
+
   const handleNextButtonClick = () => {
     if (password.length >= 5) {
       router.push('/signup/verification');
@@ -27,6 +31,7 @@ export default function Verification(): React.JSX.Element {
     }
   };
   const onClickRefresh = () => {};
+
   return (
     <VerificationWrap>
       <BackHeader title={'예방접종도우미 회원가입'} url={'/signup/more'} />
@@ -39,18 +44,7 @@ export default function Verification(): React.JSX.Element {
           height={140}
         />
       </div>
-      <div className="refresh">
-        <Button
-          prevIcon={Icons.refresh}
-          label={'다른 문자 보기'}
-          variant={'OutlineWhite'}
-          size={'refresh'}
-          customStyle={css`
-            border-radius: 26px;
-          `}
-          onClick={onClickRefresh}
-        />
-      </div>
+      <div className="refresh"></div>
       <div className="wrap">
         <VerificationInput
           inputLength={5}
