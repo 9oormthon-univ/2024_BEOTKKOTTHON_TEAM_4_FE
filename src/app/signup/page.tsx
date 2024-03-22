@@ -61,7 +61,7 @@ export default function Join(): React.JSX.Element {
         onChangeValue={onChangeValue}
       />
       <BottomButton
-        filled={queryparams.signupState === false}
+        filled={queryparams.signupState !== undefined}
         handleNextButtonClick={() => {
           handleClick();
         }}

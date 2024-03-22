@@ -9,10 +9,8 @@ import BackHeader from '@/app/_component/molecule/BackHeader';
 import JoinTemplate from '@/app/_component/temp/JoinTemplate';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
-import * as queryString from 'querystring';
 import { useRouter } from 'next/navigation';
 import { useQueryParams } from '@/hooks/useParam';
-import { fetchAccessToken } from '@/hooks/useKakaoLogin';
 import Button from '@/app/_component/atom/button/button';
 import { diseaseButttonList } from '@/utils/disease-button-api';
 import { fontGenerator } from '@/styles';
@@ -22,18 +20,11 @@ export default function Join(): React.JSX.Element {
   const { queryparams, onChangeValue } = useQueryParams();
   const [count, setCount] = useState(0);
   const [params, setParams] = useState({ disease: [] });
-  console.log(params);
   const handleClick = () => {
     router.push(`/moreinfo/pre`);
   };
-  const onChangeParams: OnChangeValueType = (field, value) => {
-    setParams((prevState) => ({
-      ...prevState,
-      [field]: value,
-    }));
-  };
 
-  const handleChangeValue = (first) => {
+  const handleChangeValue = (first: any) => {
     const updatedDisease = [...params.disease];
     const existingIndex = updatedDisease.indexOf(first);
     if (existingIndex !== -1) {

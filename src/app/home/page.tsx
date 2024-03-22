@@ -94,10 +94,7 @@ export default function Home() {
         </div>
         <div className="body_wrap">
           <div className="content_head">
-            <MenuTitle
-              title={'누락된 백신'}
-              rightIconUrl={'/failvac'}
-            />
+            <MenuTitle title={'누락된 백신'} rightIconUrl={'/failvac'} />
           </div>
           <div className="content_body">
             {failedVaccine.map((disease) => (

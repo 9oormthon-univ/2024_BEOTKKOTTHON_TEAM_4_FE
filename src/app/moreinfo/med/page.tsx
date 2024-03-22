@@ -7,11 +7,9 @@ import { JoinWrap } from './style';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import JoinTemplate from '@/app/_component/temp/JoinTemplate';
 import BottomButton from '@/app/_component/atom/BottomButton';
-import { OnChangeValueType } from '@/types/globalType';
-import * as queryString from 'querystring';
+
 import { useRouter } from 'next/navigation';
 import { useQueryParams } from '@/hooks/useParam';
-import { fetchAccessToken } from '@/hooks/useKakaoLogin';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();

@@ -5,9 +5,8 @@ import { SignupDoneWrap } from './style';
 import Image from 'next/image';
 import { css } from '@emotion/react';
 
-import { Colors, Icons, Images } from '@globalStyles';
+import { Colors, Icons, Images } from '@/styles';
 import { Fragment, useEffect, useState } from 'react';
-import VerificationInput from '../../_component/atom/verificationInput';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import {

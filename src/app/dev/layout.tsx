@@ -1,16 +1,14 @@
-"use client"
+'use client';
 
-import {DevLayoutMain} from "@/app/dev/layoutStyle";
-import React from "react";
+import { DevLayoutMain } from '@/app/dev/layoutStyle';
+import React from 'react';
 
-const CustomPage = ({ children }: Readonly<{
+const CustomPage = ({
+  children,
+}: Readonly<{
   children: React.ReactNode;
 }>) => {
-  return (
-    <DevLayoutMain>
-      {children}
-    </DevLayoutMain>
-  );
+  return <DevLayoutMain>{children}</DevLayoutMain>;
 };
 
 export default CustomPage;
