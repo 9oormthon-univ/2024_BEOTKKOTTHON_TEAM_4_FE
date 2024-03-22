@@ -23,7 +23,7 @@ export default function Id(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
     nickname: '',
   });
-  console.log(params.nickname);
+
   const [validate, setValidate] = useState<ParamsType>({
     nickname: {
       condition1: 'default',

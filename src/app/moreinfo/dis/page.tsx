@@ -14,11 +14,15 @@ import { useQueryParams } from '@/hooks/useParam';
 import Button from '@/app/_component/atom/button/button';
 import { diseaseButttonList } from '@/utils/disease-button-api';
 import { fontGenerator } from '@/styles';
+import { LocalStorage } from '@/hooks/useUtil';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
   const [params, setParams] = useState({ disease: [], disYn: false });
   const handleClick = () => {
+    if (params.disease) {
+      LocalStorage.setItem('disease', params.disease);
+    }
     router.push(`/moreinfo/pre`);
   };
 
@@ -65,7 +69,7 @@ export default function Join(): React.JSX.Element {
               </div>
             </div>
             <div className="contents">
-              {diseaseButttonList.map((item, index) => (
+              {.map((item, index) => (
                 <Button
                   key={index}
                   label={item.second}
