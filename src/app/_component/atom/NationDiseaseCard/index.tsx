@@ -13,7 +13,7 @@ const Card = styled.div`
   height: auto;
   padding: 20px 21.77px;
   gap: 20px;
-  border-radius: 14px 0px 0px 0px;
+  border-radius: 14px;
   background: #f9fafb;
   display: flex;
   flex-direction: column;
