@@ -45,7 +45,7 @@ export default function Signup(): React.JSX.Element {
     updateValidation(field, value);
   };
 
-  const handleNextButtonClick = () => {
+  const handleNextButtonClick = async () => {
     if (allConditionsTrue) {
       try {
         const response = await postSignup(params);

@@ -11,8 +11,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (accessToken) {
       console.log('Access Token:', accessToken);
     } else {
-      //로그아웃
-      console.log('Access Token not found');
+      localStorage.removeItem('accessToken');
+      window.location.href = '/';
     }
   }, []);
 
