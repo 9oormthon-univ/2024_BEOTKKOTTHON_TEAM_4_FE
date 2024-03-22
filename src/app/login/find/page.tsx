@@ -16,6 +16,7 @@ import {
   parseIdentity,
   filterNumericInput,
   checkParamsFilled,
+  SecureLocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 
@@ -30,7 +31,6 @@ export default function Signup(): React.JSX.Element {
   // api 요청 시 identity_first 을 parseIdentity 사용하여 변환
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [openVarifi, setOpenVarifi] = useState(false);
   const router = useRouter();
   console.log(params);
   const onChangeValue: OnChangeValueType = (field, value) => {
@@ -42,10 +42,13 @@ export default function Signup(): React.JSX.Element {
 
   const handleNextButtonClick = () => {
     if (checkParamsFilled(params)) {
-      setOpenVarifi(true);
-      router.push('/signup/more');
+      SecureLocalStorage.setItem('userName', params.userName);
+      SecureLocalStorage.setItem('phoneNumber', params.phoneNumber);
+      SecureLocalStorage.setItem('telecom', params.telecom);
+      SecureLocalStorage.setItem('identity_first', params.identity_first);
+      SecureLocalStorage.setItem('identity_last', params.identity_last);
 
-      // @Todo 여기에 api 호출
+      router.push('/login/more');
     }
   };
 

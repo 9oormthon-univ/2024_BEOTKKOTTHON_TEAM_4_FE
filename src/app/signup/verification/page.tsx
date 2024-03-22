@@ -40,6 +40,7 @@ export default function Verification(): React.JSX.Element {
           router.push(`/signup/done`);
         } else {
           LocalStorage.setItem('type', 'helpalready');
+          router.push(`/signup/done`);
         }
       } catch (error) {
         console.error('sms 실패:', error.message);

@@ -1,6 +1,10 @@
 import { apiUrl } from '@/hooks/api';
 import { mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
+/** 비
+ * 밀번호 전송
+ * @param params
+ */
 export async function postRegister(params) {
   const { id, password, identity_first, identity_last } = params;
 

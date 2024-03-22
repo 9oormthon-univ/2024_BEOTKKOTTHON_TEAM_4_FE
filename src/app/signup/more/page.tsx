@@ -51,8 +51,6 @@ export default function Signup(): React.JSX.Element {
 
   const handleNextButtonClick = async () => {
     if (allConditionsTrue) {
-      router.push('/signup/captcha');
-
       SecureLocalStorage.setItem('id', params.id);
       SecureLocalStorage.setItem('password', params.password);
       localStorage.setItem('id', params.id);

@@ -48,10 +48,9 @@ export default function HelperLogin(): React.JSX.Element {
    */
   const handleNextButtonClick = async () => {
     if (checkParamsFilled(params)) {
-      LocalStorage.setItem('password', params.password);
       try {
-        // const response = await postLogin(params);
-        // console.log('Signup successful:', response);
+        const response = await postLogin(params);
+        console.log('로그인 successful:', response);
         LocalStorage.setItem('type', 'loginEnd');
         router.push(`/signup/done`);
       } catch (error) {

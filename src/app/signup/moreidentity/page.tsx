@@ -46,7 +46,7 @@ export default function MoreIdentity(): React.JSX.Element {
       router.push('/signup/done?type=submit');
       try {
         const response = await postRegister(params);
-        console.log('Signup successful:', response);
+        console.log('데이터 조회 successful:', response);
         if (response.success) {
           LocalStorage.setItem('type', 'submit');
           router.push(`/signup/done`);

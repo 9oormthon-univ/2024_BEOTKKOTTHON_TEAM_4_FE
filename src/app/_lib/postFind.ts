@@ -1,23 +1,27 @@
 import { apiUrl } from '@/hooks/api';
 import { mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
-/**
- * 로그인과 데이터 조회
- * @param props
- */
-export async function postLogin(props) {
-  const { id, password } = props;
+export async function postFind(userData) {
+  const { userName, identity_first, identity_last, telecom, phoneNumber } =
+    userData;
+
+  const update_identity = parseIdentity(identity_first);
+  const mappedTelecom = mapTelecom(telecom);
 
   const api_params = JSON.stringify({
-    id: id,
-    password: password,
+    userName: userName,
+    identity: update_identity.date + identity_last,
+    telecom: mappedTelecom,
+    phoneNumber: phoneNumber,
   });
 
   console.log(api_params);
+
+  // const accessToken = localStorage.getItem('accessToken');
   const accessToken =
     'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0N2FmZmJkOC1hNDY1LTQyNjUtYjE3My1kZDk2YWM2MjNhYWQiLCJpYXQiOjE3MTExMTY0NTEsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MTExMjU0NTF9.0IQrGF-jrlfgTZGLOSGtpRVX5JRwVsI73LN6WJTE9fo';
   try {
-    const res = await fetch(`${apiUrl}/vaccination`, {
+    const res = await fetch(`${apiUrl}/reset-password`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -30,7 +34,9 @@ export async function postLogin(props) {
     if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
+
     const responseData = await res.json();
+
     return responseData;
   } catch (error) {
     console.error('Error during POST request:', error);
