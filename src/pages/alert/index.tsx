@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { Images } from '@globalStyles';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import NavigationFixed from '@/app/_component/organism/navigationFixed';
 
 const DateText = styled.div`
   font-family: Pretendard;
@@ -103,6 +104,7 @@ export default function AlertPage() {
           </AlarmItem>
         ))}
       </AlarmList>
+      <NavigationFixed/>
     </div>
   );
 }
