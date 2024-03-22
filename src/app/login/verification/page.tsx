@@ -17,6 +17,7 @@ import { LocalStorage } from '@/hooks/useUtil';
 export default function Verification(): React.JSX.Element {
   const router = useRouter();
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const MINUTES_IN_MS = 3 * 60 * 1000;
   const INTERVAL = 1000;
   const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
@@ -54,6 +55,7 @@ export default function Verification(): React.JSX.Element {
       } catch (error) {
         console.error('sms 실패:', error.message);
         console.error('sms 성공여부', error.success);
+        setError(error.message);
       }
     }
   };
