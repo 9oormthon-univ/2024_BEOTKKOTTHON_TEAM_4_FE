@@ -26,9 +26,7 @@ export async function postSignup(userData) {
 
   console.log(api_params);
 
-  // const accessToken = localStorage.getItem('accessToken');
-  const accessToken =
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0N2FmZmJkOC1hNDY1LTQyNjUtYjE3My1kZDk2YWM2MjNhYWQiLCJpYXQiOjE3MTExMjU4MDUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MTExMzQ4MDV9.SIf1DeoxZBb3lV7Vjdv0juK2FuT7cE0zz0EOcbpd4j0';
+  const accessToken = localStorage.getItem('accessToken');
   try {
     const res = await fetch(`${apiUrl}/signup`, {
       method: 'POST',
