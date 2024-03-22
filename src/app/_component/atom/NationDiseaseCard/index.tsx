@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
-interface DiseaseCardProps {
+interface NationDiseaseCardProps {
   diseaseName: string;
   imageUrl: string;
 }
@@ -39,28 +39,62 @@ const DiseaseName = styled.span`
   width: 100%;
 `;
 
-interface DiseaseCardProps {
-  id: number; 
+const SubContainer = styled.div`
+  width: 134 px;
+  height: 22px;
+  padding: 4px 7px 4px 7px;
+  gap: 10px;
+  border-radius: 7px;
+  opacity: 0px;
+  background: #4196fd;
+`;
+
+const Subtitle = styled.div`
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14.32px;
+  text-align: center;
+`;
+
+interface NationDiseaseCardProps {
+  id: number;
   diseaseName: string;
   imageUrl: string;
+  diseaseSub: string;
 }
 
-const DiseaseCard: React.FC<DiseaseCardProps> = ({ id, diseaseName, imageUrl }) => {
+const NationDiseaseCard: React.FC<NationDiseaseCardProps> = ({
+  id,
+  diseaseName,
+  imageUrl,
+  diseaseSub,
+}) => {
   const router = useRouter();
 
   const handleCardClick = () => {
     router.push(`/detaildis/${id}`);
   };
-  const formattedName = diseaseName.length > 8 ? `${diseaseName.slice(0, 8)}...` : diseaseName;
+  const formattedName =
+    diseaseName.length > 8 ? `${diseaseName.slice(0, 8)}...` : diseaseName;
 
   return (
     <Card>
       <DiseaseImage onClick={handleCardClick}>
-        <Image src={imageUrl} alt={diseaseName} width={100} height={100} layout="responsive" />
+        <Image
+          src={imageUrl}
+          alt={diseaseName}
+          width={100}
+          height={100}
+          layout="responsive"
+        />
       </DiseaseImage>
       <DiseaseName>{formattedName}</DiseaseName>
+      <SubContainer>
+        <Subtitle>{diseaseSub}</Subtitle>
+      </SubContainer>
     </Card>
   );
 };
 
-export default DiseaseCard;
+export default NationDiseaseCard;

@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { hospitals } from '@/utils/hpv-api';
 import Tooltip from '@/app/_component/atom/Tooltip';
 import { Modal } from '../../atom/MapModal';
+import { Images } from '@globalStyles';
 import ReloadButton from '@/app/_component/atom/ReloadButton';
 
 const Main = styled.div`
@@ -122,7 +123,7 @@ export default function HospitalMap() {
     >
       <MapContainer id="map">
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
-        <Tooltip />
+        <Tooltip tooltipImage={{ button: Images.ico_map_tooltip_button, content: Images.ico_map_tooltip }} />
         <ReloadButton onClick={handleCurrentLocationClick} />
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} content={modalContent} />
       </MapContainer>

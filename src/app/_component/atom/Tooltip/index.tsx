@@ -1,6 +1,6 @@
+// Tooltip 컴포넌트 수정
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { Images } from '@globalStyles';
 import Image from 'next/image';
 
 const TooltipContainer = styled.div`
@@ -23,7 +23,7 @@ const TooltipContent = styled.div`
   ${({ show }) => (show ? 'display: block;' : 'display: none;')}
 `;
 
-const Tooltip = () => {
+const Tooltip = ({ tooltipImage }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const toggleTooltip = () => {
@@ -34,12 +34,12 @@ const Tooltip = () => {
     <TooltipContainer>
       <TooltipButton onClick={toggleTooltip}>
         <Image
-          src={Images.ico_map_tooltip_button}
-          alt={'백신 병원 툴팁 버튼'}
+          src={tooltipImage.button}
+          alt={'툴팁 버튼'}
         />
       </TooltipButton>
       <TooltipContent show={showTooltip}>
-        <Image src={Images.ico_map_tooltip} alt={'백신 병원 툴팁 내용'} />
+        <Image src={tooltipImage.content} alt={'툴팁 내용'} />
       </TooltipContent>
     </TooltipContainer>
   );
