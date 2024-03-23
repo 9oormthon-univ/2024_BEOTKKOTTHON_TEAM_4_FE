@@ -57,8 +57,9 @@ export default function MoreIdentity(): React.JSX.Element {
         }
       } catch (error) {
         console.error('Signup failed:', error.message);
+        router.push(`/signup`);
       } finally {
-        setLoading(false); // 로딩 종료
+        setLoading(false);
       }
     }
   };
