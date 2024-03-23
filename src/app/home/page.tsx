@@ -41,9 +41,13 @@ const GreetingMessage = styled.span`
 `;
 
 const ImageContainer = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   margin-top: 20px;
+  margin-left:20px;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
 `;
 
 export default function Home() {
@@ -52,8 +56,9 @@ export default function Home() {
  const [recommendVaccine, setRecommendVaccine] = useState([]);
  const [isLoading, setIsLoading] = useState(true);
  const [error, setError] = useState("");
-
- const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
+ const [currentImage, setCurrentImage] = useState(Images.ico_home_1);
+ const [imageKey, setImageKey] = useState(0);
+ const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjNTAwOTIxYi0zNTdlLTQ1MDctODBhNC1lOWU2NDQyOGM5NTciLCJpYXQiOjE3MTExOTUwMzYsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxOTUwMzZ9.nzcx7wNkUlo6JRAMOVkToTE1OQJh7pL6LErzyDB3r_A';
  
  useEffect(() => {
    fetch(`${apiDevUrl}/me`, {
@@ -99,8 +104,22 @@ export default function Home() {
    });
  }, []);
 
+ useEffect(() => {
+  const images = [Images.ico_home_1, Images.ico_home_2, Images.ico_home_3];
+  let currentIndex = 0;
+
+  const intervalId = setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    setCurrentImage(images[currentIndex]);
+    setImageKey(prevKey => prevKey + 1); 
+  }, 3000);
+
+  return () => clearInterval(intervalId);
+}, []);
+
  if (isLoading) return <div>Loading...</div>;
  if (error) return <div>Error: {error}</div>;
+
 
   return (
     <>
@@ -110,8 +129,8 @@ export default function Home() {
           <UserName>{userName}님, </UserName>
           <GreetingMessage>반가워요!</GreetingMessage>
         </GreetingContainer>
-        <ImageContainer>
-          <Image src={Images.ico_home_greet} alt="추천하는 이미지" />
+        <ImageContainer key={imageKey}>
+          <Image src={currentImage} alt="추천하는 이미지" />
         </ImageContainer>
         <div className="body_wrap">
           <div className="content_head">

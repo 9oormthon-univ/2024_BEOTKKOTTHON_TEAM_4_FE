@@ -62,34 +62,7 @@ const SecondaryButton = styled(Button)`
 `; 
 
 export default function Quit() {
-  const [error, setError] = useState('');
 
-  const accessToken =
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
-
-    const handleAccountDeletion = () => {
-      if (window.confirm('정말로 계정을 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
-        fetch('https://api-dev.vacgom.co.kr/api/v1/me/', {
-          method: 'DELETE',
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-        })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-
-          alert('계정이 성공적으로 탈퇴되었습니다.');
-          window.location.href = '/seeagain';
-        })
-        .catch((error) => {
-          setError(error.message);
-          console.error('계정 탈퇴 중 오류가 발생했습니다:', error);
-        });
-      }
-    };
 
   return (
     <div>
@@ -110,7 +83,7 @@ export default function Quit() {
         <CautionText>백신만의 백신 인증서를{"\n"}발급받을 수 없어요</CautionText>
       </CautionItem>
       <PrimaryButton onClick={() => window.location.href = '/home'}>홈으로 이동</PrimaryButton>
-      <SecondaryButton onClick={handleAccountDeletion}>계정 탈퇴</SecondaryButton>
+      <SecondaryButton onClick={() => window.location.href = '/seeagain'}>계정 탈퇴</SecondaryButton>
     </div>
   );
   }
