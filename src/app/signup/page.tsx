@@ -28,7 +28,7 @@ export default function Signup(): React.JSX.Element {
   };
   const handleClick = () => {
     if (params.signupState === true) {
-      router.push('/home');
+      router.push('/login/helper');
     } else {
       router.push(`/signup/terms`);
     }
