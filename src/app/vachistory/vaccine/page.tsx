@@ -42,6 +42,7 @@ export default function Vaccine() {
       [field]: value,
     }));
   };
+
   useEffect(() => {
     if (selectedSection === '국가예방접종') {
       setType('nation');
@@ -54,30 +55,33 @@ export default function Vaccine() {
     onChangeValue('disease', []);
   };
 
+  const fetchList = async () => {
+    try {
+      const listData = await getInoculationSimple(type);
+      setList(listData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  const fetchDetail = async () => {
+    try {
+      const detailData = await getInoculationDetail(type, params.disease);
+      setDetail(detailData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   useEffect(() => {
-    const fetchDetail = async () => {
-      try {
-        const detailData = await getInoculationDetail(type, params.disease);
-        setDetail(detailData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    const fetchList = async () => {
-      try {
-        const listData = await getInoculationSimple(type);
-        setList(listData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    // 데이터 로딩이 완료되면 로딩 상태를 false로 변경
-    Promise.all([fetchDetail(), fetchList()]).then(() => {
+    fetchDetail();
+  }, [params.disease]);
+  useEffect(() => {
+    setParams({ disease: '전체' });
+    fetchList();
+    Promise.all([fetchList()]).then(() => {
       setLoading(false);
     });
-  }, [type, params.disease]);
+  }, [type]);
 
   return (
     <Container>
