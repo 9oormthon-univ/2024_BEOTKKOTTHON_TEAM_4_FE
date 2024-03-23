@@ -80,6 +80,9 @@ import ico_vac19 from '../../public/assets/ico/ico-vac-none.svg';
 import ico_vac20 from '../../public/assets/ico/ico-vac-none.svg';
 import ico_vac21 from '../../public/assets/ico/ico-vac-none.svg';
 
+// splash
+import splash from '../../public/assets/image/img-splash.svg';
+
 // 감염병 세부 페이지에 들어가는 요소들
 import ico_check_filled from '../../public/assets/ico/ico-check-filled.svg';
 import ico_pin_selec from '../../public/assets/ico/ico-pin-selec.svg';
@@ -213,4 +216,5 @@ export const Images: ImagesType = {
   vaccine_status_false: vaccine_status_false,
   vaccine_status_true: vaccine_status_true,
   vaccine_status_disable: vaccine_status_disable,
+  splash: splash,
 };

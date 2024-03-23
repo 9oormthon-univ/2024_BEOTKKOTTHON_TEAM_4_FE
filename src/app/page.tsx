@@ -20,7 +20,7 @@ export default function Home(): React.JSX.Element {
     <HomeWrap>
       <div className="main">
         <div className="title">
-          <Image src={Images.vacgom} alt={'백곰'} />
+          <Image src={Images.splash} alt={'백곰'} />
           <div className="sub_title">백신아, 곰아워!</div>
         </div>
       </div>
