@@ -46,7 +46,7 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: left;
   margin-top: 20px;
-  margin-left:20px;
+  margin-left: 20px;
   opacity: 1;
   transition: opacity 1s ease-in-out;
 `;
