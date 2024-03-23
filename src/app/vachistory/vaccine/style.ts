@@ -11,7 +11,17 @@ export const Container = styled.main`
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-bottom: 60px;
     }
+  }
+  & > .bottom {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    color: ${Colors.Gray600};
+    background-color: ${Colors.Gray100};
+    padding: 15px 20px 100px 20px;
+    margin-bottom: 100px;
   }
 `;

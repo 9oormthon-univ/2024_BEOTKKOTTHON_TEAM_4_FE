@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Container } from './style';
 import { Icons, Images } from '@/styles';
 
-import { diseaseRanges } from '@/constants';
+import { diseaseRanges, extraDisease, nationDisease } from '@/constants';
 import { Fragment, useEffect, useState } from 'react';
 import SectionHeader from '@/app/_component/atom/SectionHeader';
 import BackHeader from '@/app/_component/molecule/BackHeader';
@@ -29,6 +29,7 @@ export default function Vaccine() {
   const [type, setType] = useState('nation');
   const [list, setList] = useState([]);
   const [detail, setDetail] = useState([]);
+  const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
   const handleAgencySelect = (selectedOptions) => {
     onChangeValue('disease', selectedOptions);
@@ -57,27 +58,26 @@ export default function Vaccine() {
     const fetchDetail = async () => {
       try {
         const detailData = await getInoculationDetail(type, params.disease);
-        console.log(detailData);
         setDetail(detailData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
-    fetchDetail();
-  }, [params.disease]);
 
-  useEffect(() => {
     const fetchList = async () => {
       try {
         const listData = await getInoculationSimple(type);
-        console.log(listData);
         setList(listData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
-    fetchList();
-  }, [type]);
+
+    // 데이터 로딩이 완료되면 로딩 상태를 false로 변경
+    Promise.all([fetchDetail(), fetchList()]).then(() => {
+      setLoading(false);
+    });
+  }, [type, params.disease]);
 
   return (
     <Container>
@@ -103,50 +103,62 @@ export default function Vaccine() {
           }}
         />
 
-        {selectedSection === '국가예방접종' ? (
-          <>
-            {params.disease === '전체' ? (
-              <div className="content_wrap">
-                {list.map((item, key) => (
-                  <VaccineStatus
-                    vaccineType={item.vaccineName}
-                    diseaseName={item.diseaseName}
-                    maxOrder={item.maxOrder}
-                    minOrder={item.minOrder}
-                    inoculationOrders={item.inoculationOrders}
-                    isCompleted={item.isCompleted}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="content_wrap">
-                {detail.map((item, key) => (
-                  <VaccineDetail
-                    vaccineDose={item.order}
-                    vaccineProductName={item.vaccineProductName}
-                    vaccineBrandName={item.vaccineBrandName}
-                    inoculatedAt={item.date}
-                    inoculationAgency={item.agency}
-                    lotNo={item.lotNumber}
-                  />
-                ))}
-              </div>
-            )}
-          </>
+        {params.disease === '전체' ? (
+          <div className="content_wrap">
+            {list.map((item, key) => (
+              <VaccineStatus
+                vaccineType={item.vaccineName}
+                diseaseName={item.diseaseName}
+                maxOrder={item.maxOrder}
+                minOrder={item.minOrder}
+                inoculationOrders={item.inoculationOrders}
+                isCompleted={item.isCompleted}
+              />
+            ))}
+          </div>
         ) : (
-          ''
+          <div className="content_wrap">
+            {detail.map((item, key) => (
+              <VaccineDetail
+                vaccineDose={item.order}
+                vaccineProductName={item.vaccineProductName}
+                vaccineBrandName={item.vaccineBrandName}
+                inoculatedAt={item.date}
+                inoculationAgency={item.agency}
+                lotNo={item.lotNumber}
+              />
+            ))}
+          </div>
         )}
       </div>
+      {!loading && (
+        <div className="bottom">
+          예방접종등록사업을 시작한, 2002년 이후의 예방접종기록을 확인할 수
+          있어요
+        </div>
+      )}
       <Fragment>
-        <FilterRadioModal
-          isOpen={isModalOpen}
-          title="병명"
-          options={diseaseRanges}
-          selectedOptions={params.disease}
-          onClose={() => setIsModalOpen(false)}
-          onOptionSelect={handleAgencySelect}
-          onReset={resetAgencyOptions}
-        />
+        {selectedSection === '국가예방접종' ? (
+          <FilterRadioModal
+            isOpen={isModalOpen}
+            title="병명"
+            options={nationDisease}
+            selectedOptions={params.disease}
+            onClose={() => setIsModalOpen(false)}
+            onOptionSelect={handleAgencySelect}
+            onReset={resetAgencyOptions}
+          />
+        ) : (
+          <FilterRadioModal
+            isOpen={isModalOpen}
+            title="병명"
+            options={extraDisease}
+            selectedOptions={params.disease}
+            onClose={() => setIsModalOpen(false)}
+            onOptionSelect={handleAgencySelect}
+            onReset={resetAgencyOptions}
+          />
+        )}
       </Fragment>
     </Container>
   );

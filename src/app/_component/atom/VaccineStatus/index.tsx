@@ -55,27 +55,36 @@ export default function VaccineStatus({
     const images = statusImages.map((status, index) => {
       if (status === 'enable') {
         return (
-          <Image
-            key={index}
-            src={Images.vaccine_status_disable}
-            alt={'백신 접종 미완료 이미지'}
-          />
+          <div className={'itemWrap'}>
+            <Image
+              key={index}
+              src={Images.vaccine_status_disable}
+              alt={'백신 접종 미완료 이미지'}
+            />
+            <div className={'disable'}>{index + 1}차</div>
+          </div>
         );
       } else if (status === 'false') {
         return (
-          <Image
-            key={index}
-            src={Images.vaccine_status_false}
-            alt={'백신 접종 미완료 이미지'}
-          />
+          <div className={'itemWrap'}>
+            <Image
+              key={index}
+              src={Images.vaccine_status_false}
+              alt={'백신 접종 미완료 이미지'}
+            />
+            <div className={'index'}>{index + 1}차</div>
+          </div>
         );
       } else {
         return (
-          <Image
-            key={index}
-            src={Images.vaccine_status_true}
-            alt={'백신 접종 완료 이미지'}
-          />
+          <div className={'itemWrap'}>
+            <Image
+              key={index}
+              src={Images.vaccine_status_true}
+              alt={'백신 접종 완료 이미지'}
+            />{' '}
+            <div className={'true'}>{index + 1}차</div>
+          </div>
         );
       }
     });

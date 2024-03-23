@@ -54,6 +54,40 @@ export const VaccineStatusContainer = styled.div`
       flex-wrap: wrap;
       gap: 5px;
       justify-content: space-between;
+      & > .itemWrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        & > .index {
+          font-family: Pretendard;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 16.71px;
+          text-align: center;
+          color: ${Colors.Gray600};
+        }
+        & > .disable {
+          font-family: Pretendard;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 16.71px;
+          text-align: center;
+          color: ${Colors.Gray300};
+        }
+        & > .true {
+          font-family: Pretendard;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 16.71px;
+          text-align: center;
+          color: ${Colors.Primary};
+        }
+        & > img {
+          width: 50px;
+          height: 50px;
+        }
+      }
     }
   }
 `;

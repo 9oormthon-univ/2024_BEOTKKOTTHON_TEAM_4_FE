@@ -11,7 +11,7 @@ export async function getInoculationDetail(type: string, name: string) {
   const accessToken = LocalStorage.getItem('accessToken');
   try {
     const res = await fetch(`${apiDevUrl}/inoculation/detail?type=${type}`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
