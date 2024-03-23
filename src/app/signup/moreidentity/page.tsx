@@ -24,6 +24,7 @@ import { postchallenge } from '@/app/_lib/postchallenge';
 import secureLocalStorage from 'react-secure-storage';
 import { postRegister } from '@/app/_lib/postRegister';
 import WarningToast from '@/app/_component/atom/WarningToast';
+import { postLogin } from '@/app/_lib/postLogin';
 
 export default function MoreIdentity(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -31,7 +32,7 @@ export default function MoreIdentity(): React.JSX.Element {
     identity_last: '',
   });
   const [error, setError] = useState(null);
-  // api 요청 시 identity_first 을 parseIdentity 사용하여 변환
+  const [loading, setLoading] = useState(false); // 로딩 상태 추가
 
   const router = useRouter();
   const onChangeValue: OnChangeValueType = (field, value) => {
@@ -44,16 +45,22 @@ export default function MoreIdentity(): React.JSX.Element {
   const handleNextButtonClick = async () => {
     if (checkParamsFilled(params)) {
       try {
+        setLoading(true); // 로딩 시작
         const response = await postRegister(params);
+        const vaccination = await postLogin(params);
         console.log('데이터 조회 successful:', response);
-        if (response) {
+        console.log('데이터 조회 successful:', vaccination);
+        if (vaccination) {
           LocalStorage.setItem('type', 'submit');
+          LocalStorage.setItem('vaccineList', JSON.stringify(vaccination.data));
           router.push(`/signup/done`);
         } else {
           setError(response.message);
         }
       } catch (error) {
         console.error('Signup failed:', error.message);
+      } finally {
+        setLoading(false); // 로딩 종료
       }
     }
   };
@@ -110,11 +117,14 @@ export default function MoreIdentity(): React.JSX.Element {
           </div>
         </div>
       </div>
+
       {error !== null && <WarningToast message={error} />}
-      <BottomButton
-        filled={checkParamsFilled(params)}
-        handleNextButtonClick={handleNextButtonClick}
-      />
+      {!loading && (
+        <BottomButton
+          filled={checkParamsFilled(params)}
+          handleNextButtonClick={handleNextButtonClick}
+        />
+      )}
     </MoreIdentityWrapper>
   );
 }

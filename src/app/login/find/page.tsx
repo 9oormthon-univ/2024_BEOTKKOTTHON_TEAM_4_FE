@@ -19,6 +19,7 @@ import {
   SecureLocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
+import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -52,12 +53,12 @@ export default function Signup(): React.JSX.Element {
     }
   };
 
-  const handleAgencySelect = (selectedOptions: string[]) => {
+  const handleAgencySelect = (selectedOptions) => {
     onChangeValue('telecom', selectedOptions);
     setIsModalOpen(false);
   };
   const resetAgencyOptions = () => {
-    onChangeValue('telecom', []);
+    onChangeValue('telecom', '');
   };
 
   return (
@@ -151,7 +152,7 @@ export default function Signup(): React.JSX.Element {
       </div>
 
       <Fragment>
-        <FilterModal
+        <FilterRadioModal
           isOpen={isModalOpen}
           title="통신사를 선택해 주세요"
           options={agencyRanges}

@@ -21,12 +21,15 @@ import {
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
 import { postVacSignup } from '@/app/_lib/postVacSignup';
+import WarningToast from '@/app/_component/atom/WarningToast';
 
 export default function Id(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
     nickname: '',
     healthConditions: [],
   });
+
+  const [error, setError] = useState('');
 
   const [validate, setValidate] = useState<ParamsType>({
     nickname: {
@@ -81,10 +84,11 @@ export default function Id(): React.JSX.Element {
       try {
         const response = await postVacSignup(params);
         if (response.success) {
-          router.push('/moreinfo/welcome');
+          router.push('/home');
         }
-      } catch (e) {
-        console.log(e);
+      } catch (error) {
+        setError(error.errorMessage);
+        console.log(error.errorMessage);
       }
     }
   };
@@ -114,7 +118,7 @@ export default function Id(): React.JSX.Element {
   return (
     <SignupWrapper>
       <BackHeader title={''} url={'/moreinfo/trans'} counter={5} />
-      <div className="top">벡곰에서 사용할 닉네임을 입력해주세요.</div>
+      <div className="top">백곰에서 사용할 닉네임을 입력해주세요.</div>
       <div className="container">
         <div className="item">
           <InputForm
@@ -149,7 +153,7 @@ export default function Id(): React.JSX.Element {
           </div>
         </div>
       </div>
-
+      {error && <WarningToast message={error} />}
       <BottomButton
         filled={allConditionsTrue}
         handleNextButtonClick={handleNextButtonClick}
