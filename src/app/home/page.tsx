@@ -1,8 +1,7 @@
 'use client';
 
-import * as React from 'react';
 import Link from 'next/link';
-
+import React, { useState, useEffect } from 'react';
 import { Container } from './style';
 import VaccineCard from '@/app/_component/atom/VaccineCertificate/index';
 import { Icons, Images } from '@globalStyles';
@@ -18,6 +17,7 @@ import HomeDiseaseCard from '@/app/_component/atom/HomeDiseaseCard';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import NoneHome from '@/app/_component/atom/NoneHome';
+import { apiDevUrl } from '@/hooks/api';
 
 const GreetingContainer = styled.div`
   text-align: left;
@@ -49,21 +49,39 @@ const ImageContainer = styled.div`
 export default function Home() {
   const userName = '오소현';
 
-  const recommendVaccine = [
-    { id: 1, iconsImage: Images.ico_vac1, vacName: '결핵' },
-    { id: 2, iconsImage: Images.ico_vac2, vacName: 'B형간염' },
-    { id: 3, iconsImage: Images.ico_vac3, vacName: '디프테리아' },
-    { id: 4, iconsImage: Images.ico_vac4, vacName: '폴리오' },
-    { id: 5, iconsImage: Images.ico_vac5, vacName: 'b형헤모필루스인플루엔자' },
-  ];
+  const [recommendVaccine, setRecommendVaccine] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
+  
+  useEffect(() => {
+ 
+    fetch(`${apiDevUrl}/search/recommend`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setRecommendVaccine(data);
+      setIsLoading(false);
+    })
+    .catch(error => {
+      setError(error.message);
+      setIsLoading(false);
+    });
+  }, []);
 
-  const failedVaccine = [
-    { id: 6, iconsImage: Images.ico_vac6, vacName: '폐렴구균 감염증' },
-    { id: 7, iconsImage: Images.ico_vac7, vacName: '홍역' },
-    { id: 8, iconsImage: Images.ico_vac8, vacName: '수두' },
-    { id: 9, iconsImage: Images.ico_vac9, vacName: '일본뇌염' },
-    { id: 10, iconsImage: Images.ico_vac10, vacName: '인플루엔자' },
-  ];
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <>
@@ -76,21 +94,15 @@ export default function Home() {
         <ImageContainer>
           <Image src={Images.ico_home_greet} alt="추천하는 이미지" />
         </ImageContainer>
-        {/* 추천된 백신 섹션 */}
-        <div className="body_wrap">
-          <div className="content_head">
-            <MenuTitle title={`${userName}님을 위한 추천 백신`} rightIconUrl={'/recomvac'} />
-          </div>
-          <div className="content_body">
-            {recommendVaccine.length > 0 ? (
-              recommendVaccine.map((disease) => (
-                <HomeDiseaseCard key={disease.id} diseaseName={disease.vacName} imageUrl={disease.iconsImage} />
-              ))
-            ) : (
-              <NoneHome title="앗! 추천 백신이 없어요" />
-            )}
-          </div>
-        </div>
+        <div className="content_body">
+        {recommendVaccine.length > 0 ? (
+          recommendVaccine.map(vaccine => (
+            <HomeDiseaseCard key={vaccine.id} diseaseName={vaccine.vaccineName} imageUrl={vaccine.iconImage} />
+          ))
+        ) : (
+          <NoneHome title="앗! 추천 백신이 없어요" />
+        )}
+      </div>
         {/* 누락된 백신 섹션
         <div className="body_wrap">
           <div className="content_head">
