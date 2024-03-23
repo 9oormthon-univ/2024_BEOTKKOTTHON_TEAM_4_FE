@@ -21,14 +21,14 @@ import { getInoculationDetail } from '@/app/_lib/getInoculationDetail';
 
 export default function Vaccine() {
   const [params, setParams] = useState<ParamsType>({
-    disease: '',
+    disease: '전체',
   });
   const [selectedSection, setSelectedSection] = useState('국가예방접종');
   const sectionTexts = ['국가예방접종', '기타예방접종'];
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [type, setType] = useState('');
+  const [type, setType] = useState('nation');
   const detail = detailJson;
-  const list = listJson;
+  const [list, setList] = useState([]);
 
   const handleAgencySelect = (selectedOptions) => {
     onChangeValue('disease', selectedOptions);
@@ -53,13 +53,28 @@ export default function Vaccine() {
     onChangeValue('disease', []);
   };
 
-  useEffect(async () => {
+  const fetchDetail = async () => {
     try {
-      const listData = await getInoculationSimple(type);
       const detailData = await getInoculationDetail(type, params.disease);
-      console.log(listData);
       console.log(detailData);
-    } catch {}
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchList = async () => {
+      try {
+        const listData = await getInoculationSimple(type);
+        console.log(listData);
+        setList(listData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchList();
+    // fetchDetail();
+    console.log('type 바꿈', type);
   }, [type]);
 
   return (

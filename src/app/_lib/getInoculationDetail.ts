@@ -1,19 +1,17 @@
 import { apiDevUrl, apiUrl } from '@/hooks/api';
 import { LocalStorage, mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
-export async function getInoculationDetail(type, name) {
+export async function getInoculationDetail(type: string, name: string) {
   const api_params = JSON.stringify({
     name: name,
   });
 
   console.log(api_params);
 
-  // const accessToken = LocalStorage.getItem('accessToken');
-  const accessToken =
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNjE3NDUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MTExNzA3NDV9.hwZPEy91J-vRyQ2Pxhu5U-pS_721BJbqs3Wz3onVom0';
+  const accessToken = LocalStorage.getItem('accessToken');
   try {
-    const res = await fetch(`${apiDevUrl}/inoculation/simple?type=${type}`, {
-      method: 'POST',
+    const res = await fetch(`${apiDevUrl}/inoculation/detail?type=${type}`, {
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
@@ -27,7 +25,6 @@ export async function getInoculationDetail(type, name) {
     }
     if (res) {
       const responseData = await res.json();
-
       return responseData;
     }
   } catch (error) {
