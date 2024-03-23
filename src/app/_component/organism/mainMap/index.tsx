@@ -88,7 +88,7 @@ export default function MainMap() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const accessToken = LocalStorage.getItem('accessToken');const accessToken = LocalStorage.getItem('accessToken');
+  const accessToken = LocalStorage.getItem('accessToken');
 
   useEffect(() => {
     fetch(`${apiDevUrl}/me`, {

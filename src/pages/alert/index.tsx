@@ -5,6 +5,7 @@ import { Images } from '@globalStyles';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
+import { LocalStorage } from '@/hooks/useUtil';
 
 const DateText = styled.div`
   font-family: Pretendard;
@@ -60,7 +61,7 @@ const AlarmList = styled.div`
     };
     
 
-    const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjNTAwOTIxYi0zNTdlLTQ1MDctODBhNC1lOWU2NDQyOGM5NTciLCJpYXQiOjE3MTExOTUwMzYsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxOTUwMzZ9.nzcx7wNkUlo6JRAMOVkToTE1OQJh7pL6LErzyDB3r_A';
+    const accessToken = LocalStorage.getItem('accessToken');const accessToken = LocalStorage.getItem('accessToken');
     useEffect(() => {
       fetch('https://api-dev.vacgom.co.kr/api/v1/notifications/', {
         method: 'GET',
