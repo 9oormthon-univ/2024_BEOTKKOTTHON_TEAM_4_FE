@@ -99,6 +99,10 @@
 </table>
 </div>
 <br/><br/>
+
+
+# System Architecture
+![1121](https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_4_BE/assets/112257466/48b9e5de-c99f-4468-b09f-2445045b6381)
 </div>
 
 # 🎯 Vacgom's Frontend Commit Convention
