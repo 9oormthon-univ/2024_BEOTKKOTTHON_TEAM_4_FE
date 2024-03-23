@@ -110,7 +110,8 @@ export default function Vaccine() {
                     vaccineType={item.vaccineName}
                     diseaseName={item.diseaseName}
                     maxOrder={item.maxOrder}
-                    order={item.inoculationOrders}
+                    minOrder={item.minOrder}
+                    inoculationOrders={item.inoculationOrders}
                     isCompleted={item.isCompleted}
                   />
                 ))}
