@@ -106,6 +106,11 @@ import ico_home_greet from '../../public/assets/ico/ico-home-greet.svg';
 import ico_syringe from '../../public/assets/ico/ico-syringe.svg';
 import ico_none_syringe from '../../public/assets/ico/ico-none-syringe.svg';
 
+// 마이페이지
+import ico_my_recom from '../../public/assets/ico/ico-my-recom.svg';
+import ico_my_docs from '../../public/assets/ico/ico-my-docs.svg';
+import ico_my_profile from '../../public/assets/ico/ico_my_profile.svg';
+
 //알람창에 들어가는 이미지들
 import ico_alert_clock from '../../public/assets/ico/ico-alert-clock.svg';
 import ico_alert_fail from '../../public/assets/ico/ico-alert-fail.svg';
@@ -181,9 +186,9 @@ export const Images: ImagesType = {
   arrow_left: arrow_left,
   dropdown_up: dropdown_up,
   dropdown_down: dropdown_down,
-  check_default:check_default,
-  check_true :check_true,
-  check_false : check_false,
+  check_default: check_default,
+  check_true: check_true,
+  check_false: check_false,
 
   ico_map_my: ico_map_my,
   ico_map_selec: ico_map_selec,
@@ -202,12 +207,15 @@ export const Images: ImagesType = {
   ico_syringe: ico_syringe,
   ico_none_syringe: ico_none_syringe,
 
-  ico_alert_clock:ico_alert_clock,
+  ico_alert_clock: ico_alert_clock,
   ico_alert_fail: ico_alert_fail,
-  ico_alert_vaccine:ico_alert_vaccine,
-  ico_alert_welcome:ico_alert_welcome,
+  ico_alert_vaccine: ico_alert_vaccine,
+  ico_alert_welcome: ico_alert_welcome,
 
-  
+  ico_my_recom: ico_my_recom,
+  ico_my_docs:ico_my_docs,
+  ico_my_profile: ico_my_profile,
+
   //image
   vacgom01: Vacgom01,
   vacgom: vacgom,

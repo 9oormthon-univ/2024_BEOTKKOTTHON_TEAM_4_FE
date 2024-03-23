@@ -51,7 +51,7 @@ export default function Home() {
 
   const [recommendVaccine, setRecommendVaccine] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   
   const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
   
@@ -94,6 +94,10 @@ export default function Home() {
         <ImageContainer>
           <Image src={Images.ico_home_greet} alt="추천하는 이미지" />
         </ImageContainer>
+        <div className="body_wrap">
+          <div className="content_head">
+            <MenuTitle title={`${userName}님을 위한 추천 백신`} rightIconUrl={'/recomvac'} />
+          </div>
         <div className="content_body">
         {recommendVaccine.length > 0 ? (
           recommendVaccine.map(vaccine => (
@@ -102,6 +106,7 @@ export default function Home() {
         ) : (
           <NoneHome title="앗! 추천 백신이 없어요" />
         )}
+      </div>
       </div>
         {/* 누락된 백신 섹션
         <div className="body_wrap">
