@@ -47,41 +47,60 @@ const ImageContainer = styled.div`
 `;
 
 export default function Home() {
-  const userName = '오소현';
+ // `userName` 상태는 한 번만 선언합니다.
+ const [userName, setUserName] = useState('');
+ const [recommendVaccine, setRecommendVaccine] = useState([]);
+ const [isLoading, setIsLoading] = useState(true);
+ const [error, setError] = useState("");
 
-  const [recommendVaccine, setRecommendVaccine] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
-  
-  const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
-  
-  useEffect(() => {
+ const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
  
-    fetch(`${apiDevUrl}/search/recommend`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      setRecommendVaccine(data);
-      setIsLoading(false);
-    })
-    .catch(error => {
-      setError(error.message);
-      setIsLoading(false);
-    });
-  }, []);
+ useEffect(() => {
+   fetch(`${apiDevUrl}/me`, {
+     method: 'GET',
+     headers: {
+       'Authorization': `Bearer ${accessToken}`,
+       'Content-Type': 'application/json'
+     }
+   })
+   .then(response => {
+     if (!response.ok) {
+       throw new Error('Network response was not ok');
+     }
+     return response.json();
+   })
+   .then(data => {
+     setUserName(data.name);
+   })
+   .catch(error => {
+     setError(error.message);
+   });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+   fetch(`${apiDevUrl}/search/recommend`, {
+     method: 'GET',
+     headers: {
+       'Authorization': `Bearer ${accessToken}`,
+       'Content-Type': 'application/json'
+     }
+   })
+   .then(response => {
+     if (!response.ok) {
+       throw new Error('Network response was not ok');
+     }
+     return response.json();
+   })
+   .then(data => {
+     setRecommendVaccine(data);
+     setIsLoading(false);
+   })
+   .catch(error => {
+     setError(error.message);
+     setIsLoading(false);
+   });
+ }, []);
+
+ if (isLoading) return <div>Loading...</div>;
+ if (error) return <div>Error: {error}</div>;
 
   return (
     <>
@@ -108,21 +127,6 @@ export default function Home() {
         )}
       </div>
       </div>
-        {/* 누락된 백신 섹션
-        <div className="body_wrap">
-          <div className="content_head">
-            <MenuTitle title="누락된 백신" rightIconUrl={'/failvac'} />
-          </div>
-          <div className="content_body">
-            {failedVaccine.length > 0 ? (
-              failedVaccine.map((disease) => (
-                <HomeDiseaseCard key={disease.id} diseaseName={disease.vacName} imageUrl={disease.iconsImage} />
-              ))
-            ) : (
-              <NoneHome title="앗! 누락된 백신이 없어요" />
-            )}
-          </div>
-        </div> */}
         <div className="body_wrap">
           <div className="content_head">
             <MenuTitle title="접종 인증서" rightIconUrl={'/vachistory/certificate/list'} />
