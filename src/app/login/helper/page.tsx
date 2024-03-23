@@ -56,7 +56,7 @@ export default function HelperLogin(): React.JSX.Element {
   const handleNextButtonClick = async () => {
     if (checkParamsFilled(params)) {
       try {
-        setLoading(true); // 로딩 시작
+        setLoading(true);
         const response = await postLogin(params);
         console.log('로그인 successful:', response);
         SecureLocalStorage.setItem('id', params.id);
@@ -73,7 +73,7 @@ export default function HelperLogin(): React.JSX.Element {
         setError('error');
         console.error('Signup failed:', error.message);
       } finally {
-        setLoading(false); // 로딩 종료
+        setLoading(false);
       }
     }
   };
