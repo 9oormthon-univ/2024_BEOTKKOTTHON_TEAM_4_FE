@@ -65,7 +65,7 @@ const Accordion: React.FC<AccordionProps> = ({ qaList }) => {
     setActiveIndex(activeIndex === index ? null : index);
   };;
 
-  eturn (
+  return (
     <AccordionContainer>
       {qaList.map((item, index) => (
         <AccordionItem key={item.id}>

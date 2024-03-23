@@ -18,7 +18,7 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import NoneHome from '@/app/_component/atom/NoneHome';
 import { apiDevUrl } from '@/hooks/api';
-import { LocalStorage } from '@/hooks/useUtil';
+
 
 const GreetingContainer = styled.div`
   text-align: left;
@@ -59,9 +59,10 @@ export default function Home() {
  const [error, setError] = useState("");
  const [currentImage, setCurrentImage] = useState(Images.ico_home_1);
  const [imageKey, setImageKey] = useState(0);
-  const accessToken = LocalStorage.getItem('accessToken');
 
- 
+
+ const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
+
  useEffect(() => {
    fetch(`${apiDevUrl}/me`, {
      method: 'GET',
