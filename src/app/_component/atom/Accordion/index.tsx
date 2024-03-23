@@ -3,6 +3,10 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import { Images } from '@globalStyles';
 
+interface AnswerProps {
+  isActive: boolean;
+}
+
 interface QAItem {
   id: number;
   ques: string;
@@ -16,7 +20,7 @@ interface AccordionProps {
 
 const AccordionContainer = styled.div`
   width: 100%;
-  padding: 14px, 20px, 14px, 20px 
+  padding: 14px 20px 14px 20px ;
   border: 1px solid #F2F4F6;
   border-radius: 20px;
   margin-top: 20px;
@@ -41,7 +45,7 @@ const QuestionText = styled.div`
   font-size: 15px;
   font-weight: 600;
   line-height: 20px;
-  color: #4E5968;
+  color: #4e5968;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -63,9 +67,9 @@ const Accordion: React.FC<AccordionProps> = ({ qaList }) => {
 
   const toggleAccordion = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
-  };;
+  };
 
-  eturn (
+  return (
     <AccordionContainer>
       {qaList.map((item, index) => (
         <AccordionItem key={item.id}>
