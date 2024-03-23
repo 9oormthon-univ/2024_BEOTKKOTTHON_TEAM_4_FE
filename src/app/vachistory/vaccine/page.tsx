@@ -5,7 +5,7 @@ import { Container } from './style';
 import { Icons, Images } from '@/styles';
 
 import { diseaseRanges } from '@/constants';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import SectionHeader from '@/app/_component/atom/SectionHeader';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import InputForm from '@/app/_component/atom/InputForm';
@@ -16,6 +16,8 @@ import VaccineStatus from '@/app/_component/atom/VaccineStatus';
 import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
 import detailJson from '@/utils/user-vacDetail-api.json';
 import listJson from '@/utils/user-vacList-api.json';
+import { getInoculationSimple } from '@/app/_lib/getInoculationSimple';
+import { getInoculationDetail } from '@/app/_lib/getInoculationDetail';
 
 export default function Vaccine() {
   const [params, setParams] = useState<ParamsType>({
@@ -24,6 +26,7 @@ export default function Vaccine() {
   const [selectedSection, setSelectedSection] = useState('국가예방접종');
   const sectionTexts = ['국가예방접종', '기타예방접종'];
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [type, setType] = useState('');
   const detail = detailJson;
   const list = listJson;
 
@@ -31,16 +34,33 @@ export default function Vaccine() {
     onChangeValue('disease', selectedOptions);
     setIsModalOpen(false);
   };
+  console.log(params.disease);
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
       ...prevState,
       [field]: value,
     }));
   };
+  useEffect(() => {
+    if (selectedSection === '국가예방접종') {
+      setType('nation');
+    } else {
+      setType('extra');
+    }
+  }, []);
 
   const resetAgencyOptions = () => {
     onChangeValue('disease', []);
   };
+
+  useEffect(async () => {
+    try {
+      const listData = await getInoculationSimple(type);
+      const detailData = await getInoculationDetail(type, params.disease);
+      console.log(listData);
+      console.log(detailData);
+    } catch {}
+  }, [type]);
 
   return (
     <Container>
