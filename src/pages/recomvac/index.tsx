@@ -5,6 +5,7 @@ import HomeDiseaseCard from '@/app/_component/atom/HomeDiseaseCard';
 import styled from '@emotion/styled';
 import { apiDevUrl } from '@/hooks/api';
 import NoneHome from '@/app/_component/atom/NoneHome';
+import { LocalStorage } from '@/hooks/useUtil';
 
 const GreetingContainer = styled.div`
   text-align: left;
@@ -50,6 +51,7 @@ const CardsContainer = styled.div`
   & > div {
     width: calc(50% - 7px);
   }
+  margin-bottom:100px;
 `;
 
 export default function recomVac() {
@@ -59,7 +61,7 @@ export default function recomVac() {
  const [isLoading, setIsLoading] = useState(true);
  const [error, setError] = useState("");
 
- const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
+ const accessToken = LocalStorage.getItem('accessToken');
  
  useEffect(() => {
    fetch(`${apiDevUrl}/me`, {

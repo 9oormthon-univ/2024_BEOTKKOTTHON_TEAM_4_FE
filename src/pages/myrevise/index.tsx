@@ -5,6 +5,7 @@ import NavigationFixed from '@/app/_component/organism/navigationFixed';
 import Image from 'next/image';
 import { Images } from '@globalStyles';
 import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
+import { LocalStorage } from '@/hooks/useUtil';
 
 const ImageWrapper = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ const ImageWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 130px;
-  padding: 24px 0px;
+  padding: 24px;
   opacity: 1;
 `;
 
@@ -109,8 +110,7 @@ export default function Myrevise() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const accessToken =
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
+  const accessToken = LocalStorage.getItem('accessToken');
 
   useEffect(() => {
     fetch('https://api-dev.vacgom.co.kr/api/v1/me', {

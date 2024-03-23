@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Images } from '@globalStyles';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
 import Link from 'next/link';
+import { LocalStorage } from '@/hooks/useUtil';
 
 const GreetingContainer = styled.div`
   text-align: left;
@@ -36,11 +37,8 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  width: Fill (313px)px;
-  height: Hug (70px)px;
   gap: 25px;
   opacity: 0px;
-  margin-left: 100px;
 `;
 
 const NavContainer = styled.div`
@@ -84,8 +82,7 @@ export default function My() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const accessToken =
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
+  const accessToken = LocalStorage.getItem('accessToken');
 
   useEffect(() => {
     fetch('https://api-dev.vacgom.co.kr/api/v1/me', {
@@ -148,7 +145,7 @@ export default function My() {
         </ListItem>
         <ListItem>
           <ListItemText>개인정보방침</ListItemText>
-          <Link href="/your-destination-url" passHref>
+          <Link href="https://www.notion.so/been2spring/da1fae9ce9f54a7980a0782c91b7551f" passHref>
             <LinkButton>
               <Image src={Images.ico_my_right} alt="" />
             </LinkButton>
@@ -156,7 +153,7 @@ export default function My() {
         </ListItem>
         <ListItem>
           <ListItemText>이용약관</ListItemText>
-          <Link href="/your-destination-url" passHref>
+          <Link href="https://www.notion.so/been2spring/f17c3687e1f24279a76e9797a51677f6" passHref>
             <LinkButton>
               <Image src={Images.ico_my_right} alt="" />
             </LinkButton>

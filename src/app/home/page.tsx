@@ -18,6 +18,7 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import NoneHome from '@/app/_component/atom/NoneHome';
 import { apiDevUrl } from '@/hooks/api';
+import { LocalStorage } from '@/hooks/useUtil';
 
 
 const GreetingContainer = styled.div`
@@ -46,7 +47,7 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: left;
   margin-top: 20px;
-  margin-left:20px;
+  margin-left: 20px;
   opacity: 1;
   transition: opacity 1s ease-in-out;
 `;
@@ -61,7 +62,7 @@ export default function Home() {
  const [imageKey, setImageKey] = useState(0);
 
 
- const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
+ const accessToken = LocalStorage.getItem('accessToken');
 
  useEffect(() => {
    fetch(`${apiDevUrl}/me`, {

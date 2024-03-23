@@ -5,6 +5,7 @@ import { Images } from '@globalStyles';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
+import { LocalStorage } from '@/hooks/useUtil';
 
 const DateText = styled.div`
   font-family: Pretendard;
@@ -43,15 +44,11 @@ const AlarmList = styled.div`
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
 
-    const router = useRouter(); // Next.js 라우터 훅 사용
+    const router = useRouter();
 
-    // 뒤로가기 버튼 클릭 핸들러
     const handleBackButtonClick = () => {
-      router.back(); // 라우터의 back 메서드 호출
+      router.back();
     };
-  
-    // 나머지 코드...
-  
   
     const renderDate = () => {
       const today = new Date();
@@ -64,7 +61,7 @@ const AlarmList = styled.div`
     };
     
 
-    const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjNTAwOTIxYi0zNTdlLTQ1MDctODBhNC1lOWU2NDQyOGM5NTciLCJpYXQiOjE3MTExOTUwMzYsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxOTUwMzZ9.nzcx7wNkUlo6JRAMOVkToTE1OQJh7pL6LErzyDB3r_A';
+    const accessToken = LocalStorage.getItem('accessToken');
     useEffect(() => {
       fetch('https://api-dev.vacgom.co.kr/api/v1/notifications/', {
         method: 'GET',

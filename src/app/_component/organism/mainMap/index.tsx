@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Images } from '@globalStyles';
 import { useRouter } from 'next/router';
 import { apiDevUrl } from '@/hooks/api';
+import { LocalStorage } from '@/hooks/useUtil';
 
 const MainContainer = styled.div`
   display: flex;
@@ -87,7 +88,7 @@ export default function MainMap() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
+  const accessToken = LocalStorage.getItem('accessToken');
 
   useEffect(() => {
     fetch(`${apiDevUrl}/me`, {
