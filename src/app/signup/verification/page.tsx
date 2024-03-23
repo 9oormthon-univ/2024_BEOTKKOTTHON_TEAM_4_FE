@@ -45,9 +45,11 @@ export default function Verification(): React.JSX.Element {
       } catch (error) {
         console.error('sms 실패:', error.message);
         console.error('sms 성공여부', error.success);
-        if (error.message === 'USER_ALREADY_REGISTERED') {
+        if (error.code === 'USER_ALREADY_REGISTERED') {
           LocalStorage.setItem('type', 'helpalready');
           router.push(`/signup/done`);
+        } else {
+          router.push('/signup');
         }
       }
       // api 호출 했는데 이미 가입한 계정이면 /signup/done?type=helpalready
