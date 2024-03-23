@@ -19,6 +19,7 @@ import Image from 'next/image';
 import NoneHome from '@/app/_component/atom/NoneHome';
 import { apiDevUrl } from '@/hooks/api';
 import { LocalStorage } from '@/hooks/useUtil';
+import { getCertificate } from '../_lib/getCertificate';
 
 const GreetingContainer = styled.div`
   text-align: left;
@@ -44,8 +45,9 @@ const GreetingMessage = styled.span`
 const ImageContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
-  margin: 20px 0;
+  justify-content: left;
+  margin-top: 20px;
+  margin-left: 20px;
   opacity: 1;
   transition: opacity 1s ease-in-out;
 `;
@@ -57,6 +59,7 @@ export default function Home() {
   const [error, setError] = useState('');
   const [currentImage, setCurrentImage] = useState(Images.ico_home_1);
   const [imageKey, setImageKey] = useState(0);
+  const [certificateData, setCertificateData] = useState([]);
 
   const accessToken = LocalStorage.getItem('accessToken');
 
@@ -117,6 +120,31 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, []);
 
+  useEffect(() => {
+    const fetchCertificates = async () => {
+      try {
+        const response = await fetch(`${apiDevUrl}/inoculation/certificate`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`API call failed with status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setCertificateData(data);
+      } catch (error) {
+        console.error('Error fetching certificate data:', error);
+      }
+    };
+
+    fetchCertificates();
+  }, [accessToken]);
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -154,19 +182,18 @@ export default function Home() {
         </div>
         <div className="body_wrap">
           <div className="content_head">
-            <MenuTitle
-              title="접종 인증서"
-              rightIconUrl={'/vachistory/certificate/list'}
-            />
+            <MenuTitle title="접종 인증서" rightIconUrl={'/vachistory/certificate/list'} />
           </div>
           <div className="content_body">
-            {/* 접종 인증서 있을 때 */}
-            {/* <VaccineCard variant={'small'} image={Images.vacgom01} />
-            <VaccineCard variant={'small'} image={Images.vacgom01} />
-            <VaccineCard variant={'small'} image={Images.vacgom01} />
-            <VaccineCard variant={'small'} image={Images.vacgom01} />
-            <VaccineCard variant={'small'} image={Images.vacgom01} /> */}
-            <NoneHome title="앗! 접종 인증서가 없어요" />
+            {certificateData.map((item, key) => (
+              <VaccineCard
+                key={key}
+                variant={'small'}
+                image={item.iconImage}
+                vaccineName={item.vaccineName}
+                date={item.inoculatedDate}
+              />
+            ))}
           </div>
         </div>
         <NavigationFixed />
