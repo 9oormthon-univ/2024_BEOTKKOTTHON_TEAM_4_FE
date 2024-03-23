@@ -78,6 +78,8 @@ export function mapTelecom(telecom) {
       return 'KT_MVNO';
     case 'LG U+ 알뜰폰':
       return 'LG_MVNO';
+    case 'LG U+':
+      return 'LG';
     default:
       return telecom;
   }
