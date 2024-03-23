@@ -11,6 +11,7 @@ const ImageWrapper = styled.div`
 `;
 
 const CautionItem = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -68,7 +69,7 @@ export default function Quit() {
 
     const handleAccountDeletion = () => {
       if (window.confirm('정말로 계정을 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
-        fetch('https://api-dev.vacgom.co.kr/api/v1/me', {
+        fetch('https://api-dev.vacgom.co.kr/api/v1/me/', {
           method: 'DELETE',
           headers: {
             Authorization: `Bearer ${accessToken}`,
