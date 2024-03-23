@@ -1,19 +1,12 @@
 import { apiDevUrl } from '@/hooks/api';
-import {
-  LocalStorage,
-  mapTelecom,
-  parseIdentity,
-  SecureLocalStorage,
-} from '@/hooks/useUtil';
+import { LocalStorage } from '@/hooks/useUtil';
 
-export async function postVacSignup(userData) {
+export async function postVacSignup(memberInfo) {
   const vaccineList = LocalStorage.getItem('vaccineList');
   const vaccinationInfo = JSON.parse(vaccineList);
-  console.log(vaccineList);
-  console.log(vaccinationInfo);
   const api_params = JSON.stringify({
-    memberInfo: { userData },
-    vaccinationInfo: { vaccinationInfo },
+    memberInfo,
+    vaccinationInfo,
   });
 
   console.log(api_params);
@@ -34,6 +27,12 @@ export async function postVacSignup(userData) {
     if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
+
+    // if (res.status) {
+    //   router.push('/moreinfo/welcome');
+    // } else {
+    //   router.push('/signup');
+    // }
 
     const responseData = await res.json();
     LocalStorage.setItem('accessToken', responseData.token.accessToken);
