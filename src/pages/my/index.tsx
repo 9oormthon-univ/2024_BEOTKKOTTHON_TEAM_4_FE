@@ -133,7 +133,7 @@ export default function My() {
       <Image src={Images.ico_my_recom} alt=""/>
       </Link>
       <Link href="/vachistory/certificate/list" passHref>
-        <Image src={Images.ico_my_docs} alt="" /> /vachistory/certificate/list
+        <Image src={Images.ico_my_docs} alt="" /> 
         </Link>
       </ImageContainer>
       <NavContainer>
@@ -164,7 +164,7 @@ export default function My() {
         </ListItem>
         <ListItem>
           <ListItemText>로그아웃</ListItemText>
-          <Link href="/your-destination-url" passHref>
+          <Link href="/seeagain" passHref>
             <LinkButton>
               <Image src={Images.ico_my_right} alt="" />
             </LinkButton>
@@ -172,7 +172,7 @@ export default function My() {
         </ListItem>
         <ListItem>
           <ListItemText>계정 탈퇴</ListItemText>
-          <Link href="/your-destination-url" passHref>
+          <Link href="/quit" passHref>
             <LinkButton>
               <Image src={Images.ico_my_right} alt="" />
             </LinkButton>

@@ -112,6 +112,9 @@ import ico_my_docs from '../../public/assets/ico/ico-my-docs.svg';
 import ico_my_profile from '../../public/assets/ico/ico-my-profile.svg';
 import ico_my_right from '../../public/assets/ico/ico-my-right.svg';
 import ico_dropdown from '../../public/assets/ico/ico-dropdown-down.svg';
+import ico_quit_intro from '../../public/assets/ico/ico-quit-intro.svg';
+import ico_quit from '../../public/assets/ico/ico-quit.svg';
+import ico_see_again from '../../public/assets/ico/ico-see-again.svg';
 
 //알람창에 들어가는 이미지들
 import ico_alert_clock from '../../public/assets/ico/ico-alert-clock.svg';
@@ -208,6 +211,7 @@ export const Images: ImagesType = {
   ico_home_greet: ico_home_greet,
   ico_syringe: ico_syringe,
   ico_none_syringe: ico_none_syringe,
+  ico_see_again: ico_see_again,
 
   ico_alert_clock: ico_alert_clock,
   ico_alert_fail: ico_alert_fail,
@@ -219,6 +223,8 @@ export const Images: ImagesType = {
   ico_my_profile: ico_my_profile,
   ico_my_right: ico_my_right,
   ico_dropdown: ico_dropdown,
+  ico_quit_intro: ico_quit_intro,
+  ico_quit: ico_quit,
 
   //image
   vacgom01: Vacgom01,
