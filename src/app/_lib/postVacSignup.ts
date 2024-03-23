@@ -7,8 +7,9 @@ import {
 } from '@/hooks/useUtil';
 
 export async function postVacSignup(userData) {
-  const vaccineList = SecureLocalStorage.getItem('vaccineList');
+  const vaccineList = LocalStorage.getItem('vaccineList');
   const vaccinationInfo = JSON.parse(vaccineList);
+  console.log(vaccineList);
   console.log(vaccinationInfo);
   const api_params = JSON.stringify({
     memberInfo: { userData },

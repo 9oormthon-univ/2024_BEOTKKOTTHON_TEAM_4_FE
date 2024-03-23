@@ -47,7 +47,7 @@ export default function Vaccine() {
     } else {
       setType('extra');
     }
-  }, []);
+  }, [selectedSection]);
 
   const resetAgencyOptions = () => {
     onChangeValue('disease', []);
