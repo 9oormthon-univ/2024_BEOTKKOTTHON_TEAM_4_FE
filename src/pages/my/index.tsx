@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import MainHeader from '@/app/_component/atom/MainHeader';
 import Image from 'next/image';
 import { Images } from '@globalStyles';
-import MainMap from '@/app/_component/organism/mainMap';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
 import Link from 'next/link';
 
@@ -41,6 +40,7 @@ const ImageContainer = styled.div`
   height: Hug (70px)px;
   gap: 25px;
   opacity: 0px;
+  margin-left: 100px;
 `;
 
 const NavContainer = styled.div`
@@ -77,9 +77,6 @@ const ListItemText = styled.span`
 const LinkButton = styled.a`
   cursor: pointer;
 `;
-
-
-
 
 export default function My() {
   const [userName, setUserName] = useState('');
@@ -132,8 +129,12 @@ export default function My() {
         </UserGreeting>
       </GreetingContainer>
       <ImageContainer>
-        <Image src={Images.ico_my_recom} alt="" />
-        <Image src={Images.ico_my_docs} alt="" />
+      <Link href="/recomvac" passHref>
+      <Image src={Images.ico_my_recom} alt=""/>
+      </Link>
+      <Link href="/vachistory/certificate/list" passHref>
+        <Image src={Images.ico_my_docs} alt="" /> /vachistory/certificate/list
+        </Link>
       </ImageContainer>
       <NavContainer>
         <AccountTitle>계정 관리</AccountTitle>
