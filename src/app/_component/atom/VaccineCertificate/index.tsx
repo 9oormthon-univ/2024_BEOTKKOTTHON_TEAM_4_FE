@@ -30,7 +30,7 @@ export default function VaccineCard({
   };
 
   return (
-    <VaccineCardWrapper variant={variant} onClick={onClick}>
+    <VaccineCardWrapper variant={variant} onClick={onClick} image={image}>
       {variant !== 'small' && (
         <div className="top">
           <div className="ordercount">@{account_id}</div>
@@ -40,7 +40,13 @@ export default function VaccineCard({
         </div>
       )}
       <div className="image_wrapper">
-        <Image src={image} alt={'백곰:백신 이미지'} className="image" />
+        <Image
+          src={image}
+          alt={'백곰:백신 이미지'}
+          className="image"
+          width={142}
+          height={174}
+        />
       </div>
       <div className="bottom_content">
         <div className="label">{vaccineName}</div>

@@ -18,10 +18,12 @@ import { postVacSignup } from '@/app/_lib/postVacSignup';
 import responsJsonNation from '@/utils/user-vacList-api.json';
 import responsJsonetc from '@/utils/user-vacList-api.json';
 import { getInoculationSimple } from '@/app/_lib/getInoculationSimple';
+import { getCertificate } from '../_lib/getCertificate';
 
 export default function Vachistory() {
   const [NationData, setNationData] = useState([]);
   const [EtcData, setEtcData] = useState([]);
+  const [CertificateData, setCertificateData] = useState([]);
 
   const fetchList = async () => {
     try {
@@ -33,8 +35,17 @@ export default function Vachistory() {
       console.error('Error fetching data:', error);
     }
   };
+  const fetchCertifi = async () => {
+    try {
+      const certificateData = await getCertificate();
+      setCertificateData(certificateData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
   useEffect(() => {
     fetchList();
+    fetchCertifi();
   }, []);
 
   return (
@@ -48,11 +59,14 @@ export default function Vachistory() {
           />
         </div>
         <div className="content_body">
-          <VaccineCard variant={'small'} image={Images.vacgom01} />
-          <VaccineCard variant={'small'} image={Images.vacgom01} />
-          <VaccineCard variant={'small'} image={Images.vacgom01} />
-          <VaccineCard variant={'small'} image={Images.vacgom01} />
-          <VaccineCard variant={'small'} image={Images.vacgom01} />
+          {CertificateData.map((item, key) => (
+            <VaccineCard
+              variant={'small'}
+              image={item.iconImage}
+              vaccineName={item.vaccineName}
+              date={item.inoculatedDate}
+            />
+          ))}
         </div>
 
         <MenuTitle
