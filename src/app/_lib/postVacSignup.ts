@@ -1,9 +1,9 @@
 import { apiDevUrl } from '@/hooks/api';
-import { LocalStorage, mapTelecom, parseIdentity } from '@/hooks/useUtil';
+import {LocalStorage, mapTelecom, parseIdentity, SecureLocalStorage} from '@/hooks/useUtil';
 
 export async function postVacSignup(userData) {
-  const vaccinationInfo = LocalStorage.getItem('vaccineList');
-
+  const vaccinationInfo =  JSON.parse(SecureLocalStorage.getItem('vaccineList');)
+  console.log(vaccinationInfo);
   const api_params = JSON.stringify({
     memberInfo: { userData },
     vaccinationInfo: { vaccinationInfo },

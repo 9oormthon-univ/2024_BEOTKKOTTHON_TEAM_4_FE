@@ -61,7 +61,10 @@ export default function HelperLogin(): React.JSX.Element {
         SecureLocalStorage.setItem('password', params.password);
         if (response.success) {
           LocalStorage.setItem('type', 'loginEnd');
-          LocalStorage.setItem('vaccineList', response.vaccineList);
+          SecureLocalStorage.setItem(
+            'vaccineList',
+            JSON.stringify(response.vaccineList),
+          );
           router.push(`/signup/done`);
         } else {
           setError(response.message);
