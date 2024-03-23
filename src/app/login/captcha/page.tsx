@@ -13,15 +13,19 @@ import BottomButton from '@/app/_component/atom/BottomButton';
 import { OnChangeValueType } from '@/types/globalType';
 import { postchallenge } from '@/app/_lib/postchallenge';
 import { postFindChallenge } from '@/app/_lib/postFindChallenge';
-import { LocalStorage } from '@/hooks/useUtil';
+import { checkParamsFilled, LocalStorage } from '@/hooks/useUtil';
 import { Images } from '@/styles';
+import { useState } from 'react';
 
 export default function Verification(): React.JSX.Element {
   const [password, setPassword] = React.useState(''); //현재 입력된 숫자
   const router = useRouter();
+  const [loading, setLoading] = useState(false); // 로딩 상태 추가
+
   const handleNextButtonClick = async () => {
     if (password && password.length >= 5) {
       try {
+        setLoading(true); // 로딩 시작
         const response = await postFindChallenge(password, 'SECURE_NO');
         if (response) {
           console.log('Signup successful:', response);
@@ -29,6 +33,8 @@ export default function Verification(): React.JSX.Element {
         }
       } catch (error) {
         console.error('Signup failed:', error.message);
+      } finally {
+        setLoading(false); // 로딩 종료
       }
     }
   };
@@ -58,10 +64,12 @@ export default function Verification(): React.JSX.Element {
           onChangeValue={onChangeValue}
         />
       </div>
-      <BottomButton
-        filled={password !== ''}
-        handleNextButtonClick={handleNextButtonClick}
-      />
+      {!loading && ( // 로딩 중이 아닐 때에만 렌더링
+        <BottomButton
+          filled={password !== ''}
+          handleNextButtonClick={handleNextButtonClick}
+        />
+      )}
     </VerificationWrap>
   );
 }
