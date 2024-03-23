@@ -51,7 +51,7 @@ export default function SignupDone(): React.JSX.Element {
             title={`예방접종도우미에`}
             title_bottom={'가입한 이력이 있어요!'}
             content_top={'서비스 이용을 위해 전예나님의 정보를 입력해 주세요'}
-            content_bottom={'꼭 맞는 백신을 추천해 드릴게요!'}
+            content_bottom={'회원님과 꼭 맞는 백신을 추천해 드릴게요!'}
           />
           <Button
             label={'예방접종도우미 로그인하기'}
@@ -72,7 +72,7 @@ export default function SignupDone(): React.JSX.Element {
           <DonePage
             title={'예방접종도우미 가입 완료!'}
             content_top={'서비스 이용을 위해 전예나님의 정보를 입력해 주세요'}
-            content_bottom={'꼭 맞는 백신을 추천해 드릴게요!'}
+            content_bottom={'회원님과 꼭 맞는 백신을 추천해 드릴게요!'}
           />
           <Button
             label={'내 정보 입력하기'}
@@ -89,7 +89,7 @@ export default function SignupDone(): React.JSX.Element {
         <div className="padding">
           <DonePage
             title={'접종 내역 조회 완료!'}
-            content_top={'백신을 확인해 보세요'}
+            content_top={'회원님의 백신을 확인해 보세요'}
           />
           <Button
             label={'시작하기'}
@@ -106,8 +106,8 @@ export default function SignupDone(): React.JSX.Element {
         <div className="padding">
           <DonePage
             title={'예방접종도우미 로그인 완료!'}
-            content_top={'서비스 이용을 위해 전예나님의 정보를 입력해 주세요'}
-            content_bottom={'꼭 맞는 백신을 추천해 드릴게요!'}
+            content_top={'서비스 이용을 위해 회원님의 정보를 입력해 주세요'}
+            content_bottom={'회원님과 꼭 맞는 백신을 추천해 드릴게요!'}
           />
           <Button
             label={'시작하기'}
