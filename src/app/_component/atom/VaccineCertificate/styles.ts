@@ -8,12 +8,13 @@ import backimg from '../../public/assets/image/img-VaccineCard-back.svg';
 
 export const VaccineCardStyle: CssArchiveType = {
   primary: css`
-    background-image: url('assets/image/img-VaccineCardBack_Large.svg');
+    background-image: url('/assets/image/img-VaccineCardBack_Large.svg');
     background-color: ${Colors.Primary};
     position: relative;
     max-width: 300px;
     max-height: 414.56px;
     border-radius: 37.97px;
+
     & > .top {
       padding: 18.8px 18.8px 0 18.8px;
       display: flex;
@@ -45,7 +46,7 @@ export const VaccineCardStyle: CssArchiveType = {
     }
   `,
   large: css`
-    background-image: url('assets/image/img-VaccineCardBack_Large.svg');
+    background-image: url('/assets/image/img-VaccineCardBack_Large.svg');
     max-width: 353px;
     max-height: 520px;
     width: 100%;
