@@ -13,6 +13,9 @@ import BottomButton from '@/app/_component/atom/BottomButton';
 import { router, useRouter } from 'next/navigation';
 import { postSMSCode } from '@/app/_lib/postSMSCode';
 import { LocalStorage } from '@/hooks/useUtil';
+import { OnChangeValueType } from '@/types/globalType';
+import { postFindChallenge } from '@/app/_lib/postFindChallenge';
+import WarningToast from '@/app/_component/atom/WarningToast';
 
 export default function Verification(): React.JSX.Element {
   const router = useRouter();
@@ -43,10 +46,14 @@ export default function Verification(): React.JSX.Element {
     };
   }, [timeLeft]);
 
+  const onChangeValue: OnChangeValueType = (value: number | string) => {
+    setPassword(value);
+  };
+
   const handleNextButtonClick = async () => {
     if (password.length >= 5) {
       try {
-        const response = await postSMSCode(password);
+        const response = await postFindChallenge(password, 'SMS');
         console.log('sms 인증 성공:', response);
         if (response.success) {
           LocalStorage.setItem('type', 'loginEnd');
@@ -77,9 +84,10 @@ export default function Verification(): React.JSX.Element {
         <VerificationInput
           inputLength={6}
           password={password}
-          setPassword={setPassword}
+          onChangeValue={onChangeValue}
         />
       </div>
+      {error && <WarningToast message={error} />}
       <BottomButton
         filled={password.length >= 6}
         handleNextButtonClick={handleNextButtonClick}

@@ -18,6 +18,7 @@ import {
   checkParamsFilled,
   isAllConditionsTrue,
   LocalStorage,
+  SecureLocalStorage,
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
@@ -35,9 +36,10 @@ export default function Signup(): React.JSX.Element {
     password: { condition1: 'default', condition2: 'default' },
     password_check: { condition1: 'default' },
   });
-
+  const [loading, setLoading] = useState(false); // 로딩 상태 추가
   const router = useRouter();
   const allConditionsTrue = isAllConditionsTrue(validate);
+  console.log(allConditionsTrue);
 
   const onChangeValue: OnChangeValueType = (field, value, type) => {
     setParams((prevState) => ({
@@ -50,14 +52,17 @@ export default function Signup(): React.JSX.Element {
   const handleNextButtonClick = async () => {
     if (allConditionsTrue) {
       try {
+        setLoading(true); // 로딩 시작
         const response = await postFind(params);
         console.log('Signup successful:', response);
         LocalStorage.setItem('secureNoImage', response.data.secureNoImage);
+        SecureLocalStorage.setItem('password', params.password);
         router.push('/login/captcha');
       } catch (error) {
         console.error('Signup failed:', error.message);
+      } finally {
+        setLoading(false); // 로딩 종료
       }
-      // @Todo secureLocalStorage 저장 로직 필요
     }
   };
 
@@ -148,10 +153,12 @@ export default function Signup(): React.JSX.Element {
         </div>
       </div>
 
-      <BottomButton
-        filled={allConditionsTrue}
-        handleNextButtonClick={handleNextButtonClick}
-      />
+      {!loading && ( // 로딩 중이 아닐 때에만 렌더링
+        <BottomButton
+          filled={allConditionsTrue}
+          handleNextButtonClick={handleNextButtonClick}
+        />
+      )}
     </SignupWrapper>
   );
 }

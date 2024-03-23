@@ -86,7 +86,7 @@ export default function Signup(): React.JSX.Element {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <SignupWrapper>
-        <BackHeader title={'예방접종도우미 회원가입'} url={'/signup/terms'} />
+        <BackHeader title={'예방접종도우미 회원가입'} url={'/signup/more'} />
         <div className="top">정보를 입력해 주세요</div>
         <div className="container">
           <div className="item">
