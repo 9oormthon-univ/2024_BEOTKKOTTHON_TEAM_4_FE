@@ -6,11 +6,12 @@ import { Images } from '@/styles';
 
 //여기 로직 수정해야함
 interface VaccineStatusType {
-  vaccineType?: string;
-  order?: number;
-  orderString?: string;
-  diseaseName?: string;
-  maxOrder?: number;
+  vaccineType: string;
+  order: [];
+  orderString: string;
+  diseaseName: string;
+  maxOrder: number;
+  isCompleted: boolean;
 }
 // @Definition
 //   vaccineType :
@@ -21,10 +22,10 @@ interface VaccineStatusType {
 
 export default function VaccineStatus({
   vaccineType = 'DTaP',
-  order = 4,
-  orderString = '4차',
+  order = [],
   maxOrder = 4,
   diseaseName = '결핵',
+  isCompleted,
 }: React.PropsWithChildren<VaccineStatusType>) {
   // const [status, setStatus] = useState<boolean>();
 
@@ -64,7 +65,7 @@ export default function VaccineStatus({
       <div className="container">
         <div className="top">
           <div className="status">
-            {order === maxOrder && <div className="complete">접종완료</div>}
+            {isCompleted && <div className="complete">접종완료</div>}
           </div>
           <div className="diseaseName">{diseaseName}</div>
           <div className="vaccineType">{vaccineType}</div>

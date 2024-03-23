@@ -14,6 +14,8 @@ import { OnChangeValueType, ParamsType } from '@/types/globalType';
 import VaccineDetail from '@/app/_component/atom/VaccineDetail';
 import VaccineStatus from '@/app/_component/atom/VaccineStatus';
 import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
+import detailJson from '@/utils/user-vacDetail-api.json';
+import listJson from '@/utils/user-vacList-api.json';
 
 export default function Vaccine() {
   const [params, setParams] = useState<ParamsType>({
@@ -22,9 +24,18 @@ export default function Vaccine() {
   const [selectedSection, setSelectedSection] = useState('국가예방접종');
   const sectionTexts = ['국가예방접종', '기타예방접종'];
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleAgencySelect = (selectedOptions: string[]) => {
+  const detail = detailJson;
+  const list = listJson;
+
+  const handleAgencySelect = (selectedOptions) => {
     onChangeValue('disease', selectedOptions);
     setIsModalOpen(false);
+  };
+  const onChangeValue: OnChangeValueType = (field, value) => {
+    setParams((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
   };
 
   const resetAgencyOptions = () => {
@@ -59,16 +70,28 @@ export default function Vaccine() {
           <>
             {params.disease === '전체' ? (
               <div className="content_wrap">
-                <VaccineStatus />
-                <VaccineStatus />
-                <VaccineStatus />
+                {list.map((item, key) => (
+                  <VaccineStatus
+                    vaccineType={item.vaccineName}
+                    diseaseName={item.diseaseName}
+                    maxOrder={item.maxOrder}
+                    order={item.inoculationOrders}
+                    isCompleted={item.isCompleted}
+                  />
+                ))}
               </div>
             ) : (
               <div className="content_wrap">
-                <VaccineDetail />
-                <VaccineDetail />
-                <VaccineDetail />
-                <VaccineDetail />
+                {detail.map((item, key) => (
+                  <VaccineDetail
+                    vaccineDose={item.order}
+                    vaccineProductName={item.vaccineProductName}
+                    vaccineBrandName={item.vaccineBrandName}
+                    inoculatedAt={item.date}
+                    inoculationAgency={item.agency}
+                    lotNo={item.lotNumber}
+                  />
+                ))}
               </div>
             )}
           </>

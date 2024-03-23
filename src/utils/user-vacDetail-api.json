@@ -1,0 +1,29 @@
+[
+  {
+    "vaccineName": "TdaP",
+    "order": "6차(추가)",
+    "agency": "서울특별시중랑구보건소",
+    "lotNumber": "AC37B096AB",
+    "vaccineProductName": "부스트릭스프리필드시린지주",
+    "vaccineBrandName": "글락소스미스클라인㈜",
+    "date": "2014-10-13"
+  },
+  {
+    "vaccineName": "DTaP",
+    "order": "5차(추가)",
+    "agency": "중랑구보건소",
+    "lotNumber": "D40806B",
+    "vaccineProductName": "에스케이디피티트리백신주",
+    "vaccineBrandName": "SK케미칼(주)",
+    "date": "2009-05-20"
+  },
+  {
+    "vaccineName": "DTaP",
+    "order": "4차(추가)",
+    "agency": "광명시보건소",
+    "lotNumber": "00603006",
+    "vaccineProductName": "보령정제피디티백신",
+    "vaccineBrandName": "(주)보령바이오파마",
+    "date": "2005-03-17"
+  }
+]
