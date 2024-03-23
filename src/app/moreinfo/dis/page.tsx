@@ -69,8 +69,8 @@ export default function Join(): React.JSX.Element {
               <p>{params.disease.length}/11</p>
             </div>
           </div>
-          <div className="contents">
-            {diseaseButttonList.map((item, index) => (
+         <div className="contents">
+            {diseas eButttonList.map((item, index) => (
               <Button
                 key={index}
                 label={item.second}
