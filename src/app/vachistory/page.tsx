@@ -19,6 +19,8 @@ import responsJsonNation from '@/utils/user-vacList-api.json';
 import responsJsonetc from '@/utils/user-vacList-api.json';
 import { getInoculationSimple } from '@/app/_lib/getInoculationSimple';
 import { getCertificate } from '../_lib/getCertificate';
+import { apiDevUrl } from '@/hooks/api';
+import { LocalStorage } from '@/hooks/useUtil';
 
 export default function Vachistory() {
   const [NationData, setNationData] = useState([]);
@@ -47,6 +49,27 @@ export default function Vachistory() {
     fetchList();
     fetchCertifi();
   }, []);
+  const accessToken = LocalStorage.getItem('accessToken');
+  const [userName, setUserName] = useState('');
+  useEffect(() => {
+    fetch(`${apiDevUrl}/me`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUserName(data.name);
+      })
+      .catch((error) => {});
+  }, []);
 
   return (
     <Container>
@@ -70,7 +93,7 @@ export default function Vachistory() {
         </div>
 
         <MenuTitle
-          username="전예나"
+          username={userName}
           title={'님의 예방접종내역을 확인해보세요!'}
           rightIconUrl={'/vachistory/vaccine'}
         />

@@ -38,17 +38,20 @@ export default function CertificateDetail() {
       <BackHeader title={'접종 상세'} url={'/vachistory/certificate/list'} />
       <div className="container">
         <VaccineCard
-          image={Images.vacgom01}
+          image={detail?.iconImage}
           variant={'large'}
+          vaccineName={detail?.vaccineName}
+          diseaseName={detail?.diseaseName}
+          date={detail?.inoculatedDate}
           definition
           subLabel
         />
-        <Button
-          prevIcon={Icons.share}
-          label={'이미지 공유'}
-          variant={'OutlineWhite'}
-          size={'large'}
-        />
+        {/*<Button*/}
+        {/*  prevIcon={Icons.share}*/}
+        {/*  label={'이미지 공유'}*/}
+        {/*  variant={'OutlineWhite'}*/}
+        {/*  size={'large'}*/}
+        {/*/>*/}
       </div>
     </Container>
   );
