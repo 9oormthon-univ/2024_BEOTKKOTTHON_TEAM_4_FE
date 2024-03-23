@@ -77,7 +77,7 @@ export default function HelperLogin(): React.JSX.Element {
       }
     }
   };
-
+  if (loading) return <div>Loading...</div>;
   return (
     <HelperLoginWrapper>
       <BackHeader title={'예방접종도우미 로그인'} url={'/signup/terms'} />

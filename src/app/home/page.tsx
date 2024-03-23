@@ -20,7 +20,6 @@ import NoneHome from '@/app/_component/atom/NoneHome';
 import { apiDevUrl } from '@/hooks/api';
 import { LocalStorage } from '@/hooks/useUtil';
 
-
 const GreetingContainer = styled.div`
   text-align: left;
   margin: 20px;
@@ -45,85 +44,81 @@ const GreetingMessage = styled.span`
 const ImageContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: left;
-  margin-top: 20px;
-  margin-left: 20px;
+  justify-content: center;
+  margin: 20px 0;
   opacity: 1;
   transition: opacity 1s ease-in-out;
 `;
 
 export default function Home() {
+  const [userName, setUserName] = useState('');
+  const [recommendVaccine, setRecommendVaccine] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [currentImage, setCurrentImage] = useState(Images.ico_home_1);
+  const [imageKey, setImageKey] = useState(0);
 
- const [userName, setUserName] = useState('');
- const [recommendVaccine, setRecommendVaccine] = useState([]);
- const [isLoading, setIsLoading] = useState(true);
- const [error, setError] = useState("");
- const [currentImage, setCurrentImage] = useState(Images.ico_home_1);
- const [imageKey, setImageKey] = useState(0);
+  const accessToken = LocalStorage.getItem('accessToken');
 
+  useEffect(() => {
+    fetch(`${apiDevUrl}/me`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUserName(data.name);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
 
- const accessToken = LocalStorage.getItem('accessToken');
+    fetch(`${apiDevUrl}/search/recommend`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setRecommendVaccine(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setIsLoading(false);
+      });
+  }, []);
 
- useEffect(() => {
-   fetch(`${apiDevUrl}/me`, {
-     method: 'GET',
-     headers: {
-       'Authorization': `Bearer ${accessToken}`,
-       'Content-Type': 'application/json'
-     }
-   })
-   .then(response => {
-     if (!response.ok) {
-       throw new Error('Network response was not ok');
-     }
-     return response.json();
-   })
-   .then(data => {
-     setUserName(data.name);
-   })
-   .catch(error => {
-     setError(error.message);
-   });
+  useEffect(() => {
+    const images = [Images.ico_home_1, Images.ico_home_2, Images.ico_home_3];
+    let currentIndex = 0;
 
-   fetch(`${apiDevUrl}/search/recommend`, {
-     method: 'GET',
-     headers: {
-       'Authorization': `Bearer ${accessToken}`,
-       'Content-Type': 'application/json'
-     }
-   })
-   .then(response => {
-     if (!response.ok) {
-       throw new Error('Network response was not ok');
-     }
-     return response.json();
-   })
-   .then(data => {
-     setRecommendVaccine(data);
-     setIsLoading(false);
-   })
-   .catch(error => {
-     setError(error.message);
-     setIsLoading(false);
-   });
- }, []);
+    const intervalId = setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+      setCurrentImage(images[currentIndex]);
+      setImageKey((prevKey) => prevKey + 1);
+    }, 3000);
 
- useEffect(() => {
-  const images = [Images.ico_home_1, Images.ico_home_2, Images.ico_home_3];
-  let currentIndex = 0;
+    return () => clearInterval(intervalId);
+  }, []);
 
-  const intervalId = setInterval(() => {
-    currentIndex = (currentIndex + 1) % images.length;
-    setCurrentImage(images[currentIndex]);
-    setImageKey(prevKey => prevKey + 1); 
-  }, 3000);
-
-  return () => clearInterval(intervalId);
-}, []);
-
- if (isLoading) return <div>Loading...</div>;
- if (error) return <div>Error: {error}</div>;
-
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <>
@@ -138,25 +133,35 @@ export default function Home() {
         </ImageContainer>
         <div className="body_wrap">
           <div className="content_head">
-            <MenuTitle title={`${userName}님을 위한 추천 백신`} rightIconUrl={'/recomvac'} />
-          </div>
-        <div className="content_body">
-        {recommendVaccine.length > 0 ? (
-          recommendVaccine.map(vaccine => (
-            <HomeDiseaseCard key={vaccine.id} diseaseName={vaccine.vaccineName} imageUrl={vaccine.iconImage} />
-          ))
-        ) : (
-          <NoneHome title="앗! 추천 백신이 없어요" />
-        )}
-      </div>
-      </div>
-        <div className="body_wrap">
-          <div className="content_head">
-            <MenuTitle title="접종 인증서" rightIconUrl={'/vachistory/certificate/list'} />
+            <MenuTitle
+              title={`${userName}님을 위한 추천 백신`}
+              rightIconUrl={'/recomvac'}
+            />
           </div>
           <div className="content_body">
-          {/* 접종 인증서 있을 때 */}
-          {/* <VaccineCard variant={'small'} image={Images.vacgom01} />
+            {recommendVaccine.length > 0 ? (
+              recommendVaccine.map((vaccine) => (
+                <HomeDiseaseCard
+                  key={vaccine.id}
+                  diseaseName={vaccine.vaccineName}
+                  imageUrl={vaccine.iconImage}
+                />
+              ))
+            ) : (
+              <NoneHome title="앗! 추천 백신이 없어요" />
+            )}
+          </div>
+        </div>
+        <div className="body_wrap">
+          <div className="content_head">
+            <MenuTitle
+              title="접종 인증서"
+              rightIconUrl={'/vachistory/certificate/list'}
+            />
+          </div>
+          <div className="content_body">
+            {/* 접종 인증서 있을 때 */}
+            {/* <VaccineCard variant={'small'} image={Images.vacgom01} />
             <VaccineCard variant={'small'} image={Images.vacgom01} />
             <VaccineCard variant={'small'} image={Images.vacgom01} />
             <VaccineCard variant={'small'} image={Images.vacgom01} />

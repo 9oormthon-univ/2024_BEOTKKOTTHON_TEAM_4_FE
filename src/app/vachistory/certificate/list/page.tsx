@@ -8,10 +8,12 @@ import BackHeader from '@/app/_component/molecule/BackHeader';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getCertificate } from '@/app/_lib/getCertificate';
+import { LocalStorage } from '@/hooks/useUtil';
 
 export default function CertificateList(): React.JSX.Element {
   const router = useRouter();
   const onClickHandler = (id: string) => {
+    LocalStorage.setItem('vaccineId', id);
     router.push(`/vachistory/certificate/${id}`);
   };
   const [CertificateData, setCertificateData] = useState([]);
@@ -38,7 +40,7 @@ export default function CertificateList(): React.JSX.Element {
             image={card.iconImage}
             vaccineName={card.vaccineName}
             date={card.date}
-            onClick={() => onClickHandler(card.id)}
+            onClick={() => onClickHandler(card.vaccineId)}
           />
         ))}
       </div>

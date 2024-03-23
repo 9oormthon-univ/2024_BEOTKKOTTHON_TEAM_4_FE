@@ -48,8 +48,6 @@ export default function MoreIdentity(): React.JSX.Element {
         setLoading(true); // 로딩 시작
         const response = await postRegister(params);
         const vaccination = await postLogin(params);
-        console.log('데이터 조회 successful:', response);
-        console.log('데이터 조회 successful:', vaccination);
         if (vaccination) {
           LocalStorage.setItem('type', 'submit');
           LocalStorage.setItem('vaccineList', JSON.stringify(vaccination.data));
@@ -64,7 +62,6 @@ export default function MoreIdentity(): React.JSX.Element {
       }
     }
   };
-
   /**
    *  이전 페이지 데이터 끌고 오는
    */
