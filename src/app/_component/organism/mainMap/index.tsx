@@ -102,7 +102,7 @@ export default function MainMap() {
               사람유두종 바이러스
             </InfectionName>
           </TextSection>
-          <Image src={Images.ico_vac21} alt="사람유두종 바이러스 이미지" width={100} height={100} />
+          <Image src={Images.ico_vac15} alt="사람유두종 바이러스 이미지" width={100} height={100} />
         </CardContent>
         <MapButton onClick={() => handleMapButtonClick('/hpvmap')}>
           <Image src={Images.ico_map_main} alt="병원 지도 페이지로 이동"/>
@@ -119,7 +119,7 @@ export default function MainMap() {
               인플루엔자
             </InfectionName>
           </TextSection>
-          <Image src={Images.ico_vac20} alt="인플루엔자 이미지" width={100} height={100} />
+          <Image src={Images.ico_vac10} alt="인플루엔자 이미지" width={100} height={100} />
         </CardContent>
         <MapButton onClick={() => handleMapButtonClick('/influmap')}>
           <Image src={Images.ico_map_main} alt="병원 지도 페이지로 이동" />
