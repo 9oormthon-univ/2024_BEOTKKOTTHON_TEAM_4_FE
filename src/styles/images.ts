@@ -109,7 +109,9 @@ import ico_none_syringe from '../../public/assets/ico/ico-none-syringe.svg';
 // 마이페이지
 import ico_my_recom from '../../public/assets/ico/ico-my-recom.svg';
 import ico_my_docs from '../../public/assets/ico/ico-my-docs.svg';
-import ico_my_profile from '../../public/assets/ico/ico_my_profile.svg';
+import ico_my_profile from '../../public/assets/ico/ico-my-profile.svg';
+import ico_my_right from '../../public/assets/ico/ico-my-right.svg';
+import ico_dropdown from '../../public/assets/ico/ico-dropdown-down.svg';
 
 //알람창에 들어가는 이미지들
 import ico_alert_clock from '../../public/assets/ico/ico-alert-clock.svg';
@@ -215,6 +217,8 @@ export const Images: ImagesType = {
   ico_my_recom: ico_my_recom,
   ico_my_docs:ico_my_docs,
   ico_my_profile: ico_my_profile,
+  ico_my_right: ico_my_right,
+  ico_dropdown: ico_dropdown,
 
   //image
   vacgom01: Vacgom01,
