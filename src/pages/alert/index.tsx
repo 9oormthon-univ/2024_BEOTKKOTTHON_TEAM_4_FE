@@ -61,7 +61,7 @@ const AlarmList = styled.div`
     };
     
 
-    const accessToken = LocalStorage.getItem('accessToken');const accessToken = LocalStorage.getItem('accessToken');
+    const accessToken = LocalStorage.getItem('accessToken');
     useEffect(() => {
       fetch('https://api-dev.vacgom.co.kr/api/v1/notifications/', {
         method: 'GET',
