@@ -59,8 +59,9 @@ export default function HelperLogin(): React.JSX.Element {
         console.log('로그인 successful:', response);
         SecureLocalStorage.setItem('id', params.id);
         SecureLocalStorage.setItem('password', params.password);
-        if (response.access) {
+        if (response.success) {
           LocalStorage.setItem('type', 'loginEnd');
+          LocalStorage.setItem('vaccineList', response.vaccineList);
           router.push(`/signup/done`);
         } else {
           setError(response.message);

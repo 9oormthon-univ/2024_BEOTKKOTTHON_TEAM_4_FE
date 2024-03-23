@@ -13,8 +13,15 @@ import { MenuTitleContainer } from '@/app/_component/atom/MenuTitle/styles';
 import MenuTitle from '@/app/_component/atom/MenuTitle';
 import VaccineItem from '@/app/_component/atom/VaccineItem';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
+import { useEffect } from 'react';
+import { postVacSignup } from '@/app/_lib/postVacSignup';
+import responsJsonNation from '@/utils/user-vacList-api.json';
+import responsJsonetc from '@/utils/user-vacList-api.json';
 
 export default function Vachistory() {
+  const NationData = responsJsonNation;
+  const EtcData = responsJsonetc;
+
   return (
     <Container>
       <MainHeader title="접종내역" />
@@ -41,53 +48,29 @@ export default function Vachistory() {
         <div className="vaccine_wrap">
           <div className="category">국가 예방접종</div>
           <div className="vaccine_list">
-            <VaccineItem
-              category={'국가 예방접종'}
-              vaccineName={'결핵'}
-              subLabel={'BCG(피내용)'}
-              vaccineStatus={false}
-            />{' '}
-            <VaccineItem
-              category={'국가 예방접종'}
-              vaccineName={'결핵'}
-              subLabel={'BCG(피내용)'}
-              vaccineStatus={false}
-            />{' '}
-            <VaccineItem
-              category={'국가 예방접종'}
-              vaccineName={'결핵'}
-              subLabel={'BCG(피내용)'}
-              vaccineStatus={false}
-            />{' '}
-            <VaccineItem
-              category={'국가 예방접종'}
-              vaccineName={'결핵'}
-              subLabel={'BCG(피내용)'}
-              vaccineStatus={false}
-            />
+            {NationData.map((item, key) => (
+              <VaccineItem
+                key={key}
+                category={'국가 예방접종'}
+                vaccineName={item.diseaseName}
+                subLabel={item.vaccineName}
+                vaccineStatus={item.isCompleted}
+              />
+            ))}
           </div>
         </div>
         <div className="vaccine_wrap">
           <div className="category">기타 예방접종</div>
           <div className="vaccine_list">
-            <VaccineItem
-              category={'기타 예방접종'}
-              vaccineName={'결핵'}
-              subLabel={'BCG(피내용)'}
-              vaccineStatus={true}
-            />
-            <VaccineItem
-              category={'기타 예방접종'}
-              vaccineName={'결핵'}
-              subLabel={'BCG(피내용)'}
-              vaccineStatus={true}
-            />
-            <VaccineItem
-              category={'기타 예방접종'}
-              vaccineName={'결핵'}
-              subLabel={'BCG(피내용)'}
-              vaccineStatus={false}
-            />
+            {NationData.map((item, key) => (
+              <VaccineItem
+                key={key}
+                category={'기타 예방접종'}
+                vaccineName={item.diseaseName}
+                subLabel={item.vaccineName}
+                vaccineStatus={item.isCompleted}
+              />
+            ))}
           </div>
         </div>
       </div>

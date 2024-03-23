@@ -1,0 +1,139 @@
+[
+  {
+    "diseaseName": "결핵",
+    "vaccineName": "BCG(피내용)",
+    "minOrder": 1,
+    "maxOrder": 1,
+    "isCompleted": false,
+    "inoculationOrders": []
+  },
+  {
+    "diseaseName": "B형간염",
+    "vaccineName": "HepB",
+    "minOrder": 1,
+    "maxOrder": 3,
+    "isCompleted": false,
+    "inoculationOrders": []
+  },
+  {
+    "diseaseName": "디프테리아·파상풍·백일해",
+    "vaccineName": "DTaP",
+    "minOrder": 1,
+    "maxOrder": 5,
+    "isCompleted": true,
+    "inoculationOrders": [
+      4,
+      5
+    ]
+  },
+  {
+    "diseaseName": "디프테리아·파상풍·백일해",
+    "vaccineName": "TdaP",
+    "minOrder": 6,
+    "maxOrder": 6,
+    "isCompleted": false,
+    "inoculationOrders": [
+      5
+    ]
+  },
+  {
+    "diseaseName": "폴리오",
+    "vaccineName": "IPV",
+    "minOrder": 1,
+    "maxOrder": 4,
+    "isCompleted": false,
+    "inoculationOrders": [
+      5
+    ]
+  },
+  {
+    "diseaseName": "b형헤모필루스인플루엔자",
+    "vaccineName": "Hib",
+    "minOrder": 1,
+    "maxOrder": 4,
+    "isCompleted": false,
+    "inoculationOrders": []
+  },
+  {
+    "diseaseName": "폐렴구균",
+    "vaccineName": "PCV",
+    "minOrder": 1,
+    "maxOrder": 4,
+    "isCompleted": false,
+    "inoculationOrders": []
+  },
+  {
+    "diseaseName": "로타바이러스 감염증",
+    "vaccineName": "로타바이러스",
+    "minOrder": 1,
+    "maxOrder": 3,
+    "isCompleted": false,
+    "inoculationOrders": []
+  },
+  {
+    "diseaseName": "홍역·유행성이하선염·풍진",
+    "vaccineName": "MMR",
+    "minOrder": 1,
+    "maxOrder": 2,
+    "isCompleted": true,
+    "inoculationOrders": [
+      1,
+      2
+    ]
+  },
+  {
+    "diseaseName": "수두",
+    "vaccineName": "VAR",
+    "minOrder": 1,
+    "maxOrder": 2,
+    "isCompleted": false,
+    "inoculationOrders": []
+  },
+  {
+    "diseaseName": "A형간염",
+    "vaccineName": "HepA",
+    "minOrder": 1,
+    "maxOrder": 2,
+    "isCompleted": false,
+    "inoculationOrders": []
+  },
+  {
+    "diseaseName": "일본뇌염",
+    "vaccineName": "IJEV(불활성화 백신)",
+    "minOrder": 1,
+    "maxOrder": 5,
+    "isCompleted": true,
+    "inoculationOrders": [
+      1,
+      2,
+      3,
+      5
+    ]
+  },
+  {
+    "diseaseName": "일본뇌염",
+    "vaccineName": "LJEV(약독화 생백신)",
+    "minOrder": 1,
+    "maxOrder": 2,
+    "isCompleted": false,
+    "inoculationOrders": []
+  },
+  {
+    "diseaseName": "사람유두종바이러스감염증",
+    "vaccineName": "HPV",
+    "minOrder": 1,
+    "maxOrder": 3,
+    "isCompleted": false,
+    "inoculationOrders": []
+  },
+  {
+    "diseaseName": "인플루엔자",
+    "vaccineName": "IIV",
+    "minOrder": 1,
+    "maxOrder": 3,
+    "isCompleted": true,
+    "inoculationOrders": [
+      3
+    ]
+  }
+]
