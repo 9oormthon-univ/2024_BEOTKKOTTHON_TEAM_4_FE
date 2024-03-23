@@ -6,6 +6,7 @@ export const Container = styled.main`
   height: 100vh;
   & > .body {
     padding: 14px 20px;
+    min-height: 70%;
     & > .content_wrap {
       padding: 14px 0;
       display: flex;
@@ -21,7 +22,7 @@ export const Container = styled.main`
     text-align: left;
     color: ${Colors.Gray600};
     background-color: ${Colors.Gray100};
-    padding: 15px 20px 100px 20px;
+    padding: 15px 20px 120px 20px;
     margin-bottom: 100px;
   }
 `;
