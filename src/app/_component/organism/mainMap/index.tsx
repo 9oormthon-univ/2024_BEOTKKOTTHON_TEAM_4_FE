@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import { Images } from '@globalStyles';
 import { useRouter } from 'next/router';
+import { apiDevUrl } from '@/hooks/api';
 
 const MainContainer = styled.div`
   display: flex;
@@ -79,9 +80,63 @@ const MapButton = styled.button`
 
 export default function MainMap() {
   const router = useRouter();
-  const userName = "오소현";
-  const vaccinationRate = 65;
-  
+
+  const [userName, setUserName] = useState('');
+  const [hpvRatio, setHpvRatio] = useState(0);
+  const [influenzaRatio, setInfluenzaRatio] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
+
+  useEffect(() => {
+    fetch(`${apiDevUrl}/me`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setUserName(data.name);
+    })
+    .catch(error => {
+      setError(error.message);
+    });
+
+    fetch(`${apiDevUrl}/search/ratio`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setHpvRatio(data.hpvRatio);
+      setInfluenzaRatio(data.influenzaRatio);
+      setIsLoading(false);
+    })
+    .catch(error => {
+      setError(error.message);
+      setIsLoading(false);
+    });
+  }, [apiDevUrl, accessToken]);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   const handleMapButtonClick = (url) => {
     router.push(url);
   };
@@ -96,13 +151,13 @@ export default function MainMap() {
         <CardContent>
           <TextSection>
             <VaccinationStatus>
-              20대 이용자 중 {vaccinationRate}%가 접종했어요
+              20대 이용자 중 {hpvRatio}%가 접종했어요
             </VaccinationStatus>
             <InfectionName>
               사람유두종 바이러스
             </InfectionName>
           </TextSection>
-          <Image src={Images.ico_vac21} alt="사람유두종 바이러스 이미지" width={100} height={100} />
+          <Image src={Images.ico_vac15} alt="사람유두종 바이러스 이미지" width={100} height={100} />
         </CardContent>
         <MapButton onClick={() => handleMapButtonClick('/hpvmap')}>
           <Image src={Images.ico_map_main} alt="병원 지도 페이지로 이동"/>
@@ -113,13 +168,13 @@ export default function MainMap() {
       <CardContent>
           <TextSection>
             <VaccinationStatus>
-              20대 이용자 중 {vaccinationRate}%가 접종했어요
+              20대 이용자 중 {influenzaRatio}%가 접종했어요
             </VaccinationStatus>
             <InfectionName>
               인플루엔자
             </InfectionName>
           </TextSection>
-          <Image src={Images.ico_vac20} alt="인플루엔자 이미지" width={100} height={100} />
+          <Image src={Images.ico_vac10} alt="인플루엔자 이미지" width={100} height={100} />
         </CardContent>
         <MapButton onClick={() => handleMapButtonClick('/influmap')}>
           <Image src={Images.ico_map_main} alt="병원 지도 페이지로 이동" />

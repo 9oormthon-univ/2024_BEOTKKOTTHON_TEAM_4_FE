@@ -36,6 +36,7 @@ const MainHomeContainer = styled.div`
 
 
 export default function MapHome() {
+
   return (
     <>
       <MainHeader title="병원조회" />
