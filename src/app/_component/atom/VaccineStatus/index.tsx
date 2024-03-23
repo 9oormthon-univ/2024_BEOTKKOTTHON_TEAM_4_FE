@@ -7,66 +7,99 @@ import { Images } from '@/styles';
 //여기 로직 수정해야함
 interface VaccineStatusType {
   vaccineType: string;
-  order: [];
+  inoculationOrders: [];
   orderString: string;
   diseaseName: string;
+  minOrder: number;
   maxOrder: number;
   isCompleted: boolean;
 }
 // @Definition
 //   vaccineType :
-//   order : 유저가 맞은 횟수
+//   inoculationOrders : 유저가 맞은 횟수
 //   orderString, :
 //   diseaseName, : 질병명
 //   maxOrder : 해당 백신의 총 맞아야 하는 횟수
 
 export default function VaccineStatus({
   vaccineType = 'DTaP',
-  order = [],
+  inoculationOrders = [],
+  minOrder = 1,
   maxOrder = 4,
   diseaseName = '결핵',
   isCompleted,
 }: React.PropsWithChildren<VaccineStatusType>) {
   // const [status, setStatus] = useState<boolean>();
-
   const renderStatusImages = () => {
     const statusImages = [];
-    for (let i = 0; i < 6; i++) {
-      if (i < order) {
-        statusImages.push(
-          <Image
-            key={i}
-            src={Images.vaccine_status_true}
-            alt={'백신 접종 완료 이미지'}
-          />,
-        );
-      } else if (i < maxOrder) {
-        statusImages.push(
-          <Image
-            key={i}
-            src={Images.vaccine_status_false}
-            alt={'백신 접종 미완료 이미지'}
-          />,
-        );
+
+    // minOrder부터 maxOrder까지 false로 초기화
+    for (let i = 1; i <= 6; i++) {
+      if (i >= minOrder && i <= maxOrder) {
+        statusImages.push('false');
       } else {
-        statusImages.push(
-          <Image
-            key={i}
-            src={Images.vaccine_status_disable}
-            alt={'백신 접종 미완료 이미지'}
-          />,
-        );
+        statusImages.push('enable');
       }
     }
-    return statusImages;
+
+    // inoculationOrders에 해당하는 index를 true로 변경
+    inoculationOrders.forEach((order) => {
+      // const index = order - minOrder;
+      if (order >= 0 && order < statusImages.length) {
+        statusImages[order - 1] = 'true';
+      }
+    });
+    console.log(diseaseName, statusImages);
+
+    // 이미지 배열 생성
+    const images = statusImages.map((status, index) => {
+      if (status === 'enable') {
+        return (
+          <div className={'itemWrap'}>
+            <Image
+              key={index}
+              src={Images.vaccine_status_disable}
+              alt={'백신 접종 미완료 이미지'}
+            />
+            <div className={'disable'}>{index + 1}차</div>
+          </div>
+        );
+      } else if (status === 'false') {
+        return (
+          <div className={'itemWrap'}>
+            <Image
+              key={index}
+              src={Images.vaccine_status_false}
+              alt={'백신 접종 미완료 이미지'}
+            />
+            <div className={'index'}>{index + 1}차</div>
+          </div>
+        );
+      } else {
+        return (
+          <div className={'itemWrap'}>
+            <Image
+              key={index}
+              src={Images.vaccine_status_true}
+              alt={'백신 접종 완료 이미지'}
+            />{' '}
+            <div className={'true'}>{index + 1}차</div>
+          </div>
+        );
+      }
+    });
+
+    return images;
   };
   return (
     <VaccineStatusContainer>
       <div className="container">
         <div className="top">
-          <div className="status">
-            {isCompleted && <div className="complete">접종완료</div>}
-          </div>
+          {isCompleted && (
+            <div className="status">
+              <div className="complete">접종완료</div>
+            </div>
+          )}
           <div className="diseaseName">{diseaseName}</div>
           <div className="vaccineType">{vaccineType}</div>
         </div>

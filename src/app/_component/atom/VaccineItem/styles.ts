@@ -36,6 +36,10 @@ export const VaccineItemContainer = styled.div`
         & > .vaccineName {
           ${fontGenerator('16px', '600', '19.09px')}
           color: ${Colors.Gray800};
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          max-width: 85px;
         }
         & > .subLabel {
           ${fontGenerator('14px', '500', '16.71px')}

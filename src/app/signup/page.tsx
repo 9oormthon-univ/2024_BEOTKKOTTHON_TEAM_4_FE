@@ -10,7 +10,7 @@ import JoinTemplate from '@/app/_component/temp/JoinTemplate';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import { OnChangeValueType } from '@/types/globalType';
 import * as queryString from 'querystring';
-import { useRouter } from 'next/navigation';
+import { router, useRouter } from 'next/navigation';
 import { useQueryParams } from '@/hooks/useParam';
 import { fetchAccessToken } from '@/hooks/useKakaoLogin';
 import { LocalStorage } from '@/hooks/useUtil';
@@ -28,7 +28,7 @@ export default function Signup(): React.JSX.Element {
   };
   const handleClick = () => {
     if (params.signupState === true) {
-      router.push('/home');
+      router.push('/login/helper');
     } else {
       router.push(`/signup/terms`);
     }
@@ -50,6 +50,9 @@ export default function Signup(): React.JSX.Element {
         console.log(response);
         if (response.accessToken) {
           LocalStorage.setItem('accessToken', response.accessToken);
+        }
+        if (response.data.member.role === 'ROLE_USER') {
+          router.push('/home');
         }
       }
     };

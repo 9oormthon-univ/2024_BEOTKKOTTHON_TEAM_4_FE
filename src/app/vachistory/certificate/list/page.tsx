@@ -6,28 +6,36 @@ import VaccineCard from '@/app/_component/atom/VaccineCertificate/index';
 import { Images } from '@globalStyles';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { getCertificate } from '@/app/_lib/getCertificate';
 
 export default function CertificateList(): React.JSX.Element {
   const router = useRouter();
   const onClickHandler = (id: string) => {
     router.push(`/vachistory/certificate/${id}`);
   };
-
-  const certificateData = [
-    { vaccineName: 'B형간염', date: '2024.03.15', id: '1' },
-    { vaccineName: '디프테리아/파상풍/백일해', date: '2024.03.15', id: '2' },
-    { vaccineName: '폴리오', date: '2024.03.15', id: '3' },
-  ];
+  const [CertificateData, setCertificateData] = useState([]);
+  const fetchCertifi = async () => {
+    try {
+      const certificateData = await getCertificate();
+      setCertificateData(certificateData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  useEffect(() => {
+    fetchCertifi();
+  }, []);
 
   return (
     <Container>
       <BackHeader title={'접종 인증서'} url={'/vachistory'} />
       <div className="container">
-        {certificateData.map((card, index) => (
+        {CertificateData.map((card, index) => (
           <VaccineCard
             key={index}
             variant={'small'}
-            image={Images.vacgom01}
+            image={card.iconImage}
             vaccineName={card.vaccineName}
             date={card.date}
             onClick={() => onClickHandler(card.id)}

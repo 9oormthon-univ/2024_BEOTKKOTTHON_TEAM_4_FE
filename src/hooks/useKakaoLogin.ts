@@ -9,6 +9,7 @@ export async function fetchAccessToken(code: string): Promise<fetchTokenType> {
     );
     if (response.ok) {
       const data = await response.json();
+      console.log(data);
       return { data: data, accessToken: data.token.accessToken };
     } else {
       console.error('Failed to fetch data:', response.status);

@@ -43,39 +43,6 @@ export const VaccineCardStyle: CssArchiveType = {
         z-index: 0;
       }
     }
-
-    // & > .bottom {
-    //   height: 199.37px;
-    //   padding: 23px 30.3px;
-    //   position: sticky;
-    //   z-index: 1;
-    //   background: linear-gradient(
-    //     180deg,
-    //     rgba(255, 255, 255, 0) 22.83%,
-    //     #ffffff 59.43%
-    //   );
-    //   border-radius: 37.97px;
-    //   display: flex;
-    //   flex-direction: column;
-    //   justify-content: flex-end;
-    //   gap: 5.06px;
-    //   & > .label {
-    //     ${fontGenerator('27.85px', '800', '33.23px')}
-    //   }
-    //   & > .sublabel_wrap {
-    //     display: flex;
-    //     flex-direction: row;
-    //     gap: 5px;
-    //     & > .sublabel {
-    //       ${fontGenerator('15.19px', '600', '18.13px')}
-    //       color: #0000007D;
-    //     }
-    //     & > .percent {
-    //       ${fontGenerator('15.19px', '500', '18.13px')}
-    //       color: ${Colors.Primary};
-    //     }
-    //   }
-    // }
   `,
   large: css`
     background-image: url('assets/image/img-VaccineCardBack_Large.svg');
@@ -173,7 +140,7 @@ export const VaccineCardStyle: CssArchiveType = {
   small: css`
     width: 160px;
     height: 220px;
-    background-image: url('assets/image/img-VaccineCard-back.svg');
+    background-image: url(${Images.VaccineCardBack});
     border-radius: 14px;
     flex-shrink: 0;
 
