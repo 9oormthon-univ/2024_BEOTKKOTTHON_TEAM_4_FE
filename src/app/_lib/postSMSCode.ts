@@ -24,9 +24,8 @@ export async function postSMSCode(password) {
     if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
-
+    console.log('응답좀 보자', res);
     const responseData = await res.json();
-
     return responseData;
   } catch (error) {
     console.error('Error during POST request:', error);
