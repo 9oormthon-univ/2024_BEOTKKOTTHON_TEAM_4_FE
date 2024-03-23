@@ -36,11 +36,8 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  width: Fill (313px)px;
-  height: Hug (70px)px;
   gap: 25px;
   opacity: 0px;
-  margin-left: 100px;
 `;
 
 const NavContainer = styled.div`

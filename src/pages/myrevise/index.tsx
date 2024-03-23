@@ -12,7 +12,7 @@ const ImageWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 130px;
-  padding: 24px 0px;
+  padding: 24px;
   opacity: 1;
 `;
 
