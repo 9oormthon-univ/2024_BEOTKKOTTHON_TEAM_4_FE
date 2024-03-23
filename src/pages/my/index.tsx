@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Images } from '@globalStyles';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
 import Link from 'next/link';
+import { LocalStorage } from '@/hooks/useUtil';
 
 const GreetingContainer = styled.div`
   text-align: left;
@@ -81,8 +82,7 @@ export default function My() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const accessToken =
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
+  const accessToken = LocalStorage.getItem('accessToken');
 
   useEffect(() => {
     fetch('https://api-dev.vacgom.co.kr/api/v1/me', {
