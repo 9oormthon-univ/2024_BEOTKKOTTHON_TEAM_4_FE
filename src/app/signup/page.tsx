@@ -48,10 +48,11 @@ export default function Signup(): React.JSX.Element {
       if (code) {
         const response = await fetchAccessToken(code);
         console.log(response);
-        if (response.accessToken) {
+        if (response?.accessToken) {
           LocalStorage.setItem('accessToken', response.accessToken);
         }
         if (response.data.member.role === 'ROLE_USER') {
+          LocalStorage.setItem('accessToken', response.accessToken);
           router.push('/home');
         }
       }
