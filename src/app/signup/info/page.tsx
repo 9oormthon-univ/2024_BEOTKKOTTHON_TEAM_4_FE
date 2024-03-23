@@ -39,6 +39,7 @@ export default function Signup(): React.JSX.Element {
       [field]: value,
     }));
   };
+
   /**
    *  이전 페이지 데이터 끌고 오는
    */
@@ -60,9 +61,11 @@ export default function Signup(): React.JSX.Element {
   /**
    *  api 호출
    */
+  const [loading, setLoading] = useState(false); // 로딩 상태 추가
   const handleNextButtonClick = async () => {
     if (checkParamsFilled(params)) {
       try {
+        setLoading(true); // 로딩 시작
         const response = await postSignup(params);
         console.log('Signup successful:', response);
         LocalStorage.setItem('secureNoImage', response.data.secureNoImage);
@@ -71,6 +74,8 @@ export default function Signup(): React.JSX.Element {
         );
       } catch (error) {
         console.error('Signup failed:', error.message);
+      } finally {
+        setLoading(false); // 로딩 종료
       }
     }
   };
@@ -185,10 +190,12 @@ export default function Signup(): React.JSX.Element {
             onReset={resetAgencyOptions}
           />
         </Fragment>
-        <BottomButton
-          filled={checkParamsFilled(params)}
-          handleNextButtonClick={handleNextButtonClick}
-        />
+        {!loading && ( // 로딩 중이 아닐 때에만 렌더링
+          <BottomButton
+            filled={checkParamsFilled(params)}
+            handleNextButtonClick={handleNextButtonClick}
+          />
+        )}
       </SignupWrapper>
     </Suspense>
   );

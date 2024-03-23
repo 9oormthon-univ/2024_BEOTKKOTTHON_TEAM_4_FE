@@ -36,8 +36,6 @@ export default function Signup(): React.JSX.Element {
     password_check: { condition1: 'default' },
   });
 
-  console.log(params);
-
   const router = useRouter();
   const allConditionsTrue = isAllConditionsTrue(validate);
 
