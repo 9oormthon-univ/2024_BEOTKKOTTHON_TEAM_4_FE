@@ -148,7 +148,7 @@ export default function My() {
         </ListItem>
         <ListItem>
           <ListItemText>개인정보방침</ListItemText>
-          <Link href="/your-destination-url" passHref>
+          <Link href="https://www.notion.so/been2spring/da1fae9ce9f54a7980a0782c91b7551f" passHref>
             <LinkButton>
               <Image src={Images.ico_my_right} alt="" />
             </LinkButton>
@@ -156,7 +156,7 @@ export default function My() {
         </ListItem>
         <ListItem>
           <ListItemText>이용약관</ListItemText>
-          <Link href="/your-destination-url" passHref>
+          <Link href="https://www.notion.so/been2spring/f17c3687e1f24279a76e9797a51677f6" passHref>
             <LinkButton>
               <Image src={Images.ico_my_right} alt="" />
             </LinkButton>
