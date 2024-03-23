@@ -17,6 +17,7 @@ import {
   getCertificateDetail,
   getRatio,
 } from '@/app/_lib/getCertificateDetail';
+import { apiDevUrl } from '@/hooks/api';
 
 export default function CertificateDetail() {
   const vaccineId = LocalStorage.getItem('vaccineId');
@@ -29,6 +30,31 @@ export default function CertificateDetail() {
       console.error('Error fetching data:', error);
     }
   };
+  const [userName, setUserName] = useState('');
+  const accessToken = LocalStorage.getItem('accessToken');
+
+  useEffect(() => {
+    fetch(`${apiDevUrl}/me`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUserName(data.name);
+      })
+      .catch((error) => {
+        // setError(error.message);
+      });
+  }, []);
+
   console.log(detail);
   useEffect(() => {
     fetchDetail();
@@ -44,6 +70,7 @@ export default function CertificateDetail() {
           diseaseName={detail?.diseaseName}
           date={detail?.inoculatedDate}
           definition
+          account_id={userName}
           subLabel
         />
         {/*<Button*/}

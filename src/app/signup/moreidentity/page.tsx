@@ -116,6 +116,7 @@ export default function MoreIdentity(): React.JSX.Element {
       </div>
 
       {error !== null && <WarningToast message={error} />}
+      {loading & <WarningToast message={'요청중입니다. 기다려주세요...'} />}
       {!loading && (
         <BottomButton
           filled={checkParamsFilled(params)}
