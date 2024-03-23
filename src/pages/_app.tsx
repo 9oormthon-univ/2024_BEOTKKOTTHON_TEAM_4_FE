@@ -7,15 +7,15 @@ import { useEffect } from 'react';
 import { LocalStorage } from '@/hooks/useUtil';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // useEffect(() => {
-  //   const accessToken = LocalStorage.getItem('accessToken');
-  //   if (accessToken) {
-  //     console.log('Access Token:', accessToken);
-  //   } else {
-  //     localStorage.removeItem('accessToken');
-  //     window.location.href = '/';
-  //   }
-  // }, []);
+  useEffect(() => {
+    const accessToken = LocalStorage.getItem('accessToken');
+    if (accessToken) {
+      console.log('Access Token:', accessToken);
+    } else {
+      localStorage.removeItem('accessToken');
+      window.location.href = '/';
+    }
+  }, []);
 
   return (
     <>

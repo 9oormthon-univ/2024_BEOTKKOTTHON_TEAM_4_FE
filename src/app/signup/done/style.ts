@@ -5,7 +5,7 @@ export const SignupDoneWrap = styled.main`
   height: 100%;
 
   & > .padding {
-    padding: 0 20px 20px 20px;
+    padding: 0 20px 0 20px;
     height: 100%;
 
     & > .password {

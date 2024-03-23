@@ -1,9 +1,19 @@
 import { apiUrl } from '@/hooks/api';
-import { LocalStorage, mapTelecom, parseIdentity } from '@/hooks/useUtil';
+import {
+  LocalStorage,
+  mapTelecom,
+  parseIdentity,
+  SecureLocalStorage,
+} from '@/hooks/useUtil';
 
 export async function postFind(userData) {
-  const { userName, identity_first, identity_last, telecom, phoneNumber } =
-    userData;
+  console.log(userData);
+
+  let userName = SecureLocalStorage.getItem('userName');
+  let identity_first = SecureLocalStorage.getItem('identity_first');
+  let identity_last = SecureLocalStorage.getItem('identity_last');
+  let telecom = SecureLocalStorage.getItem('telecom');
+  let phoneNumber = SecureLocalStorage.getItem('phoneNumber');
 
   const update_identity = parseIdentity(identity_first);
   const mappedTelecom = mapTelecom(telecom);
@@ -11,6 +21,7 @@ export async function postFind(userData) {
   const api_params = JSON.stringify({
     userName: userName,
     identity: update_identity.date + identity_last,
+    newPassword: userData.password,
     telecom: mappedTelecom,
     phoneNumber: phoneNumber,
   });

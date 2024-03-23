@@ -45,7 +45,6 @@ export default function SignupDone(): React.JSX.Element {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <SignupDoneWrap>
-        <BackHeader title={''} url={'/signup'} />
         {params.type === 'helpalready' ? (
           <div className="padding">
             <DonePage

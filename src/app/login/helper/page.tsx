@@ -30,6 +30,7 @@ export default function HelperLogin(): React.JSX.Element {
     };
   });
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false); // 로딩 상태 추가
 
   const router = useRouter();
   const onChangeValue: OnChangeValueType = (field, value) => {
@@ -55,6 +56,7 @@ export default function HelperLogin(): React.JSX.Element {
   const handleNextButtonClick = async () => {
     if (checkParamsFilled(params)) {
       try {
+        setLoading(true); // 로딩 시작
         const response = await postLogin(params);
         console.log('로그인 successful:', response);
         SecureLocalStorage.setItem('id', params.id);
@@ -70,6 +72,8 @@ export default function HelperLogin(): React.JSX.Element {
       } catch (error) {
         setError('error');
         console.error('Signup failed:', error.message);
+      } finally {
+        setLoading(false); // 로딩 종료
       }
     }
   };
@@ -114,10 +118,12 @@ export default function HelperLogin(): React.JSX.Element {
       </div>
 
       {error !== null && <WarningToast message={error} />}
-      <BottomButton
-        filled={checkParamsFilled(params)}
-        handleNextButtonClick={handleNextButtonClick}
-      />
+      {!loading && ( // 로딩 중이 아닐 때에만 렌더링
+        <BottomButton
+          filled={checkParamsFilled(params)}
+          handleNextButtonClick={handleNextButtonClick}
+        />
+      )}
     </HelperLoginWrapper>
   );
 }

@@ -1,10 +1,10 @@
 import { apiUrl } from '@/hooks/api';
 import { LocalStorage, mapTelecom, parseIdentity } from '@/hooks/useUtil';
 
-export async function postFindChallenge(password) {
+export async function postFindChallenge(password, type) {
   const api_params = JSON.stringify({
     code: password,
-    type: 'SECURE_NO',
+    type: type,
   });
 
   console.log(api_params);
