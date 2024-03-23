@@ -47,7 +47,7 @@ const ImageContainer = styled.div`
 `;
 
 export default function Home() {
- // `userName` 상태는 한 번만 선언합니다.
+
  const [userName, setUserName] = useState('');
  const [recommendVaccine, setRecommendVaccine] = useState([]);
  const [isLoading, setIsLoading] = useState(true);

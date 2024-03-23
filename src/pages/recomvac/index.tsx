@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MainHeader from '@/app/_component/atom/RouteHeader';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
 import HomeDiseaseCard from '@/app/_component/atom/HomeDiseaseCard';
 import styled from '@emotion/styled';
-import { Images } from '@globalStyles';
+import { apiDevUrl } from '@/hooks/api';
+import NoneHome from '@/app/_component/atom/NoneHome';
 
 const GreetingContainer = styled.div`
   text-align: left;
@@ -53,16 +54,59 @@ const CardsContainer = styled.div`
 
 export default function recomVac() {
 
-  const userName = "오소현";
+ const [userName, setUserName] = useState('');
+ const [recommendVaccine, setRecommendVaccine] = useState([]);
+ const [isLoading, setIsLoading] = useState(true);
+ const [error, setError] = useState("");
 
-  const recommendVaccine = [
-    { id: 1, iconsImage: Images.ico_vac1, vacName: '결핵' },
-    { id: 2, iconsImage: Images.ico_vac2, vacName: 'B형간염' },
-    { id: 3, iconsImage: Images.ico_vac3, vacName: '디프테리아' },
-    { id: 4, iconsImage: Images.ico_vac4, vacName: '폴리오' },
-    { id: 5, iconsImage: Images.ico_vac5, vacName: 'b형헤모필루스인플루엔자' },
-  ];
+ const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDkxOGUwOC05YzcxLTQxNWUtOWIxMC00ZmQyNWYxMDRkNzEiLCJpYXQiOjE3MTExNzI1OTUsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MjAxNzI1OTV9.V3FsYMvYqqKAV76ryZkX_2TEO9WSlR43koBWgrBcA78';
+ 
+ useEffect(() => {
+   fetch(`${apiDevUrl}/me`, {
+     method: 'GET',
+     headers: {
+       'Authorization': `Bearer ${accessToken}`,
+       'Content-Type': 'application/json'
+     }
+   })
+   .then(response => {
+     if (!response.ok) {
+       throw new Error('Network response was not ok');
+     }
+     return response.json();
+   })
+   .then(data => {
+     setUserName(data.name);
+   })
+   .catch(error => {
+     setError(error.message);
+   });
 
+   fetch(`${apiDevUrl}/search/recommend`, {
+     method: 'GET',
+     headers: {
+       'Authorization': `Bearer ${accessToken}`,
+       'Content-Type': 'application/json'
+     }
+   })
+   .then(response => {
+     if (!response.ok) {
+       throw new Error('Network response was not ok');
+     }
+     return response.json();
+   })
+   .then(data => {
+     setRecommendVaccine(data);
+     setIsLoading(false);
+   })
+   .catch(error => {
+     setError(error.message);
+     setIsLoading(false);
+   });
+ }, []);
+
+ if (isLoading) return <div>Loading...</div>;
+ if (error) return <div>Error: {error}</div>;
   return (
     <div>
       <MainHeader title="추천 백신" url="/home" />
@@ -76,13 +120,13 @@ export default function recomVac() {
         접종시기 및 접종횟수 등 세부사항은{'\n'}접종기관의 의사와 상담해야해요!
       </Description>
       <CardsContainer>
-        {recommendVaccine.map((disease) => (
-          <HomeDiseaseCard
-            key={disease.id}
-            diseaseName={disease.vacName}
-            imageUrl={disease.iconsImage}
-          />
-        ))}
+      {recommendVaccine.length > 0 ? (
+          recommendVaccine.map(vaccine => (
+            <HomeDiseaseCard key={vaccine.id} diseaseName={vaccine.vaccineName} imageUrl={vaccine.iconImage} />
+          ))
+        ) : (
+          <NoneHome title="앗! 추천 백신이 없어요" />
+        )}
       </CardsContainer>
       <NavigationFixed/>
     </div>
