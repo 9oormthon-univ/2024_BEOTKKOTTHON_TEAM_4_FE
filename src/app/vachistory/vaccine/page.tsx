@@ -27,8 +27,8 @@ export default function Vaccine() {
   const sectionTexts = ['국가예방접종', '기타예방접종'];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [type, setType] = useState('nation');
-  const detail = detailJson;
   const [list, setList] = useState([]);
+  const [detail, setDetail] = useState([]);
 
   const handleAgencySelect = (selectedOptions) => {
     onChangeValue('disease', selectedOptions);
@@ -53,14 +53,18 @@ export default function Vaccine() {
     onChangeValue('disease', []);
   };
 
-  const fetchDetail = async () => {
-    try {
-      const detailData = await getInoculationDetail(type, params.disease);
-      console.log(detailData);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+  useEffect(() => {
+    const fetchDetail = async () => {
+      try {
+        const detailData = await getInoculationDetail(type, params.disease);
+        console.log(detailData);
+        setDetail(detailData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchDetail();
+  }, [params.disease]);
 
   useEffect(() => {
     const fetchList = async () => {
@@ -73,8 +77,6 @@ export default function Vaccine() {
       }
     };
     fetchList();
-    // fetchDetail();
-    console.log('type 바꿈', type);
   }, [type]);
 
   return (
