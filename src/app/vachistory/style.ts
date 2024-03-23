@@ -13,7 +13,7 @@ export const Container = styled.main`
   }
 
   & > .body_wrap {
-    padding: 0 20px;
+    padding: 0 20px 90px 20px;
 
     & > .content_body {
       display: flex;
