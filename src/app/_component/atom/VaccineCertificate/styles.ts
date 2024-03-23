@@ -141,7 +141,7 @@ export const VaccineCardStyle: CssArchiveType = {
   small: css`
     width: 160px;
     height: 220px;
-    background-image: url(${Images.VaccineCardBack});
+    background-image: url('/assets/image/img-VaccineCard-back.svg');
     border-radius: 14px;
     flex-shrink: 0;
 

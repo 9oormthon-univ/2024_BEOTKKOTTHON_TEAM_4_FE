@@ -29,6 +29,7 @@ export async function postLogin(props) {
     if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
+
     const responseData = await res.json();
     return responseData;
   } catch (error) {

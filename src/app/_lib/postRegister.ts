@@ -32,6 +32,8 @@ export async function postRegister(params) {
     if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
+    if (res.status !== 200) {
+    }
 
     const responseData = await res.json();
     if (responseData.success) {
