@@ -43,21 +43,18 @@ export default function Signup(): React.JSX.Element {
   /**
    *  이전 페이지 데이터 끌고 오는
    */
-  if (typeof window !== 'undefined') {
-    useEffect(() => {
-      let id = SecureLocalStorage.getItem('id');
-      let password = SecureLocalStorage.getItem('password');
-      console.log('secure', id, password);
+  useEffect(() => {
+    let id = SecureLocalStorage.getItem('id');
+    let password = SecureLocalStorage.getItem('password');
+    console.log('secure', id, password);
 
-      setParams({
-        ...params,
-        id,
-        password,
-      });
-    }, []);
-  }
+    setParams({
+      ...params,
+      id,
+      password,
+    });
+  }, []);
 
-  console.log(params);
   /**
    *  api 호출
    */

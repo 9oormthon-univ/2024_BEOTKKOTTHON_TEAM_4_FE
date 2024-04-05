@@ -24,11 +24,7 @@ export async function postSignup(userData) {
     phoneNumber: phoneNumber,
   });
 
-  console.log(api_params);
-
   const accessToken = LocalStorage.getItem('accessToken');
-  // const accessToken =
-  // ''
 
   try {
     const res = await fetch(`${apiUrl}/signup`, {
