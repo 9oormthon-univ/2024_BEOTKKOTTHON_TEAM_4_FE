@@ -5,79 +5,16 @@ import { Images } from '@globalStyles';
 import { useRouter } from 'next/router';
 import { apiDevUrl } from '@/hooks/api';
 import { LocalStorage } from '@/hooks/useUtil';
-
-const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #ffffff;
-  margin-bottom: 80px;
-`;
-
-const UserGreeting = styled.div`
-  font-family: Pretendard;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 26px;
-  letter-spacing: -0.03em;
-  text-align: left;
-  color: #191F28;
-  margin-top:20px;
-  margin-bottom: 20px;
-  margin-left: -80px;
-`;
-
-const VaccineCard = styled.div`
-  width: 353px;
-  height: auto;
-  padding: 20px;
-  border-radius: 20px;
-  background: #F9FAFB;
-  border: 1px solid #F2F4F6;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-`;
-
-const CardContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
-
-const TextSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-const VaccinationStatus = styled.div`
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 22px;
-  letter-spacing: -0.03em;
-  text-align: left;
-  color: #6B7684;
-  margin-bottom: 10px;
-`;
-
-const InfectionName = styled.div`
-  font-family: Pretendard;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 23px;
-  text-align: left;
-  color: #333D4B;
-`;
-
-const MapButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  align-self: flex-start;
-`;
+import {
+  MainContainer,
+  UserGreeting,
+  VaccineCard,
+  CardContent,
+  TextSection,
+  VaccinationStatus,
+  InfectionName,
+  MapButton
+} from './styles';
 
 export default function MainMap() {
   const router = useRouter();
@@ -88,55 +25,56 @@ export default function MainMap() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const accessToken = LocalStorage.getItem('accessToken');
+  {/* API 연결 코드 리팩토링 개발을 위해 임의 block 처리 */}
+  // const accessToken = LocalStorage.getItem('accessToken');
 
-  useEffect(() => {
-    fetch(`${apiDevUrl}/me`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      setUserName(data.name);
-    })
-    .catch(error => {
-      setError(error.message);
-    });
+  // useEffect(() => {
+  //   fetch(`${apiDevUrl}/me`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Authorization': `Bearer ${accessToken}`,
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //   .then(response => {
+  //     if (!response.ok) {
+  //       throw new Error('Network response was not ok');
+  //     }
+  //     return response.json();
+  //   })
+  //   .then(data => {
+  //     setUserName(data.name);
+  //   })
+  //   .catch(error => {
+  //     setError(error.message);
+  //   });
 
-    fetch(`${apiDevUrl}/search/ratio`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      setHpvRatio(data.hpvRatio);
-      setInfluenzaRatio(data.influenzaRatio);
-      setIsLoading(false);
-    })
-    .catch(error => {
-      setError(error.message);
-      setIsLoading(false);
-    });
-  }, [apiDevUrl, accessToken]);
+  //   fetch(`${apiDevUrl}/search/ratio`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Authorization': `Bearer ${accessToken}`,
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //   .then(response => {
+  //     if (!response.ok) {
+  //       throw new Error('Network response was not ok');
+  //     }
+  //     return response.json();
+  //   })
+  //   .then(data => {
+  //     setHpvRatio(data.hpvRatio);
+  //     setInfluenzaRatio(data.influenzaRatio);
+  //     setIsLoading(false);
+  //   })
+  //   .catch(error => {
+  //     setError(error.message);
+  //     setIsLoading(false);
+  //   });
+  // }, [apiDevUrl, accessToken]);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  // if (isLoading) return <div>Loading...</div>;
+  // if (error) return <div>Error: {error}</div>;
 
   const handleMapButtonClick = (url) => {
     router.push(url);
