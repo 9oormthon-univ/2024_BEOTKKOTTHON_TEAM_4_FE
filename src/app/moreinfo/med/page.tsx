@@ -18,7 +18,7 @@ export default function Join(): React.JSX.Element {
 
   const handleClick = () => {
     LocalStorage.setItem('MEDICAL_WORKER', params.transYn);
-    router.push(`/moreinfo/id`);
+    router.push(`/moreinfo/trans`);
   };
 
   const [params, setParams] = useState<ParamsType>({
