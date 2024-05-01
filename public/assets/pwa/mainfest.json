@@ -1,0 +1,9 @@
+{
+  "name": "백곰",
+  "short_name": "백곰",
+  "description": "백신아 곰아워!",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#F6FFFE"
+}
