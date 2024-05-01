@@ -6,7 +6,6 @@ import './globalicon.css';
 import Head from 'next/head';
 import 'react-tooltip/dist/react-tooltip.css';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
-import { NotificationContainer } from '@/notification/notification';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -60,9 +59,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <meta name="apple-mobile-web-app-title" content="백곰" />
       </head>
-      <body className={inter.className}>
-        <NotificationContainer>{children}</NotificationContainer>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
