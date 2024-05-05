@@ -109,7 +109,7 @@ export default function Signup(): React.JSX.Element {
             placeholder="영문, 숫자, 특수문자 조합 9자 이상"
             value={params.password}
             descriptionTop={'예방접종도우미 비밀번호 변경'}
-            type="text"
+            type="password"
             variant={
               validate.password.condition1 === 'false' ||
               validate.password.condition2 === 'false'
@@ -136,7 +136,7 @@ export default function Signup(): React.JSX.Element {
             placeholder="비밀번호를 다시 입력해 주세요"
             value={params.password_check}
             descriptionTop={'비밀번호 확인'}
-            type="text"
+            type="password"
             variant={
               validate.password_check.condition1 === 'false'
                 ? 'error'
