@@ -30,7 +30,7 @@ export default function Home(): React.JSX.Element {
   }, []); // useEffect가 처음 한 번만 실행되도록 빈 배열을 전달합니다
 
   return (
-    <HomeWrap>
+    <HomeWrap className={'splash'}>
       <div className={`main ${showContent ? 'show-content' : ''}`}>
         <div className={`title ${showTitle ? 'show-title' : ''}`}>
           <Image src={Images.splash} alt={'백곰'} />
