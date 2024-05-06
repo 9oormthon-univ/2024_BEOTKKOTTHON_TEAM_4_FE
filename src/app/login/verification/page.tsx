@@ -70,7 +70,7 @@ export default function Verification(): React.JSX.Element {
 
   return (
     <VerificationWrap>
-      <BackHeader title={'아이디/비밀번호 찾기'} url={''} />
+      <BackHeader title={'아이디/비밀번호 찾기'} url={'/login/find'} />
       <div className="top">
         문자로 전송받은 <br />
         인증번호 6자리를 입력해 주세요.
