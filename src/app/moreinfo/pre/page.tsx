@@ -16,9 +16,7 @@ import { LocalStorage } from '@/hooks/useUtil';
 export default function Join(): React.JSX.Element {
   const router = useRouter();
 
-  const [params, setParams] = useState<ParamsType>({
-    preYn: '',
-  });
+  const [params, setParams] = useState<ParamsType>({});
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
       ...prevState,
@@ -47,7 +45,7 @@ export default function Join(): React.JSX.Element {
           onChangeValue={onChangeValue}
         />
         <BottomButton
-          filled={params.signupState === false}
+          filled={params.preYn !== undefined}
           handleNextButtonClick={() => {
             handleClick();
           }}

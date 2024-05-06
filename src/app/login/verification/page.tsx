@@ -10,9 +10,9 @@ import { Fragment, useEffect, useState } from 'react';
 import VerificationInput from '../../_component/atom/verificationInput';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import BottomButton from '@/app/_component/atom/BottomButton';
-import { router, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { postSMSCode } from '@/app/_lib/postSMSCode';
-import { LocalStorage } from '@/hooks/useUtil';
+import { LocalStorage, SecureLocalStorage } from '@/hooks/useUtil';
 import { OnChangeValueType } from '@/types/globalType';
 import { postFindChallenge } from '@/app/_lib/postFindChallenge';
 import WarningToast from '@/app/_component/atom/WarningToast';
@@ -57,6 +57,7 @@ export default function Verification(): React.JSX.Element {
         console.log('sms 인증 성공:', response);
         if (response.success) {
           LocalStorage.setItem('type', 'loginEnd');
+          SecureLocalStorage.setItem('id', response.data.userId);
           router.push(`/signup/done`);
         }
       } catch (error) {
@@ -69,7 +70,7 @@ export default function Verification(): React.JSX.Element {
 
   return (
     <VerificationWrap>
-      <BackHeader title={'아이디/비밀번호 찾기'} url={''} />
+      <BackHeader title={'아이디/비밀번호 찾기'} url={'/login/find'} />
       <div className="top">
         문자로 전송받은 <br />
         인증번호 6자리를 입력해 주세요.

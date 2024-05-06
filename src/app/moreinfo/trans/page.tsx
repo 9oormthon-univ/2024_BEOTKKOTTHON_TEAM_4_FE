@@ -45,7 +45,7 @@ export default function Join(): React.JSX.Element {
           onChangeValue={onChangeValue}
         />
         <BottomButton
-          filled={params.signupState === false}
+          filled={params.medYn !== ''}
           handleNextButtonClick={() => {
             handleClick();
           }}

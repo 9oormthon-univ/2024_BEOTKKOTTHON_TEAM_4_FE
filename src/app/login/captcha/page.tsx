@@ -46,7 +46,7 @@ export default function Verification(): React.JSX.Element {
 
   return (
     <VerificationWrap>
-      <BackHeader title={'아이디/비밀번호 찾기'} url={''} />
+      <BackHeader title={'아이디/비밀번호 찾기'} url={'/login/find'} />
       <div className="top">보안문자를 입력해주세요</div>
       <div className="captcha_img">
         <Image

@@ -33,7 +33,7 @@ export default function MoreIdentity(): React.JSX.Element {
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false); // 로딩 상태 추가
-
+  const [filled, setFilled] = useState(false);
   const router = useRouter();
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
@@ -41,9 +41,12 @@ export default function MoreIdentity(): React.JSX.Element {
       [field]: value,
     }));
   };
+  console.log(checkParamsFilled(params));
+  console.log(params);
 
   const handleNextButtonClick = async () => {
-    if (checkParamsFilled(params)) {
+    if (filled) {
+      console.log(filled);
       try {
         setLoading(true); // 로딩 시작
         const response = await postRegister(params);
@@ -76,6 +79,17 @@ export default function MoreIdentity(): React.JSX.Element {
       password,
     });
   }, []);
+
+  useEffect(() => {
+    if (
+      params.identity_first.trim().length >= 6 &&
+      params.identity_last.trim().length >= 7 &&
+      params.identity_first.trim() !== '' &&
+      params.identity_last.trim() !== ''
+    ) {
+      setFilled(true);
+    }
+  }, [params]);
 
   return (
     <MoreIdentityWrapper>
@@ -115,12 +129,11 @@ export default function MoreIdentity(): React.JSX.Element {
           </div>
         </div>
       </div>
-
       {error !== null && <WarningToast message={error} />}
-      {loading & <WarningToast message={'요청중입니다. 기다려주세요...'} />}
+      {loading && <WarningToast message={'요청중입니다. 기다려주세요...'} />}
       {!loading && (
         <BottomButton
-          filled={checkParamsFilled(params)}
+          filled={filled}
           handleNextButtonClick={handleNextButtonClick}
         />
       )}

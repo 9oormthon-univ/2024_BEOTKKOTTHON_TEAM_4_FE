@@ -18,7 +18,7 @@ export default function Join(): React.JSX.Element {
 
   const handleClick = () => {
     LocalStorage.setItem('MEDICAL_WORKER', params.transYn);
-    router.push(`/moreinfo/id`);
+    router.push(`/moreinfo/trans`);
   };
 
   const [params, setParams] = useState<ParamsType>({
@@ -46,7 +46,7 @@ export default function Join(): React.JSX.Element {
           onChangeValue={onChangeValue}
         />
         <BottomButton
-          filled={params.signupState === false}
+          filled={params.transYn !== ''}
           handleNextButtonClick={() => {
             handleClick();
           }}
