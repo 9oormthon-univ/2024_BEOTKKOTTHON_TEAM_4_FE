@@ -49,6 +49,7 @@ export default function Verification(): React.JSX.Element {
       <BackHeader title={'아이디/비밀번호 찾기'} url={'/login/more'} />
       <div className="top">보안문자를 입력해주세요</div>
       <div className="captcha_img">
+        정
         <Image
           src={secureNoImage ? secureNoImage : Images.vacgom}
           alt={'보안이미지'}

@@ -98,7 +98,7 @@ export default function Signup(): React.JSX.Element {
 
   return (
     <SignupWrapper>
-      <BackHeader title={'아이디/비밀번호 찾기'} url={''} />
+      <BackHeader title={'아이디/비밀번호 찾기'} url={'/login/find'} />
       <div className="top">
         비밀번호를 변경하면 <br />
         아이디를 자동을 조회할 수 있어요
