@@ -48,7 +48,6 @@ export default function Signup(): React.JSX.Element {
   useEffect(() => {
     let id = SecureLocalStorage.getItem('id');
     let password = SecureLocalStorage.getItem('password');
-    console.log('secure', id, password);
 
     setParams({
       ...params,
