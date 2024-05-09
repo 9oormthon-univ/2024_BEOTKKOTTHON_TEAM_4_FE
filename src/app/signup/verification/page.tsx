@@ -36,9 +36,7 @@ export default function Verification(): React.JSX.Element {
     if (password.length >= 5) {
       try {
         const response = await postSMSCode(password);
-        console.log(response);
         const { success, code, message } = response;
-        console.log('sms 인증 성공:', response);
         if (success) {
           // 신규 가입 성공
           LocalStorage.setItem('type', 'helpnew');
