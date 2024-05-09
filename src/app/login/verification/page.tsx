@@ -21,7 +21,8 @@ import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
 export default function Verification(): React.JSX.Element {
   const router = useRouter();
   const [password, setPassword] = useState('');
-  const [errormessage, setErrormessage] = useState(''); // 로딩 상태 추가
+  const [errormessage, setErrormessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const MINUTES_IN_MS = 3 * 60 * 1000;
   const INTERVAL = 1000;
@@ -36,6 +37,7 @@ export default function Verification(): React.JSX.Element {
   const handleNextButtonClick = async () => {
     if (password.length >= 5) {
       try {
+        setLoading(true); // 로딩 시작
         const response = await postFindChallenge(password, 'SMS');
         const { success, code, data, message } = response;
         if (success) {
@@ -54,6 +56,8 @@ export default function Verification(): React.JSX.Element {
         }
       } catch (error) {
         console.error('sms 실패:', error);
+      } finally {
+        setLoading(false); // 로딩 종료
       }
     }
   };
@@ -98,10 +102,12 @@ export default function Verification(): React.JSX.Element {
         />
       </div>
       <WarningToastWrap errorMessage={errormessage} />
-      <BottomButton
-        filled={password.length >= 6}
-        handleNextButtonClick={handleNextButtonClick}
-      />
+      {!loading && (
+        <BottomButton
+          filled={password.length >= 6}
+          handleNextButtonClick={handleNextButtonClick}
+        />
+      )}
     </VerificationWrap>
   );
 }

@@ -45,7 +45,7 @@ export default function Verification(): React.JSX.Element {
           if (code === 'RETRY_SECURE_NO') {
             setSecureNoImage(data.secureNoImage);
           }
-          // codef 응답시간 초과 에러
+          // codef 에러
           if (code === 'CODEF_ERROR') {
             setErrormessage(data.message);
           }

@@ -21,6 +21,7 @@ export default function Verification(): React.JSX.Element {
   const router = useRouter();
   const [password, setPassword] = useState('');
   const [errormessage, setErrormessage] = useState(''); // 로딩 상태 추가
+  const [loading, setLoading] = useState(false);
 
   const MINUTES_IN_MS = 3 * 60 * 1000;
   const INTERVAL = 1000;
@@ -35,6 +36,7 @@ export default function Verification(): React.JSX.Element {
   const handleNextButtonClick = async () => {
     if (password.length >= 5) {
       try {
+        setLoading(true); // 로딩 시작
         const response = await postSMSCode(password);
         const { success, code, message } = response;
         if (success) {
@@ -55,6 +57,8 @@ export default function Verification(): React.JSX.Element {
         }
       } catch (error) {
         console.error('sms 실패:', error);
+      } finally {
+        setLoading(false); // 로딩 종료
       }
       // api 호출 했는데 이미 가입한 계정이면 /signup/done?type=helpalready
       // api 호출 했는데 신규 가입이면 /signup/done?type=helpnew
@@ -100,10 +104,12 @@ export default function Verification(): React.JSX.Element {
         />
       </div>
       <WarningToastWrap errorMessage={errormessage} />
-      <BottomButton
-        filled={password.length >= 6}
-        handleNextButtonClick={handleNextButtonClick}
-      />
+      {!loading && (
+        <BottomButton
+          filled={password.length >= 6}
+          handleNextButtonClick={handleNextButtonClick}
+        />
+      )}
     </VerificationWrap>
   );
 }
