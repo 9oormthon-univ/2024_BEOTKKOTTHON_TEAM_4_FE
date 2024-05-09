@@ -8,6 +8,7 @@ import kakao from '../../public/assets/ico/ico-kakao.svg';
 import google from '../../public/assets/ico/ic-google.svg';
 import vacgom from '../../public/assets/image/img-splash-vacgom.svg';
 import Vacgom01 from '../../public/assets/image/img-Vacgom01.svg';
+import vacgomLoading from '../../public/assets/image/img-Vacgom-loading.svg';
 import vacgom_face from '../../public/assets/image/img-vacgom-face.svg';
 
 import share from '../../public/assets/ico/ico-share.svg';
@@ -237,6 +238,7 @@ export const Images: ImagesType = {
 
   //image
   vacgom01: Vacgom01,
+  vacgomLoading: vacgomLoading,
   vacgom: vacgom,
   vacgom_face: vacgom_face,
   VaccineCardBack: VaccineCardBack,

@@ -25,6 +25,8 @@ import secureLocalStorage from 'react-secure-storage';
 import { postRegister } from '@/app/_lib/postRegister';
 import WarningToast from '@/app/_component/atom/WarningToast';
 import { postLogin } from '@/app/_lib/postLogin';
+import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
+import LoadingPage from '@/app/_component/temp/Loading';
 
 export default function MoreIdentity(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -41,12 +43,9 @@ export default function MoreIdentity(): React.JSX.Element {
       [field]: value,
     }));
   };
-  console.log(checkParamsFilled(params));
-  console.log(params);
 
   const handleNextButtonClick = async () => {
     if (filled) {
-      console.log(filled);
       try {
         setLoading(true); // 로딩 시작
         const response = await postRegister(params);
@@ -129,8 +128,9 @@ export default function MoreIdentity(): React.JSX.Element {
           </div>
         </div>
       </div>
-      {error !== null && <WarningToast message={error} />}
-      {loading && <WarningToast message={'요청중입니다. 기다려주세요...'} />}
+      {error !== null && <WarningToastWrap errorMessage={error} />}
+      <LoadingPage />
+      {loading && <LoadingPage />}
       {!loading && (
         <BottomButton
           filled={filled}
