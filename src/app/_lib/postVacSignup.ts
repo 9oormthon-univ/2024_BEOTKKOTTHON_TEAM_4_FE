@@ -24,21 +24,11 @@ export async function postVacSignup(memberInfo) {
       cache: 'no-store',
     });
 
-    if (!res.ok) {
-      throw new Error('Failed to fetch data');
-    }
-
-    // if (res.status) {
-    //   router.push('/moreinfo/welcome');
-    // } else {
-    //   router.push('/signup');
-    // }
-
     const responseData = await res.json();
     LocalStorage.setItem('accessToken', responseData.token.accessToken);
     return responseData;
   } catch (error) {
     console.error('Error during POST request:', error);
-    throw error;
+    return error;
   }
 }

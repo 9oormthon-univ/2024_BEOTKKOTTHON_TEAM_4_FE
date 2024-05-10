@@ -27,7 +27,6 @@ export default function Join(): React.JSX.Element {
     router.push(`/moreinfo/pre`);
   };
 
-  console.log(params);
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
       ...prevState,
@@ -90,7 +89,7 @@ export default function Join(): React.JSX.Element {
       )}
 
       <BottomButton
-        filled={params.disYn !== false}
+        filled={params.disYn !== ''}
         handleNextButtonClick={() => {
           handleClick();
         }}

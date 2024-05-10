@@ -63,9 +63,6 @@ export default function Id(): React.JSX.Element {
       ...prevState,
       healthConditions: finalList,
     }));
-
-    console.log('finalList : ', finalList);
-    console.log(MEDICAL_WORKER, PREGNANCY, ORGAN_TRANSPLANTATION, disease);
   }, []);
 
   const router = useRouter();
@@ -88,12 +85,10 @@ export default function Id(): React.JSX.Element {
         }
       } catch (error) {
         setError(error.errorMessage);
-        console.log(error.errorMessage);
       }
     }
   };
 
-  console.log(params);
   const updateValidation = (field: string, value: string) => {
     switch (field) {
       case 'nickname':
