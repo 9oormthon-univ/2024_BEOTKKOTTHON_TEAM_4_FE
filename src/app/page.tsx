@@ -15,19 +15,20 @@ export default function Home(): React.JSX.Element {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowContent(true); // 2초 후에 showContent 상태를 true로 변경합니다
+      setShowContent(true);
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, []); // useEffect가 처음 한 번만 실행되도록 빈 배열을 전달합니다
+  }, []);
 
   useEffect(() => {
+    localStorage.clear();
     const timer = setTimeout(() => {
-      setShowTitle(true); // 0.4초 후에 showContent 상태를 true로 변경합니다
+      setShowTitle(true);
     }, 400);
 
     return () => clearTimeout(timer);
-  }, []); // useEffect가 처음 한 번만 실행되도록 빈 배열을 전달합니다
+  }, []);
 
   return (
     <HomeWrap className={'splash'}>

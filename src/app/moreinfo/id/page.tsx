@@ -4,7 +4,7 @@ import * as React from 'react';
 import { SignupWrapper } from './style';
 import { css } from '@emotion/react';
 
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import InputForm from '@/app/_component/atom/InputForm';
@@ -63,9 +63,6 @@ export default function Id(): React.JSX.Element {
       ...prevState,
       healthConditions: finalList,
     }));
-
-    console.log('finalList : ', finalList);
-    console.log(MEDICAL_WORKER, PREGNANCY, ORGAN_TRANSPLANTATION, disease);
   }, []);
 
   const router = useRouter();
@@ -88,12 +85,10 @@ export default function Id(): React.JSX.Element {
         }
       } catch (error) {
         setError(error.errorMessage);
-        console.log(error.errorMessage);
       }
     }
   };
 
-  console.log(params);
   const updateValidation = (field: string, value: string) => {
     switch (field) {
       case 'nickname':

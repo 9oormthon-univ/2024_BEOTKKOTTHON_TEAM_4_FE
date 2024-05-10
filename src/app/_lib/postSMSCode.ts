@@ -7,8 +7,6 @@ export async function postSMSCode(password) {
     type: 'SMS',
   });
 
-  console.log(api_params);
-
   const accessToken = LocalStorage.getItem('accessToken');
   try {
     const res = await fetch(`${apiUrl}/signup/challenge`, {
@@ -21,14 +19,10 @@ export async function postSMSCode(password) {
       cache: 'no-store',
     });
 
-    if (!res.ok) {
-      throw new Error('Failed to fetch data');
-    }
-    console.log('응답좀 보자', res);
     const responseData = await res.json();
     return responseData;
   } catch (error) {
     console.error('Error during POST request:', error);
-    throw error;
+    return error;
   }
 }

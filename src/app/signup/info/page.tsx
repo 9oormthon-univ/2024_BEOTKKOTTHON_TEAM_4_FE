@@ -22,6 +22,8 @@ import BottomButton from '@/app/_component/atom/BottomButton';
 import secureLocalStorage from 'react-secure-storage';
 import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
 import { postSignup } from '@/app/_lib/postSignup';
+import WarningToast from '@/app/_component/atom/WarningToast';
+import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -46,7 +48,6 @@ export default function Signup(): React.JSX.Element {
   useEffect(() => {
     let id = SecureLocalStorage.getItem('id');
     let password = SecureLocalStorage.getItem('password');
-    console.log('secure', id, password);
 
     setParams({
       ...params,
@@ -59,12 +60,17 @@ export default function Signup(): React.JSX.Element {
    *  api 호출
    */
   const [loading, setLoading] = useState(false); // 로딩 상태 추가
+  const [errormessage, setErrormessage] = useState(''); // 로딩 상태 추가
   const handleNextButtonClick = async () => {
     if (checkParamsFilled(params)) {
       try {
-        setLoading(true); // 로딩 시작
+        setLoading(true);
         const response = await postSignup(params);
-        console.log('Signup successful:', response);
+
+        if (!response.success) {
+          setErrormessage(response.message);
+          return;
+        }
         LocalStorage.setItem('secureNoImage', response.data.secureNoImage);
         router.push(
           `/signup/captcha?secureNoImage=${response.data.secureNoImage}`,
@@ -187,6 +193,7 @@ export default function Signup(): React.JSX.Element {
             onReset={resetAgencyOptions}
           />
         </Fragment>
+        <WarningToastWrap errorMessage={errormessage} />
         {!loading && ( // 로딩 중이 아닐 때에만 렌더링
           <BottomButton
             filled={checkParamsFilled(params)}

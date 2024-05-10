@@ -16,11 +16,14 @@ import { LocalStorage, SecureLocalStorage } from '@/hooks/useUtil';
 import { OnChangeValueType } from '@/types/globalType';
 import { postFindChallenge } from '@/app/_lib/postFindChallenge';
 import WarningToast from '@/app/_component/atom/WarningToast';
+import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
 
 export default function Verification(): React.JSX.Element {
   const router = useRouter();
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [errormessage, setErrormessage] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const MINUTES_IN_MS = 3 * 60 * 1000;
   const INTERVAL = 1000;
   const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
@@ -30,6 +33,34 @@ export default function Verification(): React.JSX.Element {
     '0',
   );
   const second = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, '0');
+
+  const handleNextButtonClick = async () => {
+    if (password.length >= 5) {
+      try {
+        setLoading(true); // 로딩 시작
+        const response = await postFindChallenge(password, 'SMS');
+        const { success, code, data, message } = response;
+        if (success) {
+          LocalStorage.setItem('type', 'loginEnd');
+          SecureLocalStorage.setItem('id', response.data.userId);
+          router.push(`/signup/done`);
+        } else {
+          // 코드에프에러(CODEF_ERROR)
+          if (code === 'CODEF_ERROR') {
+            setPassword('');
+            setErrormessage(data.message);
+          }
+          //잘못 입력시(RETRY_SMS), 인증절차 다시 시도(CHALLENGE_NOT_FOUND)
+          setPassword('');
+          setErrormessage(message);
+        }
+      } catch (error) {
+        console.error('sms 실패:', error);
+      } finally {
+        setLoading(false); // 로딩 종료
+      }
+    }
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -48,24 +79,6 @@ export default function Verification(): React.JSX.Element {
 
   const onChangeValue: OnChangeValueType = (value: number | string) => {
     setPassword(value);
-  };
-
-  const handleNextButtonClick = async () => {
-    if (password.length >= 5) {
-      try {
-        const response = await postFindChallenge(password, 'SMS');
-        console.log('sms 인증 성공:', response);
-        if (response.success) {
-          LocalStorage.setItem('type', 'loginEnd');
-          SecureLocalStorage.setItem('id', response.data.userId);
-          router.push(`/signup/done`);
-        }
-      } catch (error) {
-        console.error('sms 실패:', error.message);
-        console.error('sms 성공여부', error.success);
-        setError(error.message);
-      }
-    }
   };
 
   return (
@@ -88,11 +101,13 @@ export default function Verification(): React.JSX.Element {
           onChangeValue={onChangeValue}
         />
       </div>
-      {error && <WarningToast message={error} />}
-      <BottomButton
-        filled={password.length >= 6}
-        handleNextButtonClick={handleNextButtonClick}
-      />
+      <WarningToastWrap errorMessage={errormessage} />
+      {!loading && (
+        <BottomButton
+          filled={password.length >= 6}
+          handleNextButtonClick={handleNextButtonClick}
+        />
+      )}
     </VerificationWrap>
   );
 }

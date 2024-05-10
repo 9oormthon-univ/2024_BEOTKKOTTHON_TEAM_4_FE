@@ -5,3 +5,12 @@ export interface OnChangeValueType {
 export interface OnChangePasswordType {
   (value: any): void;
 }
+export interface RequestOptions {
+  method: string;
+  headers: {
+    Authorization: string;
+    'Content-Type': string;
+  };
+  body: string;
+  cache: string;
+}

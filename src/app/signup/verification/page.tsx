@@ -13,12 +13,15 @@ import BottomButton from '@/app/_component/atom/BottomButton';
 import { useRouter } from 'next/navigation';
 import { postchallenge } from '@/app/_lib/postchallenge';
 import { postSMSCode } from '@/app/_lib/postSMSCode';
-import { LocalStorage } from '@/hooks/useUtil';
+import { LocalStorage, SecureLocalStorage } from '@/hooks/useUtil';
 import { OnChangeValueType } from '@/types/globalType';
+import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
 
 export default function Verification(): React.JSX.Element {
   const router = useRouter();
   const [password, setPassword] = useState('');
+  const [errormessage, setErrormessage] = useState(''); // 로딩 상태 추가
+  const [loading, setLoading] = useState(false);
 
   const MINUTES_IN_MS = 3 * 60 * 1000;
   const INTERVAL = 1000;
@@ -33,24 +36,29 @@ export default function Verification(): React.JSX.Element {
   const handleNextButtonClick = async () => {
     if (password.length >= 5) {
       try {
+        setLoading(true); // 로딩 시작
         const response = await postSMSCode(password);
-        console.log('sms 인증 성공:', response);
-        if (response.success) {
+        const { success, code, message } = response;
+        if (success) {
+          // 신규 가입 성공
           LocalStorage.setItem('type', 'helpnew');
           router.push(`/signup/done`);
         } else {
-          LocalStorage.setItem('type', 'helpalready');
-          router.push(`/signup/done`);
+          /// 이미 가입된 계정
+          if (code === 'USER_ALREADY_REGISTERED') {
+            LocalStorage.setItem('type', 'helpalready');
+            SecureLocalStorage.setItem('userId', response.data.userId);
+            router.push(`/signup/done`);
+            return;
+          }
+          // 잘못 입력시(RETRY_SMS) , 인증절차 다시 시도(CHALLENGE_NOT_FOUND)
+          setPassword('');
+          setErrormessage(message);
         }
       } catch (error) {
-        console.error('sms 실패:', error.message);
-        console.error('sms 성공여부', error.success);
-        if (error.code === 'USER_ALREADY_REGISTERED') {
-          LocalStorage.setItem('type', 'helpalready');
-          router.push(`/signup/done`);
-        } else {
-          router.push('/signup');
-        }
+        console.error('sms 실패:', error);
+      } finally {
+        setLoading(false); // 로딩 종료
       }
       // api 호출 했는데 이미 가입한 계정이면 /signup/done?type=helpalready
       // api 호출 했는데 신규 가입이면 /signup/done?type=helpnew
@@ -95,10 +103,13 @@ export default function Verification(): React.JSX.Element {
           onChangeValue={onChangeValue}
         />
       </div>
-      <BottomButton
-        filled={password.length >= 6}
-        handleNextButtonClick={handleNextButtonClick}
-      />
+      <WarningToastWrap errorMessage={errormessage} />
+      {!loading && (
+        <BottomButton
+          filled={password.length >= 6}
+          handleNextButtonClick={handleNextButtonClick}
+        />
+      )}
     </VerificationWrap>
   );
 }
