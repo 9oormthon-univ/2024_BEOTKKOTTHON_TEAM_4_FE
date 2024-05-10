@@ -3,15 +3,45 @@
 import * as React from 'react';
 import { LoadingPageWrap } from './style';
 import Image from 'next/image';
-import { css } from '@emotion/react';
-
 import { Colors, Icons, Images } from '@globalStyles';
-import Button from '../../atom/button/button';
 import { SecureLocalStorage } from '@/hooks/useUtil';
+import { styled } from '@mui/material/styles';
+import LinearProgress, {
+  linearProgressClasses,
+} from '@mui/material/LinearProgress';
+import { useEffect, useState } from 'react';
 
 type props = {};
+
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 10,
+  borderRadius: 5,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
+    backgroundColor:
+      theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+  },
+  [`& .${linearProgressClasses.bar}`]: {
+    borderRadius: 5,
+    backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
+  },
+}));
+
 const LoadingPage: React.FC<props> = ({}) => {
   const username = SecureLocalStorage.getItem('userName');
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) =>
+        prevProgress >= 100 ? 0 : prevProgress + 10,
+      );
+    }, 800);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <LoadingPageWrap>
       <div className="container">
@@ -29,7 +59,9 @@ const LoadingPage: React.FC<props> = ({}) => {
           <Image src={Images.vacgomLoading} alt={'백곰'} />
         </div>
         <div className="bottom">
-          <div className="progress"></div>
+          <div className="progress">
+            <BorderLinearProgress variant="determinate" value={progress} />
+          </div>
         </div>
       </div>
     </LoadingPageWrap>

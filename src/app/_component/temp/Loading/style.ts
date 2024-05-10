@@ -35,9 +35,8 @@ export const LoadingPageWrap = styled.main`
       position: absolute;
       bottom: 0;
       & > .progress {
-        width: 100%;
-        height: 4px;
-        background-color: #ffffff66;
+        z-index: 2;
+        margin: 52px 20px;
       }
     }
   }
