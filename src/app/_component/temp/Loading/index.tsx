@@ -33,9 +33,9 @@ const LoadingPage: React.FC<props> = ({}) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) =>
-        prevProgress >= 100 ? 0 : prevProgress + 10,
+        prevProgress >= 100 ? 0 : prevProgress + 5,
       );
-    }, 800);
+    }, 390);
 
     return () => {
       clearInterval(timer);

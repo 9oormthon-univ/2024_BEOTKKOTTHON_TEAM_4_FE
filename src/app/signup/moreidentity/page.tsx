@@ -129,7 +129,6 @@ export default function MoreIdentity(): React.JSX.Element {
         </div>
       </div>
       {error !== null && <WarningToastWrap errorMessage={error} />}
-      <LoadingPage />
       {loading && <LoadingPage />}
       {!loading && (
         <BottomButton
