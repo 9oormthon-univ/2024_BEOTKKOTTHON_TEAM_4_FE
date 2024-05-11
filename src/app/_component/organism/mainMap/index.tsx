@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from '@emotion/styled';
 import Image from 'next/image';
 import { Images } from '@globalStyles';
 import { useRouter } from 'next/router';
