@@ -26,6 +26,7 @@ export default function HospitalMap() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHospitalId, setSelectedHospitalId] = useState(null);
   const [selectedMarkerPosition, setSelectedMarkerPosition] = useState(null);
+  const [rememberedMarkerPosition, setRememberedMarkerPosition] = useState(null);
   const mapRef = useRef(null);
 
   const headerHeight = '54px';
@@ -97,12 +98,13 @@ export default function HospitalMap() {
           setSelectedHospitalId(
             selectedHospitalId === hospital.id ? null : hospital.id
           );
-          setSelectedMarkerPosition(marker.getPosition());
+          //setSelectedMarkerPosition(marker.getPosition());
           setModalContent({
             name: hospital.name,
             major: hospital.major,
             address: hospital.address,
           });
+          setRememberedMarkerPosition(marker.getPosition());
           setIsModalOpen(true);
         });
       });
@@ -122,12 +124,25 @@ export default function HospitalMap() {
 
   useEffect(() => {
     if (!isModalOpen) {
+      console.log("Selected marker position when modal is closed but remembered:", rememberedMarkerPosition);
+      setSelectedMarkerPosition(rememberedMarkerPosition);
+      if (rememberedMarkerPosition) {
+        mapRef.current.setCenter(rememberedMarkerPosition);
+      }
       setSelectedHospitalId(null);
     }
   }, [isModalOpen]);
 
   useEffect(() => {
     if (selectedMarkerPosition && isModalOpen) {
+      console.log("Selected marker position when modal is open:", selectedMarkerPosition);
+      mapRef.current.setCenter(selectedMarkerPosition);
+    }
+  }, [selectedMarkerPosition, isModalOpen]);
+
+  useEffect(() => {
+    if (selectedMarkerPosition && !isModalOpen) {
+      console.log("Selected marker position when modal is closed but remembered:", selectedMarkerPosition);
       mapRef.current.setCenter(selectedMarkerPosition);
     }
   }, [selectedMarkerPosition, isModalOpen]);
