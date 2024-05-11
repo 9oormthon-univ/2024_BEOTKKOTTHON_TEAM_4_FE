@@ -2,9 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import styled from '@emotion/styled';
 import { hospitals } from '@/utils/hpv-api';
 import Tooltip from '@/app/_component/atom/Tooltip';
-import { Modal } from '../../atom/MapModal';
 import { Images } from '@globalStyles';
+import { Modal } from '../../atom/MapModal';
 import ReloadButton from '@/app/_component/atom/ReloadButton';
+import CurrectToast from '../../atom/CurrectToast';
 
 const Main = styled.div`
   display: flex;
@@ -13,31 +14,40 @@ const Main = styled.div`
   width: 100%;
   height: calc(100vh - var(--header-height) - var(--navigation-height));
   padding: 0;
-`
+`;
 
 const MapContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
 
-
 export default function HospitalMap() {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHospitalId, setSelectedHospitalId] = useState(null);
+  const [selectedMarkerPosition, setSelectedMarkerPosition] = useState(null);
+  const [rememberedMarkerPosition, setRememberedMarkerPosition] = useState(null);
   const mapRef = useRef(null);
+  const [showToast, setShowToast] = useState(false);
 
-  const headerHeight = '54px'; 
+  useEffect(() => {
+    setShowToast(true);
+    const timer = setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const headerHeight = '54px';
   const navigationHeight = '68px';
 
-   // 현재 위치를 재검색하는 함수
-   const handleCurrentLocationClick = () => {
+  const handleCurrentLocationClick = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const currentLocation = new naver.maps.LatLng(
           position.coords.latitude,
-          position.coords.longitude,
+          position.coords.longitude
         );
         mapRef.current.setCenter(currentLocation);
       });
@@ -46,8 +56,7 @@ export default function HospitalMap() {
 
   useEffect(() => {
     const loadMap = () => {
-      // 해커톤 장소 위도 경도를 지도의 초기 위치로 설정
-      const hackathonLocation = new naver.maps.LatLng(37.351586, 127.071880);
+      const hackathonLocation = new naver.maps.LatLng(37.351586, 127.07188);
 
       const mapOptions = {
         center: hackathonLocation,
@@ -59,7 +68,10 @@ export default function HospitalMap() {
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
-          const currentLocation = new naver.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          const currentLocation = new naver.maps.LatLng(
+            position.coords.latitude,
+            position.coords.longitude
+          );
           new naver.maps.Marker({
             position: currentLocation,
             map: map,
@@ -69,8 +81,8 @@ export default function HospitalMap() {
               size: new naver.maps.Size(50, 63),
               scaledSize: new naver.maps.Size(50, 63),
               origin: new naver.maps.Point(0, 0),
-              anchor: new naver.maps.Point(12, 37)
-            }
+              anchor: new naver.maps.Point(12, 37),
+            },
           });
         });
       }
@@ -81,21 +93,28 @@ export default function HospitalMap() {
           map: map,
           title: hospital.name,
           icon: {
-            url: selectedHospitalId === hospital.id ? '/assets/ico/ico-map-selec.svg' : '/assets/ico/ico-map-unselec.svg',
+            url:
+              selectedHospitalId === hospital.id
+                ? '/assets/ico/ico-map-selec.svg'
+                : '/assets/ico/ico-map-unselec.svg',
             size: new naver.maps.Size(50, 63),
             scaledSize: new naver.maps.Size(50, 63),
             origin: new naver.maps.Point(0, 0),
-            anchor: new naver.maps.Point(12, 37)
-          }
+            anchor: new naver.maps.Point(12, 37),
+          },
         });
 
         naver.maps.Event.addListener(marker, 'click', () => {
-          setSelectedHospitalId(selectedHospitalId === hospital.id ? null : hospital.id);
+          setSelectedHospitalId(
+            selectedHospitalId === hospital.id ? null : hospital.id
+          );
+          //setSelectedMarkerPosition(marker.getPosition());
           setModalContent({
             name: hospital.name,
             major: hospital.major,
-            address: hospital.address
+            address: hospital.address,
           });
+          setRememberedMarkerPosition(marker.getPosition());
           setIsModalOpen(true);
         });
       });
@@ -113,8 +132,33 @@ export default function HospitalMap() {
     }
   }, [selectedHospitalId]);
 
-  return (
+  useEffect(() => {
+    if (!isModalOpen) {
+      console.log("Selected marker position when modal is closed but remembered:", rememberedMarkerPosition);
+      setSelectedMarkerPosition(rememberedMarkerPosition);
+      if (rememberedMarkerPosition) {
+        mapRef.current.setCenter(rememberedMarkerPosition);
+      }
+      setSelectedHospitalId(null);
+    }
+  }, [isModalOpen]);
 
+  useEffect(() => {
+    if (selectedMarkerPosition && isModalOpen) {
+      console.log("Selected marker position when modal is open:", selectedMarkerPosition);
+      mapRef.current.setCenter(selectedMarkerPosition);
+    }
+  }, [selectedMarkerPosition, isModalOpen]);
+
+  useEffect(() => {
+    if (selectedMarkerPosition && !isModalOpen) {
+      console.log("Selected marker position when modal is closed but remembered:", selectedMarkerPosition);
+      mapRef.current.setCenter(selectedMarkerPosition);
+    }
+  }, [selectedMarkerPosition, isModalOpen]);
+
+  return (
+    <>
     <Main
       style={{
         '--header-height': headerHeight,
@@ -123,10 +167,21 @@ export default function HospitalMap() {
     >
       <MapContainer id="map">
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
-        <Tooltip tooltipImage={{ button: Images.ico_map_tooltip_button, content: Images.ico_map_tooltip }} />
+        <Tooltip
+          tooltipImage={{
+            button: Images.ico_map_tooltip_button,
+            content: Images.ico_map_influ_tooltip,
+          }}
+        />
         <ReloadButton onClick={handleCurrentLocationClick} />
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} content={modalContent} />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          content={modalContent}
+        />
       </MapContainer>
     </Main>
+    <CurrectToast isVisible={showToast} />
+    </>
   );
 }
