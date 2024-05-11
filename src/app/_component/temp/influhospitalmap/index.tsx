@@ -13,7 +13,7 @@ const Main = styled.div`
   width: 100%;
   height: calc(100vh - var(--header-height) - var(--navigation-height));
   padding: 0;
-`
+`;
 
 const MapContainer = styled.div`
   width: 100%;
@@ -27,27 +27,23 @@ export default function HospitalMap() {
   const [selectedHospitalId, setSelectedHospitalId] = useState(null);
   const mapRef = useRef(null);
 
-  const headerHeight = '54px'; 
+  const headerHeight = '54px';
   const navigationHeight = '68px';
 
-     // 현재 위치를 재검색하는 함수
-     const handleCurrentLocationClick = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const currentLocation = new naver.maps.LatLng(
-            position.coords.latitude,
-            position.coords.longitude,
-          );
-          mapRef.current.setCenter(currentLocation);
-        });
-      }
-    };
-  
-
+  const handleCurrentLocationClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const currentLocation = new naver.maps.LatLng(
+          position.coords.latitude,
+          position.coords.longitude
+        );
+        mapRef.current.setCenter(currentLocation);
+      });
+    }
+  };
 
   useEffect(() => {
     const loadMap = () => {
-      // 해커톤 장소 위도 경도를 지도의 초기 위치로 설정
       const hackathonLocation = new naver.maps.LatLng(37.351586, 127.07188);
 
       const mapOptions = {
@@ -62,7 +58,7 @@ export default function HospitalMap() {
         navigator.geolocation.getCurrentPosition((position) => {
           const currentLocation = new naver.maps.LatLng(
             position.coords.latitude,
-            position.coords.longitude,
+            position.coords.longitude
           );
           new naver.maps.Marker({
             position: currentLocation,
@@ -98,7 +94,7 @@ export default function HospitalMap() {
 
         naver.maps.Event.addListener(marker, 'click', () => {
           setSelectedHospitalId(
-            selectedHospitalId === hospital.id ? null : hospital.id,
+            selectedHospitalId === hospital.id ? null : hospital.id
           );
           setModalContent({
             name: hospital.name,
@@ -122,6 +118,12 @@ export default function HospitalMap() {
     }
   }, [selectedHospitalId]);
 
+  useEffect(() => {
+    if (!isModalOpen) {
+      setSelectedHospitalId(null);
+    }
+  }, [isModalOpen]);
+
   return (
     <Main
       style={{
@@ -131,7 +133,12 @@ export default function HospitalMap() {
     >
       <MapContainer id="map">
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
-        <Tooltip tooltipImage={{ button: Images.ico_map_tooltip_button, content: Images.ico_map_influ_tooltip }} />
+        <Tooltip
+          tooltipImage={{
+            button: Images.ico_map_tooltip_button,
+            content: Images.ico_map_influ_tooltip,
+          }}
+        />
         <ReloadButton onClick={handleCurrentLocationClick} />
         <Modal
           isOpen={isModalOpen}
