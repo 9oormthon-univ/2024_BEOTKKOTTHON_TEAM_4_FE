@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Images } from '@globalStyles';
 
 const MainSection = styled.div`
-  width: 393px;
+  width: 100%;
   min-height: 100vh;
   padding: 20px 20px 0px 20px;
   margin-top: -20px;
