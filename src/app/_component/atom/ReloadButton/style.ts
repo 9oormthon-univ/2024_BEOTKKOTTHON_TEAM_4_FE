@@ -4,7 +4,7 @@ export const CurrentLocationButton = styled.div`
   position: absolute;
   left: 30%;
   top: 15px;
-  width: 150px;
+  width: 160px;
   height: 40px;
   align-items: center;
   padding: 8px 16px;
@@ -14,7 +14,7 @@ export const CurrentLocationButton = styled.div`
   border-radius: 20px;
   cursor: pointer;
   z-index: 5;
-  gap: 12px;
+  gap: 20px;
   font-family: Pretendard;
   font-size: 14px;
   font-weight: 500;
@@ -28,4 +28,8 @@ export const ClickableArea = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
+`;
+
+export const Text = styled.div`
+  margin-left: 5px;
 `;

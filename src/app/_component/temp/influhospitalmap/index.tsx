@@ -5,6 +5,7 @@ import Tooltip from '@/app/_component/atom/Tooltip';
 import { Images } from '@globalStyles';
 import { Modal } from '../../atom/MapModal';
 import ReloadButton from '@/app/_component/atom/ReloadButton';
+import CurrectToast from '../../atom/CurrectToast';
 
 const Main = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ const Main = styled.div`
   width: 100%;
   height: calc(100vh - var(--header-height) - var(--navigation-height));
   padding: 0;
-`
+`;
 
 const MapContainer = styled.div`
   width: 100%;
@@ -25,29 +26,36 @@ export default function HospitalMap() {
   const [modalContent, setModalContent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHospitalId, setSelectedHospitalId] = useState(null);
+  const [selectedMarkerPosition, setSelectedMarkerPosition] = useState(null);
+  const [rememberedMarkerPosition, setRememberedMarkerPosition] = useState(null);
   const mapRef = useRef(null);
+  const [showToast, setShowToast] = useState(false);
 
-  const headerHeight = '54px'; 
+  useEffect(() => {
+    setShowToast(true);
+    const timer = setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const headerHeight = '54px';
   const navigationHeight = '68px';
 
-     // 현재 위치를 재검색하는 함수
-     const handleCurrentLocationClick = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const currentLocation = new naver.maps.LatLng(
-            position.coords.latitude,
-            position.coords.longitude,
-          );
-          mapRef.current.setCenter(currentLocation);
-        });
-      }
-    };
-  
-
+  const handleCurrentLocationClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const currentLocation = new naver.maps.LatLng(
+          position.coords.latitude,
+          position.coords.longitude
+        );
+        mapRef.current.setCenter(currentLocation);
+      });
+    }
+  };
 
   useEffect(() => {
     const loadMap = () => {
-      // 해커톤 장소 위도 경도를 지도의 초기 위치로 설정
       const hackathonLocation = new naver.maps.LatLng(37.351586, 127.07188);
 
       const mapOptions = {
@@ -62,7 +70,7 @@ export default function HospitalMap() {
         navigator.geolocation.getCurrentPosition((position) => {
           const currentLocation = new naver.maps.LatLng(
             position.coords.latitude,
-            position.coords.longitude,
+            position.coords.longitude
           );
           new naver.maps.Marker({
             position: currentLocation,
@@ -98,13 +106,15 @@ export default function HospitalMap() {
 
         naver.maps.Event.addListener(marker, 'click', () => {
           setSelectedHospitalId(
-            selectedHospitalId === hospital.id ? null : hospital.id,
+            selectedHospitalId === hospital.id ? null : hospital.id
           );
+          //setSelectedMarkerPosition(marker.getPosition());
           setModalContent({
             name: hospital.name,
             major: hospital.major,
             address: hospital.address,
           });
+          setRememberedMarkerPosition(marker.getPosition());
           setIsModalOpen(true);
         });
       });
@@ -122,7 +132,33 @@ export default function HospitalMap() {
     }
   }, [selectedHospitalId]);
 
+  useEffect(() => {
+    if (!isModalOpen) {
+      console.log("Selected marker position when modal is closed but remembered:", rememberedMarkerPosition);
+      setSelectedMarkerPosition(rememberedMarkerPosition);
+      if (rememberedMarkerPosition) {
+        mapRef.current.setCenter(rememberedMarkerPosition);
+      }
+      setSelectedHospitalId(null);
+    }
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    if (selectedMarkerPosition && isModalOpen) {
+      console.log("Selected marker position when modal is open:", selectedMarkerPosition);
+      mapRef.current.setCenter(selectedMarkerPosition);
+    }
+  }, [selectedMarkerPosition, isModalOpen]);
+
+  useEffect(() => {
+    if (selectedMarkerPosition && !isModalOpen) {
+      console.log("Selected marker position when modal is closed but remembered:", selectedMarkerPosition);
+      mapRef.current.setCenter(selectedMarkerPosition);
+    }
+  }, [selectedMarkerPosition, isModalOpen]);
+
   return (
+    <>
     <Main
       style={{
         '--header-height': headerHeight,
@@ -131,7 +167,12 @@ export default function HospitalMap() {
     >
       <MapContainer id="map">
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
-        <Tooltip tooltipImage={{ button: Images.ico_map_tooltip_button, content: Images.ico_map_influ_tooltip }} />
+        <Tooltip
+          tooltipImage={{
+            button: Images.ico_map_tooltip_button,
+            content: Images.ico_map_influ_tooltip,
+          }}
+        />
         <ReloadButton onClick={handleCurrentLocationClick} />
         <Modal
           isOpen={isModalOpen}
@@ -140,5 +181,7 @@ export default function HospitalMap() {
         />
       </MapContainer>
     </Main>
+    <CurrectToast isVisible={showToast} />
+    </>
   );
 }

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from '@emotion/styled';
 import Image from 'next/image';
 import { Images } from '@globalStyles';
 import { useRouter } from 'next/router';
@@ -25,56 +24,55 @@ export default function MainMap() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
-  {/* API 연결 코드 리팩토링 개발을 위해 임의 block 처리 */}
-  // const accessToken = LocalStorage.getItem('accessToken');
+  const accessToken = LocalStorage.getItem('accessToken');
 
-  // useEffect(() => {
-  //   fetch(`${apiDevUrl}/me`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': `Bearer ${accessToken}`,
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .then(response => {
-  //     if (!response.ok) {
-  //       throw new Error('Network response was not ok');
-  //     }
-  //     return response.json();
-  //   })
-  //   .then(data => {
-  //     setUserName(data.name);
-  //   })
-  //   .catch(error => {
-  //     setError(error.message);
-  //   });
+  useEffect(() => {
+    fetch(`${apiDevUrl}/me`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setUserName(data.name);
+    })
+    .catch(error => {
+      setError(error.message);
+    });
 
-  //   fetch(`${apiDevUrl}/search/ratio`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': `Bearer ${accessToken}`,
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .then(response => {
-  //     if (!response.ok) {
-  //       throw new Error('Network response was not ok');
-  //     }
-  //     return response.json();
-  //   })
-  //   .then(data => {
-  //     setHpvRatio(data.hpvRatio);
-  //     setInfluenzaRatio(data.influenzaRatio);
-  //     setIsLoading(false);
-  //   })
-  //   .catch(error => {
-  //     setError(error.message);
-  //     setIsLoading(false);
-  //   });
-  // }, [apiDevUrl, accessToken]);
+    fetch(`${apiDevUrl}/search/ratio`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setHpvRatio(data.hpvRatio);
+      setInfluenzaRatio(data.influenzaRatio);
+      setIsLoading(false);
+    })
+    .catch(error => {
+      setError(error.message);
+      setIsLoading(false);
+    });
+  }, [apiDevUrl, accessToken]);
 
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>Error: {error}</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   const handleMapButtonClick = (url) => {
     router.push(url);
