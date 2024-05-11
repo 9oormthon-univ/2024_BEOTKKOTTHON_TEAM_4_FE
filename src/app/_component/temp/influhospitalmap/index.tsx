@@ -20,6 +20,51 @@ const MapContainer = styled.div`
   height: 100%;
 `;
 
+const ToastContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 66px;
+  padding: 15px 20px;
+  background-color: #E5F0FF;
+  border-radius: 18px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 10;
+  margin-bottom:60px
+`;
+
+const ToastImage = styled.img`
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  text-align: left;
+`;
+
+const ToastMessage = styled.div`
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #4196FD;
+  text-align: left;
+`;
+
+const LocationToast = ({ isVisible }) => {
+  return (
+    <ToastContainer style={{ opacity: isVisible ? 1 : 0 }}>
+      <ToastImage src="/assets/ico/ico-checkbox-selected-enabled.svg" alt="Checked Icon" />
+      <ToastMessage>현재 위치는 성남시 분당구 입니다</ToastMessage>
+    </ToastContainer>
+  );
+};
+
 export default function HospitalMap() {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [modalContent, setModalContent] = useState(null);
@@ -28,6 +73,15 @@ export default function HospitalMap() {
   const [selectedMarkerPosition, setSelectedMarkerPosition] = useState(null);
   const [rememberedMarkerPosition, setRememberedMarkerPosition] = useState(null);
   const mapRef = useRef(null);
+  const [showToast, setShowToast] = useState(false);
+
+  useEffect(() => {
+    setShowToast(true);
+    const timer = setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const headerHeight = '54px';
   const navigationHeight = '68px';
@@ -148,6 +202,7 @@ export default function HospitalMap() {
   }, [selectedMarkerPosition, isModalOpen]);
 
   return (
+    <>
     <Main
       style={{
         '--header-height': headerHeight,
@@ -170,5 +225,7 @@ export default function HospitalMap() {
         />
       </MapContainer>
     </Main>
+    <LocationToast isVisible={showToast} />
+    </>
   );
 }
