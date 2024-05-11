@@ -25,6 +25,7 @@ export default function HospitalMap() {
   const [modalContent, setModalContent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHospitalId, setSelectedHospitalId] = useState(null);
+  const [selectedMarkerPosition, setSelectedMarkerPosition] = useState(null);
   const mapRef = useRef(null);
 
   const headerHeight = '54px';
@@ -96,6 +97,7 @@ export default function HospitalMap() {
           setSelectedHospitalId(
             selectedHospitalId === hospital.id ? null : hospital.id
           );
+          setSelectedMarkerPosition(marker.getPosition());
           setModalContent({
             name: hospital.name,
             major: hospital.major,
@@ -123,6 +125,12 @@ export default function HospitalMap() {
       setSelectedHospitalId(null);
     }
   }, [isModalOpen]);
+
+  useEffect(() => {
+    if (selectedMarkerPosition && isModalOpen) {
+      mapRef.current.setCenter(selectedMarkerPosition);
+    }
+  }, [selectedMarkerPosition, isModalOpen]);
 
   return (
     <Main
