@@ -20,9 +20,11 @@ import { getCertificate } from '../../app/_lib/getCertificate'
 import { Colors, fontGenerator } from '@/styles';
 
 export const Container = styled.main`
-  height: 100vh
-  margin-bottom: 300px;
+  min-height: 100vh;
+  width: 100%;
   margin: 0 auto;
+  padding-bottom: 100px;
+  box-sizing: border-box;
 
   & > .head {
     height: 54px;
@@ -69,6 +71,7 @@ export const Container = styled.main`
         color: ${Colors.Gray700};
         font-family: 'Pretendard', sans-serif;
         padding: 10px 0;
+        
       }
       & > .vaccine_list {
         display: flex;
