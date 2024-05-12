@@ -16,9 +16,7 @@ export const vaccine = {
     '국가예방접종 대상 백신 외에 의료기관에서 유료로 접종받을 수 있는 예방 접종이예요.',
 };
 
-// 백신조회 필터 쪽 조건 목록
 export const ageRanges = [
-  '전체',
   '만 19-29세',
   '만 30-39세',
   '만 40-49세',
@@ -28,7 +26,6 @@ export const ageRanges = [
 ];
 
 export const situationRanges = [
-  '해당 없음',
   '당뇨병',
   '만성 심혈관질환',
   '만성 폐질환',
