@@ -91,7 +91,7 @@ const AlarmList = styled.div`
 
     return (
       <div>
-       <BackRouteHeader title="알람" onBack={handleBackButtonClick} />
+       <BackRouteHeader title="알림" onBack={handleBackButtonClick} />
         <DateText>{renderDate()}</DateText>
         <AlarmList>
           {alarms.map((alarm, index) => (

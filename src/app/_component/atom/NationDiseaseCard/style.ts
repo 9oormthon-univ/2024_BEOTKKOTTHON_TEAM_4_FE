@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Card = styled.div`
-  width: 200px;
+  width: 160px;
   height: auto;
   padding: 20px 21.77px;
   gap: 20px;

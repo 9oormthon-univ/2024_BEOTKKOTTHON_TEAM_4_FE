@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const DiseaseDetailContainer = styled.div`
   width: 100%;
-  padding: 0px 20px 20px 20px;
   margin-bottom: 100px;
   gap: 14px;
 `;
