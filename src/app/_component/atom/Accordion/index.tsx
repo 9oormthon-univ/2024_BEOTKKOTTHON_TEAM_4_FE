@@ -17,10 +17,9 @@ interface AccordionProps {
   qaList: QAItem[];
 }
 
-
 const AccordionContainer = styled.div`
   width: 100%;
-  padding: 14px 20px 14px 20px ;
+  padding: 14px 20px;
   border: 1px solid #F2F4F6;
   border-radius: 20px;
   margin-top: 20px;
@@ -52,14 +51,16 @@ const QuestionText = styled.div`
 `;
 
 const Answer = styled.div<AnswerProps>`
-  padding: 13px 20px;
+  padding: ${({ isActive }) => (isActive ? '13px 20px' : '0 20px')};
+  max-height: ${({ isActive }) => (isActive ? '500px' : '0')};
   background: #F2F4F6;
   font-family: Pretendard;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
   color: #6B7684;
-  display: ${({ isActive }) => (isActive ? 'block' : 'none')};
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
 `;
 
 const Accordion: React.FC<AccordionProps> = ({ qaList }) => {
