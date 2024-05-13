@@ -20,6 +20,7 @@ import Link from 'next/link';
 import { postSignup } from '@/app/_lib/postSignup';
 import { postLogin } from '@/app/_lib/postLogin';
 import WarningToast from '@/app/_component/atom/WarningToast';
+import SkeletonScreen from '@/app/_component/temp/SkeletonScreen';
 
 export default function HelperLogin(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>(() => {
@@ -73,6 +74,7 @@ export default function HelperLogin(): React.JSX.Element {
       }
     }
   };
+  if (loading) return <SkeletonScreen />;
   return (
     <HelperLoginWrapper>
       <BackHeader title={'예방접종도우미 로그인'} url={'/signup/terms'} />
