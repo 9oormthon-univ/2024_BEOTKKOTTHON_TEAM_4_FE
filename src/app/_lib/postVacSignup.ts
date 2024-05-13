@@ -9,8 +9,6 @@ export async function postVacSignup(memberInfo) {
     vaccinationInfo,
   });
 
-  console.log(api_params);
-
   const accessToken = LocalStorage.getItem('accessToken');
 
   try {
