@@ -94,7 +94,7 @@ export default function Id(): React.JSX.Element {
       case 'nickname':
         const isStartWithEnglish = /^[a-zA-Z]/.test(value);
         const isLowerCase = /^[a-z]+$/.test(value);
-        const isWithinLength = value.length >= 6 && value.length <= 10;
+        const isWithinLength = value.length >= 4 && value.length <= 10;
         setValidate((prevValidate) => ({
           ...prevValidate,
           nickname: {
