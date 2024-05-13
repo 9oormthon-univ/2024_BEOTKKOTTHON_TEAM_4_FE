@@ -22,6 +22,7 @@ import BottomButton from '@/app/_component/atom/BottomButton';
 import ValidateCheck from '@/app/_component/atom/ValidateCheck';
 import { postVacSignup } from '@/app/_lib/postVacSignup';
 import WarningToast from '@/app/_component/atom/WarningToast';
+import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
 
 export default function Id(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -82,9 +83,11 @@ export default function Id(): React.JSX.Element {
         const response = await postVacSignup(params);
         if (response.success) {
           router.push('/home');
+        } else {
+          setError(response.message);
         }
       } catch (error) {
-        setError(error.errorMessage);
+        setError(error);
       }
     }
   };
@@ -94,7 +97,7 @@ export default function Id(): React.JSX.Element {
       case 'nickname':
         const isStartWithEnglish = /^[a-zA-Z]/.test(value);
         const isLowerCase = /^[a-z]+$/.test(value);
-        const isWithinLength = value.length >= 6 && value.length <= 10;
+        const isWithinLength = value.length >= 4 && value.length <= 10;
         setValidate((prevValidate) => ({
           ...prevValidate,
           nickname: {
@@ -104,7 +107,6 @@ export default function Id(): React.JSX.Element {
           },
         }));
         break;
-
       default:
         break;
     }
@@ -148,7 +150,7 @@ export default function Id(): React.JSX.Element {
           </div>
         </div>
       </div>
-      {error && <WarningToast message={error} />}
+      {error && <WarningToastWrap errorMessage={error} />}
       <BottomButton
         filled={allConditionsTrue}
         handleNextButtonClick={handleNextButtonClick}
