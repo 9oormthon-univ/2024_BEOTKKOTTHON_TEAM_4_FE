@@ -8,6 +8,7 @@ import { LocalStorage } from '@/hooks/useUtil';
 import { useEffect, useState } from 'react';
 import { getCertificateDetail } from '@/app/_lib/getCertificateDetail';
 import { apiDevUrl } from '@/hooks/api';
+import { PATH } from '@/routes/path';
 
 export default function CertificateDetail() {
   const vaccineId = LocalStorage.getItem('vaccineId');
@@ -51,7 +52,7 @@ export default function CertificateDetail() {
   }, []);
   return (
     <Container>
-      <BackHeader title={'접종 상세'} url={'/vachistory/certificate/list'} />
+      <BackHeader title={'접종 상세'} url={PATH.VACHISTORY_LIST} />
       <div className="container">
         <VaccineCard
           image={detail?.iconImage}

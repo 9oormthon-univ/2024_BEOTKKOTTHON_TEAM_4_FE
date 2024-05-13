@@ -124,6 +124,7 @@ export default function Signup(): React.JSX.Element {
               onClick={() => {
                 setIsModalOpen(true);
               }}
+              readOnly
             />
           </div>
           <div className="item">

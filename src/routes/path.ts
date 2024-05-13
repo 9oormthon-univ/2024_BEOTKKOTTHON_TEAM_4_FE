@@ -22,4 +22,6 @@ export const PATH = {
   MOREINFO_PRE: '/moreinfo/pre', // 임신여부
   MOREINFO_TRANS: '/moreinfo/trans', // 장기이식
   MOREINFO_ID: '/moreinfo/id', // 백곰 ID
+  // vachistory
+  VACHISTORY_LIST: '/vachistory/certificate/list',
 };

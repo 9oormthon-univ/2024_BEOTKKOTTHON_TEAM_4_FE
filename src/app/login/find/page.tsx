@@ -20,6 +20,7 @@ import {
 } from '@/hooks/useUtil';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
+import { PATH } from '@/routes/path';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -33,7 +34,6 @@ export default function Signup(): React.JSX.Element {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
-  console.log(params);
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
       ...prevState,
@@ -49,7 +49,7 @@ export default function Signup(): React.JSX.Element {
       SecureLocalStorage.setItem('identity_first', params.identity_first);
       SecureLocalStorage.setItem('identity_last', params.identity_last);
 
-      router.push('/login/more');
+      router.push(PATH.LOGIN_MORE);
     }
   };
 
@@ -93,6 +93,7 @@ export default function Signup(): React.JSX.Element {
             onClick={() => {
               setIsModalOpen(true);
             }}
+            readOnly
           />
         </div>
         <div className="item">
