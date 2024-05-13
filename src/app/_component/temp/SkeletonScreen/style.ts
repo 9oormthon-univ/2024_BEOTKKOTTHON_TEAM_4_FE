@@ -24,7 +24,7 @@ export const Skeleton = styled.main`
   }
 
   .wrap {
-    margin: 30px 20px;
+    margin: 20px 20px 30px;
     display: flex;
     gap: 10px;
     flex-direction: column;

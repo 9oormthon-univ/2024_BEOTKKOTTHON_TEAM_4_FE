@@ -21,6 +21,7 @@ import { postSignup } from '@/app/_lib/postSignup';
 import { postLogin } from '@/app/_lib/postLogin';
 import WarningToast from '@/app/_component/atom/WarningToast';
 import SkeletonScreen from '@/app/_component/temp/SkeletonScreen';
+import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
 
 export default function HelperLogin(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>(() => {
@@ -117,8 +118,7 @@ export default function HelperLogin(): React.JSX.Element {
           아이디/비밀번호 찾기
         </Link>
       </div>
-
-      {error !== null && <WarningToast message={error} />}
+      {error !== null && <WarningToastWrap errorMessage={error} />}
       {!loading && ( // 로딩 중이 아닐 때에만 렌더링
         <BottomButton
           loading={loading}
