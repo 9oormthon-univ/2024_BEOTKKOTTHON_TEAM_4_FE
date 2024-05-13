@@ -15,6 +15,7 @@ import Button from '@/app/_component/atom/button/button';
 import { diseaseButttonList } from '@/utils/disease-button-api';
 import { fontGenerator } from '@/styles';
 import { LocalStorage } from '@/hooks/useUtil';
+import { PATH } from '@/routes/path';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function Join(): React.JSX.Element {
     if (params.disease) {
       LocalStorage.setItem('disease', params.disease);
     }
-    router.push(`/moreinfo/pre`);
+    router.push(PATH.MOREINFO_PRE);
   };
 
   const onChangeValue: OnChangeValueType = (field, value) => {

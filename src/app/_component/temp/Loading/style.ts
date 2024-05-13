@@ -9,7 +9,7 @@ export const LoadingPageWrap = styled.main`
   background-color: ${Colors.Primary};
   & > .container {
     & > .top {
-      margin: 8lh 20px 0 20px;
+      margin: 5lh 20px 0 20px;
       & > .title {
         ${fontGenerator('24px', '700', '32px')}
         color: ${Colors.White};
