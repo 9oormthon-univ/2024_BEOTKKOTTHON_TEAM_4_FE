@@ -18,7 +18,7 @@ import { PATH } from '@/routes/path';
 export default function Signup(): React.JSX.Element {
   const router = useRouter();
   const [params, setParam] = useState({
-    signupState: false,
+    signupState: undefined,
   });
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParam((prevState) => ({
@@ -36,6 +36,19 @@ export default function Signup(): React.JSX.Element {
 
   const [code, setCode] = useState<string | null>(null);
 
+  const fetchData = async () => {
+    if (code) {
+      const response = await fetchAccessToken(code);
+      if (response?.accessToken) {
+        LocalStorage.setItem('accessToken', response.accessToken);
+      }
+      if (response?.data.member.role === 'ROLE_USER') {
+        LocalStorage.setItem('accessToken', response.accessToken);
+        router.push(PATH.HOME);
+      }
+    }
+  };
+
   useEffect(() => {
     const queryCode = new URL(window.location.href).searchParams.get('code');
     if (queryCode) {
@@ -44,18 +57,6 @@ export default function Signup(): React.JSX.Element {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (code) {
-        const response = await fetchAccessToken(code);
-        if (response?.accessToken) {
-          LocalStorage.setItem('accessToken', response.accessToken);
-        }
-        if (response?.data.member.role === 'ROLE_USER') {
-          LocalStorage.setItem('accessToken', response.accessToken);
-          router.push(PATH.HOME);
-        }
-      }
-    };
     fetchData();
   }, [code]);
 
