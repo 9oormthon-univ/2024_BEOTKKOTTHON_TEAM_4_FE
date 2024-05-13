@@ -42,7 +42,6 @@ const Index = ({
   value,
   type = 'text',
   maxLength = 255,
-  onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {},
   onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {},
   onChange = (event: React.ChangeEvent<HTMLInputElement>) => {},
   onBlur = (event: React.FocusEvent<HTMLInputElement>) => {},
@@ -92,7 +91,6 @@ const Index = ({
           disabled={disabled}
           placeholder={placeholder}
           maxLength={maxLength}
-          onKeyPress={onKeyPress}
           onKeyDown={onKeyDown}
           onChange={onChange}
           onClick={onClick}

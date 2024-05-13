@@ -18,7 +18,7 @@ import { LocalStorage } from '@/hooks/useUtil';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
-  const [params, setParams] = useState({ disease: [], disYn: false });
+  const [params, setParams] = useState({ disease: [], disYn: undefined });
 
   const handleClick = () => {
     if (params.disease) {

@@ -20,6 +20,8 @@ import Link from 'next/link';
 import { postSignup } from '@/app/_lib/postSignup';
 import { postLogin } from '@/app/_lib/postLogin';
 import WarningToast from '@/app/_component/atom/WarningToast';
+import SkeletonScreen from '@/app/_component/temp/SkeletonScreen';
+import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
 
 export default function HelperLogin(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>(() => {
@@ -29,8 +31,9 @@ export default function HelperLogin(): React.JSX.Element {
       password: '',
     };
   });
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false); // 로딩 상태 추가
+  const [error, setError] = useState<string>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [inputType, setInputType] = useState<string>('password');
 
   const router = useRouter();
   const onChangeValue: OnChangeValueType = (field, value) => {
@@ -58,26 +61,21 @@ export default function HelperLogin(): React.JSX.Element {
       try {
         setLoading(true);
         const response = await postLogin(params);
-        console.log('로그인 successful:', response);
         SecureLocalStorage.setItem('id', params.id);
         SecureLocalStorage.setItem('password', params.password);
         if (response.success) {
           LocalStorage.setItem('type', 'loginEnd');
-          console.log(response.data);
           LocalStorage.setItem('vaccineList', JSON.stringify(response.data));
           router.push(`/signup/done`);
         } else {
           setError(response.message);
         }
-      } catch (error) {
-        setError('error');
-        console.error('Signup failed:', error.message);
       } finally {
         setLoading(false);
       }
     }
   };
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <SkeletonScreen />;
   return (
     <HelperLoginWrapper>
       <BackHeader title={'예방접종도우미 로그인'} url={'/signup/terms'} />
@@ -100,7 +98,11 @@ export default function HelperLogin(): React.JSX.Element {
             value={params.password}
             descriptionTop={'예방접종도우미 비밀번호'}
             rightIcon={Icons.eyeSlash}
-            type="password"
+            onClickRightIcon={() => {
+              if (inputType === 'text') setInputType('password');
+              else setInputType('text');
+            }}
+            type={inputType}
             customStyle={css`
               & > .input__content > .input__content--right__icon > img {
                 width: 20px;
@@ -116,10 +118,10 @@ export default function HelperLogin(): React.JSX.Element {
           아이디/비밀번호 찾기
         </Link>
       </div>
-
-      {error !== null && <WarningToast message={error} />}
+      {error !== null && <WarningToastWrap errorMessage={error} />}
       {!loading && ( // 로딩 중이 아닐 때에만 렌더링
         <BottomButton
+          loading={loading}
           filled={checkParamsFilled(params)}
           handleNextButtonClick={handleNextButtonClick}
         />

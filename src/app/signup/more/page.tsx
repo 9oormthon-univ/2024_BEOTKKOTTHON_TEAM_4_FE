@@ -100,6 +100,13 @@ export default function Signup(): React.JSX.Element {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const allowedCharacters = /^[a-zA-Z0-9!@#$%^&*]+$/;
+    if (!allowedCharacters.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <SignupWrapper>
       <BackHeader title={'예방접종도우미 회원가입'} url={'/signup/terms'} />
@@ -144,6 +151,7 @@ export default function Signup(): React.JSX.Element {
                 ? 'error'
                 : 'default'
             }
+            onKeyDown={handleKeyDown}
             onChange={(e) => {
               onChangeValue('password', e.target.value);
             }}
@@ -170,6 +178,7 @@ export default function Signup(): React.JSX.Element {
                 ? 'error'
                 : 'default'
             }
+            onKeyDown={handleKeyDown}
             onChange={(e) => {
               onChangeValue('password_check', e.target.value);
             }}

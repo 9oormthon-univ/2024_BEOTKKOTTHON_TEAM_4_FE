@@ -124,6 +124,7 @@ export default function Signup(): React.JSX.Element {
               onClick={() => {
                 setIsModalOpen(true);
               }}
+              readOnly
             />
           </div>
           <div className="item">
@@ -193,8 +194,8 @@ export default function Signup(): React.JSX.Element {
             onReset={resetAgencyOptions}
           />
         </Fragment>
-        <WarningToastWrap errorMessage={errormessage} />
-        {!loading && ( // 로딩 중이 아닐 때에만 렌더링
+        {errormessage && <WarningToastWrap errorMessage={errormessage} />}
+        {!loading && (
           <BottomButton
             filled={checkParamsFilled(params)}
             handleNextButtonClick={handleNextButtonClick}

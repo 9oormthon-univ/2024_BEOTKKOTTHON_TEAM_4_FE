@@ -10,15 +10,15 @@ import JoinTemplate from '@/app/_component/temp/JoinTemplate';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import { OnChangeValueType } from '@/types/globalType';
 import * as queryString from 'querystring';
-import { router, useRouter } from 'next/navigation';
-import { useQueryParams } from '@/hooks/useParam';
+import { useRouter } from 'next/navigation';
 import { fetchAccessToken } from '@/hooks/useKakaoLogin';
 import { LocalStorage } from '@/hooks/useUtil';
+import { PATH } from '@/routes/path';
 
 export default function Signup(): React.JSX.Element {
   const router = useRouter();
   const [params, setParam] = useState({
-    signupState: false,
+    signupState: undefined,
   });
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParam((prevState) => ({
@@ -28,13 +28,26 @@ export default function Signup(): React.JSX.Element {
   };
   const handleClick = () => {
     if (params.signupState === true) {
-      router.push('/login/helper');
+      router.push(PATH.LOGIN);
     } else {
-      router.push(`/signup/terms`);
+      router.push(PATH.SIGNUP_TERMS);
     }
   };
 
   const [code, setCode] = useState<string | null>(null);
+
+  const fetchData = async () => {
+    if (code) {
+      const response = await fetchAccessToken(code);
+      if (response?.accessToken) {
+        LocalStorage.setItem('accessToken', response.accessToken);
+      }
+      if (response?.data.member.role === 'ROLE_USER') {
+        LocalStorage.setItem('accessToken', response.accessToken);
+        router.push(PATH.HOME);
+      }
+    }
+  };
 
   useEffect(() => {
     const queryCode = new URL(window.location.href).searchParams.get('code');
@@ -44,19 +57,6 @@ export default function Signup(): React.JSX.Element {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (code) {
-        const response = await fetchAccessToken(code);
-        console.log(response);
-        if (response?.accessToken) {
-          LocalStorage.setItem('accessToken', response.accessToken);
-        }
-        if (response?.data.member.role === 'ROLE_USER') {
-          LocalStorage.setItem('accessToken', response.accessToken);
-          router.push('/home');
-        }
-      }
-    };
     fetchData();
   }, [code]);
 
