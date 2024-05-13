@@ -73,7 +73,6 @@ export default function HelperLogin(): React.JSX.Element {
       }
     }
   };
-  if (loading) return <div>Loading...</div>;
   return (
     <HelperLoginWrapper>
       <BackHeader title={'예방접종도우미 로그인'} url={'/signup/terms'} />
@@ -120,6 +119,7 @@ export default function HelperLogin(): React.JSX.Element {
       {error !== null && <WarningToast message={error} />}
       {!loading && ( // 로딩 중이 아닐 때에만 렌더링
         <BottomButton
+          loading={loading}
           filled={checkParamsFilled(params)}
           handleNextButtonClick={handleNextButtonClick}
         />
