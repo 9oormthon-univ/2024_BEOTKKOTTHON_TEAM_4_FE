@@ -59,8 +59,11 @@ const NavigationFixed = () => {
   const [isDetailPage, setIsDetailPage] = useState(false);
 
   useEffect(() => {
-    setIsDetailPage(pathname.includes('/detaildis/'));
+    if (pathname) {
+      setIsDetailPage(pathname.includes('/detaildis/'));
+    }
   }, [pathname]);
+  
 
   return (
     <NavigationContainer>

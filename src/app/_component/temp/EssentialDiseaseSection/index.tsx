@@ -34,8 +34,9 @@ const DiseaseContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  justify-content: center;
+  justify-content: left;
   margin-bottom: 100px;
+  margin-left:20px;
 `;
 
 const EssentialDiseaseSection = ({ selectedSection }) => {
@@ -49,25 +50,24 @@ const EssentialDiseaseSection = ({ selectedSection }) => {
 
   useEffect(() => {
     console.log('필터링 시작', { ageFilter, sitFilter });
-
+  
     const filterDiseases = () => {
       const ageIndex = ageFilter === '전체' ? -1 : ageRanges.indexOf(ageFilter);
-      const sitIndex =
-        sitFilter === '해당 없음' ? -1 : situationRanges.indexOf(sitFilter);
-
+      const sitIndex = sitFilter === '해당 없음' ? -1 : situationRanges.indexOf(sitFilter);
+  
       const filtered = essentialDiseaseList.filter((disease) => {
-        const ageCondition = ageIndex === -1 || disease.age[ageIndex - 1] === 1;
-        const sitCondition = sitIndex === -1 || disease.sit[sitIndex - 1] === 1;
+        const ageCondition = ageIndex === -1 ? disease.age.some(v => v === 1) : disease.age[ageIndex] === 1;
+        const sitCondition = sitIndex === -1 ? disease.sit.some(v => v === 1) : disease.sit[sitIndex] === 1;
         return ageCondition && sitCondition;
       });
-
+  
       setDiseaseList(filtered);
       console.log('필터링 결과', filtered);
     };
-
+  
     filterDiseases();
   }, [ageFilter, sitFilter]);
-
+  
   const handleAgeSelect = (selectedOptions: string[]) => {
     setSelectedAgeOptions(selectedOptions);
     let text = selectedOptions[0] || '전체';

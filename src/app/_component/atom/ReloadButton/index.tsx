@@ -1,7 +1,7 @@
 import React from 'react';
 import { Images } from '@globalStyles';
 import Image from 'next/image';
-import {CurrentLocationButton, ClickableArea } from './style'
+import {Text, CurrentLocationButton, ClickableArea } from './style'
 
 const ReloadButton = ({ onClick }) => (
   <CurrentLocationButton>
@@ -10,7 +10,9 @@ const ReloadButton = ({ onClick }) => (
         src={Images.ico_map_reload}
         alt={'현재 위치 재조회'}
       />
+      <Text>
       현재 위치 재검색
+      </Text>
     </ClickableArea>
   </CurrentLocationButton>
 );

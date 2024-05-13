@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 export const headerStyles = css`
   display: flex;
@@ -11,7 +11,7 @@ export const headerStyles = css`
 `;
 
 export const titleStyles = css`
-  font-family: "Pretendard", sans-serif;
+  font-family: 'Pretendard', sans-serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 23px;

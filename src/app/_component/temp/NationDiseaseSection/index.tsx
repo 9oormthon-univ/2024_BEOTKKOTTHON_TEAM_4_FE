@@ -34,8 +34,9 @@ const DiseaseContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  justify-content: center;
+  justify-content: left;
   margin-bottom: 100px;
+  margin-left:20px;
 `;
 
 const NationDiseaseSection = ({ selectedSection }) => {
@@ -171,7 +172,7 @@ const NationDiseaseSection = ({ selectedSection }) => {
             id={disease.id}
             diseaseName={disease.vacName}
             imageUrl={disease.iconsImage}
-            diseaseSub={disease.vacSub} // 서브 타이틀 데이터를 prop으로 전달합니다.
+            diseaseSub={disease.vacSub}
           />
         ))}
       </DiseaseContainer>
