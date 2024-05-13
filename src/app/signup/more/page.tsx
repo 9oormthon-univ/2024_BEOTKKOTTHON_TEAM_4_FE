@@ -144,6 +144,12 @@ export default function Signup(): React.JSX.Element {
                 ? 'error'
                 : 'default'
             }
+            onKeyDown={(e) => {
+              const allowedCharacters = /^[a-zA-Z0-9!@#$%^&*]+$/;
+              if (!allowedCharacters.test(e.key)) {
+                e.preventDefault();
+              }
+            }}
             onChange={(e) => {
               onChangeValue('password', e.target.value);
             }}
