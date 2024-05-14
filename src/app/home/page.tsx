@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import VaccineCard from '@/app/_component/atom/VaccineCertificate/index';
@@ -16,8 +18,9 @@ import Image from 'next/image';
 import NoneHome from '@/app/_component/atom/NoneHome';
 import { apiDevUrl } from '@/hooks/api';
 import { LocalStorage } from '@/hooks/useUtil';
-import { getCertificate } from '../../app/_lib/getCertificate'
+import { getCertificate } from '../_lib/getCertificate'
 import { Colors, fontGenerator } from '@/styles';
+
 
 export const Container = styled.main`
   min-height: 100vh;
