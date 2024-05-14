@@ -1,6 +1,8 @@
 export const PATH = {
   root: '/',
   HOME: '/home',
+  RECOMVAC: '/recomvac',
+  FAILVAC: '/failvac',
   // signup
   SIGNUP: '/signup',
   SIGNUP_TERMS: '/signup/terms', // 약관동의
@@ -27,4 +29,12 @@ export const PATH = {
   VACHISTORY_CERTI: '/vachistory/certificate',
   VACHISTORY_LIST: '/vachistory/certificate/list',
   VACHISTORY_VAC: '/vachistory/vaccine',
+  //map
+  MAP: '/map',
+  MAP_HPV: 'hpvmap',
+  MAP_INFLU: '/influmap',
+  //
+  VACLOOKUP: '/vaclookup',
+  //
+  MY: '/my',
 };
