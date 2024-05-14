@@ -52,8 +52,8 @@ export default function Vachistory() {
   const fetchList = async () => {
     try {
       setLoading(true);
-      const nationData = await getInoculationSimple('nation');
-      const extraData = await getInoculationSimple('extra');
+      const nationData = await getInoculationSimple('NATION', []);
+      const extraData = await getInoculationSimple('EXTRA', []);
       const certificateData = await getCertificate();
       setCertificateData(certificateData);
       setNationData(nationData);
@@ -84,8 +84,9 @@ export default function Vachistory() {
 
   const onClickHandler = (id: string) => {
     LocalStorage.setItem('vaccineId', id);
-    router.push(`/vachistory/certificate/${id}`);
+    router.push(PATH.VACHISTORY_CERTI + '/' + id);
   };
+
   useEffect(() => {
     fetch(`${apiDevUrl}/me`, {
       method: 'GET',

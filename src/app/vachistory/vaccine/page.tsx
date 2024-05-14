@@ -43,7 +43,8 @@ const FiltersContainer = styled.div`
   overflow-y: auto;
   align-items: center;
   gap: 6px;
-  margin: 20px 0 20px 14px;
+  margin: 14px 0 14px 14px;
+  padding-right: 14px;
 
   z-index: 1000;
   button {
@@ -98,7 +99,7 @@ export default function Vaccine() {
     Promise.all([fetchList()]).then(() => {
       setLoading(false);
     });
-  }, [type]);
+  }, [type, selectedSection]);
 
   useEffect(() => {
     fetchList();

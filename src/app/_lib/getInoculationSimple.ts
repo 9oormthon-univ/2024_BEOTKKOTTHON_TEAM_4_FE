@@ -15,7 +15,7 @@ export async function getInoculationSimple(type: string, disease: string[]) {
 
   const api_params = JSON.stringify({
     type: type,
-    vaccinations: UpdatedDisease,
+    vaccinations: UpdatedDisease || [],
   });
 
   try {
