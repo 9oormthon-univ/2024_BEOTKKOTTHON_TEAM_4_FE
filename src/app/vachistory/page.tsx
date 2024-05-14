@@ -14,18 +14,12 @@ import MenuTitle from '@/app/_component/atom/MenuTitle';
 import VaccineItem from '@/app/_component/atom/VaccineItem';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
 import { useEffect, useState } from 'react';
-import { postVacSignup } from '@/app/_lib/postVacSignup';
-import responsJsonNation from '@/utils/user-vacList-api.json';
-import responsJsonetc from '@/utils/user-vacList-api.json';
 import { getInoculationSimple } from '@/app/_lib/getInoculationSimple';
 import { getCertificate } from '../_lib/getCertificate';
 import { apiDevUrl } from '@/hooks/api';
 import { LocalStorage } from '@/hooks/useUtil';
-import { router } from 'next/client';
 import { PATH } from '@/routes/path';
 import { useRouter } from 'next/navigation';
-import LoadingPage from '@/app/_component/temp/Loading';
-import SkeletonScreen from '@/app/_component/temp/SkeletonScreen';
 
 interface VaccineData {
   vaccineId: string;
@@ -106,6 +100,16 @@ export default function Vachistory() {
       });
   }, []);
 
+  const onClickRouteHandler = (item) => {
+    LocalStorage.setItem('vaccineId', item.vaccineId);
+    router.push(PATH.VACHISTORY_CERTI + '/' + item.vaccineId);
+  };
+
+  const onClickEtcRouteHandler = (item) => {
+    const diseaseId = item.diseaseId;
+    router.push(`/detaildis/${diseaseId}`);
+  };
+
   return (
     <Container>
       <MainHeader title="접종내역" />
@@ -152,6 +156,7 @@ export default function Vachistory() {
                 vaccineName={item.diseaseName}
                 subLabel={item.vaccineName}
                 vaccineStatus={item.isCompleted}
+                onClick={() => onClickRouteHandler(item)}
               />
             ))}
           </div>
@@ -166,6 +171,7 @@ export default function Vachistory() {
                 vaccineName={item.diseaseName}
                 subLabel={item.vaccineName}
                 vaccineStatus={item.isCompleted}
+                onClick={() => onClickEtcRouteHandler(item)}
               />
             ))}
           </div>

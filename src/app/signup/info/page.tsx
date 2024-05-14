@@ -24,6 +24,7 @@ import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
 import { postSignup } from '@/app/_lib/postSignup';
 import WarningToast from '@/app/_component/atom/WarningToast';
 import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
+import SkeletonScreen from '@/app/_component/temp/SkeletonScreen';
 
 export default function Signup(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -90,6 +91,8 @@ export default function Signup(): React.JSX.Element {
   const resetAgencyOptions = () => {
     onChangeValue('telecom', []);
   };
+
+  if (loading) return <SkeletonScreen />;
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

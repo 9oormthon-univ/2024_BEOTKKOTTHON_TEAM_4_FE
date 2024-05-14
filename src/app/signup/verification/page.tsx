@@ -16,6 +16,7 @@ import { postSMSCode } from '@/app/_lib/postSMSCode';
 import { LocalStorage, SecureLocalStorage } from '@/hooks/useUtil';
 import { OnChangeValueType } from '@/types/globalType';
 import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
+import SkeletonScreen from '@/app/_component/temp/SkeletonScreen';
 
 export default function Verification(): React.JSX.Element {
   const router = useRouter();
@@ -82,6 +83,8 @@ export default function Verification(): React.JSX.Element {
   const onChangeValue: OnChangeValueType = (value: number | string) => {
     setPassword(value);
   };
+
+  if (loading) return <SkeletonScreen />;
 
   return (
     <VerificationWrap>
