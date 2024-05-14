@@ -75,13 +75,6 @@ export default function Vaccine() {
   const [list, setList] = useState<ListDataType[]>([]);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
-  const onChangeValue: OnChangeValueType = (field, value) => {
-    setParams((prevState) => ({
-      ...prevState,
-      [field]: value,
-    }));
-  };
-
   useEffect(() => {
     if (selectedSection === '국가예방접종') {
       setType('NATION');
@@ -106,6 +99,10 @@ export default function Vaccine() {
       setLoading(false);
     });
   }, [type]);
+
+  useEffect(() => {
+    fetchList();
+  }, [params]);
 
   const handleAgencySelect = (selectedOptions: string[]) => {
     const updatedOptions = selectedOptions.filter(

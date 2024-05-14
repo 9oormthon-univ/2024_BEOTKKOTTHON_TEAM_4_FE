@@ -57,7 +57,7 @@ export const nationDisease = [
   // '전체',
   '결핵',
   'B형간염',
-  '디프테리아·파상풍·백일해',
+  '디프테리아·파상풍·백일해(DTaP)',
   '폴리오',
   'b형헤모필루스인플루엔자',
   '폐렴구균',
@@ -75,3 +75,26 @@ export const extraDisease = [
   '수막구균',
   '사람유두종바이러스감염증',
 ];
+
+export const nationDiseaseMatch = {
+  결핵: 'BCG(피내용)',
+  B형간염: 'HepB',
+  '디프테리아·파상풍·백일해(DTaP)': 'DTaP',
+  '디프테리아·파상풍·백일해(DdaP)': 'DdaP',
+  폴리오: 'IPV',
+  b형헤모필루스인플루엔자: 'Hib',
+  폐렴구균: 'PCV',
+  로타바이러스감염증: '로타바이러스',
+  '홍역·유행성이하선염·풍진': 'MMR',
+  수두: 'VAR',
+  A형간염: 'HepA',
+  일본뇌염: 'IJEV(불활성화백신)',
+  사람유두종바이러스감염증: 'HPV',
+  인플루엔자: 'IIV',
+};
+
+export const extraDiseaseMatch = {
+  코로나19: 'COVID19',
+  수막구균: 'MCV(4가)',
+  사람유두종바이러스감염증: 'HPV9(가다실9)',
+};
