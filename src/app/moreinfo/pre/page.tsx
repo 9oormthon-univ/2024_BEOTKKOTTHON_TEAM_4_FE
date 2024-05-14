@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { useQueryParams } from '@/hooks/useParam';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
 import { LocalStorage } from '@/hooks/useUtil';
+import { PATH } from '@/routes/path';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
@@ -27,13 +28,13 @@ export default function Join(): React.JSX.Element {
     if (params.preYn) {
       LocalStorage.setItem('PREGNANCY', params.preYn);
     }
-    router.push(`/moreinfo/med`);
+    router.push(PATH.MOREINFO_MED);
   };
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <JoinWrap>
-        <BackHeader title={' '} url={'/moreinfo/dis'} counter={2} />
+        <BackHeader title={' '} url={PATH.MOREINFO_DIS} counter={2} />
         <JoinTemplate
           title={'임신 중이신가요?'}
           subTop={'임신 중에 꼭 필요한 백신과 '}

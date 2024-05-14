@@ -23,6 +23,7 @@ import ValidateCheck from '@/app/_component/atom/ValidateCheck';
 import { postVacSignup } from '@/app/_lib/postVacSignup';
 import WarningToast from '@/app/_component/atom/WarningToast';
 import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
+import { PATH } from '@/routes/path';
 
 export default function Id(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -82,7 +83,7 @@ export default function Id(): React.JSX.Element {
       try {
         const response = await postVacSignup(params);
         if (response.success) {
-          router.push('/home');
+          router.push(PATH.HOME);
         } else {
           setError(response.message);
         }
@@ -96,8 +97,9 @@ export default function Id(): React.JSX.Element {
     switch (field) {
       case 'nickname':
         const isStartWithEnglish = /^[a-zA-Z]/.test(value);
-        const isLowerCase = /^[a-z]+$/.test(value);
+        const isLowerCase = /^[a-z\d]+$/.test(value);
         const isWithinLength = value.length >= 4 && value.length <= 10;
+
         setValidate((prevValidate) => ({
           ...prevValidate,
           nickname: {
@@ -114,7 +116,7 @@ export default function Id(): React.JSX.Element {
 
   return (
     <SignupWrapper>
-      <BackHeader title={''} url={'/moreinfo/trans'} counter={5} />
+      <BackHeader title={''} url={PATH.MOREINFO_TRANS} counter={5} />
       <div className="top">백곰에서 사용할 닉네임을 입력해주세요.</div>
       <div className="container">
         <div className="item">
@@ -140,7 +142,7 @@ export default function Id(): React.JSX.Element {
               status={validate.nickname.condition1}
             />
             <ValidateCheck
-              label={'영문 소문자'}
+              label={'영문 소문자,숫자'}
               status={validate.nickname.condition2}
             />
             <ValidateCheck

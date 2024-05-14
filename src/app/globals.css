@@ -112,7 +112,7 @@
 }
 
 html, body {
-  min-width: 393px;
+  /*min-width: 393px;*/
   max-width: 500px;
   width: 100%;
   min-height: calc(100% + env(safe-area-inset-top));

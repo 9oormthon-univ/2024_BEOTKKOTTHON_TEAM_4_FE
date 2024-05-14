@@ -12,13 +12,14 @@ import { useQueryParams } from '@/hooks/useParam';
 import { Suspense, useState } from 'react';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
 import { LocalStorage } from '@/hooks/useUtil';
+import { PATH } from '@/routes/path';
 
 export default function Join(): React.JSX.Element {
   const router = useRouter();
 
   const handleClick = () => {
     LocalStorage.setItem('ORGAN_TRANSPLANTATION', params.transYn);
-    router.push(`/moreinfo/id`);
+    router.push(PATH.MOREINFO_ID);
   };
   const [params, setParams] = useState<ParamsType>({
     medYn: '',
@@ -33,7 +34,7 @@ export default function Join(): React.JSX.Element {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <JoinWrap>
-        <BackHeader title={' '} url={'/moreinfo/med'} counter={4} />
+        <BackHeader title={' '} url={PATH.MOREINFO_MED} counter={4} />
         <JoinTemplate
           title={'의료기관 종사자이신가요?'}
           subTop={'의료기관 종사자에게 '}

@@ -54,7 +54,6 @@ export default function Signup(): React.JSX.Element {
       try {
         setLoading(true); // 로딩 시작
         const response = await postFind(params);
-        console.log('Signup successful:', response);
         LocalStorage.setItem('secureNoImage', response.data.secureNoImage);
         SecureLocalStorage.setItem('password', params.password);
         router.push('/login/captcha');
@@ -96,6 +95,13 @@ export default function Signup(): React.JSX.Element {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const allowedCharacters = /^[a-zA-Z0-9!@#$%^&*]+$/;
+    if (!allowedCharacters.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <SignupWrapper>
       <BackHeader title={'아이디/비밀번호 찾기'} url={'/login/find'} />
@@ -116,6 +122,7 @@ export default function Signup(): React.JSX.Element {
                 ? 'error'
                 : 'default'
             }
+            onKeyDown={handleKeyDown}
             onChange={(e) => {
               onChangeValue('password', e.target.value);
             }}
@@ -142,6 +149,7 @@ export default function Signup(): React.JSX.Element {
                 ? 'error'
                 : 'default'
             }
+            onKeyDown={handleKeyDown}
             onChange={(e) => {
               onChangeValue('password_check', e.target.value);
             }}

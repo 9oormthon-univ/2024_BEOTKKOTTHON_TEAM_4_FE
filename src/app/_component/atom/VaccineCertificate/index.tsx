@@ -3,34 +3,47 @@ import React from 'react';
 import { VaccineCardWrapper } from './styles';
 import Image from 'next/image';
 import { Images } from '@/styles';
+import { LocalStorage } from '@/hooks/useUtil';
+import SkeletonScreen from '@/app/_component/temp/SkeletonScreen';
 
 interface CardType {
   account_id?: string;
   vaccineName?: string;
   subLabel?: string;
   date?: string;
-  image: string;
+  image?: string;
   variant?: string;
   definition?: boolean;
+  loading?: boolean;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export default function VaccineCard({
-  account_id = '회원 아이디',
-  vaccineName = 'B형 간염',
+  account_id,
+  vaccineName,
   subLabel,
-  date = '2024.03.15',
+  date,
   definition,
   image,
   variant = 'primary',
+  loading = false,
   onClick,
 }: React.PropsWithChildren<CardType>) {
   const onShareButtonClick = () => {
     console.log('shareButton Click');
   };
 
+  if (loading) {
+    return <VaccineCardWrapper loading={loading}> </VaccineCardWrapper>;
+  }
+
   return (
-    <VaccineCardWrapper variant={variant} onClick={onClick} image={image}>
+    <VaccineCardWrapper
+      variant={variant}
+      onClick={onClick}
+      image={image}
+      loading={loading}
+    >
       {variant !== 'small' && (
         <div className="top">
           <div className="ordercount">@{account_id}</div>

@@ -1,6 +1,8 @@
 export const PATH = {
   root: '/',
   HOME: '/home',
+  RECOMVAC: '/recomvac',
+  FAILVAC: '/failvac',
   // signup
   SIGNUP: '/signup',
   SIGNUP_TERMS: '/signup/terms', // 약관동의
@@ -23,5 +25,16 @@ export const PATH = {
   MOREINFO_TRANS: '/moreinfo/trans', // 장기이식
   MOREINFO_ID: '/moreinfo/id', // 백곰 ID
   // vachistory
+  VACHISTORY: '/vachistory',
+  VACHISTORY_CERTI: '/vachistory/certificate',
   VACHISTORY_LIST: '/vachistory/certificate/list',
+  VACHISTORY_VAC: '/vachistory/vaccine',
+  //map
+  MAP: '/map',
+  MAP_HPV: 'hpvmap',
+  MAP_INFLU: '/influmap',
+  //
+  VACLOOKUP: '/vaclookup',
+  //
+  MY: '/my',
 };

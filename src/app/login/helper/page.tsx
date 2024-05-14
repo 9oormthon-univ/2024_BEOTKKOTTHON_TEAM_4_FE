@@ -22,6 +22,7 @@ import { postLogin } from '@/app/_lib/postLogin';
 import WarningToast from '@/app/_component/atom/WarningToast';
 import SkeletonScreen from '@/app/_component/temp/SkeletonScreen';
 import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
+import { PATH } from '@/routes/path';
 
 export default function HelperLogin(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>(() => {
@@ -66,9 +67,16 @@ export default function HelperLogin(): React.JSX.Element {
         if (response.success) {
           LocalStorage.setItem('type', 'loginEnd');
           LocalStorage.setItem('vaccineList', JSON.stringify(response.data));
-          router.push(`/signup/done`);
+          router.push(PATH.SIGNUP_DONE);
         } else {
           setError(response.message);
+          // 비밀번호 5번 시도 실패시
+          if (response.code === 'PASSWORD_5_ERROR') {
+            setError(response.message + ' 5초 후 페이지가 전환됩니다.');
+            setTimeout(() => {
+              router.push(PATH.LOGIN_FIND);
+            }, [5000]);
+          }
         }
       } finally {
         setLoading(false);
@@ -78,7 +86,7 @@ export default function HelperLogin(): React.JSX.Element {
   if (loading) return <SkeletonScreen />;
   return (
     <HelperLoginWrapper>
-      <BackHeader title={'예방접종도우미 로그인'} url={'/signup/terms'} />
+      <BackHeader title={'예방접종도우미 로그인'} url={PATH.SIGNUP_TERMS} />
       <div className="top">정보를 입력해 주세요</div>
       <div className="container">
         <div className="item">

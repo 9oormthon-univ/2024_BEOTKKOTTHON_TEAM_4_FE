@@ -13,14 +13,13 @@ export default function Loading(): React.JSX.Element {
   useEffect(() => {
     LocalStorage.setItem('password', params.password);
     try {
-      // const response = await postLogin(params);
-      // console.log('Signup successful:', response);
       LocalStorage.setItem('type', 'loginEnd');
       router.push(`/signup/done`);
     } catch (error) {
       console.error('Signup failed:', error.message);
     }
   }, []);
+
   return (
     <HomeWrap>
       <div className="main">

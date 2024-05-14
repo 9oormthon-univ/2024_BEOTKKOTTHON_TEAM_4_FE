@@ -18,7 +18,7 @@ import {
 interface ModalProps {
   isOpen: boolean;
   title: string;
-  options: string;
+  options: string[];
   selectedOptions: string[];
   onClose: () => void;
   onOptionSelect: (option: string) => void;

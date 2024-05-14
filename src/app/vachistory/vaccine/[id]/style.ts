@@ -1,14 +1,29 @@
-import { Colors } from '@/styles';
+import { Colors, fontGenerator } from '@/styles';
 import styled from '@emotion/styled';
 
 export const Container = styled.main`
   width: 100%;
   height: 100vh;
+  & > .top {
+    padding: 20px;
+    & > .title {
+      ${fontGenerator('24px', '700', '28px')}
+    }
+    & > .subTop {
+      margin-top: 10px;
+
+      ${fontGenerator('14px', '400', '20px')}
+      color: ${Colors.Gray500}
+    }
+  }
   & > .body {
-    padding: 0 20px; 14px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px 14px 20px;
     min-height: 70%;
     & > .content_wrap {
-      padding: 2px 0 14px 0;
+      padding: 14px 0;
       display: flex;
       flex-direction: column;
       gap: 10px;

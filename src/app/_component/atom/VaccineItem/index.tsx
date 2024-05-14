@@ -9,6 +9,7 @@ interface CardType {
   vaccineName: string;
   subLabel?: string;
   vaccineStatus: boolean;
+  onClick?: React.MouseEventHandler<HTMLSpanElement>;
 }
 
 export default function VaccineItem({
@@ -16,9 +17,10 @@ export default function VaccineItem({
   vaccineName = 'B형 간염',
   subLabel,
   vaccineStatus,
+  onClick,
 }: React.PropsWithChildren<CardType>) {
   return (
-    <VaccineItemContainer>
+    <VaccineItemContainer onClick={onClick}>
       <div className="container">
         <div className="section">
           <div className="category">{category}</div>
