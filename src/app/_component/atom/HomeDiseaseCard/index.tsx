@@ -38,8 +38,8 @@ const DiseaseName = styled.span`
   width: 100%;
 `;
 
-const HomeDiseaseCard: React.FC<DiseaseCardProps> = ({ diseaseName, imageUrl }) => {
-  const formattedName = diseaseName.length > 8 ? `${diseaseName.slice(0, 8)}...` : diseaseName;
+const HomeDiseaseCard: React.FC<DiseaseCardProps> = ({ diseaseName = '', imageUrl }) => {
+  const formattedName = diseaseName && diseaseName.length > 8 ? `${diseaseName.slice(0, 8)}...` : diseaseName;
 
   return (
     <Card>
