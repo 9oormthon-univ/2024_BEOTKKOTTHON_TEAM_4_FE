@@ -5,10 +5,10 @@ export const Container = styled.main`
   width: 100%;
   height: 100vh;
   & > .body {
-    padding: 14px 20px;
+    padding: 0 20px; 14px 20px;
     min-height: 70%;
     & > .content_wrap {
-      padding: 14px 0;
+      padding: 5px 0 14px 0;
       display: flex;
       flex-direction: column;
       gap: 10px;

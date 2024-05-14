@@ -54,6 +54,7 @@ export const agencyRanges = [
 
 // 접종내역 필터링을 위한 병명
 export const nationDisease = [
+  // '전체',
   '결핵',
   'B형간염',
   '디프테리아·파상풍·백일해',
@@ -69,6 +70,7 @@ export const nationDisease = [
   '인플루엔자',
 ];
 export const extraDisease = [
+  // '전체',
   '코로나19',
   '수막구균',
   '사람유두종바이러스감염증',

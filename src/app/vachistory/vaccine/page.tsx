@@ -71,7 +71,7 @@ export default function Vaccine() {
     useState<string>('국가예방접종');
   const sectionTexts = ['국가예방접종', '기타예방접종'];
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [type, setType] = useState('nation');
+  const [type, setType] = useState('NATION');
   const [list, setList] = useState<ListDataType[]>([]);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
@@ -84,9 +84,9 @@ export default function Vaccine() {
 
   useEffect(() => {
     if (selectedSection === '국가예방접종') {
-      setType('nation');
+      setType('NATION');
     } else {
-      setType('extra');
+      setType('EXTRA');
     }
   }, [selectedSection]);
 
@@ -108,14 +108,22 @@ export default function Vaccine() {
   }, [type]);
 
   const handleAgencySelect = (selectedOptions: string[]) => {
-    setParams({ disease: selectedOptions });
-    console.log(selectedOptions);
+    const updatedOptions = selectedOptions.filter(
+      (option) => option !== '전체',
+    );
+    setParams({ disease: updatedOptions });
+    console.log(updatedOptions);
 
     setIsModalOpen(false);
   };
 
-  const resetAgencyOptions = () => {
-    setParams({ disease: ['전체'] });
+  const resetAgencyOptions = (item) => {
+    const updatedDisease = params.disease.filter((d) => d !== item);
+    if (params.disease.length === 1) {
+      setParams({ disease: ['전체'] });
+    } else {
+      setParams({ disease: updatedDisease });
+    }
   };
 
   console.log(params);
@@ -144,7 +152,7 @@ export default function Vaccine() {
               label={''}
               selectedValue={item}
               onSelect={() => setIsModalOpen(true)}
-              onClear={resetAgencyOptions}
+              onClear={() => resetAgencyOptions(item)}
               isSelected={params.disease[0] !== '전체'}
             />
           );
