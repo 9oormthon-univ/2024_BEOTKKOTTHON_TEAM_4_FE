@@ -37,15 +37,6 @@ interface ListDataType {
   maxOrder: number;
   isCompleted: boolean;
 }
-interface DetailDataType {
-  order: string;
-  vaccineProductName: string;
-  vaccineBrandName: string;
-  date: string;
-  agency: string;
-  lotNumber: string;
-}
-
 const FiltersContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -82,7 +73,6 @@ export default function Vaccine() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [type, setType] = useState('nation');
   const [list, setList] = useState<ListDataType[]>([]);
-  const [detail, setDetail] = useState<DetailDataType[]>([]);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
   const onChangeValue: OnChangeValueType = (field, value) => {
@@ -108,18 +98,6 @@ export default function Vaccine() {
       console.error('Error fetching data:', error);
     }
   };
-  const fetchDetail = async () => {
-    try {
-      const detailData = await getInoculationDetail(type, params.disease);
-      setDetail(detailData);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchDetail();
-  }, [params.disease]);
 
   useEffect(() => {
     setParams({ disease: ['전체'] });
@@ -173,34 +151,19 @@ export default function Vaccine() {
         })}
       </FiltersContainer>
       <div className="body">
-        {params.disease[0] === '전체' ? (
-          <div className="content_wrap">
-            {list.map((item, key) => (
-              <VaccineStatus
-                vaccineType={item.vaccineName}
-                diseaseName={item.diseaseName}
-                maxOrder={item.maxOrder}
-                minOrder={item.minOrder}
-                inoculationOrders={item.inoculationOrders}
-                isCompleted={item.isCompleted}
-                onClick={() => setParams({ disease: item.diseaseName })}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="content_wrap">
-            {detail.map((item, key) => (
-              <VaccineDetail
-                vaccineDose={item.order}
-                vaccineProductName={item.vaccineProductName}
-                vaccineBrandName={item.vaccineBrandName}
-                inoculatedAt={item.date}
-                inoculationAgency={item.agency}
-                lotNo={item.lotNumber}
-              />
-            ))}
-          </div>
-        )}
+        <div className="content_wrap">
+          {list.map((item, key) => (
+            <VaccineStatus
+              vaccineType={item.vaccineName}
+              diseaseName={item.diseaseName}
+              maxOrder={item.maxOrder}
+              minOrder={item.minOrder}
+              inoculationOrders={item.inoculationOrders}
+              isCompleted={item.isCompleted}
+              onClick={() => setParams({ disease: item.diseaseName })}
+            />
+          ))}
+        </div>
       </div>
       {!loading && (
         <div className="bottom">
