@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Container } from './style';
 import { Icons, Images } from '@/styles';
 
-import { diseaseRanges, extraDisease, nationDisease } from '@/constants';
+import { extraDisease, nationDisease } from '@/constants';
 import { Fragment, useEffect, useState } from 'react';
 import SectionHeader from '@/app/_component/atom/SectionHeader';
 import BackHeader from '@/app/_component/molecule/BackHeader';
@@ -14,25 +14,42 @@ import { OnChangeValueType, ParamsType } from '@/types/globalType';
 import VaccineDetail from '@/app/_component/atom/VaccineDetail';
 import VaccineStatus from '@/app/_component/atom/VaccineStatus';
 import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
-import detailJson from '@/utils/user-vacDetail-api.json';
-import listJson from '@/utils/user-vacList-api.json';
 import { getInoculationSimple } from '@/app/_lib/getInoculationSimple';
 import { getInoculationDetail } from '@/app/_lib/getInoculationDetail';
 import { PATH } from '@/routes/path';
+
+interface ListDataType {
+  vaccineName: string;
+  inoculationOrders: [];
+  orderString: string;
+  diseaseName: string;
+  minOrder: number;
+  maxOrder: number;
+  isCompleted: boolean;
+}
+interface DetailDataType {
+  order: string;
+  vaccineProductName: string;
+  vaccineBrandName: string;
+  date: string;
+  agency: string;
+  lotNumber: string;
+}
 
 export default function Vaccine() {
   const [params, setParams] = useState<ParamsType>({
     disease: '전체',
   });
-  const [selectedSection, setSelectedSection] = useState('국가예방접종');
+  const [selectedSection, setSelectedSection] =
+    useState<string>('국가예방접종');
   const sectionTexts = ['국가예방접종', '기타예방접종'];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [type, setType] = useState('nation');
-  const [list, setList] = useState([]);
-  const [detail, setDetail] = useState([]);
+  const [list, setList] = useState<ListDataType[]>([]);
+  const [detail, setDetail] = useState<DetailDataType[]>([]);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
-  const handleAgencySelect = (selectedOptions) => {
+  const handleAgencySelect = (selectedOptions: string) => {
     onChangeValue('disease', selectedOptions);
     setIsModalOpen(false);
   };
@@ -118,6 +135,7 @@ export default function Vaccine() {
                 minOrder={item.minOrder}
                 inoculationOrders={item.inoculationOrders}
                 isCompleted={item.isCompleted}
+                onClick={() => onChangeValue('disease', item.diseaseName)}
               />
             ))}
           </div>

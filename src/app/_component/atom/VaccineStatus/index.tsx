@@ -13,6 +13,7 @@ interface VaccineStatusType {
   minOrder: number;
   maxOrder: number;
   isCompleted: boolean;
+  onClick: React.MouseEventHandler<HTMLDivElement>;
 }
 // @Definition
 //   vaccineType :
@@ -27,6 +28,7 @@ export default function VaccineStatus({
   minOrder = 1,
   maxOrder = 4,
   diseaseName = '결핵',
+  onClick,
   isCompleted,
 }: React.PropsWithChildren<VaccineStatusType>) {
   // const [status, setStatus] = useState<boolean>();
@@ -49,7 +51,6 @@ export default function VaccineStatus({
         statusImages[order - 1] = 'true';
       }
     });
-    console.log(diseaseName, statusImages);
 
     // 이미지 배열 생성
     const images = statusImages.map((status, index) => {
@@ -92,7 +93,7 @@ export default function VaccineStatus({
     return images;
   };
   return (
-    <VaccineStatusContainer>
+    <VaccineStatusContainer onClick={onClick}>
       <div className="container">
         <div className="top">
           <div className="diseaseName">{diseaseName}</div>

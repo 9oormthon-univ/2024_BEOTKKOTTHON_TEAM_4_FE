@@ -92,11 +92,6 @@ export default function Vachistory() {
       });
   }, []);
 
-  //
-  // return <SkeletonScreen />;
-  // if (loading) {
-  //   return <SkeletonScreen />;
-  // }
   return (
     <Container>
       <MainHeader title="접종내역" />
