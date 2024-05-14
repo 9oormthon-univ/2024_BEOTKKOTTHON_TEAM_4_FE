@@ -4,14 +4,11 @@ import * as React from 'react';
 import { VerificationWrap } from './style';
 import Image from 'next/image';
 import { css } from '@emotion/react';
-
-import { Colors, Icons, Images } from '@/styles';
 import { Fragment, useEffect, useState } from 'react';
 import VerificationInput from '../../_component/atom/verificationInput';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import BottomButton from '@/app/_component/atom/BottomButton';
 import { useRouter } from 'next/navigation';
-import { postchallenge } from '@/app/_lib/postchallenge';
 import { postSMSCode } from '@/app/_lib/postSMSCode';
 import { LocalStorage, SecureLocalStorage } from '@/hooks/useUtil';
 import { OnChangeValueType } from '@/types/globalType';

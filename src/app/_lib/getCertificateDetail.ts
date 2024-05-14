@@ -16,9 +16,6 @@ export async function getCertificateDetail(vaccineId: string) {
       },
     );
 
-    if (!res.ok) {
-      throw new Error('Failed to fetch data');
-    }
     if (res) {
       const responseData = await res.json();
       return responseData;

@@ -9,10 +9,22 @@ import { useEffect, useState } from 'react';
 import { getCertificateDetail } from '@/app/_lib/getCertificateDetail';
 import { apiDevUrl } from '@/hooks/api';
 import { PATH } from '@/routes/path';
+import Button from '@/app/_component/atom/button/button';
+import { Icons } from '@/styles';
+import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
+
+type DetailDataType = {
+  diseaseName: string;
+  iconImage: string;
+  inoculatedDate: string;
+  userId: string;
+  vaccineId: string;
+  vaccineName: string;
+};
 
 export default function CertificateDetail() {
   const vaccineId = LocalStorage.getItem('vaccineId');
-  const [detail, setDetail] = useState('');
+  const [detail, setDetail] = useState<DetailDataType>({});
   const fetchDetail = async () => {
     try {
       const detailData = await getCertificateDetail(vaccineId);
@@ -22,29 +34,72 @@ export default function CertificateDetail() {
     }
   };
   const [userName, setUserName] = useState('');
+  const [shareImage, setShareImage] = useState('');
   const accessToken = LocalStorage.getItem('accessToken');
 
-  useEffect(() => {
-    fetch(`${apiDevUrl}/me`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setUserName(data.name);
-      })
-      .catch((error) => {
-        // setError(error.message);
+  const fetchMe = async () => {
+    try {
+      const response = await fetch(`${apiDevUrl}/me`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
       });
+      const data = await response.json();
+      setUserName(data.name);
+    } catch (error) {
+      // setError(error.message);
+    }
+  };
+
+  const fetchImage = async () => {
+    try {
+      const response = await fetch(
+        `${apiDevUrl}/inoculation/certificate/${detail.vaccineId}/image`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'image/png',
+          },
+        },
+      );
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', '백곰접종인증서.png');
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+
+      // 이미지를 File 객체로 변환
+      const file = new File([blob], 'certificate.png', { type: 'image/png' });
+
+      // 이미지를 공유할 데이터 설정
+      const shareData = {
+        title: 'Example File',
+        files: [file],
+      };
+
+      await navigator.share(shareData);
+
+      setShareImage(blob);
+    } catch (error) {
+      // setError(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchMe();
   }, []);
+
+  const [text, setText] = useState('');
+
+  const shareHandler = async () => {
+    fetchImage();
+  };
 
   console.log(detail);
   useEffect(() => {
@@ -64,13 +119,15 @@ export default function CertificateDetail() {
           account_id={userName}
           subLabel
         />
-        {/*<Button*/}
-        {/*  prevIcon={Icons.share}*/}
-        {/*  label={'이미지 공유'}*/}
-        {/*  variant={'OutlineWhite'}*/}
-        {/*  size={'large'}*/}
-        {/*/>*/}
+        <Button
+          prevIcon={Icons.share}
+          label={'이미지 공유'}
+          variant={'OutlineWhite'}
+          size={'large'}
+          onClick={shareHandler}
+        />
       </div>
+      {text && <WarningToastWrap errorMessage={text} />}
     </Container>
   );
 }
