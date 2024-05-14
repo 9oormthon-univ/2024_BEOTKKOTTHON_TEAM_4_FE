@@ -16,6 +16,7 @@ export const Container = styled.main`
     padding: 0 20px 90px 20px;
 
     & > .content_body {
+      min-height: 220px;
       display: flex;
       flex-direction: row;
       overflow-x: auto;

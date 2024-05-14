@@ -10,6 +10,7 @@ export type CustomStyleType = {
   size?: string;
   isChecked?: boolean;
   isOpen?: boolean;
+  loading?: boolean;
 };
 
 // ------------------------------------------------
@@ -177,5 +178,6 @@ export interface MenuTitleType {
   title: string;
   rightIconUrl: string;
   username?: string;
+  loading: boolean;
   customStyle?: SerializedStyles;
 }
