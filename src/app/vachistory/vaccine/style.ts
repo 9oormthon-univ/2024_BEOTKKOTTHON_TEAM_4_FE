@@ -8,7 +8,7 @@ export const Container = styled.main`
     padding: 0 20px; 14px 20px;
     min-height: 70%;
     & > .content_wrap {
-      padding: 5px 0 14px 0;
+      padding: 2px 0 14px 0;
       display: flex;
       flex-direction: column;
       gap: 10px;

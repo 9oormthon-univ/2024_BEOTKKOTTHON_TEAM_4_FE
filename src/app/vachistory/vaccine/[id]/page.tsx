@@ -27,6 +27,7 @@ import Filter from '@/app/_component/atom/Filter';
 import { essentialDiseaseList } from '@/utils/essential-disease-api';
 import styled from '@emotion/styled';
 import FilterModal from '@/app/_component/organism/filterModal';
+import { LocalStorage } from '@/hooks/useUtil';
 
 interface DetailDataType {
   order: string;
@@ -38,25 +39,16 @@ interface DetailDataType {
 }
 
 export default function Vaccine() {
-  const [params, setParams] = useState<ParamsType>({
-    disease: ['전체'],
-  });
-
-  const [type, setType] = useState('nation');
   const [detail, setDetail] = useState<DetailDataType[]>([]);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
-  const onChangeValue: OnChangeValueType = (field, value) => {
-    setParams((prevState) => ({
-      ...prevState,
-      [field]: value,
-    }));
-  };
+  const type = LocalStorage.getItem('vacType');
+  const diseaseName = LocalStorage.getItem('diseaseName');
 
   const fetchDetail = async () => {
     try {
       setLoading(true);
-      const detailData = await getInoculationDetail(type, params.disease);
+      const detailData = await getInoculationDetail(type, diseaseName);
       setDetail(detailData);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -67,11 +59,7 @@ export default function Vaccine() {
 
   useEffect(() => {
     fetchDetail();
-  }, [params.disease]);
-
-  useEffect(() => {
-    setParams({ disease: ['전체'] });
-  }, [type]);
+  }, []);
 
   return (
     <Container>

@@ -7,27 +7,20 @@ export const Container = styled.main`
   & > .top {
     padding: 20px;
     & > .title {
-      ${fontGenerator('20px', '700', '28px')}
-    }
-    & > .useterm {
-      display: flex;
-      flex-direction: row;
-    }
-    & > .useterm > p {
-      color: ${Colors.Primary};
-      ${fontGenerator('20px', '700', '28px')}
+      ${fontGenerator('24px', '700', '28px')}
     }
     & > .subTop {
-      margin-top: 6px;
-    }
-    & > .subTop,
-    .subBottom {
-      ${fontGenerator('14px', '500', '20px')}
-      color: ${Colors.Gray600}
+      margin-top: 10px;
+
+      ${fontGenerator('14px', '400', '20px')}
+      color: ${Colors.Gray500}
     }
   }
   & > .body {
-    padding: 14px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px 14px 20px;
     min-height: 70%;
     & > .content_wrap {
       padding: 14px 0;

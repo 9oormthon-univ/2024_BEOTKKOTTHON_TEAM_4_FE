@@ -13,20 +13,19 @@ import {
 import { Fragment, useEffect, useState } from 'react';
 import SectionHeader from '@/app/_component/atom/SectionHeader';
 import BackHeader from '@/app/_component/molecule/BackHeader';
-import InputForm from '@/app/_component/atom/InputForm';
-import { css } from '@emotion/react';
+
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
-import VaccineDetail from '@/app/_component/atom/VaccineDetail';
+
 import VaccineStatus from '@/app/_component/atom/VaccineStatus';
-import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
 import { getInoculationSimple } from '@/app/_lib/getInoculationSimple';
-import { getInoculationDetail } from '@/app/_lib/getInoculationDetail';
 import { PATH } from '@/routes/path';
 import Image from 'next/image';
 import Filter from '@/app/_component/atom/Filter';
 import { essentialDiseaseList } from '@/utils/essential-disease-api';
 import styled from '@emotion/styled';
 import FilterModal from '@/app/_component/organism/filterModal';
+import { useRouter } from 'next/navigation';
+import { LocalStorage } from '@/hooks/useUtil';
 
 interface ListDataType {
   vaccineName: string;
@@ -74,6 +73,7 @@ export default function Vaccine() {
   const [type, setType] = useState('NATION');
   const [list, setList] = useState<ListDataType[]>([]);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
+  const router = useRouter();
 
   useEffect(() => {
     if (selectedSection === '국가예방접종') {
@@ -114,13 +114,19 @@ export default function Vaccine() {
     setIsModalOpen(false);
   };
 
-  const resetAgencyOptions = (item) => {
+  const resetAgencyOptions = (item: string) => {
     const updatedDisease = params.disease.filter((d) => d !== item);
     if (params.disease.length === 1) {
       setParams({ disease: ['전체'] });
     } else {
       setParams({ disease: updatedDisease });
     }
+  };
+
+  const handleClickDetail = (diseaseName: string) => {
+    LocalStorage.setItem('vacType', type);
+    LocalStorage.setItem('diseaseName', diseaseName);
+    router.push(PATH.VACHISTORY_VAC + '/' + diseaseName);
   };
 
   console.log(params);
@@ -165,7 +171,7 @@ export default function Vaccine() {
               minOrder={item.minOrder}
               inoculationOrders={item.inoculationOrders}
               isCompleted={item.isCompleted}
-              onClick={() => setParams({ disease: item.diseaseName })}
+              onClick={() => handleClickDetail(item.diseaseName)}
             />
           ))}
         </div>
