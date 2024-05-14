@@ -39,7 +39,7 @@ export default function CertificateList(): React.JSX.Element {
             variant={'small'}
             image={card.iconImage}
             vaccineName={card.vaccineName}
-            date={card.date}
+            date={card.inoculatedDate}
             onClick={() => onClickHandler(card.vaccineId)}
           />
         ))}

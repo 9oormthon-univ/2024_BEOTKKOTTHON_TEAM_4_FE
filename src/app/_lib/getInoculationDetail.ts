@@ -6,8 +6,6 @@ export async function getInoculationDetail(type: string, name: string) {
     name: name,
   });
 
-  console.log(api_params);
-
   const accessToken = LocalStorage.getItem('accessToken');
   try {
     const res = await fetch(`${apiDevUrl}/inoculation/detail?type=${type}`, {

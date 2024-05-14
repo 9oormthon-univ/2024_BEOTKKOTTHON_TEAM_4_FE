@@ -4,7 +4,12 @@ import * as React from 'react';
 import { Container } from './style';
 import { Icons, Images } from '@/styles';
 
-import { extraDisease, nationDisease } from '@/constants';
+import {
+  ageRanges,
+  extraDisease,
+  nationDisease,
+  situationRanges,
+} from '@/constants';
 import { Fragment, useEffect, useState } from 'react';
 import SectionHeader from '@/app/_component/atom/SectionHeader';
 import BackHeader from '@/app/_component/molecule/BackHeader';
@@ -17,6 +22,11 @@ import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
 import { getInoculationSimple } from '@/app/_lib/getInoculationSimple';
 import { getInoculationDetail } from '@/app/_lib/getInoculationDetail';
 import { PATH } from '@/routes/path';
+import Image from 'next/image';
+import Filter from '@/app/_component/atom/Filter';
+import { essentialDiseaseList } from '@/utils/essential-disease-api';
+import styled from '@emotion/styled';
+import FilterModal from '@/app/_component/organism/filterModal';
 
 interface ListDataType {
   vaccineName: string;
@@ -36,9 +46,35 @@ interface DetailDataType {
   lotNumber: string;
 }
 
+const FiltersContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  //flex-wrap: nowrap;
+  overflow-y: auto;
+  align-items: center;
+  gap: 6px;
+  margin: 20px 0 20px 14px;
+
+  z-index: 1000;
+  button {
+    flex-shrink: 0;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+`;
+
 export default function Vaccine() {
   const [params, setParams] = useState<ParamsType>({
-    disease: '전체',
+    disease: ['전체'],
   });
   const [selectedSection, setSelectedSection] =
     useState<string>('국가예방접종');
@@ -48,11 +84,6 @@ export default function Vaccine() {
   const [list, setList] = useState<ListDataType[]>([]);
   const [detail, setDetail] = useState<DetailDataType[]>([]);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
-
-  const handleAgencySelect = (selectedOptions: string) => {
-    onChangeValue('disease', selectedOptions);
-    setIsModalOpen(false);
-  };
 
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
@@ -69,13 +100,9 @@ export default function Vaccine() {
     }
   }, [selectedSection]);
 
-  const resetAgencyOptions = () => {
-    onChangeValue('disease', []);
-  };
-
   const fetchList = async () => {
     try {
-      const listData = await getInoculationSimple(type);
+      const listData = await getInoculationSimple(type, params.disease);
       setList(listData);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -93,13 +120,27 @@ export default function Vaccine() {
   useEffect(() => {
     fetchDetail();
   }, [params.disease]);
+
   useEffect(() => {
-    setParams({ disease: '전체' });
+    setParams({ disease: ['전체'] });
     fetchList();
     Promise.all([fetchList()]).then(() => {
       setLoading(false);
     });
   }, [type]);
+
+  const handleAgencySelect = (selectedOptions: string[]) => {
+    setParams({ disease: selectedOptions });
+    console.log(selectedOptions);
+
+    setIsModalOpen(false);
+  };
+
+  const resetAgencyOptions = () => {
+    setParams({ disease: ['전체'] });
+  };
+
+  console.log(params);
 
   return (
     <Container>
@@ -108,24 +149,31 @@ export default function Vaccine() {
         sections={sectionTexts}
         onSectionChange={setSelectedSection}
       />
-      <div className="body">
-        <InputForm
-          placeholder="병명"
-          value={params.disease}
-          rightIcon={Icons.arrow_down}
-          type="text"
-          customStyle={css`
-            & > .input__content > .input__content--right__icon > img {
-              width: 24px;
-              height: 24px;
-            }
-          `}
-          onClick={() => {
-            setIsModalOpen(true);
-          }}
+      <FiltersContainer>
+        <Image
+          src={
+            params.disease[0] === '전체'
+              ? Images.adjustment_unselec
+              : Images.adjustment_selec
+          }
+          alt="Filter Icon"
+          width={24}
+          height={24}
         />
-
-        {params.disease === '전체' ? (
+        {params.disease.map((item) => {
+          return (
+            <Filter
+              label={''}
+              selectedValue={item}
+              onSelect={() => setIsModalOpen(true)}
+              onClear={resetAgencyOptions}
+              isSelected={params.disease[0] !== '전체'}
+            />
+          );
+        })}
+      </FiltersContainer>
+      <div className="body">
+        {params.disease[0] === '전체' ? (
           <div className="content_wrap">
             {list.map((item, key) => (
               <VaccineStatus
@@ -135,7 +183,7 @@ export default function Vaccine() {
                 minOrder={item.minOrder}
                 inoculationOrders={item.inoculationOrders}
                 isCompleted={item.isCompleted}
-                onClick={() => onChangeValue('disease', item.diseaseName)}
+                onClick={() => setParams({ disease: item.diseaseName })}
               />
             ))}
           </div>
@@ -161,27 +209,17 @@ export default function Vaccine() {
         </div>
       )}
       <Fragment>
-        {selectedSection === '국가예방접종' ? (
-          <FilterRadioModal
-            isOpen={isModalOpen}
-            title="병명"
-            options={nationDisease}
-            selectedOptions={params.disease}
-            onClose={() => setIsModalOpen(false)}
-            onOptionSelect={handleAgencySelect}
-            onReset={resetAgencyOptions}
-          />
-        ) : (
-          <FilterRadioModal
-            isOpen={isModalOpen}
-            title="병명"
-            options={extraDisease}
-            selectedOptions={params.disease}
-            onClose={() => setIsModalOpen(false)}
-            onOptionSelect={handleAgencySelect}
-            onReset={resetAgencyOptions}
-          />
-        )}
+        <FilterModal
+          isOpen={isModalOpen}
+          title="병명"
+          options={
+            selectedSection === '국가예방접종' ? nationDisease : extraDisease
+          }
+          selectedOptions={params.disease}
+          onClose={() => setIsModalOpen(false)}
+          onOptionSelect={handleAgencySelect}
+          onReset={resetAgencyOptions}
+        />
       </Fragment>
     </Container>
   );

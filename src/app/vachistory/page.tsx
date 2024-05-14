@@ -65,8 +65,21 @@ export default function Vachistory() {
     }
   };
 
+  const fetchCerti = async () => {
+    try {
+      setLoading(true);
+      const certificateData = await getCertificate();
+      setCertificateData(certificateData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchList();
+    fetchCerti();
   }, []);
 
   const onClickHandler = (id: string) => {
