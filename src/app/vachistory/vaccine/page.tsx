@@ -18,6 +18,7 @@ import detailJson from '@/utils/user-vacDetail-api.json';
 import listJson from '@/utils/user-vacList-api.json';
 import { getInoculationSimple } from '@/app/_lib/getInoculationSimple';
 import { getInoculationDetail } from '@/app/_lib/getInoculationDetail';
+import { PATH } from '@/routes/path';
 
 export default function Vaccine() {
   const [params, setParams] = useState<ParamsType>({
@@ -35,7 +36,7 @@ export default function Vaccine() {
     onChangeValue('disease', selectedOptions);
     setIsModalOpen(false);
   };
-  console.log(params.disease);
+
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
       ...prevState,
@@ -85,7 +86,7 @@ export default function Vaccine() {
 
   return (
     <Container>
-      <BackHeader title={'예방접종 내역'} url={'/vachistory'} />
+      <BackHeader title={'예방접종 내역'} url={PATH.VACHISTORY} />
       <SectionHeader
         sections={sectionTexts}
         onSectionChange={setSelectedSection}

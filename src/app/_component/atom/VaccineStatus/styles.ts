@@ -52,12 +52,13 @@ export const VaccineStatusContainer = styled.div`
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      gap: 5px;
       justify-content: space-between;
       & > .itemWrap {
         display: flex;
         flex-direction: column;
         align-items: center;
+        max-width: 50px;
+        width: 100%;
         gap: 3px;
         & > .index {
           font-family: Pretendard;
@@ -84,8 +85,8 @@ export const VaccineStatusContainer = styled.div`
           color: ${Colors.Primary};
         }
         & > img {
-          width: 50px;
-          height: 50px;
+          width: 100%;
+          height: 100%;
         }
       }
     }

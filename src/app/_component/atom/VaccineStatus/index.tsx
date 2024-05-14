@@ -95,11 +95,6 @@ export default function VaccineStatus({
     <VaccineStatusContainer>
       <div className="container">
         <div className="top">
-          {isCompleted && (
-            <div className="status">
-              <div className="complete">접종완료</div>
-            </div>
-          )}
           <div className="diseaseName">{diseaseName}</div>
           <div className="vaccineType">{vaccineType}</div>
         </div>
