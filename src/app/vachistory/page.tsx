@@ -21,11 +21,16 @@ import { getInoculationSimple } from '@/app/_lib/getInoculationSimple';
 import { getCertificate } from '../_lib/getCertificate';
 import { apiDevUrl } from '@/hooks/api';
 import { LocalStorage } from '@/hooks/useUtil';
+import { router } from 'next/client';
+import { PATH } from '@/routes/path';
+import { useRouter } from 'next/navigation';
 
 export default function Vachistory() {
   const [NationData, setNationData] = useState([]);
   const [EtcData, setEtcData] = useState([]);
   const [CertificateData, setCertificateData] = useState([]);
+
+  console.log(CertificateData);
 
   const fetchList = async () => {
     try {
@@ -51,6 +56,13 @@ export default function Vachistory() {
   }, []);
   const accessToken = LocalStorage.getItem('accessToken');
   const [userName, setUserName] = useState('');
+  const router = useRouter();
+
+  const onClickHandler = (id: string) => {
+    LocalStorage.setItem('vaccineId', id);
+    router.push(`/vachistory/certificate/${id}`);
+  };
+
   useEffect(() => {
     fetch(`${apiDevUrl}/me`, {
       method: 'GET',
@@ -60,15 +72,14 @@ export default function Vachistory() {
       },
     })
       .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
         return response.json();
       })
       .then((data) => {
         setUserName(data.name);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
   }, []);
 
   return (
@@ -78,7 +89,7 @@ export default function Vachistory() {
         <div className="content_head">
           <MenuTitle
             title={'접종 인증서'}
-            rightIconUrl={'/vachistory/certificate/list'}
+            rightIconUrl={PATH.VACHISTORY_LIST}
           />
         </div>
         <div className="content_body">
@@ -88,6 +99,7 @@ export default function Vachistory() {
               image={item.iconImage}
               vaccineName={item.vaccineName}
               date={item.inoculatedDate}
+              onClick={() => onClickHandler(item.vaccineId)}
             />
           ))}
         </div>
@@ -95,7 +107,7 @@ export default function Vachistory() {
         <MenuTitle
           username={userName}
           title={'님의 예방접종내역을 확인해보세요!'}
-          rightIconUrl={'/vachistory/vaccine'}
+          rightIconUrl={PATH.VACHISTORY_VAC}
         />
         <div className="vaccine_wrap">
           <div className="category">국가 예방접종</div>

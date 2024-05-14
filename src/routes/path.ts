@@ -24,4 +24,5 @@ export const PATH = {
   MOREINFO_ID: '/moreinfo/id', // 백곰 ID
   // vachistory
   VACHISTORY_LIST: '/vachistory/certificate/list',
+  VACHISTORY_VAC: '/vachistory/vaccine',
 };

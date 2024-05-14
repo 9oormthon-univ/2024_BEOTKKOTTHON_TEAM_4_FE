@@ -3,6 +3,7 @@ import React from 'react';
 import { VaccineCardWrapper } from './styles';
 import Image from 'next/image';
 import { Images } from '@/styles';
+import { LocalStorage } from '@/hooks/useUtil';
 
 interface CardType {
   account_id?: string;
