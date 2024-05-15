@@ -59,8 +59,14 @@ const FilterModal: React.FC<ModalProps> = ({
     }
   };
 
+  console.log('localSelectedOptions:', localSelectedOptions);
+
   const handleConfirm = () => {
-    if (localSelectedOptions.length === 0) {
+    if (
+      localSelectedOptions.length === 0 ||
+      (localSelectedOptions.includes('전체') &&
+        localSelectedOptions.length === 1)
+    ) {
       setShowWarning(true);
       setTimeout(() => setShowWarning(false), 2000);
     } else {
