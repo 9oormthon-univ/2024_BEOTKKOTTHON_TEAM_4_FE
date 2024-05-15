@@ -34,16 +34,18 @@ export default function CertificateList(): React.JSX.Element {
     <Container>
       <BackHeader title={'접종 인증서'} url={'/vachistory'} />
       <div className="container">
-        {CertificateData.map((card, index) => (
-          <VaccineCard
-            key={index}
-            variant={'small'}
-            image={card.iconImage}
-            vaccineName={`${card.diseaseName}(${card.vaccineName})`}
-            date={card.inoculatedDate}
-            onClick={() => onClickHandler(card.vaccineId)}
-          />
-        ))}
+        <div className="list">
+          {CertificateData.map((card, index) => (
+            <VaccineCard
+              key={index}
+              variant={'small'}
+              image={card.iconImage}
+              vaccineName={`${card.diseaseName}(${card.vaccineName})`}
+              date={card.inoculatedDate}
+              onClick={() => onClickHandler(card.vaccineId)}
+            />
+          ))}
+        </div>
       </div>
     </Container>
   );
