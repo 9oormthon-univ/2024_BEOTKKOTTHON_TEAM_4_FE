@@ -43,6 +43,7 @@ export default function CertificateList(): React.JSX.Element {
               vaccineName={`${card.diseaseName}(${card.vaccineName})`}
               date={card.inoculatedDate}
               onClick={() => onClickHandler(card.vaccineId)}
+              type={card.type}
             />
           ))}
         </div>

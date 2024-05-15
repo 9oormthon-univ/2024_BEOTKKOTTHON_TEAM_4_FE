@@ -23,4 +23,5 @@ export interface VaccineData {
   inoculatedDate: string;
   isCompleted: boolean;
   iconImage: string;
+  type: 'NATION' | 'EXTRA' | 'EVENT';
 }
