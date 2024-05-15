@@ -8,7 +8,10 @@ export const Container = styled.main`
   & > .container {
     display: flex;
     justify-content: center;
+
     & > .list {
+      margin-bottom: 70px;
+
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
