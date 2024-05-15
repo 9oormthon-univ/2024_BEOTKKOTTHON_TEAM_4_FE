@@ -153,7 +153,7 @@ export default function CertificateDetail() {
           />
         </div>
       </div>
-      {error && <WarningToastWrap errorMessage={error} />}
+      <WarningToastWrap errorMessage={error} setErrorMessage={setError} />
     </Container>
   );
 }

@@ -152,7 +152,9 @@ export default function Id(): React.JSX.Element {
           </div>
         </div>
       </div>
-      {error && <WarningToastWrap errorMessage={error} />}
+
+      <WarningToastWrap errorMessage={error} setErrorMessage={setError} />
+
       <BottomButton
         filled={allConditionsTrue}
         handleNextButtonClick={handleNextButtonClick}

@@ -126,7 +126,9 @@ export default function HelperLogin(): React.JSX.Element {
           아이디/비밀번호 찾기
         </Link>
       </div>
-      {error !== null && <WarningToastWrap errorMessage={error} />}
+
+      <WarningToastWrap errorMessage={error} setErrorMessage={setError} />
+
       {!loading && ( // 로딩 중이 아닐 때에만 렌더링
         <BottomButton
           loading={loading}
