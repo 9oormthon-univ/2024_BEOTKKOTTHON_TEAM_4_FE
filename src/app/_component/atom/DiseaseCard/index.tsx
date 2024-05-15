@@ -49,7 +49,7 @@ const DiseaseCard: React.FC<DiseaseCardProps> = ({ id, diseaseName, imageUrl }) 
   const router = useRouter();
 
   const handleCardClick = () => {
-    router.push(`/detaildis/${id}`);
+    router.push(`/detailvac/${id}`);
   };
   const formattedName = diseaseName.length > 8 ? `${diseaseName.slice(0, 8)}...` : diseaseName;
 

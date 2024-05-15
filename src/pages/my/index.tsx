@@ -37,8 +37,10 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  padding: 10px 0px 0px 0px;
   gap: 25px;
   opacity: 0px;
+  border: 1px solid #F2F4F6
 `;
 
 const NavContainer = styled.div`
@@ -60,7 +62,7 @@ const ListItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 30px;
 `
 
 const ListItemText = styled.span`

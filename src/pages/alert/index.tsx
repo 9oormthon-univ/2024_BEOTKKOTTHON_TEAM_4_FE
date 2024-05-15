@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
 import { LocalStorage } from '@/hooks/useUtil';
+import { apiDevUrl } from '@/hooks/api';
 
 const DateText = styled.div`
   font-family: Pretendard;
@@ -60,10 +61,9 @@ const AlarmList = styled.div`
               today.getFullYear() === date.getFullYear()) ? "오늘" : formattedDate;
     };
     
-
     const accessToken = LocalStorage.getItem('accessToken');
     useEffect(() => {
-      fetch('https://api-dev.vacgom.co.kr/api/v1/notifications/', {
+      fetch(`${apiDevUrl}/notifications/`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${accessToken}`,

@@ -1,11 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styled from '@emotion/styled';
-
-interface DiseaseCardProps {
-  diseaseName: string;
-  imageUrl: string;
-}
+import { useRouter } from 'next/router';
 
 const Card = styled.div`
   width: 200px;
@@ -38,11 +34,25 @@ const DiseaseName = styled.span`
   width: 100%;
 `;
 
-const HomeDiseaseCard: React.FC<DiseaseCardProps> = ({ diseaseName = '', imageUrl }) => {
-  const formattedName = diseaseName && diseaseName.length > 8 ? `${diseaseName.slice(0, 8)}...` : diseaseName;
+interface DiseaseCardProps {
+  id: number; 
+  diseaseName: string;
+  imageUrl: string;
+}
+
+const HomeDiseaseCard: React.FC<DiseaseCardProps> = ({ id, diseaseName = '', imageUrl }) => {
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    if (router) {
+      router.push(`/detailvac/${id}`);
+    }
+  };
+
+  const formattedName = diseaseName.length > 8 ? `${diseaseName.slice(0, 8)}...` : diseaseName;
 
   return (
-    <Card>
+    <Card onClick={handleCardClick}>
       <DiseaseImage>
         <Image src={imageUrl} alt={diseaseName} width={100} height={100} layout="responsive" />
       </DiseaseImage>

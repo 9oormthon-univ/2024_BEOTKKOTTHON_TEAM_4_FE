@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import VaccineCard from '@/app/_component/atom/VaccineCertificate/index';
@@ -11,16 +9,14 @@ import { MenuTitleContainer } from '@/app/_component/atom/MenuTitle/styles';
 import MenuTitle from '@/app/_component/atom/MenuTitle';
 import VaccineItem from '@/app/_component/atom/VaccineItem';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
-
 import HomeDiseaseCard from '@/app/_component/atom/HomeDiseaseCard';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import NoneHome from '@/app/_component/atom/NoneHome';
 import { apiDevUrl } from '@/hooks/api';
 import { LocalStorage } from '@/hooks/useUtil';
-import { getCertificate } from '../_lib/getCertificate'
+import { getCertificate } from '../../app/_lib/getCertificate'
 import { Colors, fontGenerator } from '@/styles';
-
 
 export const Container = styled.main`
   min-height: 100vh;
@@ -74,7 +70,6 @@ export const Container = styled.main`
         color: ${Colors.Gray700};
         font-family: 'Pretendard', sans-serif;
         padding: 10px 0;
-        
       }
       & > .vaccine_list {
         display: flex;
@@ -244,7 +239,7 @@ export default function Home() {
               recommendVaccine.map((vaccine) => (
                 <HomeDiseaseCard
                   key={vaccine.id}
-                  diseaseName={vaccine.vaccineName}
+                  diseaseName={vaccine.name}
                   imageUrl={vaccine.iconImage}
                 />
               ))
@@ -255,7 +250,10 @@ export default function Home() {
         </div>
         <div className="body_wrap">
           <div className="content_head">
-            <MenuTitle title="접종 인증서" rightIconUrl={'/vachistory/certificate/list'} />
+            <MenuTitle
+              title="접종 인증서"
+              rightIconUrl={'/vachistory/certificate/list'}
+            />
           </div>
           <div className="content_body">
             {certificateData.map((item, key) => (
