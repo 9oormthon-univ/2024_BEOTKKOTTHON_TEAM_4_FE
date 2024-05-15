@@ -16,10 +16,10 @@ export const ModalContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 373px;
-  max-height: 533px;
+  //max-height: 533px;
   background: #ffffff;
   border-radius: 22px;
-  padding: 14px 20px;
+  padding: 14px 30px 20px 30px;
   z-index: 10;
   overflow: hidden;
 `;
@@ -43,7 +43,7 @@ export const ModalHeader = styled.div`
 export const ModalContent = styled.div`
   max-height: 398px;
   overflow-y: auto;
-  padding: 0 20px;
+  padding: 0;
   position: relative;
 
   &::-webkit-scrollbar {
@@ -107,7 +107,7 @@ export const ButtonSection = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 14px;
-  padding: 20px;
+  padding-top: 20px;
 `;
 
 export const FooterButton = styled.button<{
