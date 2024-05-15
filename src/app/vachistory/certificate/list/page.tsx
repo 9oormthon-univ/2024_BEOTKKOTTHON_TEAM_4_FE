@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getCertificate } from '@/app/_lib/getCertificate';
 import { LocalStorage } from '@/hooks/useUtil';
+import { VaccineData } from '@/types/globalType';
 
 export default function CertificateList(): React.JSX.Element {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function CertificateList(): React.JSX.Element {
     LocalStorage.setItem('vaccineId', id);
     router.push(`/vachistory/certificate/${id}`);
   };
-  const [CertificateData, setCertificateData] = useState([]);
+  const [CertificateData, setCertificateData] = useState<VaccineData[]>([]);
   const fetchCertifi = async () => {
     try {
       const certificateData = await getCertificate();
@@ -38,7 +39,7 @@ export default function CertificateList(): React.JSX.Element {
             key={index}
             variant={'small'}
             image={card.iconImage}
-            vaccineName={card.vaccineName}
+            vaccineName={`${card.diseaseName}(${card.vaccineName})`}
             date={card.inoculatedDate}
             onClick={() => onClickHandler(card.vaccineId)}
           />

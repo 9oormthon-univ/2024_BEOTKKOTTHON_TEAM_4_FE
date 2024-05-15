@@ -112,7 +112,7 @@ export default function CertificateDetail() {
         <VaccineCard
           image={detail?.iconImage}
           variant={'large'}
-          vaccineName={detail?.vaccineName}
+          vaccineName={`${detail.diseaseName}(${detail.vaccineName})`}
           diseaseName={detail?.diseaseName}
           date={detail?.inoculatedDate}
           definition

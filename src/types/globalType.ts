@@ -14,3 +14,13 @@ export interface RequestOptions {
   body: string;
   cache: string;
 }
+
+export interface VaccineData {
+  vaccineId: string;
+  diseaseId: string;
+  diseaseName: string;
+  vaccineName: string;
+  inoculatedDate: string;
+  isCompleted: boolean;
+  iconImage: string;
+}
