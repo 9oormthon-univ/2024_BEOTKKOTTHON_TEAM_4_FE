@@ -130,14 +130,14 @@ const EtcDiseaseSection = ({ selectedSection }) => {
           height={24}
         />
         <Filter
-          label="연령"
+          label="연령 :"
           selectedValue={ageFilter}
           onSelect={() => setIsAgeModalOpen(true)}
           onClear={clearAgeFilter}
           isSelected={ageFilter !== '전체'}
         />
         <Filter
-          label="상황"
+          label="상황 :"
           selectedValue={sitFilter}
           onSelect={() => setIsSitModalOpen(true)}
           onClear={clearSitFilter}
