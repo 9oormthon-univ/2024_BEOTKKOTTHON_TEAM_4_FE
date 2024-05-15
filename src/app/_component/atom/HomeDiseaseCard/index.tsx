@@ -41,7 +41,7 @@ interface DiseaseCardProps {
 }
 
 const HomeDiseaseCard: React.FC<DiseaseCardProps> = ({ id, diseaseName = '', imageUrl }) => {
-  const router = useRouter(); // 올바른 위치에서 호출
+  const router = useRouter();
 
   const handleCardClick = () => {
     if (router) {
