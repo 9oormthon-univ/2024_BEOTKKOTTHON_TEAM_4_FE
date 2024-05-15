@@ -45,7 +45,7 @@ const HomeDiseaseCard: React.FC<DiseaseCardProps> = ({ id, diseaseName = '', ima
 
   const handleCardClick = () => {
     if (router) {
-      router.push(`/detaildis/${id}`);
+      router.push(`/detailvac/${id}`);
     }
   };
 
