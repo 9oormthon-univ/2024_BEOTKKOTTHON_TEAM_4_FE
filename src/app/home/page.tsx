@@ -18,9 +18,9 @@ import Image from 'next/image';
 import NoneHome from '@/app/_component/atom/NoneHome';
 import { apiDevUrl } from '@/hooks/api';
 import { LocalStorage } from '@/hooks/useUtil';
-import { getCertificate } from '../_lib/getCertificate'
+import { getCertificate } from '../_lib/getCertificate';
 import { Colors, fontGenerator } from '@/styles';
-
+import { VaccineData } from '@/types/globalType';
 
 export const Container = styled.main`
   min-height: 100vh;
@@ -74,7 +74,6 @@ export const Container = styled.main`
         color: ${Colors.Gray700};
         font-family: 'Pretendard', sans-serif;
         padding: 10px 0;
-        
       }
       & > .vaccine_list {
         display: flex;
@@ -132,7 +131,7 @@ export default function Home() {
   const [error, setError] = useState('');
   const [currentImage, setCurrentImage] = useState(Images.ico_home_1);
   const [imageKey, setImageKey] = useState(0);
-  const [certificateData, setCertificateData] = useState([]);
+  const [certificateData, setCertificateData] = useState<VaccineData[]>([]);
 
   const accessToken = LocalStorage.getItem('accessToken');
 
@@ -255,7 +254,10 @@ export default function Home() {
         </div>
         <div className="body_wrap">
           <div className="content_head">
-            <MenuTitle title="접종 인증서" rightIconUrl={'/vachistory/certificate/list'} />
+            <MenuTitle
+              title="접종 인증서"
+              rightIconUrl={'/vachistory/certificate/list'}
+            />
           </div>
           <div className="content_body">
             {certificateData.map((item, key) => (
@@ -263,8 +265,13 @@ export default function Home() {
                 key={key}
                 variant={'small'}
                 image={item.iconImage}
-                vaccineName={item.vaccineName}
+                vaccineName={`${item.diseaseName}(${item.vaccineName})`}
                 date={item.inoculatedDate}
+                onClick={() => {
+                  LocalStorage.setItem('vaccineId', item.vaccineId);
+                  window.location.href =
+                    '/vachistory/certificate/' + item.vaccineId;
+                }}
               />
             ))}
           </div>
