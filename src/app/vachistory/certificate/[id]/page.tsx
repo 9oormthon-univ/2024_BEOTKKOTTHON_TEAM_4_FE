@@ -20,6 +20,7 @@ type DetailDataType = {
   userId: string;
   vaccineId: string;
   vaccineName: string;
+  type?: 'NATION' | 'EXTRA' | 'EVENT';
 };
 
 export default function CertificateDetail() {
@@ -117,6 +118,7 @@ export default function CertificateDetail() {
           date={detail?.inoculatedDate}
           definition
           account_id={userName}
+          type={detail?.type}
           subLabel
         />
         <Button

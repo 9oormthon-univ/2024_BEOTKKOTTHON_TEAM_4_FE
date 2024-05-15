@@ -127,6 +127,7 @@ export default function Vachistory() {
                 image={item.iconImage}
                 vaccineName={`${item.diseaseName}(${item.vaccineName})`}
                 date={item.inoculatedDate}
+                type={item.type}
                 onClick={() => onClickHandler(item.vaccineId)}
               />
             ))
