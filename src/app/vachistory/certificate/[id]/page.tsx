@@ -23,9 +23,22 @@ type DetailDataType = {
   type?: 'NATION' | 'EXTRA' | 'EVENT';
 };
 
+type MeDataType = {
+  nickname: string;
+  id: string;
+  name: string;
+  healthCondition: [
+    {
+      code: string;
+      description: string;
+    },
+  ];
+};
+
 export default function CertificateDetail() {
   const vaccineId = LocalStorage.getItem('vaccineId');
   const [detail, setDetail] = useState<DetailDataType>({});
+
   const fetchDetail = async () => {
     try {
       const detailData = await getCertificateDetail(vaccineId);
@@ -34,7 +47,8 @@ export default function CertificateDetail() {
       console.error('Error fetching data:', error);
     }
   };
-  const [userName, setUserName] = useState('');
+
+  const [userData, setUserData] = useState<MeDataType>({});
   const accessToken = LocalStorage.getItem('accessToken');
 
   const fetchMe = async () => {
@@ -47,7 +61,7 @@ export default function CertificateDetail() {
         },
       });
       const data = await response.json();
-      setUserName(data.name);
+      setUserData(data);
     } catch (error) {
       // setError(error.message);
     }
@@ -103,10 +117,10 @@ export default function CertificateDetail() {
     fetchMe();
   }, []);
 
-  console.log(detail);
   useEffect(() => {
     fetchDetail();
   }, []);
+
   return (
     <Container>
       <BackHeader title={'접종 상세'} url={PATH.VACHISTORY_LIST} />
@@ -118,7 +132,7 @@ export default function CertificateDetail() {
           diseaseName={detail?.diseaseName}
           date={detail?.inoculatedDate}
           definition
-          account_id={userName}
+          account_id={userData.nickname}
           type={detail?.type}
           subLabel
         />
