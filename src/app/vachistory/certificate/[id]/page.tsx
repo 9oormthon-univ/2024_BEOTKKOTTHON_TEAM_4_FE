@@ -35,7 +35,6 @@ export default function CertificateDetail() {
     }
   };
   const [userName, setUserName] = useState('');
-  const [shareImage, setShareImage] = useState('');
   const accessToken = LocalStorage.getItem('accessToken');
 
   const fetchMe = async () => {
@@ -54,7 +53,10 @@ export default function CertificateDetail() {
     }
   };
 
-  const fetchImage = async () => {
+  const [blob, setBlob] = useState('' as any);
+  const [error, setError] = useState('');
+
+  const saveImage = async () => {
     try {
       const response = await fetch(
         `${apiDevUrl}/inoculation/certificate/${detail.vaccineId}/image`,
@@ -74,33 +76,32 @@ export default function CertificateDetail() {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
-
-      // 이미지를 File 객체로 변환
-      const file = new File([blob], 'certificate.png', { type: 'image/png' });
-
-      // 이미지를 공유할 데이터 설정
-      const shareData = {
-        title: 'Example File',
-        files: [file],
-      };
-
-      await navigator.share(shareData);
-
-      setShareImage(blob);
+      setBlob(blob);
     } catch (error) {
-      // setError(error.message);
+      setError(error.message);
+    }
+  };
+
+  const shareImage = async () => {
+    const file = new File([blob], '백곰접종인증서.png', {
+      type: 'image/png',
+    });
+
+    // 이미지를 공유할 데이터 설정
+    const shareData = {
+      title: 'Example File',
+      files: [file],
+    };
+    try {
+      await navigator.share(shareData);
+    } catch (error) {
+      setError(error.message);
     }
   };
 
   useEffect(() => {
     fetchMe();
   }, []);
-
-  const [text, setText] = useState('');
-
-  const shareHandler = async () => {
-    fetchImage();
-  };
 
   console.log(detail);
   useEffect(() => {
@@ -121,15 +122,24 @@ export default function CertificateDetail() {
           type={detail?.type}
           subLabel
         />
-        <Button
-          prevIcon={Icons.share}
-          label={'이미지 공유'}
-          variant={'OutlineWhite'}
-          size={'large'}
-          onClick={shareHandler}
-        />
+        <div className="button">
+          <Button
+            prevIcon={Icons.share}
+            label={'이미지 공유'}
+            variant={'OutlineWhite'}
+            size={'large'}
+            onClick={shareImage}
+          />
+          <Button
+            prevIcon={Icons.save}
+            label={'이미지 저장'}
+            variant={'OutlineWhite'}
+            size={'large'}
+            onClick={saveImage}
+          />
+        </div>
       </div>
-      {text && <WarningToastWrap errorMessage={text} />}
+      {error && <WarningToastWrap errorMessage={error} />}
     </Container>
   );
 }
