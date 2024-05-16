@@ -110,7 +110,6 @@ export default function Vaccine() {
       (option) => option !== '전체',
     );
     setParams({ disease: updatedOptions });
-    console.log(updatedOptions);
 
     setIsModalOpen(false);
   };
@@ -129,8 +128,6 @@ export default function Vaccine() {
     LocalStorage.setItem('diseaseName', diseaseName);
     router.push(PATH.VACHISTORY_VAC + '/' + diseaseName);
   };
-
-  console.log(params);
 
   return (
     <Container>

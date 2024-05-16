@@ -13,7 +13,7 @@ export const VaccineCardStyle: CssArchiveType = {
     position: relative;
     max-width: 300px;
     max-height: 414.56px;
-    border-radius: 37.97px;
+    //border-radius: 37.97px;
 
     & > .top {
       padding: 18.8px 18.8px 0 18.8px;
@@ -244,4 +244,20 @@ export const VaccineCardWrapper = styled.div<CustomStyleType>`
   ${VaccineCardStyle.primary}
   ${(props) => VaccineCardStyle[props.variant || 'primary']}
   ${(props) => props.loading && VaccineCardStyle['loading']}
+  ${(props) =>
+    props.type === 'EVENT' &&
+    css`
+      background-image: url('/assets/image/img-VaccineCard-event.svg');
+      background-size: cover;
+      & > .bottom {
+        border-radius: 14px;
+        background: #414141;
+
+        background: linear-gradient(
+          180deg,
+          rgba(65, 150, 253, 0) 10%,
+          #414141 55%
+        );
+      }
+    `}
 `;

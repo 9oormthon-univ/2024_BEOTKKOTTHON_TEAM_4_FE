@@ -12,5 +12,14 @@ export const Container = styled.main`
     gap: 10px;
     justify-content: center;
     align-items: center;
+    .button {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      width: 100%;
+      button {
+        width: 100%;
+      }
+    }
   }
 `;

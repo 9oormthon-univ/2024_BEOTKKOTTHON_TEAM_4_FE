@@ -5,16 +5,23 @@ import Layout from '../app/layout';
 import 'react-tooltip/dist/react-tooltip.css';
 import { useEffect } from 'react';
 import { LocalStorage } from '@/hooks/useUtil';
+import { useRouter } from 'next/navigation';
+import { PATH } from '@/routes/path';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(() => {
+  const router = useRouter(); // Initialize router
+
+  const checkToken = () => {
     const accessToken = LocalStorage.getItem('accessToken');
-    if (accessToken) {
-      console.log('Access Token:', accessToken);
+    if (!accessToken) {
+      router.push(PATH.root); // Use router.push instead of window.location.href
     } else {
-      localStorage.removeItem('accessToken');
-      window.location.href = '/';
+      router.push(PATH.HOME);
     }
+  };
+
+  useEffect(() => {
+    checkToken();
   }, []);
 
   return (

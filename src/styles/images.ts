@@ -12,6 +12,7 @@ import vacgomLoading from '../../public/assets/image/img-Vacgom-loading.svg';
 import vacgom_face from '../../public/assets/image/img-vacgom-face.svg';
 
 import share from '../../public/assets/ico/ico-share.svg';
+import save from '../../public/assets/ico/ico-save.svg';
 import eye from '../../public/assets/ico/ico-eye.svg';
 import eyeSlash from '../../public/assets/ico/ico-eye-slash.svg';
 import checkBox_selec_dis from '../../public/assets/ico/ico-checkbox-selected-disabled.svg';
@@ -135,6 +136,7 @@ export const Images: ImagesType = {
   kakao: kakao,
   google: google,
   share: share,
+  save: save,
   eye: eye,
   eyeSlash: eyeSlash,
   checkBox_selec_dis: checkBox_selec_dis,

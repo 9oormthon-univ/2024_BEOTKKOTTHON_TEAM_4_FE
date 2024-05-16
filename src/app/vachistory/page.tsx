@@ -20,15 +20,7 @@ import { apiDevUrl } from '@/hooks/api';
 import { LocalStorage } from '@/hooks/useUtil';
 import { PATH } from '@/routes/path';
 import { useRouter } from 'next/navigation';
-
-interface VaccineData {
-  vaccineId: string;
-  diseaseName: string;
-  vaccineName: string;
-  inoculatedDate: string;
-  isCompleted: boolean;
-  iconImage: string;
-}
+import { VaccineData } from '@/types/globalType';
 
 const initialVaccineData: VaccineData[] = [];
 
@@ -100,14 +92,14 @@ export default function Vachistory() {
       });
   }, []);
 
-  const onClickRouteHandler = (item) => {
-    LocalStorage.setItem('vaccineId', item.vaccineId);
-    router.push(PATH.VACHISTORY_CERTI + '/' + item.vaccineId);
-  };
-
-  const onClickEtcRouteHandler = (item) => {
-    const diseaseId = item.diseaseId;
-    router.push(`/detaildis/${diseaseId}`);
+  const onClickRouteHandler = (item: VaccineData) => {
+    if (item.isCompleted) {
+      LocalStorage.setItem('vaccineId', item.vaccineId);
+      router.push(PATH.VACHISTORY_CERTI + '/' + item.vaccineId);
+    } else {
+      const diseaseId = item.diseaseId;
+      router.push(`/detaildis/${diseaseId}`);
+    }
   };
 
   return (
@@ -133,8 +125,9 @@ export default function Vachistory() {
                 key={key}
                 variant={'small'}
                 image={item.iconImage}
-                vaccineName={item.vaccineName}
+                vaccineName={`${item.diseaseName}(${item.vaccineName})`}
                 date={item.inoculatedDate}
+                type={item.type}
                 onClick={() => onClickHandler(item.vaccineId)}
               />
             ))
@@ -171,7 +164,7 @@ export default function Vachistory() {
                 vaccineName={item.diseaseName}
                 subLabel={item.vaccineName}
                 vaccineStatus={item.isCompleted}
-                onClick={() => onClickEtcRouteHandler(item)}
+                onClick={() => onClickRouteHandler(item)}
               />
             ))}
           </div>

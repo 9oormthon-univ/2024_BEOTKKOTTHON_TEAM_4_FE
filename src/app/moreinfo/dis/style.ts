@@ -18,7 +18,7 @@ export const JoinWrap = styled.main`
     }
   }
   & > .contents {
-    padding: 0 20px;
+    padding: 0 20px 90px 20px;
     display: flex;
     flex-wrap: wrap;
     gap: 7px;

@@ -103,7 +103,10 @@ export default function Verification(): React.JSX.Element {
           onChangeValue={onChangeValue}
         />
       </div>
-      <WarningToastWrap errorMessage={errormessage} />
+      <WarningToastWrap
+        errorMessage={errormessage}
+        setErrorMessage={setErrormessage}
+      />
       {!loading && (
         <BottomButton
           filled={password.length >= 6}

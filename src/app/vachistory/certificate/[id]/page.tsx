@@ -20,11 +20,25 @@ type DetailDataType = {
   userId: string;
   vaccineId: string;
   vaccineName: string;
+  type?: 'NATION' | 'EXTRA' | 'EVENT';
+};
+
+type MeDataType = {
+  nickname: string;
+  id: string;
+  name: string;
+  healthCondition: [
+    {
+      code: string;
+      description: string;
+    },
+  ];
 };
 
 export default function CertificateDetail() {
   const vaccineId = LocalStorage.getItem('vaccineId');
   const [detail, setDetail] = useState<DetailDataType>({});
+
   const fetchDetail = async () => {
     try {
       const detailData = await getCertificateDetail(vaccineId);
@@ -33,8 +47,8 @@ export default function CertificateDetail() {
       console.error('Error fetching data:', error);
     }
   };
-  const [userName, setUserName] = useState('');
-  const [shareImage, setShareImage] = useState('');
+
+  const [userData, setUserData] = useState<MeDataType>({});
   const accessToken = LocalStorage.getItem('accessToken');
 
   const fetchMe = async () => {
@@ -47,13 +61,16 @@ export default function CertificateDetail() {
         },
       });
       const data = await response.json();
-      setUserName(data.name);
+      setUserData(data);
     } catch (error) {
       // setError(error.message);
     }
   };
 
-  const fetchImage = async () => {
+  const [blob, setBlob] = useState('' as any);
+  const [error, setError] = useState('');
+
+  const saveImage = async () => {
     try {
       const response = await fetch(
         `${apiDevUrl}/inoculation/certificate/${detail.vaccineId}/image`,
@@ -73,21 +90,26 @@ export default function CertificateDetail() {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
-
-      // 이미지를 File 객체로 변환
-      const file = new File([blob], 'certificate.png', { type: 'image/png' });
-
-      // 이미지를 공유할 데이터 설정
-      const shareData = {
-        title: 'Example File',
-        files: [file],
-      };
-
-      await navigator.share(shareData);
-
-      setShareImage(blob);
+      setBlob(blob);
     } catch (error) {
-      // setError(error.message);
+      setError(error.message);
+    }
+  };
+
+  const shareImage = async () => {
+    const file = new File([blob], '백곰접종인증서.png', {
+      type: 'image/png',
+    });
+
+    // 이미지를 공유할 데이터 설정
+    const shareData = {
+      title: 'Example File',
+      files: [file],
+    };
+    try {
+      await navigator.share(shareData);
+    } catch (error) {
+      setError(error.message);
     }
   };
 
@@ -95,16 +117,10 @@ export default function CertificateDetail() {
     fetchMe();
   }, []);
 
-  const [text, setText] = useState('');
-
-  const shareHandler = async () => {
-    fetchImage();
-  };
-
-  console.log(detail);
   useEffect(() => {
     fetchDetail();
   }, []);
+
   return (
     <Container>
       <BackHeader title={'접종 상세'} url={PATH.VACHISTORY_LIST} />
@@ -112,22 +128,32 @@ export default function CertificateDetail() {
         <VaccineCard
           image={detail?.iconImage}
           variant={'large'}
-          vaccineName={detail?.vaccineName}
+          vaccineName={`${detail.diseaseName}(${detail.vaccineName})`}
           diseaseName={detail?.diseaseName}
           date={detail?.inoculatedDate}
           definition
-          account_id={userName}
+          account_id={userData.nickname}
+          type={detail?.type}
           subLabel
         />
-        <Button
-          prevIcon={Icons.share}
-          label={'이미지 공유'}
-          variant={'OutlineWhite'}
-          size={'large'}
-          onClick={shareHandler}
-        />
+        <div className="button">
+          <Button
+            prevIcon={Icons.share}
+            label={'이미지 공유'}
+            variant={'OutlineWhite'}
+            size={'large'}
+            onClick={shareImage}
+          />
+          <Button
+            prevIcon={Icons.save}
+            label={'이미지 저장'}
+            variant={'OutlineWhite'}
+            size={'large'}
+            onClick={saveImage}
+          />
+        </div>
       </div>
-      {text && <WarningToastWrap errorMessage={text} />}
+      <WarningToastWrap errorMessage={error} setErrorMessage={setError} />
     </Container>
   );
 }

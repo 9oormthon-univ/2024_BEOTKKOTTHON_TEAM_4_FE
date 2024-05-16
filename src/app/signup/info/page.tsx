@@ -197,7 +197,12 @@ export default function Signup(): React.JSX.Element {
             onReset={resetAgencyOptions}
           />
         </Fragment>
-        {errormessage && <WarningToastWrap errorMessage={errormessage} />}
+
+        <WarningToastWrap
+          errorMessage={errormessage}
+          setErrorMessage={setErrormessage}
+        />
+
         {!loading && (
           <BottomButton
             filled={checkParamsFilled(params)}

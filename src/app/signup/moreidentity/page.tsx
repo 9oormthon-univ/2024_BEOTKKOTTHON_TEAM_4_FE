@@ -87,6 +87,8 @@ export default function MoreIdentity(): React.JSX.Element {
       params.identity_last.trim() !== ''
     ) {
       setFilled(true);
+    } else {
+      setFilled(false);
     }
   }, [params]);
 
@@ -128,7 +130,9 @@ export default function MoreIdentity(): React.JSX.Element {
           </div>
         </div>
       </div>
-      {error !== null && <WarningToastWrap errorMessage={error} />}
+
+      <WarningToastWrap errorMessage={error} setErrorMessage={setError} />
+
       {loading && <LoadingPage />}
       {!loading && (
         <BottomButton
