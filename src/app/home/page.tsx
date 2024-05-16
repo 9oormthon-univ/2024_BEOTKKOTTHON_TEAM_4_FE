@@ -272,6 +272,7 @@ export default function Home() {
                   window.location.href =
                     '/vachistory/certificate/' + item.vaccineId;
                 }}
+                type={item.type}
               />
             ))}
           </div>
