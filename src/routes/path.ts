@@ -1,6 +1,10 @@
 export const PATH = {
   root: '/',
   HOME: '/home',
+  //notion
+  NOTION_TERMS:
+    'https://www.notion.so/been2spring/f17c3687e1f24279a76e9797a51677f6',
+
   RECOMVAC: '/recomvac',
   FAILVAC: '/failvac',
   // signup

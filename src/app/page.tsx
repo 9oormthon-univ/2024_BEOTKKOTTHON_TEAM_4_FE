@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Button from '@/app/_component/atom/button/button';
 import { Colors, Icons, Images } from '@globalStyles';
 import { useEffect, useState } from 'react';
+import { PATH } from '@/routes/path';
 
 export default function Home(): React.JSX.Element {
   const handleKakaoLogin = () => {
@@ -54,7 +55,9 @@ export default function Home(): React.JSX.Element {
           iconSize={'20'}
           onClick={handleKakaoLogin}
         />
-        <a className="privacy">개인정보처리방침</a>
+        <a className="privacy" href={PATH.NOTION_TERMS}>
+          개인정보처리방침
+        </a>
       </div>
     </HomeWrap>
   );
