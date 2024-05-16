@@ -28,10 +28,6 @@ export const diseaseButttonList = [
     second: '이식 이외 면역 억제제 사용',
   },
   {
-    first: 'ORGAN_TRANSPLANTATION',
-    second: '장기 이식 경험',
-  },
-  {
     first: 'HEMATOPOIETIC_STEM_CELL_TRANSPLANTATION',
     second: '조혈모 세포이식',
   },
