@@ -51,6 +51,10 @@ export default function Signup(): React.JSX.Element {
 
   useEffect(() => {
     const queryCode = new URL(window.location.href).searchParams.get('code');
+    const accessToken = LocalStorage.getItem('accessToken');
+    if (accessToken) {
+      router.push(PATH.HOME);
+    }
     if (queryCode) {
       setCode(queryCode);
     }

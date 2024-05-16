@@ -78,7 +78,10 @@ export default function Captcha(): React.JSX.Element {
           onChangeValue={onChangeValue}
         />
       </div>
-      <WarningToastWrap errorMessage={errormessage} />
+      <WarningToastWrap
+        errorMessage={errormessage}
+        setErrorMessage={setErrormessage}
+      />
 
       <BottomButton
         filled={password !== ''}

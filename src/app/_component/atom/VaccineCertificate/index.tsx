@@ -15,6 +15,7 @@ interface CardType {
   variant?: string;
   definition?: boolean;
   loading?: boolean;
+  type?: 'NATION' | 'EXTRA' | 'EVENT';
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
@@ -27,6 +28,7 @@ export default function VaccineCard({
   image,
   variant = 'primary',
   loading = false,
+  type,
   onClick,
 }: React.PropsWithChildren<CardType>) {
   const onShareButtonClick = () => {
@@ -43,6 +45,7 @@ export default function VaccineCard({
       onClick={onClick}
       image={image}
       loading={loading}
+      type={type}
     >
       {variant !== 'small' && (
         <div className="top">

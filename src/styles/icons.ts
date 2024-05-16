@@ -43,6 +43,7 @@ export const Icons = {
     eye: {src: "eye", type: "custom"},
     eyeSlash: {src: "eyeSlash", type: "custom"},
     share: {src: "share", type: "custom"},
+    save: {src: "save", type: "custom"},
     
     checkBox_selec_dis: {src: "checkBox_selec_dis", type: "custom"},
     checkBox_selec_en: {src: "checkBox_selec_en", type: "custom"},

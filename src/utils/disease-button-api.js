@@ -28,10 +28,6 @@ export const diseaseButttonList = [
     second: '이식 이외 면역 억제제 사용',
   },
   {
-    first: 'ORGAN_TRANSPLANTATION',
-    second: '장기 이식 경험',
-  },
-  {
     first: 'HEMATOPOIETIC_STEM_CELL_TRANSPLANTATION',
     second: '조혈모 세포이식',
   },
@@ -46,13 +42,5 @@ export const diseaseButttonList = [
   {
     first: 'HIV_INFECTION_CD4_BELOW_200',
     second: 'HIV 감염:CD4<200/mm3',
-  },
-  {
-    first: 'PREGNANCY',
-    second: '임신부',
-  },
-  {
-    first: 'MEDICAL_WORKER',
-    second: '의료기관 종사자',
   },
 ];

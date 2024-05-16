@@ -81,7 +81,10 @@ export default function Verification(): React.JSX.Element {
           onChangeValue={onChangeValue}
         />
       </div>
-      <WarningToastWrap errorMessage={errormessage} />
+      <WarningToastWrap
+        errorMessage={errormessage}
+        setErrorMessage={setErrormessage}
+      />
       {!loading && ( // 로딩 중이 아닐 때에만 렌더링
         <BottomButton
           filled={password !== ''}

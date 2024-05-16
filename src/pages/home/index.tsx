@@ -15,8 +15,9 @@ import Image from 'next/image';
 import NoneHome from '@/app/_component/atom/NoneHome';
 import { apiDevUrl } from '@/hooks/api';
 import { LocalStorage } from '@/hooks/useUtil';
-import { getCertificate } from '../../app/_lib/getCertificate'
+import { getCertificate } from '../_lib/getCertificate';
 import { Colors, fontGenerator } from '@/styles';
+import { VaccineData } from '@/types/globalType';
 
 export const Container = styled.main`
   min-height: 100vh;
@@ -47,7 +48,7 @@ export const Container = styled.main`
       flex-direction: row;
       overflow-x: auto;
       gap: 10px;
-      //margin: 10px;
+      margin: 10px 20px;
       & > .item {
         width: 100px;
         height: 100px;
@@ -118,7 +119,6 @@ const ImageContainer = styled.div`
   margin-left: 20px;
   opacity: 1;
   transition: opacity 1s ease-in-out;
-  margin-bottom: 10px;
 `;
 
 export default function Home() {
@@ -128,7 +128,7 @@ export default function Home() {
   const [error, setError] = useState('');
   const [currentImage, setCurrentImage] = useState(Images.ico_home_1);
   const [imageKey, setImageKey] = useState(0);
-  const [certificateData, setCertificateData] = useState([]);
+  const [certificateData, setCertificateData] = useState<VaccineData[]>([]);
 
   const accessToken = LocalStorage.getItem('accessToken');
 
@@ -263,8 +263,14 @@ export default function Home() {
                 key={key}
                 variant={'small'}
                 image={item.iconImage}
-                vaccineName={item.vaccineName}
+                vaccineName={`${item.diseaseName}(${item.vaccineName})`}
                 date={item.inoculatedDate}
+                onClick={() => {
+                  LocalStorage.setItem('vaccineId', item.vaccineId);
+                  window.location.href =
+                    '/vachistory/certificate/' + item.vaccineId;
+                }}
+                type={item.type}
               />
             ))}
           </div>
