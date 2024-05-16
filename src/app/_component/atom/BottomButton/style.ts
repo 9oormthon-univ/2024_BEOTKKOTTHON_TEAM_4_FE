@@ -11,7 +11,7 @@ export const BottomButtonWrap = styled.button`
     ${fontGenerator('16px', '600', '16px', '-0.3px')}
     color: ${Colors.Gray500};
     background-color: ${Colors.Gray100};
-    position: absolute;
+    position: fixed;
     bottom: 0;
   }
   &.confirm_button_Filled {
