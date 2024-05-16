@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import './globalicon.css';
 import Head from 'next/head';
 import 'react-tooltip/dist/react-tooltip.css';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
+import { LocalStorage } from '@/hooks/useUtil';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,6 +20,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  useEffect(() => {
+    const accessToken = LocalStorage.getItem('accessToken');
+    if (accessToken) {
+      console.log('Access Token:', accessToken);
+    } else {
+      localStorage.removeItem('accessToken');
+      window.location.href = '/';
+    }
+  }, []);
+
   return (
     <html lang="ko">
       <head>

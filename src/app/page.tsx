@@ -9,7 +9,7 @@ import { PATH } from '@/routes/path';
 
 export default function Home(): React.JSX.Element {
   const handleKakaoLogin = () => {
-    window.open('https://api-dev.vacgom.co.kr/api/v1/oauth/kakao');
+    window.open(PATH.KAKAOLOGIN);
   };
   const [showContent, setShowContent] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
