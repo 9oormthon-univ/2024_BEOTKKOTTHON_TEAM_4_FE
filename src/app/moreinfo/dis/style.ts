@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 
 export const JoinWrap = styled.main`
   & > .wrap {
-    margin-bottom: 40px;
     padding: 20px 20px;
 
     & > .title {
@@ -19,7 +18,7 @@ export const JoinWrap = styled.main`
     }
   }
   & > .contents {
-    padding: 0 20px;
+    padding: 0 20px 90px 20px;
     display: flex;
     flex-wrap: wrap;
     gap: 7px;

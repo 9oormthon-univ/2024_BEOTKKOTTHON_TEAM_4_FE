@@ -1,5 +1,6 @@
+'use client';
 import type { Metadata } from 'next';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import './globalicon.css';
@@ -7,6 +8,8 @@ import Head from 'next/head';
 import 'react-tooltip/dist/react-tooltip.css';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
 import { LocalStorage } from '@/hooks/useUtil';
+import { useRouter } from 'next/navigation';
+import { PATH } from '@/routes/path';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,14 +23,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  useEffect(() => {
+  const router = useRouter(); // Initialize router
+
+  const checkToken = () => {
     const accessToken = LocalStorage.getItem('accessToken');
-    if (accessToken) {
-      console.log('Access Token:', accessToken);
+    if (!accessToken) {
+      router.push(PATH.root); // Use router.push instead of window.location.href
     } else {
-      localStorage.removeItem('accessToken');
-      window.location.href = '/';
+      router.push(PATH.HOME);
     }
+  };
+
+  useEffect(() => {
+    checkToken();
   }, []);
 
   return (

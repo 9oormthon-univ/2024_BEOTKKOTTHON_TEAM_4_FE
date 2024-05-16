@@ -23,7 +23,7 @@ export const BottomButtonWrap = styled.button`
     ${fontGenerator('16px', '600', '16px', '-0.3px')}
     color: ${Colors.White};
     background-color: ${Colors.Primary};
-    position: absolute;
+    position: fixed;
     bottom: 0;
   }
 `;
