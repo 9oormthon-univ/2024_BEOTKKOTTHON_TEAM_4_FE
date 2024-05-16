@@ -170,7 +170,7 @@ export default function HospitalMap() {
         <Tooltip
           tooltipImage={{
             button: Images.ico_map_tooltip_button,
-            content: Images.ico_map_influ_tooltip,
+            content: Images.ico_map_hpv_tooltip,
           }}
         />
         <ReloadButton onClick={handleCurrentLocationClick} />

@@ -37,6 +37,14 @@ const DiseaseContainer = styled.div`
   justify-content: left;
   margin-bottom: 100px;
   margin-left: 20px;
+  justify-content: space-between;
+  margin: 0 20px 20px 20px;
+  gap: 14px;
+
+  & > div {
+    width: calc(50% - 7px);
+  }
+  margin-bottom:100px;
 `;
 
 const EssentialDiseaseSection = ({ selectedSection }) => {
@@ -133,8 +141,8 @@ const EssentialDiseaseSection = ({ selectedSection }) => {
               : Images.adjustment_selec
           }
           alt="Filter Icon"
-          width={24}
-          height={24}
+          width={32}
+          height={32}
         />
         <Filter
           label="연령 :"
