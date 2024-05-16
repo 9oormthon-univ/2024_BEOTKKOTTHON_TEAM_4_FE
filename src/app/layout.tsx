@@ -23,12 +23,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const router = useRouter(); // Initialize router
+  const router = useRouter();
 
   const checkToken = () => {
     const accessToken = LocalStorage.getItem('accessToken');
     if (!accessToken) {
-      router.push(PATH.root); // Use router.push instead of window.location.href
+      router.push(PATH.root);
     } else {
       router.push(PATH.HOME);
     }
