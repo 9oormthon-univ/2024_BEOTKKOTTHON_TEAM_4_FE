@@ -240,6 +240,7 @@ export default function Home() {
               recommendVaccine.map((vaccine) => (
                 <HomeDiseaseCard
                   key={vaccine.id}
+                  id={vaccine.id}
                   diseaseName={vaccine.name}
                   imageUrl={vaccine.iconImage}
                 />

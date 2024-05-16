@@ -16,7 +16,7 @@ export const UserGreeting = styled.div`
   letter-spacing: -0.03em;
   text-align: left;
   color: #191f28;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 20px;
   margin-left: -80px;
 `;
