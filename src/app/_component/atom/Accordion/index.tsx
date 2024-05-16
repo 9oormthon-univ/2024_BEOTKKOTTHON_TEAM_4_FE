@@ -32,6 +32,7 @@ const AccordionItem = styled.div`
 `;
 
 const QuestionContainer = styled.div`
+  width: 100%;
   padding: 16px 7px;
   display: flex;
   align-items: center;
@@ -40,6 +41,7 @@ const QuestionContainer = styled.div`
 `;
 
 const QuestionText = styled.div`
+  width: 100%;
   font-family: Pretendard;
   font-size: 15px;
   font-weight: 600;
@@ -53,6 +55,7 @@ const QuestionText = styled.div`
 const Answer = styled.div<AnswerProps>`
   padding: ${({ isActive }) => (isActive ? '13px 20px' : '0 20px')};
   max-height: ${({ isActive }) => (isActive ? '500px' : '0')};
+  width: 100%;
   background: #F2F4F6;
   font-family: Pretendard;
   font-size: 14px;
