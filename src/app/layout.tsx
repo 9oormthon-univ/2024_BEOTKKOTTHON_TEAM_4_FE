@@ -29,8 +29,6 @@ export default function RootLayout({
     const accessToken = LocalStorage.getItem('accessToken');
     if (!accessToken) {
       router.push(PATH.root);
-    } else {
-      router.push(PATH.HOME);
     }
   };
 

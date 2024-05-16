@@ -6,6 +6,8 @@ import Button from '@/app/_component/atom/button/button';
 import { Colors, Icons, Images } from '@globalStyles';
 import { useEffect, useState } from 'react';
 import { PATH } from '@/routes/path';
+import { useRouter } from 'next/navigation';
+import { LocalStorage } from '@/hooks/useUtil';
 
 export default function Home(): React.JSX.Element {
   const handleKakaoLogin = () => {

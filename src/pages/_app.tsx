@@ -15,8 +15,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     const accessToken = LocalStorage.getItem('accessToken');
     if (!accessToken) {
       router.push(PATH.root); // Use router.push instead of window.location.href
-    } else {
-      router.push(PATH.HOME);
     }
   };
 
