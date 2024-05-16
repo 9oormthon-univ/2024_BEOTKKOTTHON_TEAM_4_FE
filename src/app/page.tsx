@@ -25,10 +25,10 @@ export default function Home(): React.JSX.Element {
   }, []);
 
   useEffect(() => {
+    localStorage.clear();
     const timer = setTimeout(() => {
       setShowTitle(true);
     }, 400);
-
     return () => clearTimeout(timer);
   }, []);
 
