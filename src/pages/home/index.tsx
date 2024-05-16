@@ -48,7 +48,7 @@ export const Container = styled.main`
       flex-direction: row;
       overflow-x: auto;
       gap: 10px;
-      margin: 10px 20px;
+      //margin: 10px;
       & > .item {
         width: 100px;
         height: 100px;
@@ -119,6 +119,7 @@ const ImageContainer = styled.div`
   margin-left: 20px;
   opacity: 1;
   transition: opacity 1s ease-in-out;
+  margin-bottom: 10px;
 `;
 
 export default function Home() {
