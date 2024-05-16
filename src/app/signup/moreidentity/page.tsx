@@ -87,6 +87,8 @@ export default function MoreIdentity(): React.JSX.Element {
       params.identity_last.trim() !== ''
     ) {
       setFilled(true);
+    } else {
+      setFilled(false);
     }
   }, [params]);
 
