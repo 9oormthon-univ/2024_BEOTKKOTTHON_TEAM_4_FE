@@ -47,12 +47,4 @@ export const diseaseButttonList = [
     first: 'HIV_INFECTION_CD4_BELOW_200',
     second: 'HIV 감염:CD4<200/mm3',
   },
-  {
-    first: 'PREGNANCY',
-    second: '임신부',
-  },
-  {
-    first: 'MEDICAL_WORKER',
-    second: '의료기관 종사자',
-  },
 ];

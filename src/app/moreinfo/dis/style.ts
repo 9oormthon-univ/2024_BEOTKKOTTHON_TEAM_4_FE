@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 export const JoinWrap = styled.main`
   & > .wrap {
+    margin-bottom: 40px;
     padding: 20px 20px;
 
     & > .title {
