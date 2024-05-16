@@ -118,6 +118,7 @@ const ImageContainer = styled.div`
   margin-left: 20px;
   opacity: 1;
   transition: opacity 1s ease-in-out;
+  margin-bottom: 10px;
 `;
 
 export default function Home() {
