@@ -47,7 +47,7 @@ export const Container = styled.main`
       flex-direction: row;
       overflow-x: auto;
       gap: 10px;
-      margin: 10px 20px;
+      //margin: 10px;
       & > .item {
         width: 100px;
         height: 100px;
