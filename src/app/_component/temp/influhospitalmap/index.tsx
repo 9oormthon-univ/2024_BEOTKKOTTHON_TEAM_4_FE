@@ -56,7 +56,7 @@ export default function HospitalMap() {
 
   useEffect(() => {
     const loadMap = () => {
-      const hackathonLocation = new naver.maps.LatLng(37.351586, 127.07188);
+      const hackathonLocation = new naver.maps.LatLng(37.402345, 127.101222);
 
       const mapOptions = {
         center: hackathonLocation,
