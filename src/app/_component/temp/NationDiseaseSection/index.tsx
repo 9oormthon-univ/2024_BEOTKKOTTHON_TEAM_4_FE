@@ -57,7 +57,6 @@ const NationDiseaseSection = ({ selectedSection }) => {
   const [diseaseList, setDiseaseList] = useState([]);
 
   useEffect(() => {
-    console.log('필터링 시작', { ageFilter, sitFilter });
   
     const filterDiseases = () => {
       const ageIndex = ageFilter === '전체' ? -1 : ageRanges.indexOf(ageFilter);
@@ -70,7 +69,6 @@ const NationDiseaseSection = ({ selectedSection }) => {
       });
   
       setDiseaseList(filtered);
-      console.log('필터링 결과', filtered);
     };
   
     filterDiseases();
@@ -86,7 +84,6 @@ const NationDiseaseSection = ({ selectedSection }) => {
           ? `${text.slice(0, 6)}... 외 ${selectedOptions.length - 1}건`
           : `${text} 외 ${selectedOptions.length - 1}건`;
     }
-    console.log('Age Filter:', text);
     setAgeFilter(text);
     setIsAgeModalOpen(false);
   };
@@ -101,7 +98,6 @@ const NationDiseaseSection = ({ selectedSection }) => {
           ? `${text.slice(0, 6)}... 외 ${selectedOptions.length - 1}건`
           : `${text} 외 ${selectedOptions.length - 1}건`;
     }
-    console.log('Situation Filter:', text);
     setSitFilter(text);
     setIsSitModalOpen(false);
   };

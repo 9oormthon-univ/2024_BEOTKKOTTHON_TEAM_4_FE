@@ -48,7 +48,7 @@ export const Container = styled.main`
       flex-direction: row;
       overflow-x: auto;
       gap: 10px;
-      margin: 10px 20px;
+      //margin: 10px;
       & > .item {
         width: 100px;
         height: 100px;
@@ -119,6 +119,7 @@ const ImageContainer = styled.div`
   margin-left: 20px;
   opacity: 1;
   transition: opacity 1s ease-in-out;
+  margin-bottom: 10px;
 `;
 
 export default function Home() {
@@ -177,7 +178,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const images = [Images.ico_home_1, Images.ico_home_2, Images.ico_home_3];
+    const images = [ Images.ico_home_2, Images.ico_home_3];
     let currentIndex = 0;
 
     const intervalId = setInterval(() => {
@@ -214,7 +215,7 @@ export default function Home() {
     fetchCertificates();
   }, [accessToken]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return;
   if (error) return <div>Error: {error}</div>;
 
   return (

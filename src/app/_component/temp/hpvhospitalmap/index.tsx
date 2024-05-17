@@ -56,7 +56,7 @@ export default function HospitalMap() {
 
   useEffect(() => {
     const loadMap = () => {
-      const hackathonLocation = new naver.maps.LatLng(37.351586, 127.07188);
+      const hackathonLocation = new naver.maps.LatLng(37.402345, 127.101222);
 
       const mapOptions = {
         center: hackathonLocation,
@@ -134,7 +134,6 @@ export default function HospitalMap() {
 
   useEffect(() => {
     if (!isModalOpen) {
-      console.log("Selected marker position when modal is closed but remembered:", rememberedMarkerPosition);
       setSelectedMarkerPosition(rememberedMarkerPosition);
       if (rememberedMarkerPosition) {
         mapRef.current.setCenter(rememberedMarkerPosition);
@@ -145,14 +144,12 @@ export default function HospitalMap() {
 
   useEffect(() => {
     if (selectedMarkerPosition && isModalOpen) {
-      console.log("Selected marker position when modal is open:", selectedMarkerPosition);
       mapRef.current.setCenter(selectedMarkerPosition);
     }
   }, [selectedMarkerPosition, isModalOpen]);
 
   useEffect(() => {
     if (selectedMarkerPosition && !isModalOpen) {
-      console.log("Selected marker position when modal is closed but remembered:", selectedMarkerPosition);
       mapRef.current.setCenter(selectedMarkerPosition);
     }
   }, [selectedMarkerPosition, isModalOpen]);

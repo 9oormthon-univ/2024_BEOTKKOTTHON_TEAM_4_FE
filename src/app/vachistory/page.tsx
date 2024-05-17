@@ -98,7 +98,7 @@ export default function Vachistory() {
       router.push(PATH.VACHISTORY_CERTI + '/' + item.vaccineId);
     } else {
       const diseaseId = item.diseaseId;
-      router.push(`/detaildis/${diseaseId}`);
+      router.push(`/detailvac/${diseaseId}`);
     }
   };
 

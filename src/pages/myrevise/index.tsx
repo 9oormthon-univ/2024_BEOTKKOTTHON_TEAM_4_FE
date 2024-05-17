@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Images } from '@globalStyles';
 import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
 import { LocalStorage } from '@/hooks/useUtil';
+import CompeleteToast from '@/app/_component/atom/CompeleteToast';
 
 const ImageWrapper = styled.div`
   display: flex;
@@ -86,6 +87,7 @@ export default function Myrevise() {
   const [isPregnantModalOpen, setPregnantModalOpen] = useState(false);
   const [isMedicalWorkerModalOpen, setMedicalWorkerModalOpen] = useState(false);
   const [isTransplantModalOpen, setTransplantModalOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const conditionOptions = ['기저질환 있음', '기저질환 없음'];
   const pregnantOptions = ['임신 중이예요', '임신 중이 아니예요'];
@@ -129,16 +131,83 @@ export default function Myrevise() {
       .then((data) => {
         setUserNickname(data.nickname);
         setUserName(data.name);
+        // 설정 초기화
+        const healthCodes = data.healthConditions.map(
+          (condition) => condition.code,
+        );
+        setSelectedCondition(
+          healthCodes.includes('SICKLE_CELL_DISEASE')
+            ? '기저질환 있음'
+            : '기저질환 없음',
+        );
+        setSelectedPregnant(
+          healthCodes.includes('PREGNANCY')
+            ? '임신 중이예요'
+            : '임신 중이 아니예요',
+        );
+        setSelectedMedicalWorker(
+          healthCodes.includes('MEDICAL_WORKER')
+            ? '의료기관 종사자예요'
+            : '의료기관 종사자가 아니예요',
+        );
+        setSelectedTransplant(
+          healthCodes.includes('ORGAN_TRANSPLANTATION')
+            ? '장기이식 경험이 있어요'
+            : '장기이식 경험이 없어요',
+        );
         setIsLoading(false);
+
       })
       .catch((error) => {
         setError(error.message);
         setIsLoading(false);
       });
-  }, []);
+  }, [accessToken]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return;
   if (error) return <div>Error: {error}</div>;
+
+  const updateHealthCondition = async () => {
+    const allHealthCodes = {
+      '기저질환 있음': 'SICKLE_CELL_DISEASE',
+      '임신 중이예요': 'PREGNANCY',
+      '의료기관 종사자예요': 'MEDICAL_WORKER',
+      '장기이식 경험이 있어요': 'ORGAN_TRANSPLANTATION'
+    };
+  
+    const healthProfiles = Object.entries(allHealthCodes)
+      .filter(([key, code]) => {
+        return (key === selectedCondition && code === 'SICKLE_CELL_DISEASE') ||
+               (key === selectedPregnant && code === 'PREGNANCY') ||
+               (key === selectedMedicalWorker && code === 'MEDICAL_WORKER') ||
+               (key === selectedTransplant && code === 'ORGAN_TRANSPLANTATION');
+      })
+      .map(([_, code]) => code);
+  
+      try {
+        const response = await fetch('https://api-dev.vacgom.co.kr/api/v1/me/healthCondition', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ healthProfiles })
+        });
+    
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(`API Error: ${errorData.message}`);
+        }
+    
+        const data = await response.json();
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 3000);
+      } catch (error) {
+        console.error('Error updating health condition:', error);
+        setTimeout(() => setShowToast(false), 3000);
+      }
+    };
+  
 
   return (
     <div>
@@ -165,12 +234,13 @@ export default function Myrevise() {
             isOpen={isConditionModalOpen}
             title="기저 질환 선택"
             options={conditionOptions}
-            selectedOptions={[]}
+            selectedOptions={[selectedCondition]}
             onClose={() => setConditionModalOpen(false)}
             onOptionSelect={(option) => setSelectedCondition(option)}
-            onReset={() => {}}
+            onReset={() => setSelectedCondition('선택하세요')}
           />
         </FormSection>
+
         <FormSection>
           <FormItemLabel>임신 여부</FormItemLabel>
           <DropdownContainer onClick={() => setPregnantModalOpen(true)}>
@@ -181,7 +251,7 @@ export default function Myrevise() {
             isOpen={isPregnantModalOpen}
             title="임신 여부 선택"
             options={pregnantOptions}
-            selectedOptions={[]}
+            selectedOptions={[selectedPregnant]}
             onClose={() => setPregnantModalOpen(false)}
             onOptionSelect={(option) => setSelectedPregnant(option)}
             onReset={() => {}}
@@ -197,7 +267,7 @@ export default function Myrevise() {
             isOpen={isMedicalWorkerModalOpen}
             title="의료기관 종사자 선택"
             options={medicalWorkerOptions}
-            selectedOptions={[]}
+            selectedOptions={[selectedMedicalWorker]}
             onClose={() => setMedicalWorkerModalOpen(false)}
             onOptionSelect={(option) => setSelectedMedicalWorker(option)}
             onReset={() => {}}
@@ -213,15 +283,16 @@ export default function Myrevise() {
             isOpen={isTransplantModalOpen}
             title="장기의식 경험 선택"
             options={transplantOptions}
-            selectedOptions={[]}
+            selectedOptions={[selectedTransplant]}
             onClose={() => setTransplantModalOpen(false)}
             onOptionSelect={(option) => setSelectedTransplant(option)}
             onReset={() => {}}
           />
         </FormSection>
       </ContextContainer>
-      <ButtonContainer>
-        <ButtonText> 저장하기</ButtonText>
+      <CompeleteToast isVisible={showToast} />
+      <ButtonContainer onClick={updateHealthCondition}>
+        <ButtonText>저장하기</ButtonText>
       </ButtonContainer>
     </div>
   );
