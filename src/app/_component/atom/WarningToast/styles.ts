@@ -19,5 +19,4 @@ export const ToastContainer = styled.div`
 export const ToastMessage = styled.span`
   font-family: 'Pretendard', sans-serif;
   font-size: 16px;
-  margin-left: 14px;
 `;

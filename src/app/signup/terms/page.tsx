@@ -17,6 +17,7 @@ export default function Terms(): React.JSX.Element {
   const router = useRouter();
   const [params, setParams] = useState<ParamsType>({
     nickname: '',
+    terms: false,
   });
   const onChangeValue: OnChangeValueType = (field, value) => {
     setParams((prevState) => ({
