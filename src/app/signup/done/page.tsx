@@ -19,6 +19,7 @@ import Button from '@/app/_component/atom/button/button';
 import Link from 'next/link';
 import { useQueryParams } from '@/hooks/useParam';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
+import { PATH } from '@/routes/path';
 
 export default function SignupDone(): React.JSX.Element {
   const router = useRouter();
@@ -50,8 +51,6 @@ export default function SignupDone(): React.JSX.Element {
             more={alreadyUser}
             title={`예방접종도우미에`}
             title_bottom={'가입한 이력이 있어요!'}
-            content_top={'서비스 이용을 위해 회원님님의 정보를 입력해 주세요'}
-            content_bottom={'회원님과 꼭 맞는 백신을 추천해 드릴게요!'}
           />
           <Button
             label={'예방접종도우미 로그인하기'}
@@ -60,10 +59,10 @@ export default function SignupDone(): React.JSX.Element {
               width: 100%;
             `}
             onClick={() => {
-              router.push('/login/helper');
+              router.push(PATH.LOGIN);
             }}
           />
-          <Link href={'/login/find'} className={'password'}>
+          <Link href={PATH.LOGIN_FIND} className={'password'}>
             비밀번호가 기억나지 않아요
           </Link>
         </div>
@@ -71,17 +70,17 @@ export default function SignupDone(): React.JSX.Element {
         <div className="padding">
           <DonePage
             title={'예방접종도우미 가입 완료!'}
-            content_top={'서비스 이용을 위해 회원님님의 정보를 입력해 주세요'}
+            content_top={'서비스 이용을 위해 회원님의 정보를 입력해 주세요'}
             content_bottom={'회원님과 꼭 맞는 백신을 추천해 드릴게요!'}
           />
           <Button
-            label={'내 정보 입력하기'}
+            label={'예방 접종 내역 확인하기'}
             size={'large'}
             customStyle={css`
               width: 100%;
             `}
             onClick={() => {
-              router.push('/signup/moreidentity');
+              router.push(PATH.SIGNUP_IDENTITY);
             }}
           />
         </div>
@@ -92,13 +91,13 @@ export default function SignupDone(): React.JSX.Element {
             content_top={'회원님의 백신을 확인해 보세요'}
           />
           <Button
-            label={'시작하기'}
+            label={'내 정보 입력하기'}
             size={'large'}
             customStyle={css`
               width: 100%;
             `}
             onClick={() => {
-              router.push('/moreinfo/dis');
+              router.push(PATH.MOREINFO_DIS);
             }}
           />
         </div>
@@ -110,13 +109,13 @@ export default function SignupDone(): React.JSX.Element {
             content_bottom={'회원님과 꼭 맞는 백신을 추천해 드릴게요!'}
           />
           <Button
-            label={'시작하기'}
+            label={'예방접종 내역 확인하기'}
             size={'large'}
             customStyle={css`
               width: 100%;
             `}
             onClick={() => {
-              router.push('/signup/moreidentity');
+              router.push(PATH.SIGNUP_IDENTITY);
             }}
           />
         </div>
