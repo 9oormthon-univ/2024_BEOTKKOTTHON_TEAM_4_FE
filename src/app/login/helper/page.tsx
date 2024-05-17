@@ -34,7 +34,9 @@ export default function HelperLogin(): React.JSX.Element {
   });
   const [error, setError] = useState<string>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [inputType, setInputType] = useState<string>('password');
+  const [eye, setEye] = useState<ParamsType>({
+    password: false,
+  });
 
   const router = useRouter();
   const onChangeValue: OnChangeValueType = (field, value) => {
@@ -105,12 +107,11 @@ export default function HelperLogin(): React.JSX.Element {
             placeholder="비밀번호를 입력해 주세요"
             value={params.password}
             descriptionTop={'예방접종도우미 비밀번호'}
-            rightIcon={Icons.eyeSlash}
+            rightIcon={eye.password ? Icons.eye : Icons.eyeSlash}
             onClickRightIcon={() => {
-              if (inputType === 'text') setInputType('password');
-              else setInputType('text');
+              setEye({ ...eye, password: !eye.password });
             }}
-            type={inputType}
+            type={eye.password ? 'text' : 'password'}
             customStyle={css`
               & > .input__content > .input__content--right__icon > img {
                 width: 20px;

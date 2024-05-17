@@ -70,11 +70,10 @@ export const InputFormStyles: CssArchiveType = {
     & > div.input__content {
       & > input.input__content--input {
         ${fontGenerator('1rem', '400', '1rem', '-0.3px')}
-
-        border: solid 0.1rem ${Colors.Gray200};
+        border: solid 1px ${Colors.Gray200};
+        background-color: ${Colors.White};
+        color: ${Colors.Black};
         border-radius: 8px;
-        color: ${Colors.Gray500};
-        background-color: ${Colors.Gray50};
 
         &:focus {
           background-color: ${Colors.White};
@@ -182,6 +181,15 @@ export const InputFormStyles: CssArchiveType = {
     & > div.input__content {
       & > input.input__content--input {
         border: solid 0.1rem ${Colors.Primary};
+      }
+    }
+  `,
+  placeHolder: css`
+    & > div.input__content {
+      & > input.input__content--input {
+        border: solid 0.1rem ${Colors.Gray200};
+        color: ${Colors.Gray500};
+        background-color: ${Colors.Gray50};
       }
     }
   `,
