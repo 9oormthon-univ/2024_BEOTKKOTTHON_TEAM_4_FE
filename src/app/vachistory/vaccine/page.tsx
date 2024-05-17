@@ -30,6 +30,8 @@ import { LocalStorage } from '@/hooks/useUtil';
 interface ListDataType {
   vaccineName: string;
   inoculationOrders: [];
+  vaccineId: string;
+  diseaseId: string;
   orderString: string;
   diseaseName: string;
   minOrder: number;
@@ -123,10 +125,10 @@ export default function Vaccine() {
     }
   };
 
-  const handleClickDetail = (diseaseName: string) => {
+  const handleClickDetail = (vaccineId: string) => {
     LocalStorage.setItem('vacType', type);
-    LocalStorage.setItem('diseaseName', diseaseName);
-    router.push(PATH.VACHISTORY_VAC + '/' + diseaseName);
+    LocalStorage.setItem('diseaseId', vaccineId);
+    router.push(PATH.VACHISTORY_VAC + '/' + vaccineId);
   };
 
   return (
@@ -169,7 +171,7 @@ export default function Vaccine() {
               minOrder={item.minOrder}
               inoculationOrders={item.inoculationOrders}
               isCompleted={item.isCompleted}
-              onClick={() => handleClickDetail(item.diseaseName)}
+              onClick={() => handleClickDetail(item.vaccineId)}
             />
           ))}
         </div>
