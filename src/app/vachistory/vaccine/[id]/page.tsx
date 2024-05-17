@@ -46,7 +46,7 @@ export default function Vaccine() {
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
   const type = LocalStorage.getItem('vacType');
-  const diseaseName = LocalStorage.getItem('diseaseName');
+  const vaccineId = LocalStorage.getItem('vaccineId');
 
   const reName = (order: string, vaccineProductName: string) => {
     if (vaccineProductName !== '') {
@@ -55,6 +55,22 @@ export default function Vaccine() {
       return order;
     }
   };
+
+  const fetchDetail = async () => {
+    try {
+      setLoading(true);
+      const detailData = await getInoculationDetail(type, vaccineId);
+      setDetail(detailData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchDetail();
+  }, []);
 
   const nonPage = () => {
     if (loading) {
@@ -103,22 +119,6 @@ export default function Vaccine() {
       );
     }
   };
-
-  const fetchDetail = async () => {
-    try {
-      setLoading(true);
-      const detailData = await getInoculationDetail(type, diseaseName);
-      setDetail(detailData);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchDetail();
-  }, []);
 
   return (
     <Container>
