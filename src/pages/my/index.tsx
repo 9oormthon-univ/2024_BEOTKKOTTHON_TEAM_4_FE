@@ -110,7 +110,7 @@ export default function My() {
       });
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return;
   if (error) return <div>Error: {error}</div>;
 
   return (

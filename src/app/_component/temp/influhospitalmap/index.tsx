@@ -134,7 +134,6 @@ export default function HospitalMap() {
 
   useEffect(() => {
     if (!isModalOpen) {
-      console.log("Selected marker position when modal is closed but remembered:", rememberedMarkerPosition);
       setSelectedMarkerPosition(rememberedMarkerPosition);
       if (rememberedMarkerPosition) {
         mapRef.current.setCenter(rememberedMarkerPosition);
@@ -145,14 +144,12 @@ export default function HospitalMap() {
 
   useEffect(() => {
     if (selectedMarkerPosition && isModalOpen) {
-      console.log("Selected marker position when modal is open:", selectedMarkerPosition);
       mapRef.current.setCenter(selectedMarkerPosition);
     }
   }, [selectedMarkerPosition, isModalOpen]);
 
   useEffect(() => {
     if (selectedMarkerPosition && !isModalOpen) {
-      console.log("Selected marker position when modal is closed but remembered:", selectedMarkerPosition);
       mapRef.current.setCenter(selectedMarkerPosition);
     }
   }, [selectedMarkerPosition, isModalOpen]);
