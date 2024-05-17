@@ -13,7 +13,7 @@ export const Container = styled.main`
   }
 
   & > .body_wrap {
-    padding: 0 20px 90px 20px;
+    padding: 0 0px 90px 20px;
 
     & > .content_body {
       min-height: 220px;
@@ -21,7 +21,7 @@ export const Container = styled.main`
       flex-direction: row;
       overflow-x: auto;
       gap: 15px;
-      margin: 10px -20px 17px 0;
+      margin: 10px 0px 17px 0;
       & > .item {
         //width: 100px;
         //height: 100px;
