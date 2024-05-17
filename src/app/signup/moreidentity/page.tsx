@@ -64,7 +64,7 @@ export default function MoreIdentity(): React.JSX.Element {
         }
         if (response.success) {
         } else {
-          // setError(response.message);
+          setError(response.message);
         }
       } catch (error) {
         console.error('Signup failed:', error.message);
