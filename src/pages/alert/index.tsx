@@ -16,13 +16,13 @@ const DateText = styled.div`
   text-align: left;
   color: #191f28;
   padding: 14px 20px 6px 20px;
-  opacity: 1;
 `;
 
 const AlarmItem = styled.div`
   display: flex;
-  align-items: center;
-  gap: 14px;
+  flex-direction: column;
+  align-items: start;
+  gap: 6px;
   font-family: Pretendard;
   font-size: 14px;
   font-weight: 600;
@@ -30,7 +30,6 @@ const AlarmItem = styled.div`
   text-align: left;
   color: #191f28;
   padding: 14px 20px;
-  opacity: 1;
 `;
 
 const TimeText = styled.div`
@@ -38,7 +37,7 @@ const TimeText = styled.div`
   font-size: 12px;
   font-weight: 500;
   line-height: 14.32px;
-  text-align: right;
+  text-align: left;
   color: #b0b8c1;
   align-self: flex-end;
 `;
@@ -117,7 +116,6 @@ export default function AlertPage() {
       .then((data) => {
         setAlarms(data);
         setIsLoading(false);
-        console.log(data);
       })
       .catch((error) => {
         setError(error.message);
@@ -136,7 +134,12 @@ export default function AlertPage() {
         {alarms.map((alarm, index) => (
           <AlarmItem key={index}>
             <Image
-              src={Images.ico_alert_vaccine}
+              src={
+                alarm.type === 'vaccine' ? Images.ico_alert_vaccine :
+                alarm.type === 'success' ? Images.ico_alert_welcome :
+                alarm.type === 'event' ? Images.ico_alert_clock :
+                Images.ico_alert_vaccine
+              }
               alt="Alert Icon"
               width={20}
               height={20}
