@@ -46,7 +46,7 @@ export default function Verification(): React.JSX.Element {
           /// 이미 가입된 계정
           if (code === 'USER_ALREADY_REGISTERED') {
             LocalStorage.setItem('type', 'helpalready');
-            SecureLocalStorage.setItem('userId', response.data.userId);
+            SecureLocalStorage.setItem('id', response.data.userId);
             router.push(PATH.SIGNUP_DONE);
             return;
           }

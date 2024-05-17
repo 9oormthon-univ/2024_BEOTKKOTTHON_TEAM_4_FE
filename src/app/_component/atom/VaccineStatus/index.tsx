@@ -43,7 +43,6 @@ export default function VaccineStatus({
         statusImages.push('enable');
       }
     }
-    console.log(vaccineType, statusImages);
 
     // inoculationOrders에 해당하는 index를 true로 변경
     inoculationOrders.forEach((order) => {

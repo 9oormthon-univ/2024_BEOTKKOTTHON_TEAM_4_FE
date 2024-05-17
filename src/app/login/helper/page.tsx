@@ -85,7 +85,9 @@ export default function HelperLogin(): React.JSX.Element {
       }
     }
   };
+
   if (loading) return <SkeletonScreen />;
+
   return (
     <HelperLoginWrapper>
       <BackHeader title={'예방접종도우미 로그인'} url={PATH.SIGNUP_TERMS} />
