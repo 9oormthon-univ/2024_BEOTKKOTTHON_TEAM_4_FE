@@ -166,7 +166,6 @@ export default function Myrevise() {
   if (error) return <div>Error: {error}</div>;
 
   const updateHealthCondition = async () => {
-    // 모든 가능한 상태 코드를 배열로 관리
     const allHealthCodes = {
       '기저질환 있음': 'SICKLE_CELL_DISEASE',
       '임신 중이예요': 'PREGNANCY',
@@ -174,7 +173,6 @@ export default function Myrevise() {
       '장기이식 경험이 있어요': 'ORGAN_TRANSPLANTATION'
     };
   
-    // 현재 선택된 상태에 대한 코드만 필터링
     const healthProfiles = Object.entries(allHealthCodes)
       .filter(([key, code]) => {
         return (key === selectedCondition && code === 'SICKLE_CELL_DISEASE') ||
@@ -182,7 +180,7 @@ export default function Myrevise() {
                (key === selectedMedicalWorker && code === 'MEDICAL_WORKER') ||
                (key === selectedTransplant && code === 'ORGAN_TRANSPLANTATION');
       })
-      .map(([_, code]) => code);  // 최종적으로 코드 배열 생성
+      .map(([_, code]) => code);
   
     try {
       const response = await fetch('https://api-dev.vacgom.co.kr/api/v1/me/healthCondition', {
@@ -201,7 +199,6 @@ export default function Myrevise() {
   
       const data = await response.json();
       console.log('Health condition updated:', data);
-      alert('건강 상태 정보가 업데이트되었습니다.');
     } catch (error) {
       console.error('Error updating health condition:', error);
       alert(`건강 상태 정보 업데이트에 실패했습니다: ${error.message}`);
