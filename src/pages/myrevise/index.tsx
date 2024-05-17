@@ -165,6 +165,50 @@ export default function Myrevise() {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
+  const updateHealthCondition = async () => {
+    // 모든 가능한 상태 코드를 배열로 관리
+    const allHealthCodes = {
+      '기저질환 있음': 'SICKLE_CELL_DISEASE',
+      '임신 중이예요': 'PREGNANCY',
+      '의료기관 종사자예요': 'MEDICAL_WORKER',
+      '장기이식 경험이 있어요': 'ORGAN_TRANSPLANTATION'
+    };
+  
+    // 현재 선택된 상태에 대한 코드만 필터링
+    const healthProfiles = Object.entries(allHealthCodes)
+      .filter(([key, code]) => {
+        return (key === selectedCondition && code === 'SICKLE_CELL_DISEASE') ||
+               (key === selectedPregnant && code === 'PREGNANCY') ||
+               (key === selectedMedicalWorker && code === 'MEDICAL_WORKER') ||
+               (key === selectedTransplant && code === 'ORGAN_TRANSPLANTATION');
+      })
+      .map(([_, code]) => code);  // 최종적으로 코드 배열 생성
+  
+    try {
+      const response = await fetch('https://api-dev.vacgom.co.kr/api/v1/me/healthCondition', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ healthProfiles })
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`API Error: ${errorData.message}`);
+      }
+  
+      const data = await response.json();
+      console.log('Health condition updated:', data);
+      alert('건강 상태 정보가 업데이트되었습니다.');
+    } catch (error) {
+      console.error('Error updating health condition:', error);
+      alert(`건강 상태 정보 업데이트에 실패했습니다: ${error.message}`);
+    }
+  };
+  
+
   return (
     <div>
       <MainHeader title="내 정보 수정" url="/my" />
@@ -246,7 +290,7 @@ export default function Myrevise() {
           />
         </FormSection>
       </ContextContainer>
-      <ButtonContainer>
+      <ButtonContainer onClick={updateHealthCondition}>
         <ButtonText> 저장하기</ButtonText>
       </ButtonContainer>
     </div>
