@@ -14,10 +14,11 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import NoneHome from '@/app/_component/atom/NoneHome';
 import { apiDevUrl } from '@/hooks/api';
-import { LocalStorage } from '@/hooks/useUtil';
-import { getCertificate } from '../_lib/getCertificate';
+import { AccessTokenRouter, LocalStorage } from '@/hooks/useUtil';
 import { Colors, fontGenerator } from '@/styles';
 import { VaccineData } from '@/types/globalType';
+import { useRouter as useNavigation } from 'next/dist/client/components/navigation';
+import { PATH } from '@/routes/path';
 
 export const Container = styled.main`
   min-height: 100vh;
@@ -177,8 +178,12 @@ export default function Home() {
       });
   }, []);
 
+  const router = useNavigation();
+  const { decode, goToRoot } = AccessTokenRouter(router);
+
   useEffect(() => {
-    const images = [ Images.ico_home_2, Images.ico_home_3];
+    goToRoot();
+    const images = [Images.ico_home_2, Images.ico_home_3];
     let currentIndex = 0;
 
     const intervalId = setInterval(() => {
