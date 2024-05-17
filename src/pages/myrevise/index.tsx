@@ -156,7 +156,6 @@ export default function Myrevise() {
             : '장기이식 경험이 없어요',
         );
         setIsLoading(false);
-        console.log("얘 데이터", data)
 
       })
       .catch((error) => {
@@ -201,7 +200,6 @@ export default function Myrevise() {
         }
     
         const data = await response.json();
-        console.log('Health condition updated:', data);
         setShowToast(true);
         setTimeout(() => setShowToast(false), 3000);
       } catch (error) {
