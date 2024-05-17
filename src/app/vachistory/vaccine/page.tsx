@@ -127,7 +127,7 @@ export default function Vaccine() {
 
   const handleClickDetail = (vaccineId: string) => {
     LocalStorage.setItem('vacType', type);
-    LocalStorage.setItem('diseaseId', vaccineId);
+    LocalStorage.setItem('vaccineId', vaccineId);
     router.push(PATH.VACHISTORY_VAC + '/' + vaccineId);
   };
 
