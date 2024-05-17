@@ -178,7 +178,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const images = [Images.ico_home_1, Images.ico_home_2, Images.ico_home_3];
+    const images = [ Images.ico_home_2, Images.ico_home_3];
     let currentIndex = 0;
 
     const intervalId = setInterval(() => {
