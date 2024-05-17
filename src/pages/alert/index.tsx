@@ -20,9 +20,8 @@ const DateText = styled.div`
 
 const AlarmItem = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 6px;
+  align-items: center;
+  gap: 14px;
   font-family: Pretendard;
   font-size: 14px;
   font-weight: 600;
@@ -32,14 +31,20 @@ const AlarmItem = styled.div`
   padding: 14px 20px;
 `;
 
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
 const TimeText = styled.div`
   font-family: Pretendard;
   font-size: 12px;
   font-weight: 500;
   line-height: 14.32px;
-  text-align: left;
+  text-align: right;
   color: #b0b8c1;
-  align-self: flex-end;
+  margin-top: 5px;
 `;
 
 const ContentText = styled.div`
@@ -141,11 +146,13 @@ export default function AlertPage() {
                 Images.ico_alert_vaccine
               }
               alt="Alert Icon"
-              width={20}
-              height={20}
+              width={35}
+              height={35}
             />
+            <ContentContainer>
             <ContentText>{alarm.content}</ContentText>
             <TimeText>{formatDate(alarm.createdAt)}</TimeText>
+            </ContentContainer>
           </AlarmItem>
         ))}
       </AlarmList>
