@@ -57,7 +57,6 @@ const EtcDiseaseSection = ({ selectedSection }) => {
   const [diseaseList, setDiseaseList] = useState([]);
 
   useEffect(() => {
-    console.log('필터링 시작', { ageFilter, sitFilter });
   
     const filterDiseases = () => {
       const ageIndex = ageFilter === '전체' ? -1 : ageRanges.indexOf(ageFilter);
@@ -70,7 +69,6 @@ const EtcDiseaseSection = ({ selectedSection }) => {
       });
   
       setDiseaseList(filtered);
-      console.log('필터링 결과', filtered);
     };
   
     filterDiseases();
