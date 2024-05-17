@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { ParamsType } from '@/types/globalType';
 import secureLocalStorage from 'react-secure-storage';
+import jwt from 'jsonwebtoken';
+import { PATH } from '@/routes/path';
+import { useRouter as useNavigation } from 'next/navigation';
+import { useRouter as useRouter } from 'next/router';
 
 type UserIdentity = { date: string; sex: string };
 
@@ -135,3 +139,29 @@ export class SecureLocalStorage {
     }
   }
 }
+
+/**
+ * @define
+ */
+
+export const AccessTokenRouter = (router) => {
+  const accessToken = LocalStorage.getItem('accessToken');
+  const decode = jwt.decode(accessToken);
+  const goToHome = () => {
+    if (decode?.role === 'ROLE_USER') {
+      // 완전가입
+      router.push(PATH.HOME);
+    }
+  };
+  const goToRoot = () => {
+    if (decode?.role === 'ROLE_TEMP_USER') {
+      // 카카오 로그인까지 한 유저
+      router.push(PATH.SIGNUP);
+    } else if (decode?.role !== 'ROLE_USER') {
+      router.push(PATH.root);
+    } else if (accessToken === null) {
+      router.push(PATH.root);
+    }
+  };
+  return { decode, goToHome, goToRoot };
+};

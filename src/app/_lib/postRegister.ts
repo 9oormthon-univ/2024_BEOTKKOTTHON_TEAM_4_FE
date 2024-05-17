@@ -7,11 +7,12 @@ import { LocalStorage, mapTelecom, parseIdentity } from '@/hooks/useUtil';
  */
 export async function postRegister(params) {
   const { id, password, identity_first, identity_last } = params;
+  const identity = parseIdentity(identity_first + identity_last);
 
   const api_params = JSON.stringify({
     id: id,
     password: password,
-    rnn: identity_first + identity_last,
+    rnn: identity.date + identity_last,
   });
 
   console.log(api_params);
@@ -29,18 +30,10 @@ export async function postRegister(params) {
       cache: 'no-store',
     });
 
-    if (!res.ok) {
-      throw new Error('Failed to fetch data');
-    }
-    if (res.status !== 200) {
-    }
-
     const responseData = await res.json();
-    if (responseData.success) {
-      return 'true';
-    } else return responseData.message;
+    return responseData;
   } catch (error) {
     console.error('Error during POST request:', error);
-    throw error;
+    return error;
   }
 }
