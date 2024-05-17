@@ -70,7 +70,7 @@ export default function Verification(): React.JSX.Element {
 
     if (timeLeft <= 0) {
       clearInterval(timer);
-      router.push(PATH.SIGNUP_INFO);
+      router.push(PATH.LOGIN);
     }
 
     return () => {
