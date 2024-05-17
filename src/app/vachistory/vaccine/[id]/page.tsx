@@ -35,6 +35,7 @@ interface DetailDataType {
   order: string;
   vaccineProductName: string;
   vaccineBrandName: string;
+  vaccineName: string;
   date: string;
   agency: string;
   lotNumber: string;
@@ -47,7 +48,14 @@ export default function Vaccine() {
   const type = LocalStorage.getItem('vacType');
   const diseaseName = LocalStorage.getItem('diseaseName');
 
-  console.log(detail);
+  const reName = (order: string, vaccineProductName: string) => {
+    if (vaccineProductName !== '') {
+      return vaccineProductName + ' | ' + order;
+    } else {
+      return order;
+    }
+  };
+
   const nonPage = () => {
     if (loading) {
       return <SkeletonScreen />;
@@ -76,8 +84,8 @@ export default function Vaccine() {
           <div className="body">
             {detail.map((item, key) => (
               <VaccineDetail
-                vaccineDose={item.order}
-                vaccineProductName={item.vaccineProductName}
+                vaccineDose={reName(item.order, item.vaccineProductName)}
+                vaccineName={item.vaccineName}
                 vaccineBrandName={item.vaccineBrandName}
                 inoculatedAt={item.date}
                 inoculationAgency={item.agency}
