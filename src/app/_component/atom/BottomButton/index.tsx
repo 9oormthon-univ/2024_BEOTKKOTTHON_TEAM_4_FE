@@ -9,17 +9,22 @@ import { ButtonType } from '@/app/_component/atom/atomType';
 type props = {
   loading: boolean;
   filled: boolean;
-  handleNextButtonClick: React.MouseEventHandler<HTMLButtonElement>;
+  handleNextButtonClick: () => void;
 };
 const BottomButton: React.FC<props> = ({
   loading,
   filled,
   handleNextButtonClick,
 }) => {
+  const onClickValid = () => {
+    if (filled) {
+      handleNextButtonClick();
+    }
+  };
   return (
     <BottomButtonWrap
       className={filled ? 'confirm_button_Filled' : 'confirm_button'}
-      onClick={handleNextButtonClick}
+      onClick={onClickValid}
     >
       다음
     </BottomButtonWrap>

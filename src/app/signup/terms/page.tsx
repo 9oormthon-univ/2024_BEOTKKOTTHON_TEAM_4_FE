@@ -12,6 +12,7 @@ import { useQueryParams } from '@/hooks/useParam';
 import TermsDetail from '@/app/_component/molecule/TermsDetail';
 import { Suspense, useState } from 'react';
 import { OnChangeValueType, ParamsType } from '@/types/globalType';
+import { PATH } from '@/routes/path';
 
 export default function Terms(): React.JSX.Element {
   const router = useRouter();
@@ -26,13 +27,13 @@ export default function Terms(): React.JSX.Element {
     }));
   };
   const handleClick = () => {
-    router.push('/signup/more');
+    router.push(PATH.SIGNUP_MORE);
   };
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <JoinWrap>
-        <BackHeader title={' '} url={'/signup'} />
+        <BackHeader title={' '} url={PATH.SIGNUP} />
         <JoinTemplate
           title={'예방접종도우미의'}
           useterm={true}
