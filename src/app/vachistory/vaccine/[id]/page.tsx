@@ -29,6 +29,7 @@ import styled from '@emotion/styled';
 import FilterModal from '@/app/_component/organism/filterModal';
 import { LocalStorage } from '@/hooks/useUtil';
 import NonePage from '@/app/_component/molecule/NonePage';
+import SkeletonScreen from '@/app/_component/temp/SkeletonScreen';
 
 interface DetailDataType {
   order: string;
@@ -48,7 +49,9 @@ export default function Vaccine() {
 
   console.log(detail);
   const nonPage = () => {
-    if (detail.length === 0) {
+    if (loading) {
+      return <SkeletonScreen />;
+    } else if (detail.length === 0) {
       return (
         <NonePage
           title="앗! 아직 접종하지 않은 백신이에요."
