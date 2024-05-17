@@ -21,7 +21,7 @@ export default function Verification(): React.JSX.Element {
   const [errormessage, setErrormessage] = useState(''); // 로딩 상태 추가
   const [loading, setLoading] = useState(false);
 
-  const MINUTES_IN_MS = 3 * 60 * 1000;
+  const MINUTES_IN_MS = 2 * 60 * 1000 + 50 * 1000;
   const INTERVAL = 1000;
   const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
 
