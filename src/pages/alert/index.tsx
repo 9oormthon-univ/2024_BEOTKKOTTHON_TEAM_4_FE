@@ -92,15 +92,12 @@ export default function AlertPage() {
   };
 
   const renderDate = () => {
-    const today = new Date();
-    const date = new Date();
-    const formattedDate = `${date.getMonth() + 1}월 ${date.getDate()}일`;
-
-    return today.getDate() === date.getDate() &&
-      today.getMonth() === date.getMonth() &&
-      today.getFullYear() === date.getFullYear()
-      ? '오늘'
-      : formattedDate;
+    if (alarms.length > 0) {
+      const mostRecentAlarm = alarms[0];
+      const date = new Date(mostRecentAlarm.createdAt);
+      return `${date.getMonth() + 1}월 ${date.getDate()}일`;
+    }
+    return '날짜 정보 없음';
   };
 
   const accessToken = LocalStorage.getItem('accessToken');
