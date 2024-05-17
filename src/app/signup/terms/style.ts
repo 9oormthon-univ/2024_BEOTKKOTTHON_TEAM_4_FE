@@ -2,7 +2,8 @@ import { Colors, fontGenerator } from '@/styles';
 import styled from '@emotion/styled';
 
 export const JoinWrap = styled.main`
-  height: 62px;
+  //height: 62px;
+  padding-bottom: 90px;
   .input_title {
     ${fontGenerator('14px', '600', '16.71px')}
     padding-bottom: 10px;

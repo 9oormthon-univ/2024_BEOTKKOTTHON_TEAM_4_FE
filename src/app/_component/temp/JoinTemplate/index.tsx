@@ -17,6 +17,7 @@ type props = {
   useterm?: boolean;
   falseLabel?: string;
   trueLabel?: string;
+  oneLabel?: string;
   params: ParamsType;
   field: string;
   onChangeValue: OnChangeValueType;
@@ -30,6 +31,7 @@ const JoinTemplate: React.FC<props> = ({
   subBottom,
   falseLabel,
   trueLabel,
+  oneLabel,
   field,
   onChangeValue,
 }) => {
@@ -68,6 +70,22 @@ const JoinTemplate: React.FC<props> = ({
                 : Icons.checkBox_unselec_en
             }
             onClick={() => onChangeValue(field, true)}
+            variant={'OutlineWhite'}
+            size={'large'}
+          />
+        )}
+        {oneLabel && (
+          <Button
+            label={oneLabel}
+            prevIcon={
+              params[field] === true
+                ? Icons.checkBox_selec_en
+                : Icons.checkBox_unselec_en
+            }
+            onClick={() => {
+              if (params[field] === true) onChangeValue(field, false);
+              else onChangeValue(field, true);
+            }}
             variant={'OutlineWhite'}
             size={'large'}
           />

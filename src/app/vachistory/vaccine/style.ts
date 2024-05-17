@@ -5,7 +5,7 @@ export const Container = styled.main`
   width: 100%;
   height: 100vh;
   & > .body {
-    padding: 0 20px; 14px 20px;
+    padding: 0 20px 14px 20px;
     min-height: 70%;
     & > .content_wrap {
       padding: 2px 0 14px 0;

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useId } from 'react';
+import React, { useId, useState } from 'react';
 
 // Styles
 import { css } from '@emotion/react';
@@ -60,13 +60,22 @@ const Index = ({
   children,
   autoComplete = 'one-time-code',
 }: React.PropsWithChildren<InputFormType>) => {
+  const [isInputFilled, setInputFilled] = useState(false);
+
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    onBlur(event);
+    setInputFilled(event.target.value !== '');
+  };
+
+  const variantValue = !isInputFilled ? 'placeHolder' : variant;
+
   return (
     <InputWrapper
       key={`input--wrapper${id}`}
       className={className}
       customStyle={customStyle}
       size={size}
-      variant={variant}
+      variant={variantValue}
       disabled={disabled}
     >
       {descriptionTop && (
@@ -94,7 +103,7 @@ const Index = ({
           onKeyDown={onKeyDown}
           onChange={onChange}
           onClick={onClick}
-          onBlur={onBlur}
+          onBlur={handleBlur}
           autoComplete={autoComplete}
         />
         {rightIcon && (

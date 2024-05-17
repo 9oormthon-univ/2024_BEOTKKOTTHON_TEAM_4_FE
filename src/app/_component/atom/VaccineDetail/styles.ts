@@ -30,6 +30,7 @@ export const VaccineDetailContainer = styled.div`
         color: ${Colors.Primary}
       }
       & > .inoculatedAt {
+        min-width: 64px;
         ${fontGenerator('12px', '500', '14.4px', '-0.3px')}
         color: ${Colors.Gray400}
       }

@@ -10,6 +10,7 @@ import vacgom from '../../public/assets/image/img-splash-vacgom.svg';
 import Vacgom01 from '../../public/assets/image/img-Vacgom01.svg';
 import vacgomLoading from '../../public/assets/image/img-Vacgom-loading.svg';
 import vacgom_face from '../../public/assets/image/img-vacgom-face.svg';
+import syringe from '../../public/assets/image/img-syringe.svg';
 
 import share from '../../public/assets/ico/ico-share.svg';
 import save from '../../public/assets/ico/ico-save.svg';
@@ -251,4 +252,6 @@ export const Images: ImagesType = {
   vaccine_status_true: vaccine_status_true,
   vaccine_status_disable: vaccine_status_disable,
   splash: splash,
+  syringe:syringe,
+  
 };

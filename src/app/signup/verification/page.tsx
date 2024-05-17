@@ -14,6 +14,7 @@ import { LocalStorage, SecureLocalStorage } from '@/hooks/useUtil';
 import { OnChangeValueType } from '@/types/globalType';
 import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
 import SkeletonScreen from '@/app/_component/temp/SkeletonScreen';
+import { PATH } from '@/routes/path';
 
 export default function Verification(): React.JSX.Element {
   const router = useRouter();
@@ -21,7 +22,7 @@ export default function Verification(): React.JSX.Element {
   const [errormessage, setErrormessage] = useState(''); // 로딩 상태 추가
   const [loading, setLoading] = useState(false);
 
-  const MINUTES_IN_MS = 3 * 60 * 1000;
+  const MINUTES_IN_MS = 2 * 60 * 1000 + 50 * 1000;
   const INTERVAL = 1000;
   const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
 
@@ -40,13 +41,13 @@ export default function Verification(): React.JSX.Element {
         if (success) {
           // 신규 가입 성공
           LocalStorage.setItem('type', 'helpnew');
-          router.push(`/signup/done`);
+          router.push(PATH.SIGNUP_DONE);
         } else {
           /// 이미 가입된 계정
           if (code === 'USER_ALREADY_REGISTERED') {
             LocalStorage.setItem('type', 'helpalready');
-            SecureLocalStorage.setItem('userId', response.data.userId);
-            router.push(`/signup/done`);
+            SecureLocalStorage.setItem('id', response.data.userId);
+            router.push(PATH.SIGNUP_DONE);
             return;
           }
           // 잘못 입력시(RETRY_SMS) , 인증절차 다시 시도(CHALLENGE_NOT_FOUND)
@@ -70,7 +71,7 @@ export default function Verification(): React.JSX.Element {
 
     if (timeLeft <= 0) {
       clearInterval(timer);
-      router.push('/signup/info');
+      router.push(PATH.SIGNUP_TERMS);
     }
     return () => {
       clearInterval(timer);
@@ -85,7 +86,7 @@ export default function Verification(): React.JSX.Element {
 
   return (
     <VerificationWrap>
-      <BackHeader title={'본인인증'} url={'/signup'} />
+      <BackHeader title={'본인인증'} url={PATH.SIGNUP} />
       <div className="top">
         문자로 전송받은 <br />
         인증번호 6자리를 입력해 주세요.

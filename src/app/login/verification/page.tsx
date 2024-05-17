@@ -17,6 +17,7 @@ import { OnChangeValueType } from '@/types/globalType';
 import { postFindChallenge } from '@/app/_lib/postFindChallenge';
 import WarningToast from '@/app/_component/atom/WarningToast';
 import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
+import { PATH } from '@/routes/path';
 
 export default function Verification(): React.JSX.Element {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function Verification(): React.JSX.Element {
   const [errormessage, setErrormessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const MINUTES_IN_MS = 3 * 60 * 1000;
+  const MINUTES_IN_MS = 2 * 60 * 1000 + 50 * 1000;
   const INTERVAL = 1000;
   const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
 
@@ -43,7 +44,7 @@ export default function Verification(): React.JSX.Element {
         if (success) {
           LocalStorage.setItem('type', 'loginEnd');
           SecureLocalStorage.setItem('id', response.data.userId);
-          router.push(`/signup/done`);
+          router.push(PATH.SIGNUP_DONE);
         } else {
           // 코드에프에러(CODEF_ERROR)
           if (code === 'CODEF_ERROR') {
@@ -69,7 +70,7 @@ export default function Verification(): React.JSX.Element {
 
     if (timeLeft <= 0) {
       clearInterval(timer);
-      router.push('/signup/info');
+      router.push(PATH.LOGIN);
     }
 
     return () => {
@@ -83,7 +84,7 @@ export default function Verification(): React.JSX.Element {
 
   return (
     <VerificationWrap>
-      <BackHeader title={'아이디/비밀번호 찾기'} url={'/login/find'} />
+      <BackHeader title={'아이디/비밀번호 찾기'} url={PATH.LOGIN_FIND} />
       <div className="top">
         문자로 전송받은 <br />
         인증번호 6자리를 입력해 주세요.

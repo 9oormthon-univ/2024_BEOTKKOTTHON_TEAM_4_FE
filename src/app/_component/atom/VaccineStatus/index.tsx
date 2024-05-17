@@ -47,7 +47,7 @@ export default function VaccineStatus({
     // inoculationOrders에 해당하는 index를 true로 변경
     inoculationOrders.forEach((order) => {
       // const index = order - minOrder;
-      if (order >= 0 && order < statusImages.length) {
+      if (order >= 0 && order <= statusImages.length) {
         statusImages[order - 1] = 'true';
       }
     });

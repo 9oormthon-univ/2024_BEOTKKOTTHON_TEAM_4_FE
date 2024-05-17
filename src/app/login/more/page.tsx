@@ -31,15 +31,17 @@ export default function Signup(): React.JSX.Element {
     password: '',
     password_check: '',
   });
-
   const [validate, setValidate] = useState<ParamsType>({
     password: { condition1: 'default', condition2: 'default' },
     password_check: { condition1: 'default' },
   });
+  const [eye, setEye] = useState<ParamsType>({
+    password: false,
+    password_check: false,
+  });
   const [loading, setLoading] = useState(false); // 로딩 상태 추가
   const router = useRouter();
   const allConditionsTrue = isAllConditionsTrue(validate);
-  console.log(allConditionsTrue);
 
   const onChangeValue: OnChangeValueType = (field, value, type) => {
     setParams((prevState) => ({
@@ -115,7 +117,7 @@ export default function Signup(): React.JSX.Element {
             placeholder="영문, 숫자, 특수문자 조합 9자 이상"
             value={params.password}
             descriptionTop={'예방접종도우미 비밀번호 변경'}
-            type="password"
+            type={eye.password ? 'text' : 'password'}
             variant={
               validate.password.condition1 === 'false' ||
               validate.password.condition2 === 'false'
@@ -125,6 +127,10 @@ export default function Signup(): React.JSX.Element {
             onKeyDown={handleKeyDown}
             onChange={(e) => {
               onChangeValue('password', e.target.value);
+            }}
+            rightIcon={eye.password ? Icons.eye : Icons.eyeSlash}
+            onClickRightIcon={() => {
+              setEye({ ...eye, password: !eye.password });
             }}
           />
           <div className="wrap">
@@ -143,7 +149,7 @@ export default function Signup(): React.JSX.Element {
             placeholder="비밀번호를 다시 입력해 주세요"
             value={params.password_check}
             descriptionTop={'비밀번호 확인'}
-            type="password"
+            type={eye.password_check ? 'text' : 'password'}
             variant={
               validate.password_check.condition1 === 'false'
                 ? 'error'
@@ -152,6 +158,10 @@ export default function Signup(): React.JSX.Element {
             onKeyDown={handleKeyDown}
             onChange={(e) => {
               onChangeValue('password_check', e.target.value);
+            }}
+            rightIcon={eye.password_check ? Icons.eye : Icons.eyeSlash}
+            onClickRightIcon={() => {
+              setEye({ ...eye, password_check: !eye.password_check });
             }}
           />
           <ValidateCheck

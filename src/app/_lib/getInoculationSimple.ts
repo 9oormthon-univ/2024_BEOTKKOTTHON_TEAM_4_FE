@@ -6,6 +6,7 @@ import { nationDiseaseMatch } from '@/constants';
 export async function getInoculationSimple(type: string, disease: string[]) {
   const accessToken = LocalStorage.getItem('accessToken');
   let UpdatedDisease: string[] = [];
+  console.log('disease', disease);
   if (disease[0] === '전체') {
     UpdatedDisease = [];
   } else {
