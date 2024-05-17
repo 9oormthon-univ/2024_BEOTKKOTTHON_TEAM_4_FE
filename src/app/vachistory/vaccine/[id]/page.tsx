@@ -46,7 +46,6 @@ export default function Vaccine() {
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
   const type = LocalStorage.getItem('vacType');
-  const vaccineId = LocalStorage.getItem('vaccineId');
 
   const reName = (order: string, vaccineProductName: string) => {
     if (vaccineProductName !== '') {
@@ -57,6 +56,8 @@ export default function Vaccine() {
   };
 
   const fetchDetail = async () => {
+    const vaccineId = LocalStorage.getItem('vaccineId');
+
     try {
       setLoading(true);
       const detailData = await getInoculationDetail(type, vaccineId);
