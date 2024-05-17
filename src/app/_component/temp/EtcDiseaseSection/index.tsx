@@ -84,7 +84,6 @@ const EtcDiseaseSection = ({ selectedSection }) => {
           ? `${text.slice(0, 6)}... 외 ${selectedOptions.length - 1}건`
           : `${text} 외 ${selectedOptions.length - 1}건`;
     }
-    console.log('Age Filter:', text);
     setAgeFilter(text);
     setIsAgeModalOpen(false);
   };
@@ -99,7 +98,6 @@ const EtcDiseaseSection = ({ selectedSection }) => {
           ? `${text.slice(0, 6)}... 외 ${selectedOptions.length - 1}건`
           : `${text} 외 ${selectedOptions.length - 1}건`;
     }
-    console.log('Situation Filter:', text);
     setSitFilter(text);
     setIsSitModalOpen(false);
   };
