@@ -129,13 +129,38 @@ export default function Myrevise() {
       .then((data) => {
         setUserNickname(data.nickname);
         setUserName(data.name);
+        // 설정 초기화
+        const healthCodes = data.healthConditions.map(
+          (condition) => condition.code,
+        );
+        setSelectedCondition(
+          healthCodes.includes('SICKLE_CELL_DISEASE')
+            ? '기저질환 있음'
+            : '기저질환 없음',
+        );
+        setSelectedPregnant(
+          healthCodes.includes('PREGNANCY')
+            ? '임신 중이예요'
+            : '임신 중이 아니예요',
+        );
+        setSelectedMedicalWorker(
+          healthCodes.includes('MEDICAL_WORKER')
+            ? '의료기관 종사자예요'
+            : '의료기관 종사자가 아니예요',
+        );
+        setSelectedTransplant(
+          healthCodes.includes('ORGAN_TRANSPLANTATION')
+            ? '장기이식 경험이 있어요'
+            : '장기이식 경험이 없어요',
+        );
         setIsLoading(false);
+        console.log("얘 데이터", data)
       })
       .catch((error) => {
         setError(error.message);
         setIsLoading(false);
       });
-  }, []);
+  }, [accessToken]);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -165,12 +190,13 @@ export default function Myrevise() {
             isOpen={isConditionModalOpen}
             title="기저 질환 선택"
             options={conditionOptions}
-            selectedOptions={[]}
+            selectedOptions={[selectedCondition]}
             onClose={() => setConditionModalOpen(false)}
             onOptionSelect={(option) => setSelectedCondition(option)}
-            onReset={() => {}}
+            onReset={() => setSelectedCondition('선택하세요')}
           />
         </FormSection>
+
         <FormSection>
           <FormItemLabel>임신 여부</FormItemLabel>
           <DropdownContainer onClick={() => setPregnantModalOpen(true)}>
@@ -181,7 +207,7 @@ export default function Myrevise() {
             isOpen={isPregnantModalOpen}
             title="임신 여부 선택"
             options={pregnantOptions}
-            selectedOptions={[]}
+            selectedOptions={[selectedPregnant]}
             onClose={() => setPregnantModalOpen(false)}
             onOptionSelect={(option) => setSelectedPregnant(option)}
             onReset={() => {}}
@@ -197,7 +223,7 @@ export default function Myrevise() {
             isOpen={isMedicalWorkerModalOpen}
             title="의료기관 종사자 선택"
             options={medicalWorkerOptions}
-            selectedOptions={[]}
+            selectedOptions={[selectedMedicalWorker]}
             onClose={() => setMedicalWorkerModalOpen(false)}
             onOptionSelect={(option) => setSelectedMedicalWorker(option)}
             onReset={() => {}}
@@ -213,7 +239,7 @@ export default function Myrevise() {
             isOpen={isTransplantModalOpen}
             title="장기의식 경험 선택"
             options={transplantOptions}
-            selectedOptions={[]}
+            selectedOptions={[selectedTransplant]}
             onClose={() => setTransplantModalOpen(false)}
             onOptionSelect={(option) => setSelectedTransplant(option)}
             onReset={() => {}}
