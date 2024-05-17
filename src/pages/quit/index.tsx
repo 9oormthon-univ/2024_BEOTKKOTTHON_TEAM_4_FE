@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import MainHeader from '@/app/_component/atom/RouteHeader';
 import Image from 'next/image';
 import { Images } from '@globalStyles';
-
+import { LocalStorage } from '@/hooks/useUtil';
 
 const ImageWrapper = styled.div`
   display: flex;
@@ -63,6 +63,27 @@ const SecondaryButton = styled(Button)`
 
 export default function Quit() {
 
+  const accessToken = LocalStorage.getItem('accessToken');
+
+  const handleAccountDeletion = async () => {
+    try {
+      const response = await fetch('https://api-dev.vacgom.co.kr/api/v1/me', {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete account');
+      }
+
+      window.location.href = '/seeagain';
+    } catch (error) {
+      console.error('Account deletion failed:', error);
+    }
+  };
+
 
   return (
     <div>
@@ -83,7 +104,7 @@ export default function Quit() {
         <CautionText>백신만의 백신 인증서를{"\n"}발급받을 수 없어요</CautionText>
       </CautionItem>
       <PrimaryButton onClick={() => window.location.href = '/home'}>홈으로 이동</PrimaryButton>
-      <SecondaryButton onClick={() => window.location.href = '/seeagain'}>계정 탈퇴</SecondaryButton>
+      <SecondaryButton onClick={handleAccountDeletion}>계정 탈퇴</SecondaryButton>
     </div>
   );
   }
