@@ -12,7 +12,7 @@ export async function postRegister(params) {
   const api_params = JSON.stringify({
     id: id,
     password: password,
-    rnn: identity.date + identity_last,
+    rnn: identity_first + identity_last,
   });
 
   console.log(api_params);
