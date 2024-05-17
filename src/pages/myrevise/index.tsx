@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Images } from '@globalStyles';
 import FilterRadioModal from '@/app/_component/organism/filterRadioModal';
 import { LocalStorage } from '@/hooks/useUtil';
+import CompeleteToast from '@/app/_component/atom/CompeleteToast';
 
 const ImageWrapper = styled.div`
   display: flex;
@@ -86,6 +87,7 @@ export default function Myrevise() {
   const [isPregnantModalOpen, setPregnantModalOpen] = useState(false);
   const [isMedicalWorkerModalOpen, setMedicalWorkerModalOpen] = useState(false);
   const [isTransplantModalOpen, setTransplantModalOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const conditionOptions = ['기저질환 있음', '기저질환 없음'];
   const pregnantOptions = ['임신 중이예요', '임신 중이 아니예요'];
@@ -155,6 +157,7 @@ export default function Myrevise() {
         );
         setIsLoading(false);
         console.log("얘 데이터", data)
+
       })
       .catch((error) => {
         setError(error.message);
@@ -182,28 +185,30 @@ export default function Myrevise() {
       })
       .map(([_, code]) => code);
   
-    try {
-      const response = await fetch('https://api-dev.vacgom.co.kr/api/v1/me/healthCondition', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ healthProfiles })
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(`API Error: ${errorData.message}`);
+      try {
+        const response = await fetch('https://api-dev.vacgom.co.kr/api/v1/me/healthCondition', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ healthProfiles })
+        });
+    
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(`API Error: ${errorData.message}`);
+        }
+    
+        const data = await response.json();
+        console.log('Health condition updated:', data);
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 3000);
+      } catch (error) {
+        console.error('Error updating health condition:', error);
+        setTimeout(() => setShowToast(false), 3000);
       }
-  
-      const data = await response.json();
-      console.log('Health condition updated:', data);
-    } catch (error) {
-      console.error('Error updating health condition:', error);
-      alert(`건강 상태 정보 업데이트에 실패했습니다: ${error.message}`);
-    }
-  };
+    };
   
 
   return (
@@ -287,8 +292,9 @@ export default function Myrevise() {
           />
         </FormSection>
       </ContextContainer>
+      <CompeleteToast isVisible={showToast} />
       <ButtonContainer onClick={updateHealthCondition}>
-        <ButtonText> 저장하기</ButtonText>
+        <ButtonText>저장하기</ButtonText>
       </ButtonContainer>
     </div>
   );
