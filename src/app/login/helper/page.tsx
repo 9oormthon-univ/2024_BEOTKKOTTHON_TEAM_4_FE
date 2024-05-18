@@ -67,7 +67,7 @@ export default function HelperLogin(): React.JSX.Element {
         SecureLocalStorage.setItem('id', params.id);
         SecureLocalStorage.setItem('password', params.password);
         if (response.success) {
-          LocalStorage.setItem('type', 'loginEnd');
+          LocalStorage.setItem('type', 'haveIdentity');
           LocalStorage.setItem('vaccineList', JSON.stringify(response.data));
           router.push(PATH.SIGNUP_DONE);
         } else {
@@ -78,7 +78,8 @@ export default function HelperLogin(): React.JSX.Element {
             setTimeout(() => {
               router.push(PATH.LOGIN_FIND);
             }, [5000]);
-          } else if (response.code === 'RNN_REQUIRED') {
+          }
+          if (response.code === 'RRN_REQUIRED') {
             setError(response.message + ' 5초 후 페이지가 전환됩니다.');
             setTimeout(() => {
               router.push(PATH.SIGNUP_IDENTITY);

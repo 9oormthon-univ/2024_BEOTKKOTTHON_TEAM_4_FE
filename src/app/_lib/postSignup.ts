@@ -12,7 +12,7 @@ export async function postSignup(userData) {
     phoneNumber,
   } = userData;
 
-  const update_identity = parseIdentity(identity_first);
+  const update_identity = parseIdentity(identity_first + identity_last);
   const mappedTelecom = mapTelecom(telecom);
 
   const api_params = JSON.stringify({

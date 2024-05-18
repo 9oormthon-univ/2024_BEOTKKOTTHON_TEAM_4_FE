@@ -7,7 +7,8 @@ import { Colors, Icons, Images } from '@globalStyles';
 import { useEffect, useState } from 'react';
 import { PATH } from '@/routes/path';
 import { useRouter } from 'next/navigation';
-import { LocalStorage } from '@/hooks/useUtil';
+import { AccessTokenRouter, LocalStorage } from '@/hooks/useUtil';
+import jwt from 'jsonwebtoken';
 
 export default function Home(): React.JSX.Element {
   const handleKakaoLogin = () => {
@@ -15,6 +16,8 @@ export default function Home(): React.JSX.Element {
   };
   const [showContent, setShowContent] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
+  const router = useRouter();
+  const { goToHome } = AccessTokenRouter(router);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -25,7 +28,7 @@ export default function Home(): React.JSX.Element {
   }, []);
 
   useEffect(() => {
-    localStorage.clear();
+    goToHome();
     const timer = setTimeout(() => {
       setShowTitle(true);
     }, 400);

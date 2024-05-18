@@ -27,6 +27,7 @@ import WarningToast from '@/app/_component/atom/WarningToast';
 import { postLogin } from '@/app/_lib/postLogin';
 import WarningToastWrap from '@/app/_component/molecule/WorningToastWrap';
 import LoadingPage from '@/app/_component/temp/Loading';
+import { PATH } from '@/routes/path';
 
 export default function MoreIdentity(): React.JSX.Element {
   const [params, setParams] = useState<ParamsType>({
@@ -50,10 +51,18 @@ export default function MoreIdentity(): React.JSX.Element {
         setLoading(true); // 로딩 시작
         const response = await postRegister(params);
         const vaccination = await postLogin(params);
-        if (vaccination) {
+        if (vaccination.success) {
           LocalStorage.setItem('type', 'submit');
           LocalStorage.setItem('vaccineList', JSON.stringify(vaccination.data));
           router.push(`/signup/done`);
+        } else {
+          if (vaccination.code === 'NIP_ERROR') {
+            setError('주민등록번호를 확인해주세요');
+          } else {
+            setError(vaccination.message);
+          }
+        }
+        if (response.success) {
         } else {
           setError(response.message);
         }
@@ -94,7 +103,7 @@ export default function MoreIdentity(): React.JSX.Element {
 
   return (
     <MoreIdentityWrapper>
-      <BackHeader title={'예방접종도우미 내역 조회'} url={''} />
+      <BackHeader title={'예방접종도우미 내역 조회'} url={PATH.SIGNUP} />
       <div className="top">
         주민등록번호 13자를 <br />
         모두 입력해주세요
@@ -124,7 +133,8 @@ export default function MoreIdentity(): React.JSX.Element {
               type="password"
               maxLength={7}
               onChange={(e) => {
-                onChangeValue('identity_last', filterNumericInput(e));
+                let filteredValue = filterNumericInput(e);
+                onChangeValue('identity_last', filteredValue);
               }}
             />
           </div>
