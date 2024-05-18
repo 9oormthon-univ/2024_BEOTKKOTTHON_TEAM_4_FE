@@ -14,11 +14,10 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import NoneHome from '@/app/_component/atom/NoneHome';
 import { apiDevUrl } from '@/hooks/api';
-import { AccessTokenRouter, LocalStorage } from '@/hooks/useUtil';
+import { LocalStorage } from '@/hooks/useUtil';
+import { getCertificate } from '../_lib/getCertificate';
 import { Colors, fontGenerator } from '@/styles';
 import { VaccineData } from '@/types/globalType';
-import { useRouter as useNavigation } from 'next/dist/client/components/navigation';
-import { PATH } from '@/routes/path';
 
 export const Container = styled.main`
   min-height: 100vh;
@@ -115,9 +114,8 @@ const GreetingMessage = styled.span`
 
 const ImageContainer = styled.div`
   display: flex;
-  justify-content: left;
+  justify-content: center;
   margin-top: 20px;
-  margin-left: 20px;
   opacity: 1;
   transition: opacity 1s ease-in-out;
   margin-bottom: 10px;
@@ -128,7 +126,7 @@ export default function Home() {
   const [recommendVaccine, setRecommendVaccine] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
-  const [currentImage, setCurrentImage] = useState(Images.ico_home_1);
+  const [currentImage, setCurrentImage] = useState(Images.ico_home_2);
   const [imageKey, setImageKey] = useState(0);
   const [certificateData, setCertificateData] = useState<VaccineData[]>([]);
 
@@ -178,12 +176,8 @@ export default function Home() {
       });
   }, []);
 
-  const router = useNavigation();
-  const { decode, goToRoot } = AccessTokenRouter(router);
-
   useEffect(() => {
-    goToRoot();
-    const images = [Images.ico_home_2, Images.ico_home_3];
+    const images = [ Images.ico_home_2, Images.ico_home_3];
     let currentIndex = 0;
 
     const intervalId = setInterval(() => {
@@ -286,3 +280,4 @@ export default function Home() {
     </>
   );
 }
+
