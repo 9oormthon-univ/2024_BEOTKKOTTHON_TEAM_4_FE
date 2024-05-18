@@ -127,7 +127,7 @@ export default function Home() {
   const [recommendVaccine, setRecommendVaccine] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
-  const [currentImage, setCurrentImage] = useState(Images.ico_home_1);
+  const [currentImage, setCurrentImage] = useState(Images.ico_home_2);
   const [imageKey, setImageKey] = useState(0);
   const [certificateData, setCertificateData] = useState<VaccineData[]>([]);
 
