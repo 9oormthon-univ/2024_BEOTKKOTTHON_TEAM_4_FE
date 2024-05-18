@@ -12,6 +12,12 @@ export const Modal = ({ isOpen, onClose, content }) => {
     e.stopPropagation();
   };
 
+  const getCurrentTime = () => new Date().getHours() + ':' + new Date().getMinutes().toString().padStart(2, '0');
+  const isOpenNow = (closeTime) => {
+    const currentTime = getCurrentTime();
+    return currentTime < closeTime;
+  };
+
   return (
     <Overlay onClick={handleOverlayClick}>
       <ModalContainer onClick={handleModalClick}>
@@ -21,11 +27,11 @@ export const Modal = ({ isOpen, onClose, content }) => {
           <Major>{content.major}</Major>
         </MainSection>
         <SubSection>
-          <HospitalNow>진료 여부</HospitalNow>
-          <HospitalHow>연결 아직 안함</HospitalHow>
+          <HospitalNow>{isOpenNow(content.closeTime) ? '진료 중' : '진료 종료'}</HospitalNow>
+          <HospitalHow>{`${content.closeTime} 진료 마감`}</HospitalHow>
         </SubSection>
         <Address>{content.address}</Address>
       </ModalContainer>
     </Overlay>
-  );
-};
+   );
+  };
