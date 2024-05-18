@@ -138,7 +138,7 @@ export default function AlertPage() {
             <Image
               src={
                 alarm.type === 'vaccine' ? Images.ico_alert_vaccine :
-                alarm.type === 'success' ? Images.ico_alert_welcome :
+                alarm.type === 'welcome' ? Images.ico_alert_welcome :
                 alarm.type === 'event' ? Images.ico_alert_clock :
                 Images.ico_alert_vaccine
               }

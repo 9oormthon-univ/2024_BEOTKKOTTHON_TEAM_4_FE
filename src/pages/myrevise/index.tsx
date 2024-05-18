@@ -80,6 +80,7 @@ const ButtonText = styled.div`
   letter-spacing: -0.30000001192092896px;
   text-align: center;
   padding: 20px;
+  color: #ffffff;
 `;
 
 export default function Myrevise() {

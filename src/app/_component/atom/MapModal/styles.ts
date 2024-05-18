@@ -46,6 +46,7 @@ export const MainSection = styled.div`
   width:321px
   height:48px;
   padding: 6px 0px 10px 0px;
+  justify-content: space-between;
   gap: 10px;
   opacity: 0px;
 `;
@@ -56,6 +57,7 @@ export const HospitalName = styled.div`
   font-weight: 700;
   color: #333d4b;
   margin-bottom: 20px;
+  flex: 2;
 `;
 
 export const Major = styled.div`
@@ -64,7 +66,8 @@ export const Major = styled.div`
   font-weight: 500;
   color: #4196fd;
   text-align: right;
-  margin-top: -20px;
+  flex: 1;
+  margin-top: -40px;
   margin-right: 5px;
 `;
 

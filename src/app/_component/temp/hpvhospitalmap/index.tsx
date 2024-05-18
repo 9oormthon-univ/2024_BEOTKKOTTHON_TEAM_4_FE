@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from '@emotion/styled';
-import { hospitals } from '@/utils/hpv-api';
+import { hospitals } from '@/utils/influ-api';
 import Tooltip from '@/app/_component/atom/Tooltip';
 import { Images } from '@globalStyles';
 import { Modal } from '../../atom/MapModal';
@@ -113,6 +113,7 @@ export default function HospitalMap() {
             name: hospital.name,
             major: hospital.major,
             address: hospital.address,
+            closeTime: hospital.closeTime,
           });
           setRememberedMarkerPosition(marker.getPosition());
           setIsModalOpen(true);
