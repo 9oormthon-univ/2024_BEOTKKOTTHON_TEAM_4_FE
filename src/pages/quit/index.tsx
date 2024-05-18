@@ -11,9 +11,10 @@ const ImageWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 130px;
   padding: 24px;
   opacity: 1;
+  margin-top:50px
+  margin-bottom: 60px;
 `;
 
 const CautionItem = styled.div`
