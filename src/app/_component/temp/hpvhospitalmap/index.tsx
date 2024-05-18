@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from '@emotion/styled';
-import { hospitals } from '@/utils/hpv-api';
+import { hospitals } from '@/utils/influ-api';
 import Tooltip from '@/app/_component/atom/Tooltip';
 import { Images } from '@globalStyles';
 import { Modal } from '../../atom/MapModal';
