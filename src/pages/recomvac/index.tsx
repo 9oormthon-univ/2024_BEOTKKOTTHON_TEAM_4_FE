@@ -124,7 +124,7 @@ export default function recomVac() {
       <CardsContainer>
       {recommendVaccine.length > 0 ? (
           recommendVaccine.map(vaccine => (
-            <HomeDiseaseCard key={vaccine.id} diseaseName={vaccine.name} imageUrl={vaccine.iconImage} />
+            <HomeDiseaseCard key={vaccine.id} id={vaccine.id} diseaseName={vaccine.name} imageUrl={vaccine.iconImage} />
           ))
         ) : (
           <NoneHome title="앗! 추천 백신이 없어요" />
