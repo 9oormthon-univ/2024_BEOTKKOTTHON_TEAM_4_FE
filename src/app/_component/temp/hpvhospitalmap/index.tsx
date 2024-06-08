@@ -113,7 +113,7 @@ export default function HospitalMap() {
             name: hospital.name,
             major: hospital.major,
             address: hospital.address,
-            closeTime: hospital.closeTime,
+            //closeTime: hospital.closeTime,
           });
           setRememberedMarkerPosition(marker.getPosition());
           setIsModalOpen(true);
