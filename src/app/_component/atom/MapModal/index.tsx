@@ -28,7 +28,7 @@ export const Modal = ({ isOpen, onClose, content }) => {
         </MainSection>
         <SubSection>
           <HospitalNow>{isOpenNow(content.closeTime) ? '진료 중' : '진료 종료'}</HospitalNow>
-          <HospitalHow>{`${content.closeTime} 진료 마감`}</HospitalHow>
+          <HospitalHow>{`진료 마감`}</HospitalHow>
         </SubSection>
         <Address>{content.address}</Address>
       </ModalContainer>
