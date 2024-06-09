@@ -146,7 +146,7 @@ export default function My() {
           </Link>
         </ListItem>
         <ListItem>
-          <ListItemText>개인정보방침</ListItemText>
+          <ListItemText>개인정보처리방침</ListItemText>
           <Link href="https://www.notion.so/been2spring/da1fae9ce9f54a7980a0782c91b7551f" passHref>
             <LinkButton>
               <Image src={Images.ico_my_right} alt="" />
