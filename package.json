@@ -23,6 +23,7 @@
     "react-tooltip": "^5.26.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.44.1",
     "@svgr/webpack": "^8.1.0",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/navermaps": "^3.7.4",
