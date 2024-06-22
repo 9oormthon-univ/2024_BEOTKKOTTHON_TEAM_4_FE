@@ -3,21 +3,21 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
 interface State {
-  currentStep: MakeCapsuleStepType;
-  isMakeModalOpen: boolean;
+  id: string;
+  password: string;
 }
 interface Action {
-  setCurrentStep: (currentStep: MakeCapsuleStepType) => void;
-  setIsMakeModalOpen: (isMakeModalOpen: boolean) => void;
+  setID: (id: string) => void;
+  setPassword: (password: string) => void;
 }
 
 const useSignupStore = devtools<State & Action>((set) => ({
   // state
-  isMakeModalOpen: false,
-  currentStep: MakeCapsuleStep.SelectColor,
+  id: false,
+  password: MakeCapsuleStep.SelectColor,
   // actions
-  setCurrentStep: (currentStep) => set(() => ({ currentStep })),
-  setIsMakeModalOpen: (isMakeModalOpen) => set(() => ({ isMakeModalOpen })),
+  setID: (id) => set(() => ({ id })),
+  setPassword: (password) => set(() => ({ password })),
 }));
 
 export default create(useSignupStore);
