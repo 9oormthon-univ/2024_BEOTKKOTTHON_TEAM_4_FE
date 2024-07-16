@@ -50,19 +50,7 @@ export default function Home(): React.JSX.Element {
           alt={'백곰 스플래시 이미지'}
         />
       </div>
-      <div className={`bottom ${showContent ? 'show-content' : ''} `}>
-        <Button
-          label={'카카오로 계속하기'}
-          variant={'kakao'}
-          size={'kakao'}
-          prevIcon={Icons.kakao}
-          iconSize={'20'}
-          onClick={handleKakaoLogin}
-        />
-        <a className="privacy" href={PATH.NOTION_TERMS}>
-          개인정보처리방침
-        </a>
-      </div>
+      <div className="desc">현재 일시적으로 서비스 제공이 중단되었습니다 :)</div>
     </HomeWrap>
   );
 }
