@@ -37,6 +37,10 @@ export const HomeWrap = styled.main`
       }
     }
   }
+  & > .desc {
+    margin-top: 50px;
+    color: ${Colors.White};
+  }
   & > .bottom {
     display: none;
   }
