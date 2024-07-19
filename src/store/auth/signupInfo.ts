@@ -1,4 +1,3 @@
-import { MakeCapsuleStep, MakeCapsuleStepType } from 'src/types';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
@@ -13,8 +12,8 @@ interface Action {
 
 const useSignupStore = devtools<State & Action>((set) => ({
   // state
-  id: false,
-  password: MakeCapsuleStep.SelectColor,
+  id: '',
+  password: '',
   // actions
   setID: (id) => set(() => ({ id })),
   setPassword: (password) => set(() => ({ password })),
