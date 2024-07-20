@@ -6,6 +6,7 @@ import { BottomButtonWrap } from './style';
 import BackHeader from '@/app/_component/molecule/BackHeader';
 import JoinTemplate from '@/app/_component/temp/JoinTemplate';
 import { ButtonType } from '@/app/_component/atom/atomType';
+import Loading from '@/app/_component/atom/Loading';
 type props = {
   loading: boolean;
   filled: boolean;
@@ -25,8 +26,9 @@ const BottomButton: React.FC<props> = ({
     <BottomButtonWrap
       className={filled ? 'confirm_button_Filled' : 'confirm_button'}
       onClick={onClickValid}
+      data-loading={loading}
     >
-      다음
+      {loading ? <Loading /> : '다음'}
     </BottomButtonWrap>
   );
 };
