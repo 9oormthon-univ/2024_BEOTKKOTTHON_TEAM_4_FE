@@ -56,10 +56,10 @@ export default function Signup(): React.JSX.Element {
     if (allConditionsTrue) {
       SecureLocalStorage.setItem('id', params.id);
       SecureLocalStorage.setItem('password', params.password);
-      localStorage.setItem('id', params.id);
-      localStorage.setItem('password', params.password);
+      // localStorage.setItem('id', params.id);
+      // localStorage.setItem('password', params.password);
 
-      router.push('/signup/info');
+      router.push(PATH.SIGNUP_MORE);
     }
   };
 

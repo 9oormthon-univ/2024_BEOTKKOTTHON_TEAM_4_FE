@@ -63,16 +63,7 @@ export default function Signup(): React.JSX.Element {
   return (
     <JoinWrap>
       <BackHeader title={' '} url={'/'} />
-      <JoinTemplate
-        title={'예방접종도우미에 가입한 적이 있나요?'}
-        subTop={'백곰을 이용하기 위해서는'}
-        subBottom={'질병관리청의 예방접종도우미 가입이 필요해요'}
-        falseLabel={'아니요, 가입한 적이 없어요'}
-        trueLabel={'네, 가입한 적이 있어요'}
-        params={params}
-        field={'signupState'}
-        onChangeValue={onChangeValue}
-      />
+
       <BottomButton
         filled={params.signupState !== undefined}
         handleNextButtonClick={() => {
