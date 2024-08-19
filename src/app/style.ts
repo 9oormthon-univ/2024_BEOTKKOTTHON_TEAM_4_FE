@@ -46,15 +46,15 @@ export const HomeWrap = styled.main`
   }
   & > .splash_image > img {
     visibility: hidden;
-    top: 300px; /* 원하는 위치로 지정합니다 */
+    top: 300px;
   }
 
   .show-content {
-    display: block; /* show-content 클래스가 적용되면 나머지 요소들이 보이도록 설정합니다 */
+    display: block;
   }
   .show-content > img {
     visibility: visible;
-    top: 21px; /* show-content 클래스가 적용되면 원하는 위치로 이동됩니다 */
+    top: 21px;
     display: block;
   }
 
@@ -63,7 +63,7 @@ export const HomeWrap = styled.main`
     & > .vacgom_icon {
       width: 100%;
       position: relative;
-      //top: 300px; /* 원하는 위치로 지정합니다 */
+      //top: 300px;
       transition: top 1s cubic-bezier(0.18, 0.69, 0.32, 1.28);
       z-index: 0;
     }
@@ -80,7 +80,7 @@ export const HomeWrap = styled.main`
       color: ${Colors.Gray50};
       cursor: pointer;
     }
-    padding: 0 20px;
+    padding: 50px 20px;
   }
 
   @media screen and (max-height: 718px) {

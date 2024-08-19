@@ -51,14 +51,14 @@ export default function Home(): React.JSX.Element {
         />
       </div>
       <div className={`bottom ${showContent ? 'show-content' : ''} `}>
-        <Button
-          label={'카카오로 계속하기'}
-          variant={'kakao'}
-          size={'kakao'}
-          prevIcon={Icons.kakao}
-          iconSize={'20'}
-          onClick={handleKakaoLogin}
-        />
+        {/*<Button*/}
+        {/*  label={'카카오로 계속하기'}*/}
+        {/*  variant={'kakao'}*/}
+        {/*  size={'kakao'}*/}
+        {/*  prevIcon={Icons.kakao}*/}
+        {/*  iconSize={'20'}*/}
+        {/*  onClick={handleKakaoLogin}*/}
+        {/*/>*/}
         <a className="privacy" href={PATH.NOTION_TERMS}>
           개인정보처리방침
         </a>
