@@ -40,7 +40,7 @@ const CompleteToast = ({ isVisible }) => {
   return (
     <ToastContainer style={{ opacity: isVisible ? 1 : 0 }}>
       <ToastImage src="/assets/ico/ico-checkbox-selected-enabled.svg" alt="Checked Icon" />
-      <ToastMessage>내 정보가 수정되었습니다!</ToastMessage>
+      <ToastMessage>현재는 테스트뷰로 수정되지 않습니다.</ToastMessage>
     </ToastContainer>
   );
 };

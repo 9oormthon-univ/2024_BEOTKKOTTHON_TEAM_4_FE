@@ -155,11 +155,19 @@ const ToastContainer = styled.div`
   margin-bottom:60px;
 `;
 
+const ToastImage = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  text-align: left;
+`;
+
 const CurrectToast = ({ isVisible }) => {
   return (
     <ToastContainer style={{ opacity: isVisible ? 1 : 0 }}>
       <div style={{ fontFamily: 'Pretendard', fontSize: '16px', fontWeight: '600', lineHeight: '20px', color: '#4196fd' }}>
-        초대 코드가 복사되었습니다
+      <ToastImage src="/assets/ico/ico-checkbox-selected-enabled.svg" alt="Checked Icon" />
+      현재는 초대코드가 유효하지 않습니다.
       </div>
     </ToastContainer>
   );
