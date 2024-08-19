@@ -29,6 +29,16 @@ export const HomeWrap = styled.main`
       &.show-title {
         opacity: 1;
       }
+      & > .powered {
+        & > .kakaoCloud {
+          width: fit-content;
+          height: 13px;
+        }
+
+        ${fontGenerator('15px', '200', '26.92px')};
+        color: ${Colors.White};
+        margin-top: 10px;
+      }
       & > .sub_title {
         margin-top: 10px;
 
@@ -59,11 +69,16 @@ export const HomeWrap = styled.main`
   }
 
   & > .splash_image {
+    position: absolute;
     display: flex;
+    bottom: 20px;
+    width: 100%;
     & > .vacgom_icon {
       width: 100%;
       position: relative;
       //top: 300px;
+      //height: 100%;
+
       transition: top 1s cubic-bezier(0.18, 0.69, 0.32, 1.28);
       z-index: 0;
     }

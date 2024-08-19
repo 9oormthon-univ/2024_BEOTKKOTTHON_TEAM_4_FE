@@ -86,6 +86,7 @@ import ico_vac22 from '../../public/assets/ico/ico-vac22.svg';
 
 // splash
 import splash from '../../public/assets/image/img-splash.svg';
+import kakaoCloud from '../../public/assets/image/kakaocloud.png';
 
 // 감염병 세부 페이지에 들어가는 요소들
 import ico_check_filled from '../../public/assets/ico/ico-check-filled.svg';
@@ -253,5 +254,6 @@ export const Images: ImagesType = {
   vaccine_status_disable: vaccine_status_disable,
   splash: splash,
   syringe:syringe,
+  kakaoCloud:kakaoCloud,
   
 };
