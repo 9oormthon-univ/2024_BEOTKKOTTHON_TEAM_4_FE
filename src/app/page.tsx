@@ -11,9 +11,9 @@ import { AccessTokenRouter, LocalStorage } from '@/hooks/useUtil';
 import jwt from 'jsonwebtoken';
 
 export default function Home(): React.JSX.Element {
-  const handleKakaoLogin = () => {
-    window.open(PATH.KAKAOLOGIN);
-  };
+  // const handleKakaoLogin = () => {
+  //   window.open(PATH.KAKAOLOGIN);
+  // };
   const [showContent, setShowContent] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
   const router = useRouter();
@@ -35,12 +35,30 @@ export default function Home(): React.JSX.Element {
     return () => clearTimeout(timer);
   }, []);
 
+  // 5초 후에 홈으로 라우팅
+  useEffect(() => {
+    LocalStorage.setItem(
+      'accessToken',
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4MDA4ODBmNS03OGEzLTQ5YTMtYmI3OC0xNWZjZjM5YTAzNjYiLCJpYXQiOjE3MjQwNjI2MjIsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MzMwNjI2MjJ9.I2SQe__we1LJI4lcAQCR9hsRVadczitrEDRTpDMMdmQ',
+    );
+
+    const redirectTimer = setTimeout(() => {
+      router.push(PATH.HOME);
+    }, 5000);
+
+    return () => clearTimeout(redirectTimer);
+  }, [router]);
+
   return (
     <HomeWrap className={'splash'}>
       <div className={`main ${showContent ? 'show-content' : ''}`}>
         <div className={`title ${showTitle ? 'show-title' : ''}`}>
           <Image src={Images.splash} alt={'백곰'} />
           <div className="sub_title">백신아, 곰아워!</div>
+          <div className={'powered'}>
+            Vacgom is powered by{' '}
+            <Image src={Images.kakaoCloud} className="kakaoCloud" />
+          </div>
         </div>
       </div>
       <div className={`splash_image ${showContent ? 'show-content' : ''} `}>
@@ -50,19 +68,19 @@ export default function Home(): React.JSX.Element {
           alt={'백곰 스플래시 이미지'}
         />
       </div>
-      <div className={`bottom ${showContent ? 'show-content' : ''} `}>
-        <Button
-          label={'카카오로 계속하기'}
-          variant={'kakao'}
-          size={'kakao'}
-          prevIcon={Icons.kakao}
-          iconSize={'20'}
-          onClick={handleKakaoLogin}
-        />
-        <a className="privacy" href={PATH.NOTION_TERMS}>
-          개인정보처리방침
-        </a>
-      </div>
+      {/*<div className={`bottom ${showContent ? 'show-content' : ''} `}>*/}
+      {/*  <Button*/}
+      {/*    label={'카카오로 계속하기'}*/}
+      {/*    variant={'kakao'}*/}
+      {/*    size={'kakao'}*/}
+      {/*    prevIcon={Icons.kakao}*/}
+      {/*    iconSize={'20'}*/}
+      {/*    onClick={handleKakaoLogin}*/}
+      {/*  />*/}
+      {/*  <a className="privacy" href={PATH.NOTION_TERMS}>*/}
+      {/*    이용약관*/}
+      {/*  </a>*/}
+      {/*</div>*/}
     </HomeWrap>
   );
 }
