@@ -191,12 +191,7 @@ export default function HospitalMap() {
     >
       <MapContainer id="map">
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
-        <Tooltip
-          tooltipImage={{
-            button: Images.ico_map_tooltip_button,
-            content: Images.ico_map_hpv_tooltip,
-          }}
-        />
+
         <ReloadButton onClick={handleCurrentLocationClick} />
         <Modal
           isOpen={isModalOpen}

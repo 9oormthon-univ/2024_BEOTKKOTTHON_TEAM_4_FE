@@ -121,6 +121,24 @@ const ImageContainer = styled.div`
   margin-bottom: 10px;
 `;
 
+const AlertContainer= styled.div`
+margin-left:20px;
+display: flex;
+padding: 20px;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+border-radius: 14px;
+background: #8B95A1;
+color: #ffffff;
+font-family: Pretendard;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 120%;
+letter-spacing: -0.3px;
+`
+
 export default function Home() {
   const [userName, setUserName] = useState('');
   const [recommendVaccine, setRecommendVaccine] = useState([]);
@@ -225,9 +243,9 @@ export default function Home() {
           <UserName>{userName}님, </UserName>
           <GreetingMessage>반가워요!</GreetingMessage>
         </GreetingContainer>
-        <ImageContainer key={imageKey}>
-          <Image src={currentImage} alt="추천하는 이미지" />
-        </ImageContainer>
+        <AlertContainer>
+        현재 서비스는 자체 개발한 스크래핑 모듈을 통해 수집된 실제 사용자 데이터를 바탕으로 생성된 프로토타입입니다. 현재 백곰은 MVP(최소 기능 제품) 형태로 제공되고 있으며, 향후 앱 서비스로의 제공을 목표로 지속적으로 개선하고 있습니다.
+        </AlertContainer>
         <div className="body_wrap">
           <div className="content_head">
             <MenuTitle

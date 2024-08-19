@@ -251,7 +251,7 @@ export default function My() {
             <ListItemText>개인정보 수집 및 활용 동의서</ListItemText>
           </ListInfoItem>
           <Link
-            href="https://been2spring.notion.site/143ea9e50cd9471a856fd1ce52e47ed3?pvs=4"
+            href="https://www.notion.so/been2spring/64c0e6ad64e14cd3bf0d23e638cadf93"
             passHref
           >
             <LinkButton>
@@ -264,7 +264,7 @@ export default function My() {
             <ListItemText>이용약관</ListItemText>
           </ListInfoItem>
           <Link
-            href="https://been2spring.notion.site/104c56edfef54ae3bd36657f8824d24e?pvs=4"
+            href="https://www.notion.so/been2spring/c3d063e9d95644f1be27b5c92e393aaa"
             passHref
           >
             <LinkButton>
@@ -277,7 +277,7 @@ export default function My() {
             <ListItemText>개인정보처리방침</ListItemText>
           </ListInfoItem>
           <Link
-            href="https://been2spring.notion.site/37c4eb9131f944a3981f97e9a80cb933?pvs=4"
+            href=""
             passHref
           >
             <LinkButton>
