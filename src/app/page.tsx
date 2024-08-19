@@ -60,7 +60,7 @@ export default function Home(): React.JSX.Element {
         {/*  onClick={handleKakaoLogin}*/}
         {/*/>*/}
         <a className="privacy" href={PATH.NOTION_TERMS}>
-          개인정보처리방침
+          이용약관
         </a>
       </div>
     </HomeWrap>
