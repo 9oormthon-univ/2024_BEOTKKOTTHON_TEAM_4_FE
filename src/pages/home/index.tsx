@@ -148,7 +148,10 @@ export default function Home() {
   const [imageKey, setImageKey] = useState(0);
   const [certificateData, setCertificateData] = useState<VaccineData[]>([]);
 
-  const accessToken = LocalStorage.getItem('accessToken');
+  const accessToken = LocalStorage.setItem(
+    'accessToken',
+    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4MDA4ODBmNS03OGEzLTQ5YTMtYmI3OC0xNWZjZjM5YTAzNjYiLCJpYXQiOjE3MjQwNjI2MjIsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MzMwNjI2MjJ9.I2SQe__we1LJI4lcAQCR9hsRVadczitrEDRTpDMMdmQ',
+  );
 
   useEffect(() => {
     fetch(`${apiDevUrl}/me`, {
