@@ -2,12 +2,18 @@
 
 # 💉 우리 아이 백신 접종을 위한 백신 조회 및 추천 서비스, 백곰 🐻‍❄️
 
-우리 아이 백신 접종을 위한 종합적인 서비스를 제공하는 백곰 : 백신아, 곰아워 🐻‍❄️ 팀의 프론트엔드 개발 저장소입니다. 
+우리 아이 백신 접종을 위한 종합적인 서비스를 제공하는 백곰 : 백신아, 곰아워 🐻‍❄️ 팀의 백엔드 개발 저장소입니다. <br>
+현재 V2를 준비중이며, 2025년 01월 실제 앱 서비스로 배포를 목표로 하고 있습니다.
 
-![image](https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_4_FE/assets/53892427/c89039ca-a866-452c-b372-79537abbc4d0)
+![](https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_4_FE/assets/53892427/c89039ca-a866-452c-b372-79537abbc4d0)
+
+<div align="right"><b>Vacgom | Powered By kakaocloud</b></div> 
+
 <br/><br/>
 
 ## 🌸 Developers
+
+<div align="center">
 
 |FE | FE |
 | :---: | :---: |
@@ -15,6 +21,8 @@
 |국민대학교|한림대학교|
 |김민정|오소현|
 |   [@minjeoong](https://github.com/minjeoong)   |  [@osohyun0224](https://github.com/osohyun0224)     |
+</div>
+
 
 ## 🛠️ Tech
 <img src="https://skillicons.dev/icons?i=ts,nextjs,react,emotion,nodejs&perline="/>
