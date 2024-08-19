@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from '@emotion/styled';
 import { hospitals } from '@/utils/influ-api';
-import Tooltip from '@/app/_component/atom/Tooltip';
-import { Images } from '@globalStyles';
+import {newHospitalList} from '@/utils/new-hospital-api';
 import { Modal } from '../../atom/MapModal';
 import ReloadButton from '@/app/_component/atom/ReloadButton';
 import CurrectToast from '../../atom/CurrectToast';
@@ -19,6 +18,33 @@ const Main = styled.div`
 const MapContainer = styled.div`
   width: 100%;
   height: 100%;
+`;
+
+const FiltersContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  //flex-wrap: nowrap;
+  overflow-y: auto;
+  align-items: center;
+  gap: 6px;
+  margin: 14px 0 14px 14px;
+  padding-right: 14px;
+
+  z-index: 1000;
+  button {
+    flex-shrink: 0;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 `;
 
 export default function HospitalMap() {
@@ -113,7 +139,7 @@ export default function HospitalMap() {
             name: hospital.name,
             major: hospital.major,
             address: hospital.address,
-            closeTime: hospital.closeTime,
+            //closeTime: hospital.closeTime,
           });
           setRememberedMarkerPosition(marker.getPosition());
           setIsModalOpen(true);
@@ -165,12 +191,7 @@ export default function HospitalMap() {
     >
       <MapContainer id="map">
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
-        <Tooltip
-          tooltipImage={{
-            button: Images.ico_map_tooltip_button,
-            content: Images.ico_map_influ_tooltip,
-          }}
-        />
+
         <ReloadButton onClick={handleCurrentLocationClick} />
         <Modal
           isOpen={isModalOpen}
