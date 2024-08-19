@@ -9,9 +9,6 @@ const MainHeader: React.FC<MainHeaderType> = ({ title, customStyle }) => {
   return (
     <HeaderContainer css={customStyle}>
       <Title>{title}</Title>
-      <Link href="/alert">
-        <Image src={Images.notification} alt="Notification" style={{ cursor: 'pointer' }} />
-      </Link>
     </HeaderContainer>
   );
 };
