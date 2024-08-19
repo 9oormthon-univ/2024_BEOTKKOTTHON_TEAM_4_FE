@@ -41,7 +41,7 @@ const CurrectToast = ({ isVisible }) => {
   return (
     <ToastContainer style={{ opacity: isVisible ? 1 : 0 }}>
       <ToastImage src="/assets/ico/ico-checkbox-selected-enabled.svg" alt="Checked Icon" />
-      <ToastMessage>현재 위치는 성남시 분당구 입니다</ToastMessage>
+      <ToastMessage>현재 위치는 제주특별자치도 서귀포시 입니다</ToastMessage>
     </ToastContainer>
   );
 };

@@ -146,8 +146,8 @@ export default function Vaccine() {
               : Images.adjustment_selec
           }
           alt="Filter Icon"
-          width={24}
-          height={24}
+          width={30}
+          height={30}
         />
         {params.disease.map((item) => {
           return (

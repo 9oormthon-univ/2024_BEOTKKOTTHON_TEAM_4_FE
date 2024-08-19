@@ -101,12 +101,23 @@ import ico_map_influ_tooltip from '../../public/assets/ico/ico_map_influ_tooltip
 import ico_map_hpv_tooltip from '../../public/assets/ico/ico_map_hpv_tooltip.svg';
 import ico_map_tooltip_button from '../../public/assets/ico/ico-map-tooltip-button.svg';
 import ico_map_reload from '../../public/assets/ico/ico-map-reload.svg';
+import ico_map_mom from '../../public/assets/ico/ico-map-mom.svg';
+import ico_map_baby from '../../public/assets/ico/ico-map-baby.svg';
+import ico_map_univ from '../../public/assets/ico/ico-map-univ.svg';
+import ico_map_mom_none from '../../public/assets/ico/ico-map-mom-none.svg';
+import ico_map_baby_none from '../../public/assets/ico/ico-map-baby-none.svg';
+import ico_map_univ_none from '../../public/assets/ico/ico-map-my-univ-none.svg';
+import ico_map_normal from '../../public/assets/ico/ico-map-nomal.svg';
+import ico_map_normal_none from '../../public/assets/ico/ico-map-nomal-none.svg';
 import ico_support_intro from '../../public/assets/ico/ico-support-influ.svg';
 import ico_support_hintro from '../../public/assets/ico/ico-support-hpv.svg';
 import ico_map_bell from '../../public/assets/ico/ico-map-bell.svg';
 import ico_map_vacgom from '../../public/assets/ico/ico-map-vacgom.svg';
 import ico_map_main from '../../public/assets/ico/ico-map-main.svg';
 import ico_map_home from '../../public/assets/ico/ico-map-home.svg';
+
+import ico_vacscore_info from '../../public/assets/ico/ico-vacscore-info.svg';
+import ico_vacscore_vaccine from '../../public/assets/ico/ico-vacscore-vaccine.svg';
 
 // 홈화면에 들어가는 이미지들
 import ico_home_greet from '../../public/assets/ico/ico-home-greet.svg';
@@ -118,6 +129,20 @@ import ico_my_recom from '../../public/assets/ico/ico-my-recom.svg';
 import ico_my_docs from '../../public/assets/ico/ico-my-docs.svg';
 import ico_my_profile from '../../public/assets/ico/ico-my-profile.svg';
 import ico_my_right from '../../public/assets/ico/ico-my-right.svg';
+import ico_my_info_revise from '../../public/assets/ico/ico-my-info-revise.svg';
+import ico_my_baby from '../../public/assets/ico/ico-my-baby.svg';
+import ico_my_baby_list from '../../public/assets/ico/ico-my-baby-list.svg';
+import ico_my_books from '../../public/assets/ico/ico-my-books.svg';
+import ico_my_logout from '../../public/assets/ico/ico-my-logout.svg';
+import ico_my_map from '../../public/assets/ico/ico-my-map.svg';
+import ico_my_news from '../../public/assets/ico/ico-my-news.svg';
+import ico_my_version from '../../public/assets/ico/ico-my-version.svg';
+import ico_my_1_1 from '../../public/assets/ico/ico-my-1-1.svg';
+import ico_my_baby_revise_profile from '../../public/assets/ico/ico-my-baby-revise-profile.svg';
+import ico_vacinfo_list from '../../public/assets/ico/ico-vacinfo-list.svg';
+import ico_vacinfo_look from '../../public/assets/ico/ico-vacinfo-look.svg';
+import ico_my_success from  '../../public/assets/ico/ico-my-success.svg';
+
 import ico_dropdown from '../../public/assets/ico/ico-dropdown-down.svg';
 import ico_quit_intro from '../../public/assets/ico/ico-quit-intro.svg';
 import ico_quit from '../../public/assets/ico/ico-quit.svg';
@@ -131,6 +156,7 @@ import ico_alert_clock from '../../public/assets/ico/ico-alert-clock.svg';
 import ico_alert_fail from '../../public/assets/ico/ico-alert-fail.svg';
 import ico_alert_vaccine from '../../public/assets/ico/ico-alert-vaccine.svg';
 import ico_alert_welcome from '../../public/assets/ico/ico-alert-welcome.svg';
+import icon_setting from '../../public/assets/ico/icon-setting.svg';
 
 // prettier-ignore
 export const Images: ImagesType = {
@@ -205,6 +231,7 @@ export const Images: ImagesType = {
   check_default: check_default,
   check_true: check_true,
   check_false: check_false,
+  ico_vacscore_vaccine:ico_vacscore_vaccine,
 
   ico_map_my: ico_map_my,
   ico_map_selec: ico_map_selec,
@@ -220,26 +247,50 @@ export const Images: ImagesType = {
   ico_map_vacgom: ico_map_vacgom,
   ico_map_main: ico_map_main,
   ico_map_home: ico_map_home,
+  ico_map_mom: ico_map_mom,
+  ico_map_baby: ico_map_baby,
+  ico_map_univ: ico_map_univ,
+  ico_map_normal: ico_map_normal,
+  ico_map_normal_none: ico_map_normal_none,
+  ico_map_mom_none: ico_map_mom_none,
+  ico_map_baby_none: ico_map_baby_none,
+  ico_map_univ_none: ico_map_univ_none,
+  ico_my_success:ico_my_success,
   ico_home_greet: ico_home_greet,
   ico_syringe: ico_syringe,
   ico_none_syringe: ico_none_syringe,
   ico_see_again: ico_see_again,
+  ico_vacscore_info:ico_vacscore_info,
+  ico_vacscore_vaccine:ico_vacscore_vaccine,
 
   ico_alert_clock: ico_alert_clock,
   ico_alert_fail: ico_alert_fail,
   ico_alert_vaccine: ico_alert_vaccine,
   ico_alert_welcome: ico_alert_welcome,
-
+  ico_my_1_1:ico_my_1_1,
   ico_my_recom: ico_my_recom,
   ico_my_docs: ico_my_docs,
   ico_my_profile: ico_my_profile,
   ico_my_right: ico_my_right,
+  ico_my_baby:ico_my_baby,
+  ico_my_logout:ico_my_logout,
+  ico_my_books:ico_my_books,
+  ico_my_map: ico_my_map,
+  ico_my_news:ico_my_news,
+  ico_my_version: ico_my_version,
+  ico_my_baby_revise_profile: ico_my_baby_revise_profile,
+  ico_my_baby_list :ico_my_baby_list ,
+  ico_vacinfo_list:ico_vacinfo_list,
+  ico_vacinfo_look:ico_vacinfo_look,
+
   ico_dropdown: ico_dropdown,
   ico_quit_intro: ico_quit_intro,
   ico_quit: ico_quit,
   ico_home_1: ico_home_1,
   ico_home_2: ico_home_2,
   ico_home_3: ico_home_3,
+  icon_setting:icon_setting,
+  ico_my_info_revise: ico_my_info_revise ,
 
   //image
   vacgom01: Vacgom01,

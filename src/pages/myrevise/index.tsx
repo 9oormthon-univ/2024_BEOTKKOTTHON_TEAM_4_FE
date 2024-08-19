@@ -66,9 +66,16 @@ const DropdownContainer = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  width: 100%;
+  position: fixed;
+  bottom: 0;         
+  left: 0;           
+  width: 100%;     
+  display: flex;
   height: 56px;
-  background-color: #4196fd;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: var(--Primary, #4196fd);
 `;
 
 const ButtonText = styled.div`
@@ -224,71 +231,6 @@ export default function Myrevise() {
         <FormSection>
           <FormItemLabel htmlFor="nickname">닉네임</FormItemLabel>
           <FormDisplay>{userNickname}</FormDisplay>
-        </FormSection>
-        <FormSection>
-          <FormItemLabel>기저 질환</FormItemLabel>
-          <DropdownContainer onClick={() => setConditionModalOpen(true)}>
-            <span>{selectedCondition}</span>
-            <Image src={Images.ico_dropdown} alt="" width={24} height={24} />
-          </DropdownContainer>
-          <FilterRadioModal
-            isOpen={isConditionModalOpen}
-            title="기저 질환 선택"
-            options={conditionOptions}
-            selectedOptions={[selectedCondition]}
-            onClose={() => setConditionModalOpen(false)}
-            onOptionSelect={(option) => setSelectedCondition(option)}
-            onReset={() => setSelectedCondition('선택하세요')}
-          />
-        </FormSection>
-
-        <FormSection>
-          <FormItemLabel>임신 여부</FormItemLabel>
-          <DropdownContainer onClick={() => setPregnantModalOpen(true)}>
-            <span>{selectedPregnant}</span>
-            <Image src={Images.ico_dropdown} alt="" width={24} height={24} />
-          </DropdownContainer>
-          <FilterRadioModal
-            isOpen={isPregnantModalOpen}
-            title="임신 여부 선택"
-            options={pregnantOptions}
-            selectedOptions={[selectedPregnant]}
-            onClose={() => setPregnantModalOpen(false)}
-            onOptionSelect={(option) => setSelectedPregnant(option)}
-            onReset={() => {}}
-          />
-        </FormSection>
-        <FormSection>
-          <FormItemLabel>의료기관 종사자 여부</FormItemLabel>
-          <DropdownContainer onClick={() => setMedicalWorkerModalOpen(true)}>
-            <span>{selectedMedicalWorker}</span>
-            <Image src={Images.ico_dropdown} alt="" width={24} height={24} />
-          </DropdownContainer>
-          <FilterRadioModal
-            isOpen={isMedicalWorkerModalOpen}
-            title="의료기관 종사자 선택"
-            options={medicalWorkerOptions}
-            selectedOptions={[selectedMedicalWorker]}
-            onClose={() => setMedicalWorkerModalOpen(false)}
-            onOptionSelect={(option) => setSelectedMedicalWorker(option)}
-            onReset={() => {}}
-          />
-        </FormSection>
-        <FormSection>
-          <FormItemLabel>장기이식 경험 여부</FormItemLabel>
-          <DropdownContainer onClick={() => setTransplantModalOpen(true)}>
-            <span>{selectedTransplant}</span>
-            <Image src={Images.ico_dropdown} alt="" width={24} height={24} />
-          </DropdownContainer>
-          <FilterRadioModal
-            isOpen={isTransplantModalOpen}
-            title="장기의식 경험 선택"
-            options={transplantOptions}
-            selectedOptions={[selectedTransplant]}
-            onClose={() => setTransplantModalOpen(false)}
-            onOptionSelect={(option) => setSelectedTransplant(option)}
-            onReset={() => {}}
-          />
         </FormSection>
       </ContextContainer>
       <CompeleteToast isVisible={showToast} />

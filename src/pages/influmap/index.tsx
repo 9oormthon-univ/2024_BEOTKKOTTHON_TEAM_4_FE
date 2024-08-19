@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MainHeader from '@/app/_component/atom/RouteHeader';
 import SectionHeader from '@/app/_component/atom/SectionHeader';
 import NavigationFixed from '@/app/_component/organism/navigationFixed';
-import InfluHospitalMap from "@/app/_component/temp/influhospitalmap";
+import InfluHospitalMap from "@/app/_component/temp/hospitalmap";
 import SupportIntro from '@/app/_component/temp/influsupportIntro';
 
 export default function Map() {
