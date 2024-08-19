@@ -3,7 +3,7 @@ export const PATH = {
   HOME: '/home',
   //notion
   NOTION_TERMS:
-    'https://www.notion.so/been2spring/c3d063e9d95644f1be27b5c92e393aaa',
+    'https://been2spring.notion.site/c3d063e9d95644f1be27b5c92e393aaa?pvs=4',
   //social login
   KAKAOLOGIN: 'https://api-dev.vacgom.co.kr/api/v1/oauth/kakao',
   RECOMVAC: '/recomvac',
