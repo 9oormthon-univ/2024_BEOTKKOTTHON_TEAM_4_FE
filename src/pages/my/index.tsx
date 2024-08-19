@@ -247,11 +247,39 @@ export default function My() {
       <NavContainer>
         <AccountTitle>설정</AccountTitle>
         <ListItem>
-          <ListInfoItem>
-            <Image src={Images.ico_my_map} alt="" />
-            <ListItemText>위치정보 이용약관</ListItemText>
+        <ListInfoItem>
+            <ListItemText>개인정보 수집 및 활용 동의서</ListItemText>
           </ListInfoItem>
-          <Link href="/myrevise" passHref>
+          <Link
+            href="https://been2spring.notion.site/143ea9e50cd9471a856fd1ce52e47ed3?pvs=4"
+            passHref
+          >
+            <LinkButton>
+              <Image src={Images.ico_my_right} alt="" />
+            </LinkButton>
+          </Link>
+        </ListItem>
+        <ListItem>
+        <ListInfoItem>
+            <ListItemText>이용약관</ListItemText>
+          </ListInfoItem>
+          <Link
+            href="https://been2spring.notion.site/104c56edfef54ae3bd36657f8824d24e?pvs=4"
+            passHref
+          >
+            <LinkButton>
+              <Image src={Images.ico_my_right} alt="" />
+            </LinkButton>
+          </Link>
+        </ListItem>
+        <ListItem>
+        <ListInfoItem>
+            <ListItemText>개인정보처리방침</ListItemText>
+          </ListInfoItem>
+          <Link
+            href="https://been2spring.notion.site/37c4eb9131f944a3981f97e9a80cb933?pvs=4"
+            passHref
+          >
             <LinkButton>
               <Image src={Images.ico_my_right} alt="" />
             </LinkButton>
@@ -259,29 +287,7 @@ export default function My() {
         </ListItem>
         <ListItem>
           <ListInfoItem>
-            <Image src={Images.ico_my_news} alt="" />
-            <ListItemText>서비스 이용약관</ListItemText>
-          </ListInfoItem>
-          <Link href="/myrevise" passHref>
-            <LinkButton>
-              <Image src={Images.ico_my_right} alt="" />
-            </LinkButton>
-          </Link>
-        </ListItem>
-        <ListItem>
-          <ListInfoItem>
-            <Image src={Images.ico_my_books} alt="" />
-            <ListItemText>개인정보 처리방침</ListItemText>
-          </ListInfoItem>
-          <Link href="/myrevise" passHref>
-            <LinkButton>
-              <Image src={Images.ico_my_right} alt="" />
-            </LinkButton>
-          </Link>
-        </ListItem>
-        <ListItem>
-          <ListInfoItem>
-            <Image src={Images.ico_my_1_1} alt="" />
+
             <ListItemText>1:1 문의</ListItemText>
           </ListInfoItem>
           <Link href="/ask" passHref>
@@ -292,7 +298,6 @@ export default function My() {
         </ListItem>
         <ListItem>
           <ListInfoItem>
-            <Image src={Images.ico_my_logout} alt="" />
             <ListItemText>로그 아웃</ListItemText>
           </ListInfoItem>
           <Link href="/seeagain" passHref>
@@ -300,13 +305,6 @@ export default function My() {
               <Image src={Images.ico_my_right} alt="" />
             </LinkButton>
           </Link>
-        </ListItem>
-        <ListItem>
-          <ListInfoItem>
-            <Image src={Images.ico_my_version} alt="" />
-            <ListItemText>버전 정보</ListItemText>
-          </ListInfoItem>
-          <VersionText>1.0.0v</VersionText>
         </ListItem>
       </NavContainer>
       <Link href="/quit" passHref>

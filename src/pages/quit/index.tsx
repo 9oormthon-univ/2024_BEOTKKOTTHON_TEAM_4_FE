@@ -114,7 +114,7 @@ export default function Quit() {
         <CautionText>백신만의 백신 인증서를{"\n"}발급받을 수 없어요</CautionText>
       </CautionItem>
       <PrimaryButton onClick={() => window.location.href = '/home'}>홈으로 이동</PrimaryButton>
-      <SecondaryButton onClick={handleAccountDeletion}>계정 탈퇴</SecondaryButton>
+      <SecondaryButton>계정 탈퇴</SecondaryButton>
     </div>
   );
 }

@@ -82,13 +82,12 @@ export default function HospitalMap() {
 
   useEffect(() => {
     const loadMap = () => {
-      const hackathonLocation = new naver.maps.LatLng(33.449800, 126.918179);
+      const hackathonLocation = new naver.maps.LatLng(37.402345, 127.101222);
 
       const mapOptions = {
         center: hackathonLocation,
-        zoom: 9.2,
+        zoom: 12.5,
       };
-  
 
       const map = new naver.maps.Map('map', mapOptions);
       mapRef.current = map;
@@ -114,61 +113,33 @@ export default function HospitalMap() {
         });
       }
 
-      newHospitalList.forEach((newHospital) => {
-        let iconUrl;
-        if (selectedHospitalId === newHospital.hospital_id) {
-          // 선택된 병원의 경우
-          switch (newHospital.type) {
-            case 'OBSTERICS_GYNECOLOGY':
-              iconUrl = '/assets/ico/ico-map-mom.svg';
-              break;
-            case 'PERDIATRICS':
-              iconUrl = '/assets/ico/ico-map-baby.svg';
-              break;
-            case 'UNIVERSITY_HOSPITAL':
-              iconUrl = '/assets/ico/ico-map-univ.svg';
-              break;
-            default:
-              iconUrl = '/assets/ico/ico-map-nomal.svg';
-              break;
-          }
-        } else {
-          // 선택되지 않은 병원의 경우
-          switch (newHospital.type) {
-            case 'OBSTERICS_GYNECOLOGY':
-              iconUrl = '/assets/ico/ico-map-mom-none.svg';
-              break;
-            case 'PERDIATRICS':
-              iconUrl = '/assets/ico/ico-map-baby-none.svg';
-              break;
-            case 'UNIVERSITY_HOSPITAL':
-              iconUrl = '/assets/ico/ico-map-my-univ-none.svg';
-              break;
-            default:
-              iconUrl = '/assets/ico/ico-map-nomal-none.svg';
-              break;
-          }
-        }
-        
+      hospitals.forEach((hospital) => {
         const marker = new naver.maps.Marker({
-          position: new naver.maps.LatLng(newHospital.latitude,newHospital.longitude),
+          position: new naver.maps.LatLng(hospital.lat, hospital.lng),
           map: map,
-          title: newHospital.name,
+          title: hospital.name,
           icon: {
-            url: iconUrl,
+            url:
+              selectedHospitalId === hospital.id
+                ? '/assets/ico/ico-map-selec.svg'
+                : '/assets/ico/ico-map-unselec.svg',
             size: new naver.maps.Size(50, 63),
             scaledSize: new naver.maps.Size(50, 63),
             origin: new naver.maps.Point(0, 0),
             anchor: new naver.maps.Point(12, 37),
           },
         });
-      
+
         naver.maps.Event.addListener(marker, 'click', () => {
-          setSelectedHospitalId(selectedHospitalId ===newHospital.hospital_id ? null : newHospital.hospital_id);
+          setSelectedHospitalId(
+            selectedHospitalId === hospital.id ? null : hospital.id
+          );
+          //setSelectedMarkerPosition(marker.getPosition());
           setModalContent({
-            name: newHospital.name,
-            type: newHospital.type,
-            address: newHospital.address,
+            name: hospital.name,
+            major: hospital.major,
+            address: hospital.address,
+            //closeTime: hospital.closeTime,
           });
           setRememberedMarkerPosition(marker.getPosition());
           setIsModalOpen(true);
@@ -220,6 +191,12 @@ export default function HospitalMap() {
     >
       <MapContainer id="map">
         {!isMapLoaded && <p>지도를 준비 중입니다!</p>}
+        <Tooltip
+          tooltipImage={{
+            button: Images.ico_map_tooltip_button,
+            content: Images.ico_map_hpv_tooltip,
+          }}
+        />
         <ReloadButton onClick={handleCurrentLocationClick} />
         <Modal
           isOpen={isModalOpen}
