@@ -18,7 +18,7 @@ import { LocalStorage } from '@/hooks/useUtil';
 import { getCertificate } from '../_lib/getCertificate';
 import { Colors, fontGenerator } from '@/styles';
 import { VaccineData } from '@/types/globalType';
-
+import Popup from "@/app/_component/atom/Popup";
 export const Container = styled.main`
   min-height: 100vh;
   width: 100%;
@@ -235,17 +235,24 @@ export default function Home() {
   if (isLoading) return;
   if (error) return <div>Error: {error}</div>;
 
+  const [showModal, setShowModal] = useState(true);
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
+    {showModal && <Popup onClose={handleModalClose} />}
       <Container>
         <MainHeader title="홈" />
         <GreetingContainer>
           <UserName>{userName}님, </UserName>
           <GreetingMessage>반가워요!</GreetingMessage>
         </GreetingContainer>
-        <AlertContainer>
-        현재 서비스는 자체 개발한 스크래핑 모듈을 통해 수집된 실제 사용자 데이터를 바탕으로 생성된 프로토타입입니다. 현재 백곰은 MVP(최소 기능 제품) 형태로 제공되고 있으며, 향후 앱 서비스로의 제공을 목표로 지속적으로 개선하고 있습니다.
-        </AlertContainer>
+        <ImageContainer key={imageKey}>
+          <Image src={currentImage} alt="추천하는 이미지" />
+        </ImageContainer>
         <div className="body_wrap">
           <div className="content_head">
             <MenuTitle
