@@ -142,17 +142,14 @@ letter-spacing: -0.3px;
 export default function Home() {
   const [userName, setUserName] = useState('');
   const [recommendVaccine, setRecommendVaccine] = useState([]);
+  const [showModal, setShowModal] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [currentImage, setCurrentImage] = useState(Images.ico_home_2);
   const [imageKey, setImageKey] = useState(0);
   const [certificateData, setCertificateData] = useState<VaccineData[]>([]);
 
-  const accessToken = LocalStorage.setItem(
-    'accessToken',
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4MDA4ODBmNS03OGEzLTQ5YTMtYmI3OC0xNWZjZjM5YTAzNjYiLCJpYXQiOjE3MjQwNjI2MjIsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MzMwNjI2MjJ9.I2SQe__we1LJI4lcAQCR9hsRVadczitrEDRTpDMMdmQ',
-  );
-
+  const accessToken = LocalStorage.getItem('accessToken')
   useEffect(() => {
     fetch(`${apiDevUrl}/me`, {
       method: 'GET',
@@ -237,8 +234,6 @@ export default function Home() {
 
   if (isLoading) return;
   if (error) return <div>Error: {error}</div>;
-
-  const [showModal, setShowModal] = useState(true);
 
   const handleModalClose = () => {
     setShowModal(false);

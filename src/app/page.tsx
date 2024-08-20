@@ -39,7 +39,7 @@ export default function Home(): React.JSX.Element {
   useEffect(() => {
     LocalStorage.setItem(
       'accessToken',
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4MDA4ODBmNS03OGEzLTQ5YTMtYmI3OC0xNWZjZjM5YTAzNjYiLCJpYXQiOjE3MjQwNjI2MjIsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MzMwNjI2MjJ9.I2SQe__we1LJI4lcAQCR9hsRVadczitrEDRTpDMMdmQ',
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4MDA4ODBmNS03OGEzLTQ5YTMtYmI3OC0xNWZjZjM5YTAzNjYiLCJpYXQiOjE3MjQwNjI2MjIsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE5MzMwNjI2MjJ9.5RBZAuZhRcsnMCtSY0VEVDR8x_03W6zvI7eggh_5I2s',
     );
 
     const redirectTimer = setTimeout(() => {
