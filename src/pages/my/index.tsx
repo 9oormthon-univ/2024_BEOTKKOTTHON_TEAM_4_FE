@@ -214,7 +214,7 @@ export default function My() {
           </ImageWrapper>
           <InfoContainer>
             <NameContainer>{userName}</NameContainer>
-            <EmailContainer>가든 돌보미</EmailContainer>
+            <EmailContainer>변해빈 돌보미</EmailContainer>
           </InfoContainer>
           </InfoWrapper>
         </UserGreeting>
